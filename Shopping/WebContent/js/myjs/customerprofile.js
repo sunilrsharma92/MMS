@@ -9,19 +9,19 @@ function loadPage(id)
 	switch(idofpage)
 	{
 	case "orders":
-		$("#loadpagecontent").load("myorders.html");
+		$("#loadpagecontent").load("myorders.jsp");
 		break;
 	case "customerPage":
-		$("#loadpagecontent").load("customerPage.html");
+		$("#loadpagecontent").load("customerPage.jsp");
 		break;
 	case "changepassword":
-		$("#loadpagecontent").load("changepassword.html");
+		$("#loadpagecontent").load("changepassword.jsp");
 		break;
 	case "addresses":
-		$("#loadpagecontent").load("addresses.html");
+		$("#loadpagecontent").load("addresses.jsp");
 		break;
 	case "deactivate":
-		$("#loadpagecontent").load("deactivate.html");
+		$("#loadpagecontent").load("deactivate.jsp");
 		break;
 	default:
 		alert("Comming Soon..");
