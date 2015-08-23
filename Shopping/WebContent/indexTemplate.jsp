@@ -3,7 +3,7 @@
 <%--     <%@page import="java.util.*" %> --%>
 <%--     <%@page import="com.eshop.pojo.Product"%> --%>
     <html>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!-- <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"> -->
 <html>
 <head>
 <title>MakeMyShopy</title>
@@ -12,6 +12,7 @@
 <link rel="stylesheet" href="css/style1.css">
 <link rel="stylesheet" href="css/jqx/jqx.base.css">
 
+<!-- <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.1.3.min.js"></script> -->
 <script type="text/javascript" src="js/jquery.min.js"></script>
 <script type="text/javascript" src="js/myjs/maintainPageStateUsingCookie/maintainPageState.js"></script>
 <script type="text/javascript" src="js/jquery.cookie.js"></script>
@@ -30,6 +31,9 @@
 <script type="text/javascript" src="js/myjs/maintainPageStateUsingCookie/maintainPageState.js"></script>
 <script type="text/javascript" src="js/bootstrap.js"></script>
 <style>
+.error{
+		color: red;
+	}
 ul li:hover ul.dropdown-menu {
 	display: block; /* Display the dropdown */
 }
@@ -45,6 +49,10 @@ ul li:hover ul.dropdown-menu {
 </div>
 
 <jsp:include page="footer.jsp" />
+
+<!-- <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.1.3.min.js"></script>  -->
+	<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.0/jquery.validate.min.js"></script> 
+	<script src="js/myjs/validation.js"></script>
 
 </body>
 </html>
