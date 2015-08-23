@@ -5,6 +5,24 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
+<script>
+$("#minus").click(function(){
+	alert();
+	var val = parseInt($("#demo1").val());
+	if(val>1)
+	{
+		var total = val-1;
+		$("#demo1").val(total);
+	}
+		
+});
+
+$("#add").click(function(){
+	var val = parseInt($("#demo1").val());
+	var total = val+1;
+		$("#demo1").val(total);
+});
+</script>
 </head>
 <body>
 	<div class="container-fluid  top-bar">

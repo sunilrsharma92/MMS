@@ -58,10 +58,11 @@ $(document).ready(function(){
 		objhandleRequest.handleCategoryRequest();
 	//*********************** END *************************//
 	
-	
 	// -- shud be called only when profile page is openend -- For Deva
 	var supplierKey = 1;
 	objhandleRequest.handleShopProfileDisplay(supplierKey);
+	//*********************** END *************************//
+	
 
 $("#editbtn").click(function(){
 	var action=$("#action").val();
@@ -110,7 +111,6 @@ $('#checkout').click(function(){
 	$('#LoginModal').modal('show');
 
 });
-
 
 
 });
@@ -166,14 +166,74 @@ function login()
 	var otpLogin = $("#otpLogin").val();
 //	var passLogin = $("#UserType").val();
 	var userType = $("#UserType").val();
+	
+	
+	
 
 	if(userType)
 		userType = "customer";
 	else
 		userType = "supplier";
 	
-	console.log("emailLogin" + emailLogin + "passLogin" + passLogin + "userType" + userType +"otpLogin"+otpLogin );
-	objhandleRequest.handleLogin(emailLogin, passLogin, userType, otpLogin);
+	console.log("emailLogin : " + emailLogin + "  passLogin : " + passLogin + "  userType : " + userType +"  otpLogin : "+otpLogin );
+	var result = jConfirm("Are you sure you want to register as "+userType,"Make My Shopy",function()
+			{
+				
+			});
+		
+	if(result)
+	{
+		return true;
+		objhandleRequest.handleLogin(emailLogin, passLogin, userType, otpLogin);
+	}
+	else
+	{
+		return false;
+	}
+	
+	
+//	if(emailLogin != "" && passLogin != "")
+//		{
+//			if(document.getElementById('otpLogin').style.display == 'block' && otpLogin == "")
+//			{
+//					validationMsg("otpLogin","OTP is required..!! Check it in your mail");
+//					return false;
+//			}
+//			else
+//			{
+//				var result = jConfirm("Are you sure you want to register as "+userType,"Make My Shopy",function()
+//						{
+//							
+//						});
+//					
+//				if(result)
+//				{
+//					return true;
+//					objhandleRequest.handleLogin(emailLogin, passLogin, userType, otpLogin);
+//				}
+//				else
+//				{
+//					return false;
+//				}
+//			}
+//		}
+//	else
+//		{
+//			if(emailLogin == "" )
+//			{
+//				validationMsg("emailLogin","Email is required");
+//			}
+//			if(passLogin == "" )
+//			{
+//				validationMsg("passLoginTemp","Password is required");
+//			}
+//			return false;
+//		}
+	
+	
+	
+	
+	
 }
 
 
@@ -424,5 +484,40 @@ function searchProduct()
 	objhandleRequest.searchProduct(txt);
 }
 
+function callAlerts(msg)
+{
+	jAlert(msg,"Make My Shopy");
+}
+
+//function validationMsg(id,msg)
+//{
+//	if($("#"+id).val() == "")
+//	{
+//		$("#"+id).attr('placeholder',msg);
+////		$("#"+id).add
+//	}
+//	$("#"+id).css('color','red');
+//	$("#"+id).css('border-color','red');
+//}
+
+function quantity(txtboxid,action)
+{
+//	var btnid = $(id).attr("id");
+	if(action == "add")
+		{
+			var val = parseInt($("#"+txtboxid).val());
+			var total = val+1;
+		    $("#"+txtboxid).val(total);
+		}
+	else if(action == "minus")
+		{
+			var val = parseInt($("#"+txtboxid).val());
+			if(val>1)
+			{
+				var total = val-1;
+				$("#"+txtboxid).val(total);
+			}
+		}
+}
 //objhandleRequest.handleCategoryRequest();
 var objhandleRequest=new handleRequest();

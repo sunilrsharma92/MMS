@@ -246,7 +246,8 @@ function handleProductDisplayinCartResponse(response)
 			var stock = product[i].stock;
 			var prodName = product[i].prodName;
 			var images = product[i].images;
-			
+			var quantityfunctionAdd = "quantity('demo"+productid+"','add');"
+			var quantityfunctionMinus = "quantity('demo"+productid+"','minus');"
 			total = total+price;
 			
 			productList = productList
@@ -254,7 +255,17 @@ function handleProductDisplayinCartResponse(response)
 			+'<td class="cimg"><img class="cartimgsize" id="'+productid+'" src="'+images+'"></td>'
 			+'<td class="cname">'+prodName+'</td>'
 			+'<td class="csize">'+stock+' kg</td>'
-			+'<td class="cqty">5</td>'
+			+'<td class="cqty">'
+			
+			+'<div class="input-group bootstrap-touchspin quantitybtn">'
+			+'<span class="input-group-btn">'
+			+'<button class="btn btn-default bootstrap-touchspin-down" id="minus'+productid+'" onclick="'+quantityfunctionMinus+'" type="button">-</button></span>'
+			+'<input id="demo'+productid+'" type="text" value="1" name="demo1" class="form-control cartquantity">'
+			+'<span class="input-group-btn">'
+			+'<button class="btn btn-default bootstrap-touchspin-up" id="add'+productid+'" onclick="'+quantityfunctionAdd+'" type="button">+</button></span>'
+			+'</div>'
+			
+			+'</td>'
 			+'<td class="cprice">'+price+'</td>'
 			+'<td align="center"><button type="button" onclick="removeproductfromCArt('+productid+')" class="btn btn-danger btn-xs cartdelbtn"><span id="cdel" class="glyphicon glyphicon-remove"></span></button></td>'
 			+'</tr>';

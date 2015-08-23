@@ -12,8 +12,20 @@
 <link rel="stylesheet" href="css/style1.css">
 <link rel="stylesheet" href="css/jqx/jqx.base.css">
 
+
+<script type="text/javascript" src="js/jAlert/js/jquery.js"></script>
+<script type="text/javascript" src="js/jAlert/js/jquery.ui.draggable.js"></script>
+<script type="text/javascript" src="js/jAlert/js/jquery.alerts.js"></script>
+<link rel="stylesheet" href="js/jAlert/css/jquery.alerts.css">
+
+
 <!-- <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.1.3.min.js"></script> -->
-<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/jquery-2.1.3.min.js"></script>
+<script type="text/javascript" src="js/jquery.validate.min.js"></script>
+<script type="text/javascript" src="js/myjs/validation.js"></script>
+
+<!-- <script src="js/myjs/validation.js"></script> -->
+
 <script type="text/javascript" src="js/myjs/maintainPageStateUsingCookie/maintainPageState.js"></script>
 <script type="text/javascript" src="js/jquery.cookie.js"></script>
 
@@ -51,8 +63,8 @@ ul li:hover ul.dropdown-menu {
 <jsp:include page="footer.jsp" />
 
 <!-- <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.1.3.min.js"></script>  -->
-	<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.0/jquery.validate.min.js"></script> 
-	<script src="js/myjs/validation.js"></script>
+<!-- 	<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.0/jquery.validate.min.js"></script>  -->
+<!-- 	<script src="js/myjs/validation.js"></script> -->
 
 </body>
 </html>

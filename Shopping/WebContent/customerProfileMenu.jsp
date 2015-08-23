@@ -8,7 +8,7 @@
 <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
 <link rel="stylesheet" type="text/css" href="css/style1.css">
 
-<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/jquery-2.1.3.min.js"></script>
 <script type="text/javascript" src="js/bootstrap.js"></script>
 <script type="text/javascript" src="js/myjs/customerprofile.js"></script>
 </head>
@@ -26,6 +26,9 @@
 				<div class="col-md-3">
 					<h3><span class="label label-default"> MY ACCOUNT</span></h3>
 					<hr class="large">
+					<div class=""  style="margin-bottom:10px"; >
+					<img src="https://lh3.googleusercontent.com/riyn5OOpMRzhiuI5Mnz-mCwUoP_dgW-9Vg87sfXzOEXo=s512-no" class="img-circle" style="width:50%; background-color:whitesmoke;"> 
+				</div>
 					<div class="strong"><span class="glyphicon glyphicon-list-alt"></span> Orders</div>
 
 					<div class="list-group side-bar">
