@@ -5,21 +5,13 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
-<link rel="stylesheet" type="text/css" href="css/style1.css">
 
 <script type="text/javascript" src="js/jquery-2.1.3.min.js"></script>
-<script type="text/javascript" src="js/bootstrap.js"></script>
-<script type="text/javascript" src="js/myjs/customerprofile.js"></script>
 </head>
 <body>
 
-	<!-- Start of Menu -->
-	<jsp:include page="menu.jsp" />
-	<!-- Menu  -->
-
 	<!-- Start of container -->
-	<div class="well" style="margin-top: -21px; margin-bottom: 0px;">
+	<div  style="margin-top: -21px; margin-bottom: 0px;">
 		<div class="container" style="background-color: #FFF;">
 			<!-- Start of row -->
 			<div class="row">
@@ -40,8 +32,8 @@
 					</div>
 					<div class="list-group side-bar">
 						<a href="#" id="customerPage" class="list-group-item " onclick="loadPage(this)">Personal Info</a> 
-						<a href="#"	id="changepassword" class="list-group-item"	onclick="loadPage(this)">Change Password</a> 
 						<a href="#"	id="addresses" class="list-group-item" onclick="loadPage(this)">Addresses</a>
+						<a href="#"	id="changepassword" class="list-group-item"	onclick="loadPage(this)">Change Password</a> 
 						<!-- <a href="#" class="list-group-item">Update Email/Mobile</a> -->
 						<a href="#" id="deactivate" class="list-group-item"	onclick="loadPage(this)">Deactivate Account</a> 
 						<a href="#" id="" class="list-group-item">Manage Notifications</a>

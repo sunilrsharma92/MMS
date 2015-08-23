@@ -1,7 +1,7 @@
 /**
  * 
  */
-
+var customerDetails = "";
 function handleMainCategoryResponse(response)
 {
     try
@@ -135,6 +135,8 @@ function handleShopProfDispResponse(response)
  		document.getElementById("state1").innerHTML='<label id="state">'+supState+'</label>';
  		document.getElementById("city1").innerHTML='<label id="city">'+supCity+'</label>';
  		document.getElementById("pincode1").innerHTML='<label id="pincode">'+supPinCode+'</label>';
+ 		
+ 		getCustomerOfflineData(response);
 		 
 	}
 	catch(e)
@@ -293,7 +295,24 @@ function handleProductDisplayinCartResponse(response)
 	}
 }
 
+function getCustomerOfflineData(response)
+{
+	customerDetails = response;
+}
 
+function getCustOfflineDetails()
+{
+	alert();
+	var supFirstName = customerDetails.supFirstName;
+	var supLastName = customerDetails.supLastName;
+	var supAddress = customerDetails.supAddress;
+	var supCity = customerDetails.supCity;
+	var supState = customerDetails.supState;
+	var supPinCode = customerDetails.supPinCode;
+	
+	alert("customerDetails : "+customerDetails);
+	
+}
 
 var objhandleRequest = new handleRequest();
 

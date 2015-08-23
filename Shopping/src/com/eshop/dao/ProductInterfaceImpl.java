@@ -82,7 +82,7 @@ public class ProductInterfaceImpl implements ProductInterface{
 			}
 			break;
 					
-		case 1001: //Update shop profile.//
+		case 1001: // --  Update shop profile.//
 			try
 			{
 				JSONObject parentjson = (JSONObject) JSONValue.parse(jsonMsg);
@@ -290,7 +290,7 @@ public class ProductInterfaceImpl implements ProductInterface{
 			}
 			break;
 			
-		case 1010: // Supplier/ Shop Profile info on load of page // 
+		case 1010: // --  Supplier/ Shop Profile info on load of page // 
 			try
 			{
 				JSONObject object = (JSONObject) JSONValue.parse(jsonMsg);
@@ -331,7 +331,7 @@ public class ProductInterfaceImpl implements ProductInterface{
 			break;
 			
 			
-		case 1051: // Customer/Shopkeeper Login //
+		case 1051: // --  Customer/Shopkeeper Login //
 			try
 			{
 				JSONObject object = (JSONObject) JSONValue.parse(jsonMsg);
@@ -346,7 +346,7 @@ public class ProductInterfaceImpl implements ProductInterface{
 						parentjson = CommonMethodImpl.getCustDetailsByProperty(CommonMethodImpl.EMAIL_ID, custEmail,object ,parentjson);
 						
 						// -- Unregistered user
-						if(otpLogin != null){
+						if(otpLogin != null && !otpLogin.trim().isEmpty()){
 						if(parentjson.get("custActive") != null && parentjson.get("custActive").toString().equalsIgnoreCase("0"))
 						{
 						if(otpLogin != null && otpLogin.trim().equalsIgnoreCase((String) parentjson.get("custOtp")))
@@ -408,7 +408,7 @@ public class ProductInterfaceImpl implements ProductInterface{
 						parentjson = CommonMethodImpl.getShopkeeperDetailsByProperty(CommonMethodImpl.EMAIL_ID, custEmail,object ,parentjson);
 						
 						// -- Unregistered user
-						if(otpLogin != null){
+						if(otpLogin != null && !otpLogin.trim().isEmpty()){
 						if(parentjson.get("supplierActive") != null && parentjson.get("supplierActive").toString().equalsIgnoreCase("0"))
 						{
 						if(otpLogin != null && otpLogin.trim().equalsIgnoreCase((String) parentjson.get("supplierOtp")))
@@ -484,7 +484,7 @@ public class ProductInterfaceImpl implements ProductInterface{
 			}
 			break;
 
-		case 1052: // Customer/Shopkeeper Registration and Email Verification // 
+		case 1052: // --  Customer/Shopkeeper Registration and Email Verification // 
 			try
 			{
 				JSONObject object = (JSONObject) JSONValue.parse(jsonMsg);
@@ -551,7 +551,7 @@ public class ProductInterfaceImpl implements ProductInterface{
 			break;
 			
 			
-		/*case 1053: // Customer Username availability // 
+		/*case 1053: // --  Customer Username availability // 
 			try
 			{
 				JSONObject object = (JSONObject) JSONValue.parse(jsonMsg);
@@ -583,7 +583,7 @@ public class ProductInterfaceImpl implements ProductInterface{
 			break;*/
 			
 			
-		case 1054: // Forgot/Shopkeeper Password Customer// 
+		case 1054: // --  Forgot/Shopkeeper Password Customer// 
 			try
 			{
 				JSONObject object = (JSONObject) JSONValue.parse(jsonMsg);
@@ -633,6 +633,93 @@ public class ProductInterfaceImpl implements ProductInterface{
 				 
 				}
 
+				output = parentjson.toString();
+				System.out.println("output ::::::::: "+output);
+				return output;
+				
+			}
+			catch (Exception e)
+			{
+				e.printStackTrace();
+			}
+			
+			break;
+			
+			
+		case 1055: // -- Save Customer Details // 
+			try
+			{
+				Long custPincode = 0L;
+				JSONObject object = (JSONObject) JSONValue.parse(jsonMsg);
+				
+//				String usernameCust = (String) object.get("usernameForgotPwd");
+				String custFirstName = (String) object.get("custFirstName");
+				String custLastName = (String) object.get("custLastName");
+				String custMobNo = (String) object.get("custMobNo");
+				String custEmail = (String) object.get("custEmail");
+				String custAddress1 = (String) object.get("custAddress1");
+				String custAddress2 = (String) object.get("custAddress2");
+				String custState = (String) object.get("custState");
+				String custCity = (String) object.get("custCity");
+				
+				if(object.get("custPincode") != null)
+					custPincode = (Long)object.get("custPincode");
+				
+				String sql = "update customers set ";
+				
+				if(custFirstName != null && !custFirstName.trim().isEmpty())
+					sql += " first_name = '"+custFirstName+"' ";
+				
+				if(custLastName != null && !custLastName.trim().isEmpty())
+					sql += " ,last_name = '"+custLastName+"' ";
+				
+				if(custMobNo != null && !custMobNo.trim().isEmpty())
+					sql += " ,phone = '"+custMobNo+"' ";
+				
+				if(custEmail != null && !custEmail.trim().isEmpty())
+					sql += " ,email = '"+custEmail+"' ";
+				
+				if(custFirstName != null && !custFirstName.trim().isEmpty()) // -- Personal Details
+				{
+					if(custAddress1 != null && !custAddress1.trim().isEmpty())
+						sql += " ,address1 = '"+custAddress1+"' ";
+				}
+				else // -- Address Details
+				{
+					if(custAddress1 != null && !custAddress1.trim().isEmpty())
+						sql += " address1 = '"+custAddress1+"' ";
+				}
+				
+				if(custAddress2 != null && !custAddress2.trim().isEmpty())
+					sql += " ,address2 = '"+custAddress2+"' ";
+				
+				if(custState != null && !custState.trim().isEmpty())
+					sql += " ,state = '"+custState+"' ";
+				
+				if(custCity != null && !custCity.trim().isEmpty())
+					sql += " ,city = '"+custCity+"' ";
+				
+				if(custPincode != 0)
+					sql += " ,postal_code = "+custPincode+" ";
+				
+				sql += "where customer_key = ?";
+				
+				ps = conn.prepareStatement(sql);
+				ps.setInt(1, 6);
+				result = ps.executeUpdate();
+				
+				if(result > 0)
+				{
+					parentjson.put("status", 3);
+					parentjson.put("command", 2055);
+				}
+				
+				else
+				{
+					parentjson.put("status", 2);
+					parentjson.put("command", command);
+				}
+				 
 				output = parentjson.toString();
 				System.out.println("output ::::::::: "+output);
 				return output;

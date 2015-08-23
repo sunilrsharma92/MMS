@@ -35,7 +35,7 @@ $(document).ready(function(){
 //	alert("Page Name : "+sPage);
 
 	
-//	$.cookie('pageState',"indexBody");
+	$.cookie('pageState',"indexBody");
 	
 	$('.btn-toggle').click(function() {
 	    $(this).find('.btn').toggleClass('active');  
@@ -95,7 +95,7 @@ $("#editbtn").click(function(){
 	}
 	else if(action=="save")
 	{
-		saveUserDetails();
+		saveShopkeeperDetails();
 	}
 });
 
@@ -107,8 +107,9 @@ $("#getCartProduct").click(function(){
 
 $('#checkout').click(function(){
 	
-	$('#cartmodal').modal('hide');
-	$('#LoginModal').modal('show');
+//	$('#cartmodal').modal('hide');
+//	$('#LoginModal').modal('show');
+	getCustOfflineDetails();
 
 });
 
@@ -132,7 +133,7 @@ function loadPage(id)
 	
 	$("#loadpage").load(vid+".jsp");
 	
-	var pageState = $.cookie("pageState");
+//	var pageState = $.cookie("pageState");
 //	alert("pageState : "+pageState);
 	
 }
@@ -140,7 +141,7 @@ function loadPage(id)
 
 
 
-function saveUserDetails()
+function saveShopkeeperDetails()
  {
 
 	$("#action").val("edit");
@@ -155,6 +156,27 @@ function saveUserDetails()
 objhandleRequest.handleShopProfileDetails(firstName, lastName,address,city,state,pincode);
 
 }
+
+function saveCustomerDetails()
+{
+
+	document.getElementById("action").value = "edit";
+	var custFirstName = $("#custFirstName").val();
+	var custLastName = $("#custLastName").val();
+	var custMobNo = $("#custMobNo").val();
+	var custEmail = $("#custEmail").val();
+	var custAddress1 = $("#custAddress1").val();
+	var custAddress2 = $("#custAddress2").val();
+	var custState = $("#custState").val();
+	var custCity = $("#custCity").val();
+	var custPincode = $("#custPincode").val();
+	
+	
+
+objhandleRequest.handleCustomerDetailsSave(custFirstName, custLastName, custMobNo, custEmail, custAddress1, custAddress2, custState, custCity, custPincode);
+
+}
+
 
 
 function login() 
