@@ -3,13 +3,9 @@ package com.eshop.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.util.List;
-
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
-import org.json.simple.parser.JSONParser;
-
 import com.eshop.database.utility.EmailUtility;
 import com.eshop.database.utility.MyConnection;
 import com.shopping.common.CommonMethodImpl;

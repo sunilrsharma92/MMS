@@ -51,8 +51,10 @@ $("#add").click(function(){
 								</h4>
 							</div>
 							<div class="modal-body" style="text-align: center;">
-								<input class="font textbox" name="email" type="text" placeholder="Enter the email or order id" />
-								<button class="btn btn-primary" type="button">Track</button>
+								<form class="forgot-val">
+									<input class="font textbox" name="email" type="text" placeholder="Enter the email or order id" />
+									<button class="btn btn-primary" type="submit">Track</button>
+								</form>
 							</div>
 						</div>
 					</div>
@@ -88,12 +90,12 @@ $("#add").click(function(){
 									<div class="tab-content">
 										<div id="home" class="tab-pane fade in active">
 											<h3 class="font">Login:</h3>
-											<form id="login-val">
-												<input class="textbox font" type="text" id="emailLogin"	name="email" placeholder="Email Id"></br> 
-												<input class="textbox font" type="password" id="passLoginTemp" name="password " placeholder="Password"></br> 
+											<form class="login-val">
+												<input class="textbox font" type="text" id="emailLogin"	name="email" placeholder="Enter Email Id"></br> 
+												<input class="textbox font" type="password" id="passLoginTemp" name="password" placeholder="Enter Password"></br> 
 												<input class="textbox font" type="text" id="otpLogin" placeholder="OTP" style="display: none"></br>
 												<!-- <a hre	f="#" id="forgot">forgot password?</a></br> -->
-												<button onclick="login()" class="btn btn-primary" type="button">Login</button>
+												<button onclick="login()" class="btn btn-primary" type="submit">Login</button>
 											</form>
 										</div>
 										<div id="menu1" class="tab-pane fade">
@@ -102,16 +104,20 @@ $("#add").click(function(){
 
 											<!-- 						<label for="cmn-toggle-1"></label> <label class="font" style="float: left;"><h4>Shoper</h4></label> -->
 											<!-- 						</br> -->
-											<input class="textbox font" type="text" id="emailSignUp" placeholder="Enter Email id"></br> 
-											<input class="textbox font" type="text" id="mobile" placeholder="Enter Mobile No"></br> 
-											<input class="textbox font" type="password" id="passSignUp" placeholder="Enter Password"></br> 
-											<input class="textbox font" type="password" id="repass" placeholder="ReEnter Password"></br>
-											<button onclick="signUp()" class="btn btn-primary" type="button" id="signup">Sign Up</button>
+											<form class="signup-val">
+												<input class="textbox font" type="text" name="email" id="emailSignUp" placeholder="Enter Email id"></br> 
+												<input class="textbox font" type="text" name="mobile" id="mobile" placeholder="Enter Mobile No"></br> 
+												<input class="textbox font" type="password" name="password" id="passSignUp" placeholder="Enter Password"></br> 
+												<input class="textbox font" type="password" name="password2" id="repass" placeholder="ReEnter Password"></br>
+												<button onclick="signUp()" class="btn btn-primary" type="submit" id="signup">Sign Up</button>
+											</form>
 										</div>
 										<div id="menu2" class="tab-pane fade">
 											<h3 class="font">Forgot Password:</h3>
-											<input class="textbox font" type="text" id="emailForgotPwd" placeholder="Enter Email id"></br>
-											<button onclick="forgotPwd()" class="btn btn-primary" type="button">Submit</button>
+											<form class="forgot-val">
+											<input class="textbox font" type="text" name="email" id="emailForgotPwd" placeholder="Enter Email id"></br>
+											<button onclick="forgotPwd()" class="btn btn-primary" type="submit">Submit</button>
+											</form>
 										</div>
 									</div>
 								</div>

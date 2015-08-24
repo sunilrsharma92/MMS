@@ -33,7 +33,7 @@
 						<option value="one">Gujarat</option>
 						<option value="one">Haryana</option>
 						<option value="one">Himachal Pradesh</option>
-						<option value="one">Jammu & Kashmir</option>
+						<option value="one">Jammu Kashmir</option>
 						<option value="one">Jharkhand</option>
 						<option value="one">Karnataka</option>
 						<option value="one">Kerala</option>
