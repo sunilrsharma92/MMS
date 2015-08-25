@@ -113,6 +113,24 @@ $(function(){
 		}
 
 	});
+	
+	$(".track-val").validate({
+		rules:{
+			email:{
+				required: true,
+				email: true,
+			},
+		
+		},
+		messages:{
+			email:{
+				required:'Plese enter an email address.',
+				email:'Plese enter a <em>valid</em> email address',
+			},
+			
+		}
+
+	});
 
 
 });

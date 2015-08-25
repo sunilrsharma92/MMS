@@ -51,7 +51,7 @@ $("#add").click(function(){
 								</h4>
 							</div>
 							<div class="modal-body" style="text-align: center;">
-								<form class="forgot-val">
+								<form class="track-val">
 									<input class="font textbox" name="email" type="text" placeholder="Enter the email or order id" />
 									<button class="btn btn-primary" type="submit">Track</button>
 								</form>
