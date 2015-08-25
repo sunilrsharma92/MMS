@@ -12,6 +12,7 @@
 <link rel="stylesheet" href="css/style1.css">
 <link rel="stylesheet" href="css/jqx/jqx.base.css">
 
+<script src='https://www.google.com/recaptcha/api.js'></script>
 
 <script type="text/javascript" src="js/jAlert/js/jquery.js"></script>
 <script type="text/javascript" src="js/jAlert/js/jquery.ui.draggable.js"></script>

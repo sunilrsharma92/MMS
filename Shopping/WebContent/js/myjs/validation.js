@@ -62,6 +62,9 @@ $(function(){
 				number: true,
 				maxlength: 10,
 				minlength: 10,
+			},
+			captcha:{
+				required : true, 
 			}
 		},
 		messages:{
@@ -84,10 +87,15 @@ $(function(){
 			mobile:{
 				required:'Please enter mobile no',
 				number:'Please enter correct mobile no',
+			},
+			captcha:{
+				required:'Please tick ',
 			}
 		}
 
 	});
+	
+	
 	$(".forgot-val").validate({
 		rules:{
 			email:{

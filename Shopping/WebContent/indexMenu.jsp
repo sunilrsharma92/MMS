@@ -109,6 +109,7 @@ $("#add").click(function(){
 												<input class="textbox font" type="text" name="mobile" id="mobile" placeholder="Enter Mobile No"></br> 
 												<input class="textbox font" type="password" name="password" id="passSignUp" placeholder="Enter Password"></br> 
 												<input class="textbox font" type="password" name="password2" id="repass" placeholder="ReEnter Password"></br>
+												<div class="g-recaptcha" name="captcha" data-sitekey="6LfaxwsTAAAAAEB5RYVVeSFM3AyHzAHb3YvgtGvx"></div>
 												<button onclick="signUp()" class="btn btn-primary" type="submit" id="signup">Sign Up</button>
 											</form>
 										</div>
