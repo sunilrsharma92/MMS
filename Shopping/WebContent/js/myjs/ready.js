@@ -178,6 +178,18 @@ objhandleRequest.handleCustomerDetailsSave(custFirstName, custLastName, custMobN
 }
 
 
+function resetPassword()
+{
+
+	var password1 = $("#password1").val();
+	var password2 = $("#password2").val();
+	var email = "sharma.sunil.nov@gmail.com";
+	var userType = "customer"; // -- change: after login,put usertype here
+	
+	objhandleRequest.handleResetPassword(password1, userType, email);
+	
+}
+
 
 function login() 
 {
@@ -198,20 +210,8 @@ function login()
 		userType = "supplier";
 	
 	console.log("emailLogin : " + emailLogin + "  passLogin : " + passLogin + "  userType : " + userType +"  otpLogin : "+otpLogin );
-	var result = jConfirm("Are you sure you want to register as "+userType,"Make My Shopy",function()
-			{
-				
-			});
-		
-	if(result)
-	{
-		return true;
+	
 		objhandleRequest.handleLogin(emailLogin, passLogin, userType, otpLogin);
-	}
-	else
-	{
-		return false;
-	}
 	
 	
 //	if(emailLogin != "" && passLogin != "")
@@ -274,7 +274,22 @@ function signUp()
 		userType = "supplier";
 
 	console.log("passSignUp" + passSignUp + "mobileKey" + mobileKey	+ "emailKey" + emailKey + "userType" + userType);
-	objhandleRequest.handleSignUp(passSignUp, mobileKey, emailKey, userType);
+	
+//	var result = jConfirm("Are you sure you want to register as "+userType,"Make My Shopy",function()
+//			{
+//				
+//			});
+//		
+//	if(result)
+//	{
+		objhandleRequest.handleSignUp(passSignUp, mobileKey, emailKey, userType);
+//		return true;
+//	}
+//	else
+//	{
+//		return false;
+//	}
+	
 }
 
 /*function checkUsernameAvail()

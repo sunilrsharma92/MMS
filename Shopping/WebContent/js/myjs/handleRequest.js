@@ -6,6 +6,7 @@ function handleRequest() {
 	this.handleShopProfileDisplay = handleShopProfileDisplay;
 	this.handleLogin = handleLogin;
 	this.handleSignUp = handleSignUp;
+	this.handleResetPassword = handleResetPassword;
 	// this.handleUsernameAvailCust = handleUsernameAvailCust;
 	this.handleForgotPwd = handleForgotPwd;
 	this.handledisplaySelectedProduct = handledisplaySelectedProduct;
@@ -97,15 +98,12 @@ function handleRequest() {
 			strCustDetails.command = 1055;
 
 			var strjsonMsgForCustDetails = JSON.stringify(strCustDetails);
-			console
-					.log("handleRequest     handleCustomerDetailsSave     strCustDetails : "
+			console.log("handleRequest     handleCustomerDetailsSave     strCustDetails : "
 							+ strjsonMsgForCustDetails);
 			handleAllListResponse(strjsonMsgForCustDetails);
 
 		} catch (e) {
-			console
-					.log("handleRequest     handleCustomerDetailsSave     Exception :: "
-							+ e);
+			console.log("handleRequest     handleCustomerDetailsSave     Exception :: "	+ e);
 		}
 	}
 
@@ -168,6 +166,25 @@ function handleRequest() {
 			handleAllListResponse(strJsonMsgForSignUp);
 		} catch (e) {
 			console.log("handleRequest handleSignUp Exception :: " + e)
+		}
+	}
+	
+	function handleResetPassword(pwd, userType, email)
+	{
+		try
+		{
+			var resetPwd = {};
+			resetPwd.pwd = pwd;
+			resetPwd.email = email;
+			resetPwd.userType = userType;
+			resetPwd.command = 1056;
+			
+			var strJsonMsgForResetPwd = JSON.stringify(resetPwd);
+			console.log("handleRequest     handleResetPassword     strJsonMsgForResetPwd : "+ strJsonMsgForResetPwd);
+		}
+		catch(e)
+		{
+			console.log("handleRequest handleResetPassword Exceprion ::" +e);
 		}
 	}
 

@@ -3,11 +3,14 @@ package com.eshop.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
+
 import com.eshop.database.utility.EmailUtility;
 import com.eshop.database.utility.MyConnection;
+import com.eshop.database.utility.RandomStringUtilsTrial;
 import com.shopping.common.CommonMethodImpl;
 
 public class ProductInterfaceImpl implements ProductInterface{
@@ -483,68 +486,136 @@ public class ProductInterfaceImpl implements ProductInterface{
 		case 1052: // --  Customer/Shopkeeper Registration and Email Verification // 
 			try
 			{
-				JSONObject object = (JSONObject) JSONValue.parse(jsonMsg);
-				String userType = (String) object.get("userType");
-				
-					String sqlInsert = "";
-					
-					if(userType != null && userType.trim().equalsIgnoreCase("customer"))
-						sqlInsert = "insert into customers(email,phone,password) values(?,?,?)";
-						
-					if(userType != null && userType.trim().equalsIgnoreCase("supplier"))
-						sqlInsert = "insert into suppliers(email,phone,password) values(?,?,?)";
-					ps = conn.prepareStatement(sqlInsert);
-					
-					//String usernameSignUp = (String) object.get("usernameSignUp");
+					JSONObject object = (JSONObject) JSONValue.parse(jsonMsg);
+					String userType = (String) object.get("userType");
 					String emailSignUp = (String) object.get("emailKey");
 					
-					ps.setString(1, emailSignUp);
-				//	ps.setString(2, usernameSignUp);
-					ps.setString(2, (String) object.get("mobileKey"));
-					ps.setString(3, (String) object.get("passSignUp"));
-
-					result = ps.executeUpdate();
-					
-					if(result > 0)
-					{
-						String sql1 = "";
+						String sqlInsert = "";
+						String emailExist = "";
+						String tempOtp = "";
+						String user = "";
+						int checkEmailExist = 0;
 						
-						String tempOtp = EmailUtility.sendEmail(emailSignUp, null, OTP_REGISTER);
-						if(tempOtp != null && !tempOtp.trim().isEmpty())
+						
+						emailExist = "select email from customers";
+						
+						if(userType != null && userType.trim().equalsIgnoreCase("customer"))
 						{
-							if(userType != null && userType.trim().equalsIgnoreCase("customer"))
-								sql1 = "update customers set otp = ? where email = ?";
-							
-							if(userType != null && userType.trim().equalsIgnoreCase("supplier"))
-								sql1 = "update suppliers set otp = ? where email = ?";
-							
-							ps1 = conn.prepareStatement(sql1);
-							ps1.setString(1, tempOtp);
-							ps1.setString(2, emailSignUp);
-							
-							resultTemp = ps1.executeUpdate();
-							
-							
+							sqlInsert = "insert into customers(email,phone,password) values(?,?,?)";
 						}
-						parentjson.put("status", 3);
-						parentjson.put("command", 2052);
+						
+						if(userType != null && userType.trim().equalsIgnoreCase("supplier"))
+						{
+							sqlInsert = "insert into suppliers(email,phone,password) values(?,?,?)";
+						}
+						
+						ps = conn.prepareStatement(emailExist);
+						rs = ps.executeQuery();
+						while(rs.next())
+						{
+							String dbEmail = rs.getString("email");
+							if(emailSignUp.equals(dbEmail))
+							{
+								checkEmailExist++;
+							}
+						}
+						
+						if(checkEmailExist == 0)
+						{
+						ps = conn.prepareStatement(sqlInsert);
+						
+						//String usernameSignUp = (String) object.get("usernameSignUp");
+						
+						ps.setString(1, emailSignUp);
+					//	ps.setString(2, usernameSignUp);
+						ps.setString(2, (String) object.get("mobileKey"));
+						ps.setString(3, (String) object.get("passSignUp"));
+
+						result = ps.executeUpdate();
+						
+						if(result > 0)
+						{
+							String sql1 = "";
+							
+							tempOtp = RandomStringUtilsTrial.orderNumber();
+							
+							if(tempOtp != null && !tempOtp.trim().isEmpty())
+							{
+								boolean verification = EmailUtility.sendEmail(emailSignUp, null, OTP_REGISTER,tempOtp);
+								if(userType != null && userType.trim().equalsIgnoreCase("customer"))
+								{
+									user = "customers";
+								}
+								else
+								if(userType != null && userType.trim().equalsIgnoreCase("supplier"))
+								{
+									user = "suppliers";
+								}
+								
+								if(verification)
+								{
+								sql1 = "update "+user+" set otp = ? where email = ?";
+								ps1 = conn.prepareStatement(sql1);
+								ps1.setString(1, tempOtp);
+								ps1.setString(2, emailSignUp);
+								resultTemp = ps1.executeUpdate();
+								if(resultTemp > 0)
+								{
+									parentjson.put("status", 3);//succcess
+									parentjson.put("statusdesc", "Success");
+									parentjson.put("command", 2052);
+								}
+								else
+								{
+									parentjson.put("status", 11);//OTP Updation Failed
+									parentjson.put("statusdesc", "OTP Updation Failed");
+									parentjson.put("command", command);
+								}
+								}
+								else
+								{
+									parentjson.put("status", 12);////Email sending Failed
+									parentjson.put("email", emailSignUp);
+									parentjson.put("statusdesc", "Email sending Failed");
+									parentjson.put("command", command);
+								}
+							}
+							else
+							{
+								//OTP generation Failed
+								parentjson.put("status", 12);////Email sending Failed
+								parentjson.put("email", emailSignUp);
+								parentjson.put("statusdesc", "Email sending Failed");
+								parentjson.put("command", command);
+							}
+							
+							}
+							else
+							{
+								parentjson.put("status", 2);//Registeration failed
+								parentjson.put("statusdesc", "Registration failed");//Registeration failed
+								parentjson.put("command", command);
+							}
+						
+						}
+						else
+						{
+							parentjson.put("status", 10);//email already exist
+							parentjson.put("statusdesc", "Email Id Already exist, please try registering  with other Email-id");
+							parentjson.put("command", command);
+							
+							checkEmailExist = 0;
+						}
+						output = parentjson.toString();
+						System.out.println("output ::::::::: "+output);
+						return output;
 					}
-					else
-					{
-						parentjson.put("status", 2);
-						parentjson.put("command", command);
-					}
-					output = parentjson.toString();
-					System.out.println("output ::::::::: "+output);
-					return output;
+				catch (Exception e)
+				{
+					e.printStackTrace();
 				}
-			
-		        
-			catch (Exception e)
-			{
-				e.printStackTrace();
-			}
-			break;
+				break;
+
 			
 			
 		/*case 1053: // --  Customer Username availability // 
@@ -599,7 +670,7 @@ public class ProductInterfaceImpl implements ProductInterface{
 				 
 				 if (parentjson != null && !parentjson.isEmpty())
 					{
-						EmailUtility.sendEmail((String) parentjson.get("custEmailId"),(String) parentjson.get("custPass"), FORGOT_PASSWORD);
+						EmailUtility.sendEmail((String) parentjson.get("custEmailId"),(String) parentjson.get("custPass"), FORGOT_PASSWORD,null);
 						parentjson.put("status", 3);
 						parentjson.put("command", 2054);
 					}
@@ -617,7 +688,7 @@ public class ProductInterfaceImpl implements ProductInterface{
 				 
 				 if (parentjson != null && !parentjson.isEmpty())
 					{
-						EmailUtility.sendEmail((String) parentjson.get("supplierEmailId"),(String) parentjson.get("supplierPass"), FORGOT_PASSWORD);
+						EmailUtility.sendEmail((String) parentjson.get("supplierEmailId"),(String) parentjson.get("supplierPass"), FORGOT_PASSWORD,null);
 						parentjson.put("status", 3);
 						parentjson.put("command", 2054);
 					}
@@ -728,6 +799,78 @@ public class ProductInterfaceImpl implements ProductInterface{
 			
 			break;
 			
+			
+		case 1056: // -- Reset Password Cust/Shopkeeper Details // 
+			try
+			{
+				JSONObject object = (JSONObject) JSONValue.parse(jsonMsg);
+				
+//				String usernameCust = (String) object.get("usernameForgotPwd");
+				String pwd = (String) object.get("pwd");
+				String email = (String) object.get("email");
+				String userType = (String) object.get("userType");
+				
+				if(pwd != null && !pwd.trim().isEmpty())
+				{
+				 if(userType != null && userType.trim().equalsIgnoreCase("customer"))
+				 {
+					String sql = "update customers set password = ? where email = ?";
+					ps = conn.prepareStatement(sql);
+					ps.setString(1, pwd);
+					ps.setString(2, email);
+					result = ps.executeUpdate();
+					if(result > 0)
+					{
+						parentjson.put("status", 3);
+						parentjson.put("command", 2056);
+					}
+					else
+					{
+						parentjson.put("status", 2);
+						parentjson.put("command", command);
+					}
+				 }
+				 else if(userType != null && userType.trim().equalsIgnoreCase("supplier"))
+				 {
+					 String sql = "update suppliers set password = ? where email = ?";
+						ps = conn.prepareStatement(sql);
+						ps.setString(1, pwd);
+						ps.setString(2, email);
+						result = ps.executeUpdate();
+						if(result > 0)
+						{
+							parentjson.put("status", 3);
+							parentjson.put("command", 2056);
+						}
+						else
+						{
+							parentjson.put("status", 2);
+							parentjson.put("command", command);
+						}
+				 }
+				 else
+				 {
+					 parentjson.put("status", 2);
+					 parentjson.put("command", command);
+				 }
+
+				}
+				else 
+				{
+					parentjson.put("status", 2);
+					parentjson.put("command", command);
+				}
+				
+			output = parentjson.toString();
+			System.out.println("output ::::::::: "+output);
+			return output;
+			
+			}
+			catch(Exception e)
+			{
+				
+			}
+			break;
 			
 			
 		default:

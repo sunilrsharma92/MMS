@@ -6,7 +6,7 @@ function handleMainCategoryResponse(response)
 {
     try
     {
-//        console.log('handleMainCategoryResponse :::::: '+JSON.stringify(response));
+// console.log('handleMainCategoryResponse :::::: '+JSON.stringify(response));
         
         var category="";
 		var subcategory="";
@@ -29,7 +29,6 @@ function handleMainCategoryResponse(response)
         		var categoryId = maincategory[i].categoryid;
         		var categoryName = maincategory[i].categoryname;
         		
-//        		category=category+"<li class='"+dropdownsubmenu+"'><a href='"+categoryId+"' id='"+categoryId+"' class='"+lgi+"'>"+categoryName+"<span class='"+pullright+"'></span></a>";
         		category=category+"<li class='"+dropdownsubmenu+"'><a id='"+categoryId+"' class='"+lgi+"'>"+categoryName+"<span class='"+pullright+"'></span></a>";
         		
         	    var check1="<ul class='"+dropdownmenu+"'>";
@@ -44,7 +43,6 @@ function handleMainCategoryResponse(response)
             		
             		if(categoryId1==categoryId)
 						{
-//							subcategory=subcategory+"<li><a href='"+subcategoryid+"' onclick='getSelectedProduct(this,"+categoryId+");' id='"+subcategoryid+"'>"+subcategoryName+"</a></li>";
 							subcategory=subcategory+"<li><a onclick='getSelectedProduct(this,"+categoryId+");' id='"+subcategoryid+"'>"+subcategoryName+"</a></li>";
 						}
             	}
@@ -151,9 +149,9 @@ function handleProductDisplayResponse(response)
 	try
 	{
 		
-//		console.log('handleProductDisplayResponse :::::: '+JSON.stringify(response));
+// console.log('handleProductDisplayResponse :::::: '+JSON.stringify(response));
 		var productList = "";
-//		var total = 0;
+// var total = 0;
 		var product = response.product;
 		for(var i in product)
     	{
@@ -164,7 +162,7 @@ function handleProductDisplayResponse(response)
 			var prodName = product[i].prodName;
 			var images = product[i].images;
     	
-//			total = total+price;
+// total = total+price;
 			var stockvalue = "";
 			var stockcrtbtn = "";
 			
@@ -194,17 +192,18 @@ productList = productList
 					+ '<div class="align-center">'
 					+ '<div class="productname ">'+prodName+'</div>'
 					+ '<div class="productprice" style="color: '+stockvalue+'";>Rs.'+price+'</div>'
-//					+ '<div class="instock ">Stock : '+stock+'</div>'
-//					+ '<div class="quantity ">Quantity:<input id="qtytxt" type="text" name="quantity"></div>'
+// + '<div class="instock ">Stock : '+stock+'</div>'
+// + '<div class="quantity ">Quantity:<input id="qtytxt" type="text"
+// name="quantity"></div>'
 					+ '<div class="cartbtn "><button type="button" '+stockcrtbtn+' onclick="addproducttoCArt('+productid+')" class="btn btn-success cartsz " id="btn'+productid+'">Add <span class="pull-right glyphicon glyphicon-shopping-cart"></span></button></div>'
 					+ '</div>'
 					+ '</div>';
 					
 
-//					if(i+1%6==0)
-//						{
-//							productList = productList+'</br>';
-//						}
+// if(i+1%6==0)
+// {
+// productList = productList+'</br>';
+// }
     	}
 		
 		
@@ -274,13 +273,13 @@ function handleProductDisplayinCartResponse(response)
 			
 		}
 		
-//		console.log(total);
+// console.log(total);
 		
 		totalpurchase = totalpurchase
 		+'<span class="tlbprce">Total Price :</span>'
 		+'<span class="totalprize"><strong> Rs '+total+'</strong> </span>' ;
-//		+'<!--<span class="usave">You save :</span> '
-//		+'<span class="rups"><strong> Rs 0</strong> </span>-->';
+// +'<!--<span class="usave">You save :</span> '
+// +'<span class="rups"><strong> Rs 0</strong> </span>-->';
 		
 		$("#appendProducttoCart").empty();
 		$("#appendProducttoCart").append(productList);
@@ -312,6 +311,25 @@ function getCustOfflineDetails()
 	
 	alert("customerDetails : "+customerDetails);
 	
+}
+
+
+function handleSignUpCustResponse(response)
+{
+	alert("hii");
+	var action = response.action;
+	var statusdesc = response.statusdesc;
+	var email = response.email;
+	if(action == "3")
+		{
+			jAlert("we have send OTP to "+email+" please provide us during your first login", "Message");
+			break;
+		}
+	else
+		{
+			jAlert(statusdesc+"----------"+email, "Alert Message");
+			break;
+		}
 }
 
 var objhandleRequest = new handleRequest();
