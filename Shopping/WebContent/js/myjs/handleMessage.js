@@ -320,11 +320,12 @@ function getCustOfflineDetails()
 function handleSignUpCustResponse(response)
 {
 //	alert("hii");
-	var action = response.action;
+	var action = response.status;
 	var statusdesc = response.statusdesc;
-//	var email = response.email;
-	if(action == "3")
+
+	if(action == 3)
 		{
+			var email = response.email;
 			jAlert("we have send OTP to "+email+" please provide us during your first login", "Message");
 		}
 	else
@@ -334,14 +335,33 @@ function handleSignUpCustResponse(response)
 //	return false;
 }
 
+function handleForgetPasswordResponse(response)
+{
+//	alert(JSON.stringify(response));
+//	alert("hii");
+	var action = response.status;
+	if(action == 3)
+	{
+		var email = response.email;
+		jAlert("We have send your password to "+email+" please check it out", "Message");
+	}
+	else
+	{
+		var statusdesc = response.statusdesc;
+		jAlert(statusdesc, "Alert Message");
+	}
+//	return false;
+}
+
 
 function handleLoginCustResponse(response)
 {
 //	alert("hii");
-	var action = response.action;
+	var action = response.status;
 //	var statusdesc = response.statusdesc;
 //	var email = response.email;
 	 $.ajax({
+	if(action != 3)
 	        url: 'putSessionData.jsp',
 	        data:
 	        {
@@ -357,7 +377,6 @@ function handleLoginCustResponse(response)
 	        },
 	        async: true
 	    });
-	if(action != "3")
 	{
 		jAlert("Login Failed", "Alert Message");
 	}

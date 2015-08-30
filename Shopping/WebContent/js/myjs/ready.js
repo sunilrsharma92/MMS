@@ -125,25 +125,27 @@ $('#checkout').click(function(){
 
 
 
-$("#login").click(function(){
+$("#userlogin").click(function(){
 	
-	alert("Login");
+	alert("Hii");
 	var emailLogin = $("#emailLogin").val();
 	var passLogin = $("#passLoginTemp").val();
 	var otpLogin = $("#otpLogin").val();
-//	var passLogin = $("#UserType").val();
 	var userType = $("#UserType").val();
 	
 
 	if(userType)
+		{
 		userType = "customer";
+		}
 	else
+		{
 		userType = "supplier";
+		}
 	
 	console.log("emailLogin : " + emailLogin + "  passLogin : " + passLogin + "  userType : " + userType +"  otpLogin : "+otpLogin );
 	
 	objhandleRequest.handleLogin(emailLogin, passLogin, userType, otpLogin);
-	return false;
 	
 //	if(emailLogin != "" && passLogin != "")
 //		{
