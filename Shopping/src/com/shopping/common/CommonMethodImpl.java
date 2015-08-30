@@ -166,6 +166,22 @@ public class CommonMethodImpl {
 		    }
 		}
 	  }
+	  
+	  public static JSONObject putSuccessJson(JSONObject parentjson,int command)
+	  {
+		  parentjson.put("command",command);
+		  parentjson.put("status",3);
+		  
+		  return parentjson;
+	  }
+	  
+	  public static JSONObject putFailedJson(JSONObject parentjson,int command)
+	  {
+		  parentjson.put("command",command);
+		  parentjson.put("status",2);
+		  
+		  return parentjson;
+	  }
 	
 	
 }

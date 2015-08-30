@@ -68,8 +68,8 @@ public class ProductInterfaceImpl implements ProductInterface{
 					}
 					parentjson.put("subcategory", jsonarray1);
 					
-					parentjson.put("command",2000);
-					parentjson.put("status",3);
+					parentjson = CommonMethodImpl.putSuccessJson(parentjson, 2000);
+					
 					
 					output = parentjson.toString();
 //					System.out.println("output ::::::::: "+output);
@@ -121,13 +121,13 @@ public class ProductInterfaceImpl implements ProductInterface{
 						parentjson.put("supCity", rs1.getString("city"));
 						parentjson.put("supState", rs1.getString("state"));
 						parentjson.put("supPinCode", rs1.getLong("postal_code"));*/
-						parentjson.put("status", 3);
-						parentjson.put("command", 2001);
+					
+					parentjson = CommonMethodImpl.putSuccessJson(parentjson, 2001);
+					
 					} 
 					else
 					{
-						parentjson.put("status", 2);
-						parentjson.put("command", command);
+						parentjson = CommonMethodImpl.putFailedJson(parentjson, command);
 					}
 					output = parentjson.toString();
 					System.out.println("output ::::::::: "+output);
@@ -176,8 +176,7 @@ public class ProductInterfaceImpl implements ProductInterface{
 			}
 			
 			parentjson.put("product", jsonarray);
-			parentjson.put("command",2003);
-			parentjson.put("status",3);
+			parentjson = CommonMethodImpl.putSuccessJson(parentjson, 2003);
 			
 			output = parentjson.toString();
 //			System.out.println("output ::::::::: "+output);
@@ -231,8 +230,7 @@ public class ProductInterfaceImpl implements ProductInterface{
 					}
 					}
 					parentjson.put("product", jsonarray);
-					parentjson.put("command",2005);
-					parentjson.put("status",3);
+					parentjson = CommonMethodImpl.putSuccessJson(parentjson, 2005);
 					
 					output = parentjson.toString();
 					System.out.println("output ::::::::: "+output);
@@ -240,8 +238,7 @@ public class ProductInterfaceImpl implements ProductInterface{
 			}
 			catch(Exception e)
 			{
-				parentjson.put("command",1005);
-				parentjson.put("status",2);
+				parentjson = CommonMethodImpl.putFailedJson(parentjson, command);
 				
 				output = parentjson.toString();
 				System.out.println("output ::::::::: "+output);
@@ -276,8 +273,7 @@ public class ProductInterfaceImpl implements ProductInterface{
 			}
 			
 			parentjson.put("product", jsonarray);
-			parentjson.put("command",2003);
-			parentjson.put("status",3);
+			parentjson = CommonMethodImpl.putSuccessJson(parentjson, 2003);
 			
 			output = parentjson.toString();
 //			System.out.println("output ::::::::: "+output);
@@ -309,13 +305,13 @@ public class ProductInterfaceImpl implements ProductInterface{
 						parentjson.put("supCity", rs1.getString("city"));
 						parentjson.put("supState", rs1.getString("state"));
 						parentjson.put("supPinCode", rs1.getLong("postal_code"));
-						parentjson.put("status", 3);
-						parentjson.put("command", 2010);
+						
+						parentjson = CommonMethodImpl.putSuccessJson(parentjson, 2010);
 					}
 					else
 					{
-						parentjson.put("status", 2);
-						parentjson.put("command", command);
+						parentjson = CommonMethodImpl.putFailedJson(parentjson, command);
+						
 					}
 					output = parentjson.toString();
 					System.out.println("output ::::::::: "+output);
@@ -360,43 +356,36 @@ public class ProductInterfaceImpl implements ProductInterface{
 							result = ps.executeUpdate();
 							if(result > 0)
 							{
-								parentjson.put("status", 3);
-								parentjson.put("command", 2051);
+								parentjson = CommonMethodImpl.putSuccessJson(parentjson, 2051);
 							}
 							else
 							{
-								parentjson.put("status", 2);
-								parentjson.put("command", command);
+								parentjson = CommonMethodImpl.putFailedJson(parentjson, command);
 							}
 						}
 						else
 						{
-							parentjson.put("status", 2);
-							parentjson.put("command", command);
+							parentjson = CommonMethodImpl.putFailedJson(parentjson, command);
 						}
 						}
 						else
 						{
-							parentjson.put("status", 2);
-							parentjson.put("command", command);
+							parentjson = CommonMethodImpl.putFailedJson(parentjson, command);
 						}
 						}
 						else
 						{
-							parentjson.put("status", 2);
-							parentjson.put("command", command);
+							parentjson = CommonMethodImpl.putFailedJson(parentjson, command);
 						}
 						}// -- Registered user
 						else {
 							if(custPass!= null && parentjson.get("custPass") != null && custPass.trim().equals(parentjson.get("custPass")))
 							{
-								parentjson.put("status", 3);
-								parentjson.put("command", 2051);
+								parentjson = CommonMethodImpl.putSuccessJson(parentjson, 2051);
 							}
 							else
 							{
-								parentjson.put("status", 2);
-								parentjson.put("command", command);
+								parentjson = CommonMethodImpl.putFailedJson(parentjson, command);
 							}
 						}
 						
@@ -423,43 +412,36 @@ public class ProductInterfaceImpl implements ProductInterface{
 							
 							if(result > 0)
 							{
-								parentjson.put("status", 3);
-								parentjson.put("command", 2051);
+								parentjson = CommonMethodImpl.putSuccessJson(parentjson, 2051);
 							}
 							else
 							{
-								parentjson.put("status", 2);
-								parentjson.put("command", command);
+								parentjson = CommonMethodImpl.putFailedJson(parentjson, command);
 							}
 						}
 						else
 						{
-							parentjson.put("status", 2);
-							parentjson.put("command", command);
+							parentjson = CommonMethodImpl.putFailedJson(parentjson, command);
 						}
 						}
 						else
 						{
-							parentjson.put("status", 2);
-							parentjson.put("command", command);
+							parentjson = CommonMethodImpl.putFailedJson(parentjson, command);
 						}
 						}
 						else
 						{
-							parentjson.put("status", 2);
-							parentjson.put("command", command);
+							parentjson = CommonMethodImpl.putFailedJson(parentjson, command);
 						}
 						}// -- Registered user
 						else {
 							if(custPass!= null && parentjson.get("supplierPass") != null && custPass.trim().equals(parentjson.get("supplierPass")))
 							{
-								parentjson.put("status", 3);
-								parentjson.put("command", 2051);
+								parentjson = CommonMethodImpl.putSuccessJson(parentjson, 2051);
 							}
 							else
 							{
-								parentjson.put("status", 2);
-								parentjson.put("command", command);
+								parentjson = CommonMethodImpl.putFailedJson(parentjson, command);
 							}
 						}
 					}
@@ -467,8 +449,7 @@ public class ProductInterfaceImpl implements ProductInterface{
 					
 					else
 					{
-						parentjson.put("status", 2);
-						parentjson.put("command", command);
+						parentjson = CommonMethodImpl.putFailedJson(parentjson, command);
 					}
 						
 					output = parentjson.toString();
@@ -561,15 +542,13 @@ public class ProductInterfaceImpl implements ProductInterface{
 								resultTemp = ps1.executeUpdate();
 								if(resultTemp > 0)
 								{
-									parentjson.put("status", 3);//succcess
+									parentjson = CommonMethodImpl.putSuccessJson(parentjson, 2052);//succcess
 									parentjson.put("statusdesc", "Success");
-									parentjson.put("command", 2052);
 								}
 								else
 								{
 									parentjson.put("status", 11);//OTP Updation Failed
 									parentjson.put("statusdesc", "OTP Updation Failed");
-									parentjson.put("command", command);
 								}
 								}
 								else
@@ -577,7 +556,6 @@ public class ProductInterfaceImpl implements ProductInterface{
 									parentjson.put("status", 12);////Email sending Failed
 									parentjson.put("email", emailSignUp);
 									parentjson.put("statusdesc", "Email sending Failed");
-									parentjson.put("command", command);
 								}
 							}
 							else
@@ -586,15 +564,13 @@ public class ProductInterfaceImpl implements ProductInterface{
 								parentjson.put("status", 12);////Email sending Failed
 								parentjson.put("email", emailSignUp);
 								parentjson.put("statusdesc", "Email sending Failed");
-								parentjson.put("command", command);
 							}
 							
 							}
 							else
 							{
-								parentjson.put("status", 2);//Registeration failed
+								parentjson = CommonMethodImpl.putFailedJson(parentjson, command);//Registeration failed
 								parentjson.put("statusdesc", "Registration failed");//Registeration failed
-								parentjson.put("command", command);
 							}
 						
 						}
@@ -602,7 +578,6 @@ public class ProductInterfaceImpl implements ProductInterface{
 						{
 							parentjson.put("status", 10);//email already exist
 							parentjson.put("statusdesc", "Email Id Already exist, please try registering  with other Email-id");
-							parentjson.put("command", command);
 							
 							checkEmailExist = 0;
 						}
@@ -629,13 +604,13 @@ public class ProductInterfaceImpl implements ProductInterface{
 				
 				if(parentjson != null)
 				{
-					parentjson.put("status", 3);
+					parentjson = CommonMethodImpl.putSuccessJson(parentjson, 2000);
 					parentjson.put("command", 2053);
 				}
 				else
 				{
-					parentjson.put("status", 2);
-					parentjson.put("command", command);
+					parentjson = CommonMethodImpl.putFailedJson(parentjson, command);
+					
 				}
 				
 				output = parentjson.toString();
@@ -671,13 +646,11 @@ public class ProductInterfaceImpl implements ProductInterface{
 				 if (parentjson != null && !parentjson.isEmpty())
 					{
 						EmailUtility.sendEmail((String) parentjson.get("custEmailId"),(String) parentjson.get("custPass"), FORGOT_PASSWORD,null);
-						parentjson.put("status", 3);
-						parentjson.put("command", 2054);
+						parentjson = CommonMethodImpl.putSuccessJson(parentjson, 2054);
 					}
 					else
 					{
-						parentjson.put("status", 2);
-						parentjson.put("command", command);
+						parentjson = CommonMethodImpl.putFailedJson(parentjson, command);
 					}
 				}
 				// -- for supplier
@@ -689,13 +662,11 @@ public class ProductInterfaceImpl implements ProductInterface{
 				 if (parentjson != null && !parentjson.isEmpty())
 					{
 						EmailUtility.sendEmail((String) parentjson.get("supplierEmailId"),(String) parentjson.get("supplierPass"), FORGOT_PASSWORD,null);
-						parentjson.put("status", 3);
-						parentjson.put("command", 2054);
+						parentjson = CommonMethodImpl.putSuccessJson(parentjson, 2054);
 					}
 					else
 					{
-						parentjson.put("status", 2);
-						parentjson.put("command", command);
+						parentjson = CommonMethodImpl.putFailedJson(parentjson, command);
 					}
 				 
 				}
@@ -777,14 +748,12 @@ public class ProductInterfaceImpl implements ProductInterface{
 				
 				if(result > 0)
 				{
-					parentjson.put("status", 3);
-					parentjson.put("command", 2055);
+					parentjson = CommonMethodImpl.putSuccessJson(parentjson, 2055);
 				}
 				
 				else
 				{
-					parentjson.put("status", 2);
-					parentjson.put("command", command);
+					parentjson = CommonMethodImpl.putFailedJson(parentjson, command);
 				}
 				 
 				output = parentjson.toString();
@@ -821,13 +790,11 @@ public class ProductInterfaceImpl implements ProductInterface{
 					result = ps.executeUpdate();
 					if(result > 0)
 					{
-						parentjson.put("status", 3);
-						parentjson.put("command", 2056);
+						parentjson = CommonMethodImpl.putSuccessJson(parentjson, 2056);
 					}
 					else
 					{
-						parentjson.put("status", 2);
-						parentjson.put("command", command);
+						parentjson = CommonMethodImpl.putFailedJson(parentjson, command);
 					}
 				 }
 				 else if(userType != null && userType.trim().equalsIgnoreCase("supplier"))
@@ -839,26 +806,22 @@ public class ProductInterfaceImpl implements ProductInterface{
 						result = ps.executeUpdate();
 						if(result > 0)
 						{
-							parentjson.put("status", 3);
-							parentjson.put("command", 2056);
+							parentjson = CommonMethodImpl.putSuccessJson(parentjson, 2056);
 						}
 						else
 						{
-							parentjson.put("status", 2);
-							parentjson.put("command", command);
+							parentjson = CommonMethodImpl.putFailedJson(parentjson, command);
 						}
 				 }
 				 else
 				 {
-					 parentjson.put("status", 2);
-					 parentjson.put("command", command);
+					 parentjson = CommonMethodImpl.putFailedJson(parentjson, command);
 				 }
 
 				}
 				else 
 				{
-					parentjson.put("status", 2);
-					parentjson.put("command", command);
+					parentjson = CommonMethodImpl.putFailedJson(parentjson, command);
 				}
 				
 			output = parentjson.toString();
