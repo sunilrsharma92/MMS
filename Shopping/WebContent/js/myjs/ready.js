@@ -59,8 +59,8 @@ $(document).ready(function(){
 	//*********************** END *************************//
 	
 	// -- shud be called only when profile page is openend -- For Deva
-	var supplierKey = 1;
-	objhandleRequest.handleShopProfileDisplay(supplierKey);
+//	var supplierKey = 1;
+//	objhandleRequest.handleShopProfileDisplay(supplierKey);
 	//*********************** END *************************//
 	
 
@@ -99,11 +99,18 @@ $("#editbtn").click(function(){
 	}
 });
 
+
+
+
 $("#getCartProduct").click(function(){
 	
 	getProductfromCookie("prod");
 	
 });
+
+
+
+
 
 $('#checkout').click(function(){
 	
@@ -111,6 +118,105 @@ $('#checkout').click(function(){
 //	$('#LoginModal').modal('show');
 	getCustOfflineDetails();
 
+});
+
+
+
+
+
+
+$("#login").click(function(){
+	
+	alert("Login");
+	var emailLogin = $("#emailLogin").val();
+	var passLogin = $("#passLoginTemp").val();
+	var otpLogin = $("#otpLogin").val();
+//	var passLogin = $("#UserType").val();
+	var userType = $("#UserType").val();
+	
+
+	if(userType)
+		userType = "customer";
+	else
+		userType = "supplier";
+	
+	console.log("emailLogin : " + emailLogin + "  passLogin : " + passLogin + "  userType : " + userType +"  otpLogin : "+otpLogin );
+	
+	objhandleRequest.handleLogin(emailLogin, passLogin, userType, otpLogin);
+	return false;
+	
+//	if(emailLogin != "" && passLogin != "")
+//		{
+//			if(document.getElementById('otpLogin').style.display == 'block' && otpLogin == "")
+//			{
+//					validationMsg("otpLogin","OTP is required..!! Check it in your mail");
+//					return false;
+//			}
+//			else
+//			{
+//				var result = jConfirm("Are you sure you want to register as "+userType,"Make My Shopy",function()
+//						{
+//							
+//						});
+//					
+//				if(result)
+//				{
+//					return true;
+//					objhandleRequest.handleLogin(emailLogin, passLogin, userType, otpLogin);
+//				}
+//				else
+//				{
+//					return false;
+//				}
+//			}
+//		}
+//	else
+//		{
+//			if(emailLogin == "" )
+//			{
+//				validationMsg("emailLogin","Email is required");
+//			}
+//			if(passLogin == "" )
+//			{
+//				validationMsg("passLoginTemp","Password is required");
+//			}
+//			return false;
+//		}
+	
+});
+
+
+$("#signup").click(function(){
+//	alert("SignUp");
+	var passSignUp = $('#passSignUp').val();
+	var mobileKey = $('#mobile').val();
+	var emailKey = $('#emailSignUp').val();
+	var userType = $("#UserType").val();
+
+	if(userType)
+		{
+		userType = "customer";
+		}
+	else
+		{
+		userType = "supplier";
+		}
+	console.log("passSignUp" + passSignUp + "mobileKey" + mobileKey	+ "emailKey" + emailKey + "userType" + userType);
+	
+//	return false;
+	var result = jConfirm("Are you sure you want to register as "+userType,"Make My Shopy",function(e)
+			{
+				if(e)
+					{
+						objhandleRequest.handleRegisteration(passSignUp, mobileKey, emailKey, userType);
+						return true;
+					}
+				else
+					{
+						return false;
+					}
+			});
+		
 });
 
 
@@ -129,6 +235,7 @@ function loadPage(id)
 	else if(vid == "shopProfile")
 			{
 				$.cookie('pageState',vid);
+				ShopProfileDisplay();
 			}
 	
 	$("#loadpage").load(vid+".jsp");
@@ -191,106 +298,6 @@ function resetPassword()
 }
 
 
-function login() 
-{
-//	alert("login");
-
-	var emailLogin = $("#emailLogin").val();
-	var passLogin = $("#passLoginTemp").val();
-	var otpLogin = $("#otpLogin").val();
-//	var passLogin = $("#UserType").val();
-	var userType = $("#UserType").val();
-	
-	
-	
-
-	if(userType)
-		userType = "customer";
-	else
-		userType = "supplier";
-	
-	console.log("emailLogin : " + emailLogin + "  passLogin : " + passLogin + "  userType : " + userType +"  otpLogin : "+otpLogin );
-	
-		objhandleRequest.handleLogin(emailLogin, passLogin, userType, otpLogin);
-	
-	
-//	if(emailLogin != "" && passLogin != "")
-//		{
-//			if(document.getElementById('otpLogin').style.display == 'block' && otpLogin == "")
-//			{
-//					validationMsg("otpLogin","OTP is required..!! Check it in your mail");
-//					return false;
-//			}
-//			else
-//			{
-//				var result = jConfirm("Are you sure you want to register as "+userType,"Make My Shopy",function()
-//						{
-//							
-//						});
-//					
-//				if(result)
-//				{
-//					return true;
-//					objhandleRequest.handleLogin(emailLogin, passLogin, userType, otpLogin);
-//				}
-//				else
-//				{
-//					return false;
-//				}
-//			}
-//		}
-//	else
-//		{
-//			if(emailLogin == "" )
-//			{
-//				validationMsg("emailLogin","Email is required");
-//			}
-//			if(passLogin == "" )
-//			{
-//				validationMsg("passLoginTemp","Password is required");
-//			}
-//			return false;
-//		}
-	
-	
-	
-	
-	
-}
-
-
-function signUp()
-{
-//	alert("signUp");
-
-	var passSignUp = $('#passSignUp').val();
-	var mobileKey = $('#mobile').val();
-	var emailKey = $('#emailSignUp').val();
-	var userType = $("#UserType").val();
-
-	if(userType)
-		userType = "customer";
-	else
-		userType = "supplier";
-
-	console.log("passSignUp" + passSignUp + "mobileKey" + mobileKey	+ "emailKey" + emailKey + "userType" + userType);
-	
-//	var result = jConfirm("Are you sure you want to register as "+userType,"Make My Shopy",function()
-//			{
-//				
-//			});
-//		
-//	if(result)
-//	{
-		objhandleRequest.handleSignUp(passSignUp, mobileKey, emailKey, userType);
-//		return true;
-//	}
-//	else
-//	{
-//		return false;
-//	}
-	
-}
 
 /*function checkUsernameAvail()
  {
@@ -344,6 +351,9 @@ function getProductfromCookie(condition)
 	var count = 0;
 	var prodjoin = "";
 	var gettingCookieArray = $.cookie("key");
+	
+	if(gettingCookieArray !=null)
+		{
 	var gettingCookieValue = JSON.parse(gettingCookieArray);
 	console.log("JSON.parse(gettingCookieArray) : "+gettingCookieValue);
 	for (i in gettingCookieValue)
@@ -374,7 +384,7 @@ function getProductfromCookie(condition)
 			}
 		
 	}
-
+		}
 //	alert("count : "+count)
 	if(count>0)
 		{
@@ -556,5 +566,12 @@ function quantity(txtboxid,action)
 			}
 		}
 }
+
+function ShopProfileDisplay()
+{
+	var supplierKey = 1;
+	objhandleRequest.handleShopProfileDisplay(supplierKey);
+}
+
 //objhandleRequest.handleCategoryRequest();
 var objhandleRequest=new handleRequest();

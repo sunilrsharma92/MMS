@@ -34,66 +34,66 @@ $(function(){
 
 	});
 	
-	$(".signup-val").validate({
-		rules:{
-			email:{
-				required: true,
-				email: true,
-			},
-			password:{
-				required:true,
-				strongPassword:true,
-			},
-			password2:{
-				required : true,
-				equalTo : "#passSignUp",
-			},
-			name:{
-				required:true,
-				maxlength: 10,
-				minlength: 5,
-			},
-			surname:{
-				required: true,
-				rangelength:[5,10],
-			},
-			mobile:{
-				required : true,
-				number: true,
-				maxlength: 10,
-				minlength: 10,
-			},
-			captcha:{
-				required : true, 
-			}
-		},
-		messages:{
-			email:{
-				required:'Plese enter an email address.',
-				email:'Plese enter a <em>valid</em> email address',
-			},
-			name:{
-				required:'Please Enter NAme',
-			},
-			surname:{
-				required:'Please enter Sur',
-			},
-			password:{
-				required:'Plese enter an password.',
-			},
-			password2:{
-				required:'Plese enter an password.',
-			},
-			mobile:{
-				required:'Please enter mobile no',
-				number:'Please enter correct mobile no',
-			},
-			captcha:{
-				required:'Please tick ',
-			}
-		}
-
-	});
+//	$(".signup-val").validate({
+//		rules:{
+//			email:{
+//				required: true,
+//				email: true,
+//			},
+//			password:{
+//				required:true,
+//				strongPassword:true,
+//			},
+//			password2:{
+//				required : true,
+//				equalTo : "#passSignUp",
+//			},
+//			name:{
+//				required:true,
+//				maxlength: 10,
+//				minlength: 5,
+//			},
+//			surname:{
+//				required: true,
+//				rangelength:[5,10],
+//			},
+//			mobile:{
+//				required : true,
+//				number: true,
+//				maxlength: 10,
+//				minlength: 10,
+//			},
+//			captcha:{
+//				required : true, 
+//			}
+//		},
+//		messages:{
+//			email:{
+//				required:'Plese enter an email address.',
+//				email:'Plese enter a <em>valid</em> email address',
+//			},
+//			name:{
+//				required:'Please Enter NAme',
+//			},
+//			surname:{
+//				required:'Please enter Sur',
+//			},
+//			password:{
+//				required:'Plese enter an password.',
+//			},
+//			password2:{
+//				required:'Plese enter an password.',
+//			},
+//			mobile:{
+//				required:'Please enter mobile no',
+//				number:'Please enter correct mobile no',
+//			},
+//			captcha:{
+//				required:'Please tick ',
+//			}
+//		}
+//
+//	});
 	
 	
 	$(".forgot-val").validate({

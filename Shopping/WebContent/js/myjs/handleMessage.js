@@ -1,7 +1,10 @@
 /**
  * 
  */
+
+var objhandleRequest = new handleRequest();
 var customerDetails = "";
+
 function handleMainCategoryResponse(response)
 {
     try
@@ -316,23 +319,39 @@ function getCustOfflineDetails()
 
 function handleSignUpCustResponse(response)
 {
-	alert("hii");
+//	alert("hii");
 	var action = response.action;
 	var statusdesc = response.statusdesc;
-	var email = response.email;
+//	var email = response.email;
 	if(action == "3")
 		{
 			jAlert("we have send OTP to "+email+" please provide us during your first login", "Message");
-			break;
 		}
 	else
 		{
-			jAlert(statusdesc+"----------"+email, "Alert Message");
-			break;
+			jAlert(statusdesc, "Alert Message");
+		}
+//	return false;
+}
+
+
+function handleLoginCustResponse(response)
+{
+//	alert("hii");
+	var action = response.action;
+//	var statusdesc = response.statusdesc;
+//	var email = response.email;
+	if(action != "3")
+	{
+		jAlert("Login Failed", "Alert Message");
+	}
+	else
+		{
+		jAlert("Login Successfull", "Alert Message");
 		}
 }
 
-var objhandleRequest = new handleRequest();
+
 
 
 

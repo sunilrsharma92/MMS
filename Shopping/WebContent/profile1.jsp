@@ -103,8 +103,7 @@
 					</tr>
 				</table>
 				<!-- end of table -->
-				</br> <span>Ratings:*****</span> <span class = "pull-right">Social
-					Connect:
+				</br> <span class = "pull-right">Social Connect:
 					<button type = "button" class = "btn btn-default">
 						<span class = "glyphicon glyphicon-thumbs-up"></span> facebook
 				</span>

@@ -5,7 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Home</title>
-<script type="text/javascript" src="js/myjs/ready.js"></script>
+<!-- <script type="text/javascript" src="js/myjs/ready.js"></script> -->
 </head>
 <body>
 	<!-- Main Page -->

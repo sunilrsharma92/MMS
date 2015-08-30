@@ -11,21 +11,19 @@
 <link rel="stylesheet" href="css/bootstrap.css">
 <link rel="stylesheet" href="css/style1.css">
 <link rel="stylesheet" href="css/jqx/jqx.base.css">
+<link rel="stylesheet" href="js/jAlert/css/jquery.alerts.css">
 
-<script src='https://www.google.com/recaptcha/api.js'></script>
+<!-- <script src='https://www.google.com/recaptcha/api.js'></script> -->
 
 <script type="text/javascript" src="js/jAlert/js/jquery.js"></script>
 <script type="text/javascript" src="js/jAlert/js/jquery.ui.draggable.js"></script>
 <script type="text/javascript" src="js/jAlert/js/jquery.alerts.js"></script>
-<link rel="stylesheet" href="js/jAlert/css/jquery.alerts.css">
 
 
-<!-- <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.1.3.min.js"></script> -->
-<script type="text/javascript" src="js/jquery-2.1.3.min.js"></script>
+
+<script type="text/javascript" src="js/jquery-2.1.4.js"></script>
 <script type="text/javascript" src="js/jquery.validate.min.js"></script>
 <script type="text/javascript" src="js/myjs/validation.js"></script>
-
-<!-- <script src="js/myjs/validation.js"></script> -->
 
 <script type="text/javascript" src="js/myjs/maintainPageStateUsingCookie/maintainPageState.js"></script>
 <script type="text/javascript" src="js/jquery.cookie.js"></script>
@@ -41,7 +39,6 @@
 <script type="text/javascript" src="js/myjs/handleMessage.js"></script>
 <script type="text/javascript" src="js/myjs/callServlet.js"></script>
 <script type="text/javascript" src="js/myjs/ready.js"></script>
-<script type="text/javascript" src="js/myjs/maintainPageStateUsingCookie/maintainPageState.js"></script>
 <script type="text/javascript" src="js/bootstrap.js"></script>
 <style>
 .error{

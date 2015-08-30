@@ -5,14 +5,28 @@
 
 function handleAllListResponse(jsonMsg) 
 {
+	try
+	{
         callServlet(jsonMsg, function(strJsonResponse){
-        	var response = JSON.parse(strJsonResponse);
-//        	alert("response : "+JSON.stringify(response));
-        	var command = response.command;
-        	var status =  parseInt(response.status);
-        
-        	listResponseHandler(response,command,status);
+        	
+        	if(strJsonResponse != null)
+        		{
+	        		var response = JSON.parse(strJsonResponse);
+	            	var command = response.command;
+	            	var status =  parseInt(response.status);
+	            
+	            	listResponseHandler(response,command,status);
+        		}
+	        	else
+	        	{
+	        		jAlert("Response is blabk", "Message");
+	        	}
+        	
     		});
+	}
+	catch (e) {
+		console.log("handleAllListResponse(jsonMsg) Exception : "+e);
+	}
 }
 
 
@@ -71,8 +85,10 @@ function listResponseHandler(response,command,status)
 					document.getElementById("productCountOnCart").innerHTML="0";
 				break;
 				
-			case 1052:handleSignUpCustResponse(response);
+			case 1051:handleLoginCustResponse(response);
 				break;
+			case 1052:handleSignUpCustResponse(response);
+			break;
 				
 			}
         	break;
@@ -83,7 +99,7 @@ function listResponseHandler(response,command,status)
         	{
         	
         	case 1052:
-        		alert("10");
+//        		alert("10");
         		handleSignUpCustResponse(response);
         		break
         	}
