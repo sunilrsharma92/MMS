@@ -116,8 +116,7 @@ $('#checkout').click(function(){
 	
 //	$('#cartmodal').modal('hide');
 //	$('#LoginModal').modal('show');
-	getCustOfflineDetails();
-
+//	getCustOfflineDetails();
 });
 
 
@@ -190,6 +189,7 @@ $("#userlogin").click(function(){
 
 $("#signup").click(function(){
 //	alert("SignUp");
+	
 	var passSignUp = $('#passSignUp').val();
 	var mobileKey = $('#mobile').val();
 	var emailKey = $('#emailSignUp').val();
@@ -210,6 +210,7 @@ $("#signup").click(function(){
 			{
 				if(e)
 					{
+						
 						objhandleRequest.handleRegisteration(passSignUp, mobileKey, emailKey, userType);
 						return true;
 					}
@@ -239,6 +240,11 @@ function loadPage(id)
 				$.cookie('pageState',vid);
 				ShopProfileDisplay();
 			}
+	else if(vid == "checkout")
+	{
+		$.cookie('pageState',vid);
+		$("#checkoutClose").trigger("click");
+	}
 	
 	$("#loadpage").load(vid+".jsp");
 	
@@ -319,7 +325,8 @@ function forgotPwd()
 	var emailForgotPwd = $("#emailForgotPwd").val();
 	var userType = "customer";
 
-	console.log("emailForgotPwd"+ emailForgotPwd);
+	console.log("emailForgotPwd : "+ emailForgotPwd);
+	$(".overlay").show();
 	objhandleRequest.handleForgotPwd( emailForgotPwd, userType);
 
 }

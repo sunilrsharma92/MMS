@@ -7,9 +7,9 @@ public class RandomStringUtilsTrial
 	  
 	public static String orderNumber()
 	{
-		String ordernumber=RandomStringUtils.random(8, true, true);
-	    System.out.println("ordernumber : "+ordernumber);
-		return ordernumber;
+		String OTP=RandomStringUtils.random(8, true, true);
+	    System.out.println("OTP : "+OTP);
+		return OTP;
 	}
 	
 	public static void main(String[] args) 

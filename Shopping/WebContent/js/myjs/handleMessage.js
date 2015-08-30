@@ -304,15 +304,15 @@ function getCustomerOfflineData(response)
 
 function getCustOfflineDetails()
 {
-	alert();
-	var supFirstName = customerDetails.supFirstName;
-	var supLastName = customerDetails.supLastName;
-	var supAddress = customerDetails.supAddress;
-	var supCity = customerDetails.supCity;
-	var supState = customerDetails.supState;
-	var supPinCode = customerDetails.supPinCode;
-	
-	alert("customerDetails : "+customerDetails);
+//	alert();
+//	var supFirstName = customerDetails.supFirstName;
+//	var supLastName = customerDetails.supLastName;
+//	var supAddress = customerDetails.supAddress;
+//	var supCity = customerDetails.supCity;
+//	var supState = customerDetails.supState;
+//	var supPinCode = customerDetails.supPinCode;
+//	
+//	alert("customerDetails : "+customerDetails);
 	
 }
 
@@ -339,6 +339,7 @@ function handleForgetPasswordResponse(response)
 {
 //	alert(JSON.stringify(response));
 //	alert("hii");
+	$(".overlay").show().delay(100).fadeOut();
 	var action = response.status;
 	if(action == 3)
 	{
