@@ -69,6 +69,10 @@ function listResponseHandler(response,command,status)
 			case 2052:
 				handleSignUpCustResponse(response);
 				break;
+				
+			case 2054:
+				handleForgetPasswordResponse(response);
+				break;
 			}
         	break;
         	
@@ -89,6 +93,8 @@ function listResponseHandler(response,command,status)
 				break;
 			case 1052:handleSignUpCustResponse(response);
 			break;
+			case 1054:handleForgetPasswordResponse(response);
+			break;
 				
 			}
         	break;
@@ -99,7 +105,7 @@ function listResponseHandler(response,command,status)
         	{
         	
         	case 1052:
-//        		alert("10");
+        		alert("10");
         		handleSignUpCustResponse(response);
         		break
         	}

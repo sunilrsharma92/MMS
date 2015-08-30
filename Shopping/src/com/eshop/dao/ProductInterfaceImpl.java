@@ -49,7 +49,7 @@ public class ProductInterfaceImpl implements ProductInterface{
 						childjson.put("categoryname", rs.getString("category_name"));
 						
 						jsonarray.add(childjson);
-//						System.out.println("jsonarray : :  : :"+jsonarray);
+//						//System.out.println("jsonarray : :  : :"+jsonarray);
 					}
 					
 					parentjson.put("category", jsonarray);
@@ -72,7 +72,7 @@ public class ProductInterfaceImpl implements ProductInterface{
 					
 					
 					output = parentjson.toString();
-//					System.out.println("output ::::::::: "+output);
+//					//System.out.println("output ::::::::: "+output);
 					return output;
 			}
 			catch (Exception e)
@@ -96,11 +96,11 @@ public class ProductInterfaceImpl implements ProductInterface{
 				ps.setString(6,(String) parentjson.get("lastName"));
 				ps.setLong(7, 1);
 				
-				System.out.println("Sunil before:"+parentjson.toJSONString());
+				//System.out.println("Sunil before:"+parentjson.toJSONString());
 				
 				parentjson.remove("command");
 				
-				System.out.println("Sunil before:"+parentjson.toJSONString());
+				//System.out.println("Sunil before:"+parentjson.toJSONString());
 				
 				result = ps.executeUpdate();
 				
@@ -130,7 +130,7 @@ public class ProductInterfaceImpl implements ProductInterface{
 						parentjson = CommonMethodImpl.putFailedJson(parentjson, command);
 					}
 					output = parentjson.toString();
-					System.out.println("output ::::::::: "+output);
+					//System.out.println("output ::::::::: "+output);
 					return output;
 				}
 			
@@ -151,12 +151,12 @@ public class ProductInterfaceImpl implements ProductInterface{
 //				{"mainCategoryID":7,"command":1003,"subCategoryID":"1"}
 			JSONObject object = (JSONObject) JSONValue.parse(jsonMsg);
 			
-			System.out.println("Object : "+object.toString());
+			//System.out.println("Object : "+object.toString());
 			
 			Long mc = (Long)object.get("mainCategoryID");
 			Long sc = (Long)object.get("subCategoryID");
 			
-//			System.out.println("mc : "+mc+" sc : "+sc);
+//			//System.out.println("mc : "+mc+" sc : "+sc);
 			
 			ps=conn.prepareStatement("select * from products where category_ref=? and sub_category_ref=?");
 			ps.setLong(1, mc );
@@ -172,14 +172,14 @@ public class ProductInterfaceImpl implements ProductInterface{
 				childjson.put("images", rs.getString("picture"));
 				
 				jsonarray.add(childjson);
-//				System.out.println("jsonarray : :  : :"+jsonarray);
+//				//System.out.println("jsonarray : :  : :"+jsonarray);
 			}
 			
 			parentjson.put("product", jsonarray);
 			parentjson = CommonMethodImpl.putSuccessJson(parentjson, 2003);
 			
 			output = parentjson.toString();
-//			System.out.println("output ::::::::: "+output);
+//			//System.out.println("output ::::::::: "+output);
 			return output;
 			}
 			catch(Exception e)
@@ -196,12 +196,12 @@ public class ProductInterfaceImpl implements ProductInterface{
 		case 1005:
 			try
 			{
-					System.out.println("jsonMsg of product in cart ::::::::::::::: "+jsonMsg);
+					//System.out.println("jsonMsg of product in cart ::::::::::::::: "+jsonMsg);
 					
 					JSONObject object = (JSONObject) JSONValue.parse(jsonMsg);
 //					
 					String product = (String)object.get("productArray");
-					System.out.println("product : "+product);
+					//System.out.println("product : "+product);
 					
 					String[] productid = product.split("#");
 					
@@ -209,7 +209,7 @@ public class ProductInterfaceImpl implements ProductInterface{
 					{
 //						String id = (String) productid.get(i);
 						Long productkey = Long.parseLong(productid[i]);
-						System.out.println(productkey);
+						//System.out.println(productkey);
 					
 					
 					ps=conn.prepareStatement("select * from products where product_key=?");
@@ -226,14 +226,14 @@ public class ProductInterfaceImpl implements ProductInterface{
 						childjson.put("images", rs.getString("picture"));
 						
 						jsonarray.add(childjson);
-						System.out.println("jsonarray : :  : :"+jsonarray);
+						//System.out.println("jsonarray : :  : :"+jsonarray);
 					}
 					}
 					parentjson.put("product", jsonarray);
 					parentjson = CommonMethodImpl.putSuccessJson(parentjson, 2005);
 					
 					output = parentjson.toString();
-					System.out.println("output ::::::::: "+output);
+					//System.out.println("output ::::::::: "+output);
 					return output;
 			}
 			catch(Exception e)
@@ -241,7 +241,7 @@ public class ProductInterfaceImpl implements ProductInterface{
 				parentjson = CommonMethodImpl.putFailedJson(parentjson, command);
 				
 				output = parentjson.toString();
-				System.out.println("output ::::::::: "+output);
+				//System.out.println("output ::::::::: "+output);
 //				return output;
 //				e.printStackTrace();
 			}
@@ -254,7 +254,7 @@ public class ProductInterfaceImpl implements ProductInterface{
 				JSONObject object = (JSONObject) JSONValue.parse(jsonMsg);
 //				
 				String product = (String)object.get("txt");
-			System.out.println("txt : "+product);
+			//System.out.println("txt : "+product);
 			
 			ps=conn.prepareStatement("select * from products where product_name LIKE '"+product+"%'");
 //			ps.setString(1, jsonMsg );
@@ -269,14 +269,14 @@ public class ProductInterfaceImpl implements ProductInterface{
 				childjson.put("images", rs.getString("picture"));
 				
 				jsonarray.add(childjson);
-//				System.out.println("jsonarray : :  : :"+jsonarray);
+//				//System.out.println("jsonarray : :  : :"+jsonarray);
 			}
 			
 			parentjson.put("product", jsonarray);
 			parentjson = CommonMethodImpl.putSuccessJson(parentjson, 2003);
 			
 			output = parentjson.toString();
-//			System.out.println("output ::::::::: "+output);
+//			//System.out.println("output ::::::::: "+output);
 			return output;
 			}
 			catch(Exception e)
@@ -314,7 +314,7 @@ public class ProductInterfaceImpl implements ProductInterface{
 						
 					}
 					output = parentjson.toString();
-					System.out.println("output ::::::::: "+output);
+					//System.out.println("output ::::::::: "+output);
 					return output;
 				}
 			
@@ -453,7 +453,7 @@ public class ProductInterfaceImpl implements ProductInterface{
 					}
 						
 					output = parentjson.toString();
-					System.out.println("output ::::::::: "+output);
+					//System.out.println("output ::::::::: "+output);
 					return output;
 				}
 			
@@ -511,8 +511,15 @@ public class ProductInterfaceImpl implements ProductInterface{
 					//	ps.setString(2, usernameSignUp);
 						ps.setString(2, (String) object.get("mobileKey"));
 						ps.setString(3, (String) object.get("passSignUp"));
-
-						result = ps.executeUpdate();
+						
+						try
+						{
+							result = ps.executeUpdate();
+						}
+						catch(Exception e)
+						{
+							e.printStackTrace();
+						}
 						
 						if(result > 0)
 						{
@@ -549,6 +556,7 @@ public class ProductInterfaceImpl implements ProductInterface{
 								{
 									parentjson.put("status", 11);//OTP Updation Failed
 									parentjson.put("statusdesc", "OTP Updation Failed");
+									parentjson.put("command", command);
 								}
 								}
 								else
@@ -556,6 +564,7 @@ public class ProductInterfaceImpl implements ProductInterface{
 									parentjson.put("status", 12);////Email sending Failed
 									parentjson.put("email", emailSignUp);
 									parentjson.put("statusdesc", "Email sending Failed");
+									parentjson.put("command", command);
 								}
 							}
 							else
@@ -564,6 +573,7 @@ public class ProductInterfaceImpl implements ProductInterface{
 								parentjson.put("status", 12);////Email sending Failed
 								parentjson.put("email", emailSignUp);
 								parentjson.put("statusdesc", "Email sending Failed");
+								parentjson.put("command", command);
 							}
 							
 							}
@@ -571,6 +581,7 @@ public class ProductInterfaceImpl implements ProductInterface{
 							{
 								parentjson = CommonMethodImpl.putFailedJson(parentjson, command);//Registeration failed
 								parentjson.put("statusdesc", "Registration failed");//Registeration failed
+								parentjson.put("command", command);
 							}
 						
 						}
@@ -578,11 +589,12 @@ public class ProductInterfaceImpl implements ProductInterface{
 						{
 							parentjson.put("status", 10);//email already exist
 							parentjson.put("statusdesc", "Email Id Already exist, please try registering  with other Email-id");
+							parentjson.put("command", command);
 							
 							checkEmailExist = 0;
 						}
 						output = parentjson.toString();
-						System.out.println("output ::::::::: "+output);
+						//System.out.println("output ::::::::: "+output);
 						return output;
 					}
 				catch (Exception e)
@@ -614,7 +626,7 @@ public class ProductInterfaceImpl implements ProductInterface{
 				}
 				
 				output = parentjson.toString();
-				System.out.println("output ::::::::: "+output);
+				//System.out.println("output ::::::::: "+output);
 				return output;
 			}
 		        
@@ -630,12 +642,8 @@ public class ProductInterfaceImpl implements ProductInterface{
 			{
 				JSONObject object = (JSONObject) JSONValue.parse(jsonMsg);
 				
-//				String usernameCust = (String) object.get("usernameForgotPwd");
 				String email = (String) object.get("emailForgotPwd");
 				String userType = (String) object.get("userType");
-				
-				/*if(usernameCust != null && !usernameCust.trim().isEmpty())
-					parentjson = CommonMethodImpl.getCustDetailsByProperty(CommonMethodImpl.USERNAME, usernameCust,object ,parentjson);*/
 				
 				// -- for customer
 				if(userType != null && userType.trim().equalsIgnoreCase("customer"))
@@ -646,11 +654,16 @@ public class ProductInterfaceImpl implements ProductInterface{
 				 if (parentjson != null && !parentjson.isEmpty())
 					{
 						EmailUtility.sendEmail((String) parentjson.get("custEmailId"),(String) parentjson.get("custPass"), FORGOT_PASSWORD,null);
+						parentjson = new JSONObject();
 						parentjson = CommonMethodImpl.putSuccessJson(parentjson, 2054);
+						parentjson.put("email",email);
+						
 					}
 					else
 					{
+						parentjson = new JSONObject();
 						parentjson = CommonMethodImpl.putFailedJson(parentjson, command);
+						parentjson.put("statusdesc","Email-Id "+email+" does not exist");
 					}
 				}
 				// -- for supplier
@@ -662,17 +675,21 @@ public class ProductInterfaceImpl implements ProductInterface{
 				 if (parentjson != null && !parentjson.isEmpty())
 					{
 						EmailUtility.sendEmail((String) parentjson.get("supplierEmailId"),(String) parentjson.get("supplierPass"), FORGOT_PASSWORD,null);
+						parentjson = new JSONObject();
 						parentjson = CommonMethodImpl.putSuccessJson(parentjson, 2054);
+						parentjson.put("email",email);
 					}
 					else
 					{
+						parentjson = new JSONObject();
 						parentjson = CommonMethodImpl.putFailedJson(parentjson, command);
+						parentjson.put("statusdesc","Email-Id "+email+" does not exist");
 					}
 				 
 				}
 
 				output = parentjson.toString();
-				System.out.println("output ::::::::: "+output);
+				//System.out.println("output ::::::::: "+output);
 				return output;
 				
 			}
@@ -757,7 +774,7 @@ public class ProductInterfaceImpl implements ProductInterface{
 				}
 				 
 				output = parentjson.toString();
-				System.out.println("output ::::::::: "+output);
+				//System.out.println("output ::::::::: "+output);
 				return output;
 				
 			}
@@ -825,7 +842,7 @@ public class ProductInterfaceImpl implements ProductInterface{
 				}
 				
 			output = parentjson.toString();
-			System.out.println("output ::::::::: "+output);
+			//System.out.println("output ::::::::: "+output);
 			return output;
 			
 			}

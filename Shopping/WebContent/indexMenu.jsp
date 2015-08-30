@@ -94,8 +94,8 @@ $("#add").click(function(){
 												<input class="textbox font" type="text" id="emailLogin"	name="email" placeholder="Enter Email Id"></br> 
 												<input class="textbox font" type="password" id="passLoginTemp" name="password" placeholder="Enter Password"></br> 
 												<input class="textbox font" type="text" id="otpLogin" placeholder="OTP" style="display: none"></br>
-												<input type="submit" class="btn btn-primary" id="login" value="Login" />
-<!-- 												<button onclick="login()" class="btn btn-primary" type="submit">Login</button> -->
+												<input type="button" class="btn btn-primary" id="userlogin" value="Login" />
+<!-- 												<button onclick="login()" class="btn btn-primary" type="button">Login</button> -->
 											</form>
 										</div>
 										<div id="menu1" class="tab-pane fade">
@@ -111,14 +111,14 @@ $("#add").click(function(){
 												<input class="textbox font" type="password" name="password2" id="repass" placeholder="ReEnter Password"></br>
 												<div class="g-recaptcha" name="captcha" data-sitekey="6LfaxwsTAAAAAEB5RYVVeSFM3AyHzAHb3YvgtGvx"></div>
 												<div id="warnings"></div>
-												<input type="submit" class="btn btn-primary" id="signup" value="Sign Up" />
+												<input type="button" class="btn btn-primary" id="signup" value="Sign Up" />
 											</form>
 										</div>
 										<div id="menu2" class="tab-pane fade">
 											<h3 class="font">Forgot Password:</h3>
 											<form class="forgot-val">
 											<input class="textbox font" type="text" name="email" id="emailForgotPwd" placeholder="Enter Email id"></br>
-											<button onclick="forgotPwd()" class="btn btn-primary" type="submit">Submit</button>
+											<button onclick="forgotPwd()" class="btn btn-primary" type="button">Submit</button>
 											</form>
 										</div>
 									</div>
