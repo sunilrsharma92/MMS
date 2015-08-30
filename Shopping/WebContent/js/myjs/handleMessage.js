@@ -302,7 +302,7 @@ function getCustomerOfflineData(response)
 	customerDetails = response;
 }
 
-function getCustOfflineDetails()
+/*function getCustOfflineDetails()
 {
 	alert();
 	var supFirstName = customerDetails.supFirstName;
@@ -314,7 +314,7 @@ function getCustOfflineDetails()
 	
 	alert("customerDetails : "+customerDetails);
 	
-}
+}*/
 
 
 function handleSignUpCustResponse(response)
@@ -356,36 +356,72 @@ function handleForgetPasswordResponse(response)
 
 function handleLoginCustResponse(response)
 {
-//	alert("hii");
 	var action = response.status;
-//	var statusdesc = response.statusdesc;
-//	var email = response.email;
-	 $.ajax({
-	if(action != 3)
-	        url: 'putSessionData.jsp',
-	        data:
-	        {
-	        	response: response
-	        },
-	        success: function (data)
-	        {
-	             
-	        },
-	        error: function (data) 
-	        {
-	        	
-	        },
-	        async: true
-	    });
+	
+	var loginSuccess = response.loginSuccess;
+	alert(response.loginSuccess)
+
+	 if (loginSuccess != null) 
+	 {
+		if (loginSuccess == "customer") 
+		{
+//			response.remove("custPass");
+			delete response["custPass"];
+		}
+		if (loginSuccess == "supplier")
+		{
+//			response.remove("supplierPass");
+			delete response["supplierPass"];
+		}
+
+		console.log("response :: " + JSON.stringify(response));
+		
+		$.session.remove('loginData');
+		$.session.set('loginData', JSON.stringify(response));
+		
+		$.session.remove('usertype');
+		$.session.set('userType', loginSuccess);
+		
+		/* session  = request.getSession();
+		session.removeAttribute("loginData");
+		session.setAttribute("loginData", loginData); */
+		
+		
+   		
+	}
+	 
+	 if(action != 3)
 	{
 		jAlert("Login Failed", "Alert Message");
 	}
 	else
-		{
+	{
 		jAlert("Login Successfull", "Alert Message");
-		}
+		var custName = response.custFirstName;
+		setLoginDropDown(custName);
+	}
+	 
 }
 
+function setLoginDropDown(custName)
+{
+
+$("#myAccount").attr('data-target','');
+//$("#userlogin").attr('data-dismiss','modal');
+
+document.getElementById("loginlabel").innerHTML = '<ul class="nav navbar-nav navbar-right"><li class="dropdown">'
+		+ '<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> '
+		+ custName
+		+ ' <span class="caret"></span></a>'
+		+ '<ul class="dropdown-menu">'
+		+ '<li><a href="#" id="profileLink">Profile</a></li>'
+		+ '<li><a href="#"></a>Favoiurate Shops</li>'
+		+ '<li><a href="#">Recent Order</a></li>'
+		+ '<li role="separator" class="divider"></li>'
+		+ '<li><a href="#" id="logoutLink">Logout</a></li>' + '</ul>' + '</li></ul>';
+
+$( "#crossClose" ).trigger( "click" );
+}
 
 
 

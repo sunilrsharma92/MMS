@@ -31,11 +31,11 @@
 						<span class="glyphicon glyphicon-user"></span> Profile
 					</div>
 					<div class="list-group side-bar">
-						<a href="#" id="customerPage" class="list-group-item " onclick="loadPage(this)">Personal Info</a> 
-						<a href="#"	id="addresses" class="list-group-item" onclick="loadPage(this)">Addresses</a>
-						<a href="#"	id="changepassword" class="list-group-item"	onclick="loadPage(this)">Change Password</a> 
+						<a href="#" id="customerPage" class="list-group-item " onclick="loadProfileMenu(this)">Personal Info</a> 
+						<a href="#"	id="addresses" class="list-group-item" onclick="loadProfileMenu(this)">Addresses</a>
+						<a href="#"	id="resetpassword" class="list-group-item"	onclick="loadProfileMenu(this)">Change Password</a> 
 						<!-- <a href="#" class="list-group-item">Update Email/Mobile</a> -->
-						<a href="#" id="deactivate" class="list-group-item"	onclick="loadPage(this)">Deactivate Account</a> 
+						<a href="#" id="deactivate" class="list-group-item"	onclick="loadProfileMenu(this)">Deactivate Account</a> 
 						<a href="#" id="" class="list-group-item">Manage Notifications</a>
 						<hr class="large">
 					</div>
@@ -49,7 +49,7 @@
 			<!-- end of div container -->
 		</div>
 	</div>
-	<jsp:include page="footer.jsp" />
+	<%-- <jsp:include page="footer.jsp" /> --%>
 
 
 

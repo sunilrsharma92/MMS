@@ -27,6 +27,7 @@
 
 <script type="text/javascript" src="js/myjs/maintainPageStateUsingCookie/maintainPageState.js"></script>
 <script type="text/javascript" src="js/jquery.cookie.js"></script>
+<script type="text/javascript" src="js/jquery.session.js"></script>
 
 <script type="text/javascript" src="js/jqwidgets/jqxcore.js"></script>
 <script type="text/javascript" src="js/jqwidgets/jqxcheckbox.js"></script>

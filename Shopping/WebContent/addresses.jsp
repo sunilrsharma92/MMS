@@ -18,7 +18,7 @@
 		<table>
 			<tr><td>Address 1:</td><td><input type="text" id="custAddress1" class="textbox" name="name"></td></tr>
 			<tr><td>Address 2:</td><td><input type="text" id="custAddress2" class="textbox" name="name"></td></tr>
-			<tr><td>Street name:</td><td><input type="text" id="custAddress2" class="textbox" name="name"></td></tr>
+			<tr><td>Street name:</td><td><input type="text" id="streetName" class="textbox" name="name"></td></tr>
 			<tr><td>State:</td>
 				<td>
 					<!-- <input type="text" class="textbox" name="name"></td></tr> -->

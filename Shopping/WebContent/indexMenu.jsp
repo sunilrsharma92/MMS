@@ -63,9 +63,10 @@ $("#add").click(function(){
 				<li class="pull-right">
 					<a href="#" class="whiteLabelLink"><span class="glyphicon glyphicon-home" style="margin-right: 5px;"></span>Home</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					<!-- Trigger the modal with a button --> 
-					
-					<a href="#"	data-toggle="modal" data-target="#LoginModal" id="login" class="whiteLabelLink">
-						<span class="glyphicon glyphicon-user" style="margin-right: 5px;"></span>Login
+
+<!-- 					<a href="#"	data-toggle="modal" data-target="#LoginModal" id="login" class="whiteLabelLink"> -->
+					<a href="#"	data-toggle="modal" data-target="#LoginModal" id="myAccount" class="whiteLabelLink">
+						<span class="glyphicon glyphicon-user" style="margin-right: 5px;"></span><label id="loginlabel">Login</label>
 					</a> 
 					
 					<!-- Modal -->
@@ -74,7 +75,7 @@ $("#add").click(function(){
 							<!-- Modal content-->
 							<div class="modal-content">
 								<div class="modal-header">
-									<button type="button" class="close" data-dismiss="modal">&times;</button>
+									<button type="button" id="crossClose" class="close" data-dismiss="modal">&times;</button>
 									<h4 class="modal-title">
 										<strong> Login</strong>
 									</h4>

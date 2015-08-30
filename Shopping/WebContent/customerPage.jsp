@@ -42,11 +42,11 @@ a:hover {
 		<h3 class="bold">Personal Information:</h3>
 		<form>
 			<table>
-				<tr><td>First Name:</td><td><input id="custFirstName" type="text" class="textbox" ></td></tr>
+				<tr><td>First Name:</td><td><input id="custFirstName1" type="text" class="textbox" value=""></td></tr>
 				<tr><td>Last Name:</td><td><input id="custLastName" type="text" class="textbox" ></td></tr>
 				<tr><td>Mobile No:</td><td><input id="custMobNo" type="text" class="textbox" ></td></tr>
 				<tr><td>Email Address:</td><td><input id="custEmail" type="text" class="textbox"></td></tr>
-				<tr><td></td><td><button type="button" id="custFirstName" class="btn btn-primary" onclick="saveCustomerDetails()">Save Changes</button></td></tr>
+				<tr><td></td><td><button type="button" id="saveProfile" class="btn btn-primary" onclick="saveCustomerDetails()">Save Changes</button></td></tr>
 			</table>
 		</form>
 	</div>

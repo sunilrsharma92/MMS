@@ -24,17 +24,51 @@ $(document).ready(function(){
 		
 	}
 	$('#UserType').jqxSwitchButton({ height: 27, width: 81, checked: true });
-
-//	$('#UserType').on('change', function (event) {
-//        console.log(event.args.check);
-//        alert("sunil"+event.args.check);
-//    });
 	
-//	var sPath = window.location.pathname;
-//	var sPage = sPath.substring(sPath.lastIndexOf('/') + 1);
-//	alert("Page Name : "+sPage);
+	// -- check session to put login drop down
+	var loginData = $.session.get('loginData');
+	var userType = $.session.get('userType');
 
+	if(loginData != null)
+	{
+		var sessionData = JSON.parse(loginData);
+		
+		if(userType == "customer")
+			var name = sessionData.custFirstName;
+		
+		if(userType == "supplier")
+			var name = sessionData.supplierFirstName;
+		
+		setLoginDropDown(name);
+	}
+	else
+	{
+		$("#myAccount").attr('data-target','#LoginModal');
+		document.getElementById("loginlabel").innerHTML ="Login";
+	}
+	// -- check session to put login drop down
 	
+	
+	// -- logout
+	$("#logoutLink").click(function() {
+//		alert("hahaa");
+		$.session.remove('loginData');
+		$.session.remove('usertype');
+		window.location.replace("indexTemplate.jsp");
+	});
+	
+	// -- My Profile link
+	$("#profileLink").click(function() {
+//		alert("profileLink");
+		var userType = $.session.get('userType');
+		if(userType == "customer")
+			$("#loadpage").load("customerProfile.jsp");
+		
+		if(userType == "supplier")
+			$("#loadpage").load("shopProfile.jsp");
+		
+	});
+
 	$.cookie('pageState',"indexBody");
 	
 	$('.btn-toggle').click(function() {
@@ -116,7 +150,7 @@ $('#checkout').click(function(){
 	
 //	$('#cartmodal').modal('hide');
 //	$('#LoginModal').modal('show');
-	getCustOfflineDetails();
+//	getCustOfflineDetails();
 
 });
 
@@ -127,7 +161,7 @@ $('#checkout').click(function(){
 
 $("#userlogin").click(function(){
 	
-	alert("Hii");
+//	alert("Hii");
 	var emailLogin = $("#emailLogin").val();
 	var passLogin = $("#passLoginTemp").val();
 	var otpLogin = $("#otpLogin").val();
@@ -229,8 +263,7 @@ $("#signup").click(function(){
 function loadPage(id)
 {
 	var vid = $(id).attr("id");
-	
-	
+	alert("ready.js_266  "+vid);
 	
 	if(vid == "indexBody")
 		{
