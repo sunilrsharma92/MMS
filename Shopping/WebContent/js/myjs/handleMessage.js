@@ -341,6 +341,22 @@ function handleLoginCustResponse(response)
 	var action = response.action;
 //	var statusdesc = response.statusdesc;
 //	var email = response.email;
+	 $.ajax({
+	        url: 'putSessionData.jsp',
+	        data:
+	        {
+	        	response: response
+	        },
+	        success: function (data)
+	        {
+	             
+	        },
+	        error: function (data) 
+	        {
+	        	
+	        },
+	        async: true
+	    });
 	if(action != "3")
 	{
 		jAlert("Login Failed", "Alert Message");

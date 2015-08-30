@@ -228,6 +228,8 @@ function loadPage(id)
 {
 	var vid = $(id).attr("id");
 	
+	
+	
 	if(vid == "indexBody")
 		{
 			$.cookie('pageState',vid);

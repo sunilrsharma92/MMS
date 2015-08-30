@@ -2,11 +2,15 @@ package com.eshop.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import org.json.simple.JSONObject;
+import org.json.simple.JSONValue;
 
 import com.eshop.dao.ProductInterface;
 import com.eshop.dao.ProductInterfaceImpl;
@@ -52,6 +56,8 @@ public class GetProductbyCategoryServlet extends HttpServlet {
 		System.out.println("Response :::::::::::: "+strjsonMsgResponse);
 		
 		out.println(strjsonMsgResponse);
+		
+		
 		
 	}
 

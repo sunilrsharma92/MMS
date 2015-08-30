@@ -382,6 +382,7 @@ public class ProductInterfaceImpl implements ProductInterface{
 							if(custPass!= null && parentjson.get("custPass") != null && custPass.trim().equals(parentjson.get("custPass")))
 							{
 								parentjson = CommonMethodImpl.putSuccessJson(parentjson, 2051);
+								parentjson.put("loginSuccess","customer");
 							}
 							else
 							{
@@ -438,6 +439,7 @@ public class ProductInterfaceImpl implements ProductInterface{
 							if(custPass!= null && parentjson.get("supplierPass") != null && custPass.trim().equals(parentjson.get("supplierPass")))
 							{
 								parentjson = CommonMethodImpl.putSuccessJson(parentjson, 2051);
+								parentjson.put("loginSuccess","supplier");
 							}
 							else
 							{
