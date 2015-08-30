@@ -25,6 +25,9 @@ $("#add").click(function(){
 </script>
 </head>
 <body>
+
+
+				
 	<div class="container-fluid  top-bar">
 		<div class="container ">
 
@@ -81,6 +84,13 @@ $("#add").click(function(){
 									</h4>
 								</div>
 								<div class="modal-body">
+								
+									<!-- Loading img -->
+									<div class="overlay">
+										<div id="loading-img"></div>
+									</div>
+									<!-- Loading img -->
+									
 									<ul class="nav nav-tabs">
 										<li class="active"><a class="font" data-toggle="tab" href="#home">Login</a></li>
 										<li><a class="font" data-toggle="tab" href="#menu1">Sign up</a></li>
@@ -127,6 +137,9 @@ $("#add").click(function(){
 							</div>
 						</div>
 					</div> <!-- </div> --></li>
+					
+				
+				
 			</ul>
 		</div>
 	</div>
@@ -164,7 +177,7 @@ $("#add").click(function(){
 						<!-- Modal content-->
 						<div class="modal-content">
 							<div class="modal-header">
-								<button type="button" class="close" data-dismiss="modal">&times;</button>
+								<button type="button" class="close" id="checkoutClose" data-dismiss="modal">&times;</button>
 								<h4 class="modal-title">
 									<strong style="color: #FFF;">Cart Details</strong>
 								</h4>
@@ -197,7 +210,7 @@ $("#add").click(function(){
 
 								</div>
 								<div class="totaldiv">
-									<button class="btn btn-primary" id="checkout" type="button">Check Out</button>
+									<button class="btn btn-primary" id="checkout" onclick="loadPage(this);" type="button">Check Out</button>
 									<button class="btn btn-primary" type="button">Continue Shopping</button>
 								</div>
 							</div>

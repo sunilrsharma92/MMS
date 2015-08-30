@@ -31,8 +31,7 @@ public class EmailUtility {
 		String link = null;
 		String msg = null;
 
-		String mailTemplet = "<html>"
-				+ "<head>"
+		String mailTemplet = "<html><head>"
 				+ "<title></title>"
 				+ "<link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css'>"
 
