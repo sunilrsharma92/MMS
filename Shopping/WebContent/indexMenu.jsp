@@ -95,7 +95,7 @@ $("#add").click(function(){
 										<li class="active"><a class="font" data-toggle="tab" href="#home">Login</a></li>
 										<li><a class="font" data-toggle="tab" href="#menu1">Sign up</a></li>
 										<li><a class="font" data-toggle="tab" href="#menu2">Forgot password</a></li>
-										<div id="UserType" class="whiteLabelLink" style="float: left;"></div>
+										<div id="userType" class="whiteLabelLink" style="float: left;"></div>
 									</ul>
 
 									<div class="tab-content">
@@ -116,6 +116,7 @@ $("#add").click(function(){
 											<!-- 						<label for="cmn-toggle-1"></label> <label class="font" style="float: left;"><h4>Shoper</h4></label> -->
 											<!-- 						</br> -->
 											<form class="signup-val">
+												<input class="textbox font" type="text" name="firstName" id="firstNameSignUp" placeholder="Enter First Name"></br> 
 												<input class="textbox font" type="text" name="email" id="emailSignUp" placeholder="Enter Email id"></br> 
 												<input class="textbox font" type="text" name="mobile" id="mobile" placeholder="Enter Mobile No"></br> 
 												<input class="textbox font" type="password" name="password" id="passSignUp" placeholder="Enter Password"></br> 

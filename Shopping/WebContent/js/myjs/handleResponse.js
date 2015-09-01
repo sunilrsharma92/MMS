@@ -19,7 +19,7 @@ function handleAllListResponse(jsonMsg)
         		}
 	        	else
 	        	{
-	        		jAlert("Response is blabk", "Message");
+	        		jAlert("Response is blank", "Message");
 	        	}
         	
     		});
@@ -63,11 +63,11 @@ function listResponseHandler(response,command,status)
 				break;
 				
 			case 2051:
-				handleLoginCustResponse(response);
+				handleLoginResponse(response);
 				break;
 				
 			case 2052:
-				handleSignUpCustResponse(response);
+				handleSignUpResponse(response);
 				break;
 				
 			case 2054:

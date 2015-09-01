@@ -9,7 +9,7 @@ function loadProfileMenu(id)
 	
 	
 
-		if (idofpage == "customerPage" || idofpage == "addresses")
+		if (idofpage == "personalDetails" || idofpage == "addresses")
 		{
 		var loginData = $.session.get('loginData');
 //		alert("loginData   "+JSON.stringify(loginData));
@@ -21,35 +21,35 @@ function loadProfileMenu(id)
 
 			if (userType == "customer")
 			{
-				if (idofpage == "customerPage")
+				if (idofpage == "personalDetails")
 				{
-					var custFirstName = sessionData.custFirstName;
-					var custLastName = sessionData.custLastName;
-					var custMobNo = sessionData.custPhone;
-					var custEmail = sessionData.custEmailId;
+					var firstName = sessionData.firstName;
+					var lastName = sessionData.lastName;
+					var phone = sessionData.phone;
+					var emailId = sessionData.emailId;
 					
-					alert(custFirstName+"  "+custLastName+"  "+custMobNo+"  "+custEmail);
+					alert(firstName+"  "+lastName+"  "+phone+"  "+emailId);
 					
-					$("#custFirstName1").val(custFirstName);
-					$("#custLastName").val(custLastName);
-					$("#custMobNo").val(custMobNo);
-					$("#custEmail").val(custEmail);
+					$("#custFirstName1").val(firstName);
+					$("#custLastName").val(lastName);
+					$("#custMobNo").val(phone);
+					$("#custEmail").val(emailId);
 				}
 				else if (idofpage == "addresses")
 				{
-					var custAddress1 = sessionData.custAddress;
-					var custAddress2 = sessionData.custAddress2;
-					var streetName = sessionData.street;
-					var custState = sessionData.custState;
-					var custCity = sessionData.custCity;
-					var custPincode = sessionData.custPincode;
+					var address = sessionData.address;
+					var address2 = sessionData.address2;
+					var street = sessionData.street;
+					var state = sessionData.state;
+					var city = sessionData.city;
+					var pincode = sessionData.pincode;
 					
-					$("#custAddress1").val(custAddress1);
-					$("#custAddress2").val(custAddress2);
-					$("#streetName").val(streetName);
-//					document.getElementById("custState").innerHTML = '<option selected>'+custState+'</option>';
-					$("#custCity").val(custCity);
-					$("#custPincode").val(custPincode);
+					$("#custAddress1").val(address);
+					$("#custAddress2").val(address2);
+					$("#streetName").val(street);
+//					document.getElementById("custState").innerHTML = '<option selected>'+state+'</option>';
+					$("#custCity").val(city);
+					$("#custPincode").val(pincode);
 				}
 				
 			}

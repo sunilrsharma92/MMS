@@ -317,7 +317,7 @@ function getCustomerOfflineData(response)
 }*/
 
 
-function handleSignUpCustResponse(response)
+function handleSignUpResponse(response)
 {
 //	alert("hii");
 	var action = response.status;
@@ -327,6 +327,7 @@ function handleSignUpCustResponse(response)
 		{
 			var email = response.email;
 			jAlert("we have send OTP to "+email+" please provide us during your first login", "Message");
+			$( "#crossClose" ).trigger( "click" );
 		}
 	else
 		{
@@ -345,6 +346,7 @@ function handleForgetPasswordResponse(response)
 	{
 		var email = response.email;
 		jAlert("We have send your password to "+email+" please check it out", "Message");
+		$( "#crossClose" ).trigger( "click" );
 	}
 	else
 	{
@@ -355,40 +357,25 @@ function handleForgetPasswordResponse(response)
 }
 
 
-function handleLoginCustResponse(response)
+function handleLoginResponse(response)
 {
 	var action = response.status;
 	
-	var loginSuccess = response.loginSuccess;
-	alert(response.loginSuccess)
+	var userType = response.userType;
+//	alert(response.userType);
 
-	 if (loginSuccess != null) 
+	 if (userType != null) 
 	 {
-		if (loginSuccess == "customer") 
-		{
-//			response.remove("custPass");
-			delete response["custPass"];
-		}
-		if (loginSuccess == "supplier")
-		{
-//			response.remove("supplierPass");
-			delete response["supplierPass"];
-		}
+		delete response["password"];
 
 		console.log("response :: " + JSON.stringify(response));
 		
 		$.session.remove('loginData');
 		$.session.set('loginData', JSON.stringify(response));
 		
-		$.session.remove('usertype');
-		$.session.set('userType', loginSuccess);
+		$.session.remove('userType');
+		$.session.set('userType', userType);
 		
-		/* session  = request.getSession();
-		session.removeAttribute("loginData");
-		session.setAttribute("loginData", loginData); */
-		
-		
-   		
 	}
 	 
 	 if(action != 3)
@@ -398,7 +385,7 @@ function handleLoginCustResponse(response)
 	else
 	{
 		jAlert("Login Successfull", "Alert Message");
-		var custName = response.custFirstName;
+		var custName = response.firstName;
 		setLoginDropDown(custName);
 	}
 	 
