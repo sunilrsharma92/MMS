@@ -3,7 +3,7 @@ function handleRequest()
 	this.handleCategoryRequest = handleCategoryRequest;
 	// this.handleSubCategoryRequest = handleSubCategoryRequest;
 	this.handleShopProfileDetails = handleShopProfileDetails;
-	this.handleCustomerDetailsSave = handleCustomerDetailsSave;
+	this.handleUserDetailsSave = handleUserDetailsSave;
 	this.handleShopProfileDisplay = handleShopProfileDisplay;
 	this.handleLogin = handleLogin;
 	this.handleRegisteration = handleRegisteration;
@@ -59,25 +59,24 @@ function handleRequest()
 		}
 	}
 
-	function handleCustomerDetailsSave(custFirstName, custLastName, custMobNo, custEmail, custAddress1, custAddress2, custState, custCity, custPincode)
+	function handleUserDetailsSave(firstName, lastName, mobileNo, email, address1, address2, state, city, street, pincode) {
 	{
-		try
-		{
-			var strCustDetails = {};
-			strCustDetails.custFirstName = custFirstName;
-			strCustDetails.custLastName = custLastName;
-			strCustDetails.custMobNo = custMobNo;
-			strCustDetails.custEmail = custEmail;
-			strCustDetails.custAddress1 = custAddress1;
-			strCustDetails.custAddress2 = custAddress2;
-			strCustDetails.custState = custState;
-			strCustDetails.custCity = custCity;
-			strCustDetails.custPincode = parseInt(custPincode);
-			strCustDetails.command = 1055;
+			var strUserDetails = {};
+			strUserDetails.firstName = firstName;
+			strUserDetails.lastName = lastName;
+			strUserDetails.mobileNo = mobileNo;
+			strUserDetails.email = email;
+			strUserDetails.address1 = address1;
+			strUserDetails.address2 = address2;
+			strUserDetails.state = state;
+			strUserDetails.city = city;
+			strUserDetails.street = street;
+			strUserDetails.pincode = parseInt(pincode);
+			strUserDetails.command = 1055;
 
-			var strjsonMsgForCustDetails = JSON.stringify(strCustDetails);
-			console.log("handleRequest     handleCustomerDetailsSave     strCustDetails : " + strjsonMsgForCustDetails);
-			handleAllListResponse(strjsonMsgForCustDetails);
+			var strjsonMsgForUserDetails = JSON.stringify(strUserDetails);
+			console.log("handleRequest     handleUserDetailsSave     strUserDetails : "+ strjsonMsgForUserDetails);
+			handleAllListResponse(strjsonMsgForUserDetails);
 
 		}
 		catch (e)
@@ -131,12 +130,13 @@ function handleRequest()
 
 	// -- Customer/ShopKeeper sign up and email verification
 
-	function handleRegisteration(passSignUp, mobileKey, emailKey, userType)
+	function handleRegisteration(passSignUp, firstNameSignUp, mobileKey, emailKey, userType)
 	{
 		try
 		{
 			var signUp = {};
 			signUp.passSignUp = passSignUp;
+			signUp.firstNameSignUp = firstNameSignUp;
 			signUp.mobileKey = mobileKey;
 			signUp.emailKey = emailKey;
 			signUp.userType = userType;

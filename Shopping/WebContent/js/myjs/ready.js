@@ -23,7 +23,8 @@ $(document).ready(function(){
 		}
 		
 	}
-	$('#UserType').jqxSwitchButton({ height: 27, width: 81, checked: true });
+	
+	$('#userType').jqxSwitchButton({ height: 27, width: 81, checked: true });
 	
 	// -- check session to put login drop down
 	var loginData = $.session.get('loginData');
@@ -164,17 +165,17 @@ $("#userlogin").click(function(){
 	var emailLogin = $("#emailLogin").val();
 	var passLogin = $("#passLoginTemp").val();
 	var otpLogin = $("#otpLogin").val();
-	var userType = $("#UserType").val();
+	var userType = $("#userType").val();
 	
 
 	if(userType)
-		{
+	{
 		userType = "customer";
-		}
+	}
 	else
-		{
+	{
 		userType = "supplier";
-		}
+	}
 	
 	console.log("emailLogin : " + emailLogin + "  passLogin : " + passLogin + "  userType : " + userType +"  otpLogin : "+otpLogin );
 	$(".overlay").show();
@@ -225,34 +226,35 @@ $("#signup").click(function(){
 //	alert("SignUp");
 	
 	var passSignUp = $('#passSignUp').val();
+	var firstNameSignUp = $('#firstNameSignUp').val();
 	var mobileKey = $('#mobile').val();
 	var emailKey = $('#emailSignUp').val();
-	var userType = $("#UserType").val();
+	var userType = $("#userType").val();
 
 	if(userType)
-		{
+	{
 		userType = "customer";
-		}
+	}
 	else
-		{
+	{
 		userType = "supplier";
-		}
-	console.log("passSignUp" + passSignUp + "mobileKey" + mobileKey	+ "emailKey" + emailKey + "userType" + userType);
+	}
+	console.log("passSignUp" + passSignUp + "firstNameSignUp" +firstNameSignUp+ "mobileKey" + mobileKey	+ "emailKey" + emailKey + "userType" + userType);
 	
 //	return false;
 	var result = jConfirm("Are you sure you want to register as "+userType,"Make My Shopy",function(e)
-			{
-				if(e)
-					{
+	{
+		if(e)
+		{
 						$(".overlay").show();
-						objhandleRequest.handleRegisteration(passSignUp, mobileKey, emailKey, userType);
-						return true;
-					}
-				else
-					{
-						return false;
-					}
-			});
+			objhandleRequest.handleRegisteration(passSignUp, firstNameSignUp, mobileKey, emailKey, userType);
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	});
 		
 });
 
@@ -302,28 +304,33 @@ function saveShopkeeperDetails()
 	var state = $("#state").val();
 	var city = $("#city").val();
 	var pincode = $("#pincode").val();
+	
+	console.log("firstName : " + firstName + "  lastName : " + lastName + "  city : " + city +"  state : "+state+"  pincode : "+pincode );
 
 objhandleRequest.handleShopProfileDetails(firstName, lastName,address,city,state,pincode);
 
 }
 
-function saveCustomerDetails()
+function saveUserDetails()
 {
 
 	document.getElementById("action").value = "edit";
-	var custFirstName = $("#custFirstName").val();
-	var custLastName = $("#custLastName").val();
-	var custMobNo = $("#custMobNo").val();
-	var custEmail = $("#custEmail").val();
-	var custAddress1 = $("#custAddress1").val();
-	var custAddress2 = $("#custAddress2").val();
-	var custState = $("#custState").val();
-	var custCity = $("#custCity").val();
-	var custPincode = $("#custPincode").val();
+	var firstName = $("#firstName").val();
+	var lastName = $("#lastName").val();
+	var mobileNo = $("#mobileNo").val();
+	var email = $("#email").val();
+	var address1 = $("#address1").val();
+	var address2 = $("#address2").val();
+	var state = $("#state").val();
+	var street = $("#street").val();
+	var city = $("#city").val();
+	var pincode = $("#pincode").val();
+//	var 
 	
-	
+	console.log("firstName : " + firstName + "  lastName : " + lastName + "  mobileNo : " + mobileNo +"  email : "+email+"" +
+			"  address1 : "+address1+"  address2 : "+address2 +"  state : "+state +"  city : "+city +"  street : "+street +"  pincode : "+pincode  );
 
-objhandleRequest.handleCustomerDetailsSave(custFirstName, custLastName, custMobNo, custEmail, custAddress1, custAddress2, custState, custCity, custPincode);
+objhandleRequest.handleUserDetailsSave(firstName, lastName, mobileNo, email, address1, address2, state, city, street, pincode);
 
 }
 
@@ -358,19 +365,29 @@ function forgotPwd()
 
 //	var usernameForgotPwd = $("#usernameForgotPwd").val();
 	var emailForgotPwd = $("#emailForgotPwd").val();
-	var userType = "customer";
+	var userType = $("#userType").val();
+	
+	if(userType)
+	{
+		userType = "customer";
+	}
+	else
+	{
+		userType = "supplier";
+	}
 
-	console.log("emailForgotPwd : "+ emailForgotPwd);
+	console.log("emailForgotPwd : "+ emailForgotPwd+"   userType"+ userType);
 	$(".overlay").show();
-	objhandleRequest.handleForgotPwd( emailForgotPwd, userType);
+	objhandleRequest.handleForgotPwd(emailForgotPwd, userType);
 
 }
 	
-	$("#getCartProduct").click(function(){
+$("#getCartProduct").click(function()
+{
 //		alert("hii");
-		getProductfromCookie("prod");
-		
-	});
+	getProductfromCookie("prod");
+	
+});
 
 //*************************** Document ready function ends here ***********************************
 

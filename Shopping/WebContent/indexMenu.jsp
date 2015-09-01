@@ -99,9 +99,9 @@
 											href="#home">Login</a></li>
 										<li><a class="font" data-toggle="tab" href="#menu1">Sign
 												up</a></li>
+										<div id="userType" class="whiteLabelLink" style="float: left;"></div>
 										<li><a class="font" data-toggle="tab" href="#menu2">Forgot
 												password</a></li>
-										<div id="UserType" class="whiteLabelLink" style="float: left;"></div>
 									</ul>
 
 									<div class="tab-content">
@@ -127,6 +127,7 @@
 											<!-- 						</br> -->
 											<form class="signup-val">
 												<input class="textbox font" type="text" name="email"
+												<input class="textbox font" type="text" name="firstName" id="firstNameSignUp" placeholder="Enter First Name"></br> 
 													id="emailSignUp" placeholder="Enter Email id"></br> <input
 													class="textbox font" type="text" name="mobile" id="mobile"
 													placeholder="Enter Mobile No"></br> <input

@@ -29,21 +29,21 @@ public class CommonMethodImpl {
 			ResultSet rs = stmt.executeQuery();
 			if (rs.next())
 			{
-				parentjson.put("custFirstName", rs.getString("first_name"));
-				parentjson.put("custLastName", rs.getString("last_name"));
-				parentjson.put("custPass", rs.getString("password"));
-				parentjson.put("custEmailId", rs.getString("email"));
+				parentjson.put("firstName", rs.getString("first_name"));
+				parentjson.put("lastName", rs.getString("last_name"));
+				parentjson.put("password", rs.getString("password"));
+				parentjson.put("emailId", rs.getString("email"));
 				//parentjson.put("custUsername", rs.getString("username"));
-				parentjson.put("custKey", rs.getLong("customer_key"));
-				parentjson.put("custAddress", rs.getString("address1"));
-				parentjson.put("custAddress2", rs.getString("address2"));
+				parentjson.put("key", rs.getLong("customer_key"));
+				parentjson.put("address", rs.getString("address1"));
+				parentjson.put("address2", rs.getString("address2"));
 				parentjson.put("street", rs.getString("street"));
-				parentjson.put("custCity", rs.getString("city"));
-				parentjson.put("custState", rs.getString("state"));
-				parentjson.put("custPinCode", rs.getString("postal_code"));
-				parentjson.put("custPhone", rs.getString("phone"));
-				parentjson.put("custActive", rs.getInt("active"));
-				parentjson.put("custOtp", rs.getString("otp"));
+				parentjson.put("city", rs.getString("city"));
+				parentjson.put("state", rs.getString("state"));
+				parentjson.put("pinCode", rs.getString("postal_code"));
+				parentjson.put("phone", rs.getString("phone"));
+				parentjson.put("active", rs.getInt("active"));
+				parentjson.put("otp", rs.getString("otp"));
 				
 			}
 			
@@ -74,25 +74,22 @@ public class CommonMethodImpl {
 			ResultSet rs = stmt.executeQuery();
 			if (rs.next())
 			{
-				parentjson.put("supplierFirstName", rs.getString("contact_fname"));
-				parentjson.put("supplierLastName", rs.getString("contact_lname"));
-				parentjson.put("supplierPass", rs.getString("password"));
-				parentjson.put("supplierEmailId", rs.getString("email"));
-				parentjson.put("supplierKey", rs.getLong("supplier_key"));
-				parentjson.put("supplierAddress", rs.getString("address1"));
-				parentjson.put("supplierAddress2", rs.getString("address2"));
+				parentjson.put("firstName", rs.getString("first_name"));
+				parentjson.put("lastName", rs.getString("last_name"));
+				parentjson.put("password", rs.getString("password"));
+				parentjson.put("emailId", rs.getString("email"));
+				//parentjson.put("custUsername", rs.getString("username"));
+				parentjson.put("key", rs.getLong("supplier_key"));
+				parentjson.put("address", rs.getString("address1"));
+				parentjson.put("address2", rs.getString("address2"));
 				parentjson.put("street", rs.getString("street"));
-				parentjson.put("supplierCity", rs.getString("city"));
-				parentjson.put("supplierState", rs.getString("state"));
-				parentjson.put("supplierPinCode", rs.getString("postal_code"));
-				parentjson.put("supplierPhone", rs.getString("phone"));
-				parentjson.put("supplierActive", rs.getInt("active"));
-				parentjson.put("supplierOtp", rs.getString("otp"));
+				parentjson.put("city", rs.getString("city"));
+				parentjson.put("state", rs.getString("state"));
+				parentjson.put("pinCode", rs.getString("postal_code"));
+				parentjson.put("phone", rs.getString("phone"));
+				parentjson.put("active", rs.getInt("active"));
+				parentjson.put("otp", rs.getString("otp"));
 				
-				
-				parentjson.put("status", 3);
-				parentjson.put("command", 2051);
-			
 			}
 			
 			closeConnectionUpdate(stmt, conn);

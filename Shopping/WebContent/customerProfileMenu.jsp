@@ -31,7 +31,7 @@
 						<span class="glyphicon glyphicon-user"></span> Profile
 					</div>
 					<div class="list-group side-bar">
-						<a href="#" id="customerPage" class="list-group-item " onclick="loadProfileMenu(this)">Personal Info</a> 
+						<a href="#" id="personalDetails" class="list-group-item " onclick="loadProfileMenu(this)">Personal Info</a> 
 						<a href="#"	id="addresses" class="list-group-item" onclick="loadProfileMenu(this)">Addresses</a>
 						<a href="#"	id="resetpassword" class="list-group-item"	onclick="loadProfileMenu(this)">Change Password</a> 
 						<!-- <a href="#" class="list-group-item">Update Email/Mobile</a> -->
