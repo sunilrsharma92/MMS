@@ -177,7 +177,7 @@ $("#userlogin").click(function(){
 		}
 	
 	console.log("emailLogin : " + emailLogin + "  passLogin : " + passLogin + "  userType : " + userType +"  otpLogin : "+otpLogin );
-	
+	$(".overlay").show();
 	objhandleRequest.handleLogin(emailLogin, passLogin, userType, otpLogin);
 	
 //	if(emailLogin != "" && passLogin != "")
@@ -244,7 +244,7 @@ $("#signup").click(function(){
 			{
 				if(e)
 					{
-						
+						$(".overlay").show();
 						objhandleRequest.handleRegisteration(passSignUp, mobileKey, emailKey, userType);
 						return true;
 					}
@@ -264,7 +264,7 @@ $("#signup").click(function(){
 function loadPage(id)
 {
 	var vid = $(id).attr("id");
-	alert("ready.js_266  "+vid);
+//	alert("ready.js_266  "+vid);
 	
 	if(vid == "indexBody")
 		{

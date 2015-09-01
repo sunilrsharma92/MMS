@@ -6,46 +6,49 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
 <script>
-$("#minus").click(function(){
-	alert();
-	var val = parseInt($("#demo1").val());
-	if(val>1)
+	$("#minus").click(function()
 	{
-		var total = val-1;
-		$("#demo1").val(total);
-	}
-		
-});
+		alert();
+		var val = parseInt($("#demo1").val());
+		if(val > 1)
+		{
+			var total = val - 1;
+			$("#demo1").val(total);
+		}
 
-$("#add").click(function(){
-	var val = parseInt($("#demo1").val());
-	var total = val+1;
+	});
+
+	$("#add").click(function()
+	{
+		var val = parseInt($("#demo1").val());
+		var total = val + 1;
 		$("#demo1").val(total);
-});
+	});
 </script>
 </head>
 <body>
 
 
-				
+
 	<div class="container-fluid  top-bar">
 		<div class="container ">
 
 			<ul class="list-inline">
-				<li class="hidden-xs"><span	class="glyphicon glyphicon-phone-alt" style="margin-right: 5px;"></span>9970181137</li>
-				<li class="">
-					<a href="#" id="login" data-toggle="modal"	data-target="#trackModal" class="whiteLabelLink">
-						<span class="glyphicon glyphicon-map-marker" style="margin-right: 5px;"></span>Track<span class="hidden-xs">your order</span>
-					</a>
-				</li>
-				
+				<li class="hidden-xs"><span
+					class="glyphicon glyphicon-phone-alt" style="margin-right: 5px;"></span>9970181137</li>
+				<li class=""><a href="#" id="login" data-toggle="modal"
+					data-target="#trackModal" class="whiteLabelLink"> <span
+						class="glyphicon glyphicon-map-marker" style="margin-right: 5px;"></span>Track<span
+						class="hidden-xs">your order</span>
+				</a></li>
+
 				<!-- ***************************************Modal************************************* -->
-				
+
 				<div class="modal fade" id="trackModal" role="dialog">
 					<div class="modal-dialog modal-sm">
 
 						<!-- Modal content-->
-						
+
 						<div class="modal-content">
 							<div class="modal-header">
 								<button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -55,7 +58,8 @@ $("#add").click(function(){
 							</div>
 							<div class="modal-body" style="text-align: center;">
 								<form class="track-val">
-									<input class="font textbox" name="email" type="text" placeholder="Enter the email or order id" />
+									<input class="font textbox" name="email" type="text"
+										placeholder="Enter the email or order id" />
 									<button class="btn btn-primary" type="submit">Track</button>
 								</form>
 							</div>
@@ -63,38 +67,40 @@ $("#add").click(function(){
 					</div>
 				</div>
 				<!-- ***********************************end of Modal*********************************** -->
-				<li class="pull-right">
-					<a href="#" class="whiteLabelLink"><span class="glyphicon glyphicon-home" style="margin-right: 5px;"></span>Home</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					<!-- Trigger the modal with a button --> 
-
-<!-- 					<a href="#"	data-toggle="modal" data-target="#LoginModal" id="login" class="whiteLabelLink"> -->
-					<a href="#"	data-toggle="modal" data-target="#LoginModal" id="myAccount" class="whiteLabelLink">
-						<span class="glyphicon glyphicon-user" style="margin-right: 5px;"></span><label id="loginlabel">Login</label>
-					</a> 
-					
-					<!-- Modal -->
+				<li class="pull-right"><a href="#" class="whiteLabelLink"><span
+						class="glyphicon glyphicon-home" style="margin-right: 5px;"></span>Home</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<!-- Trigger the modal with a button --> <!-- 					<a href="#"	data-toggle="modal" data-target="#LoginModal" id="login" class="whiteLabelLink"> -->
+					<a href="#" data-toggle="modal" data-target="#LoginModal"
+					id="myAccount" class="whiteLabelLink"> <span
+						class="glyphicon glyphicon-user" style="margin-right: 5px;"></span><label
+						id="loginlabel">Login</label>
+				</a> <!-- Modal -->
 					<div class="modal fade" id="LoginModal" role="dialog">
 						<div class="modal-dialog">
 							<!-- Modal content-->
 							<div class="modal-content">
 								<div class="modal-header">
-									<button type="button" id="crossClose" class="close" data-dismiss="modal">&times;</button>
+									<button type="button" id="crossClose" class="close"
+										data-dismiss="modal">&times;</button>
 									<h4 class="modal-title">
 										<strong> Login</strong>
 									</h4>
 								</div>
 								<div class="modal-body">
-								
+
 									<!-- Loading img -->
 									<div class="overlay">
 										<div id="loading-img"></div>
 									</div>
 									<!-- Loading img -->
-									
+
 									<ul class="nav nav-tabs">
-										<li class="active"><a class="font" data-toggle="tab" href="#home">Login</a></li>
-										<li><a class="font" data-toggle="tab" href="#menu1">Sign up</a></li>
-										<li><a class="font" data-toggle="tab" href="#menu2">Forgot password</a></li>
+										<li class="active"><a class="font" data-toggle="tab"
+											href="#home">Login</a></li>
+										<li><a class="font" data-toggle="tab" href="#menu1">Sign
+												up</a></li>
+										<li><a class="font" data-toggle="tab" href="#menu2">Forgot
+												password</a></li>
 										<div id="UserType" class="whiteLabelLink" style="float: left;"></div>
 									</ul>
 
@@ -102,11 +108,15 @@ $("#add").click(function(){
 										<div id="home" class="tab-pane fade in active">
 											<h3 class="font">Login:</h3>
 											<form class="login-val">
-												<input class="textbox font" type="text" id="emailLogin"	name="email" placeholder="Enter Email Id"></br> 
-												<input class="textbox font" type="password" id="passLoginTemp" name="password" placeholder="Enter Password"></br> 
-												<input class="textbox font" type="text" id="otpLogin" placeholder="OTP" style="display: none"></br>
-												<input type="button" class="btn btn-primary" id="userlogin" value="Login" />
-<!-- 												<button onclick="login()" class="btn btn-primary" type="button">Login</button> -->
+												<input class="textbox font" type="text" id="emailLogin"
+													name="email" placeholder="Enter Email Id"></br> <input
+													class="textbox font" type="password" id="passLoginTemp"
+													name="password" placeholder="Enter Password"></br> <input
+													class="textbox font" type="text" id="otpLogin"
+													placeholder="OTP" style="display: none"></br> <input
+													type="button" class="btn btn-primary" id="userlogin"
+													value="Login" />
+												<!-- 												<button onclick="login()" class="btn btn-primary" type="button">Login</button> -->
 											</form>
 										</div>
 										<div id="menu1" class="tab-pane fade">
@@ -116,20 +126,28 @@ $("#add").click(function(){
 											<!-- 						<label for="cmn-toggle-1"></label> <label class="font" style="float: left;"><h4>Shoper</h4></label> -->
 											<!-- 						</br> -->
 											<form class="signup-val">
-												<input class="textbox font" type="text" name="email" id="emailSignUp" placeholder="Enter Email id"></br> 
-												<input class="textbox font" type="text" name="mobile" id="mobile" placeholder="Enter Mobile No"></br> 
-												<input class="textbox font" type="password" name="password" id="passSignUp" placeholder="Enter Password"></br> 
-												<input class="textbox font" type="password" name="password2" id="repass" placeholder="ReEnter Password"></br>
-												<div class="g-recaptcha" name="captcha" data-sitekey="6LfaxwsTAAAAAEB5RYVVeSFM3AyHzAHb3YvgtGvx"></div>
+												<input class="textbox font" type="text" name="email"
+													id="emailSignUp" placeholder="Enter Email id"></br> <input
+													class="textbox font" type="text" name="mobile" id="mobile"
+													placeholder="Enter Mobile No"></br> <input
+													class="textbox font" type="password" name="password"
+													id="passSignUp" placeholder="Enter Password"></br> <input
+													class="textbox font" type="password" name="password2"
+													id="repass" placeholder="ReEnter Password"></br>
+												<div class="g-recaptcha" name="captcha"
+													data-sitekey="6LfaxwsTAAAAAEB5RYVVeSFM3AyHzAHb3YvgtGvx"></div>
 												<div id="warnings"></div>
-												<input type="button" class="btn btn-primary" id="signup" value="Sign Up" />
+												<input type="button" class="btn btn-primary" id="signup"
+													value="Sign Up" />
 											</form>
 										</div>
 										<div id="menu2" class="tab-pane fade">
 											<h3 class="font">Forgot Password:</h3>
 											<form class="forgot-val">
-											<input class="textbox font" type="text" name="email" id="emailForgotPwd" placeholder="Enter Email id"></br>
-											<button onclick="forgotPwd()" class="btn btn-primary" type="button">Submit</button>
+												<input class="textbox font" type="text" name="email"
+													id="emailForgotPwd" placeholder="Enter Email id"></br>
+												<button onclick="forgotPwd()" class="btn btn-primary"
+													type="button">Submit</button>
 											</form>
 										</div>
 									</div>
@@ -137,9 +155,9 @@ $("#add").click(function(){
 							</div>
 						</div>
 					</div> <!-- </div> --></li>
-					
-				
-				
+
+
+
 			</ul>
 		</div>
 	</div>
@@ -149,7 +167,8 @@ $("#add").click(function(){
 
 			<div class="col-md-8 col-sm-8 col-xs-9">
 				<div class="input-group list-inline" style="margin-left: -16px;">
-					<input type="text" id="search" onkeyup="searchProduct()" class="form-control" placeholder="Search your Shop/Product here">
+					<input type="text" id="search" onkeyup="searchProduct()"
+						class="form-control" placeholder="Search your Shop/Product here">
 					<span class="input-group-btn">
 						<button class="btn " type="button">
 							<img src="Images/search.png" width="20px" height="18px">
@@ -162,10 +181,12 @@ $("#add").click(function(){
 			<!-- /.col-lg-6 -->
 			<div class="col-md-4 col-sm-4 col-xs-3">
 
-				<button id="getCartProduct" type="button" class=" pull-right btn btn-primary" data-toggle="modal"data-target="#cartmodal" style="margin-right: -11px;">
-					<span class="glyphicon glyphicon-shopping-cart"></span> 
-					<span class="hidden-xs">CART</span>
-					<span class="badge"><label id="productCountOnCart" style="margin: auto;">0</label></span>
+				<button id="getCartProduct" type="button"
+					class=" pull-right btn btn-primary" data-toggle="modal"
+					data-target="#cartmodal" style="margin-right: -11px;">
+					<span class="glyphicon glyphicon-shopping-cart"></span> <span
+						class="hidden-xs">CART</span> <span class="badge"><label
+						id="productCountOnCart" style="margin: auto;">0</label></span>
 				</button>
 
 				<!--  -->
@@ -177,7 +198,8 @@ $("#add").click(function(){
 						<!-- Modal content-->
 						<div class="modal-content">
 							<div class="modal-header">
-								<button type="button" class="close" id="checkoutClose" data-dismiss="modal">&times;</button>
+								<button type="button" class="close" id="checkoutClose"
+									data-dismiss="modal">&times;</button>
 								<h4 class="modal-title">
 									<strong style="color: #FFF;">Cart Details</strong>
 								</h4>
@@ -210,8 +232,10 @@ $("#add").click(function(){
 
 								</div>
 								<div class="totaldiv">
-									<button class="btn btn-primary" id="checkout" onclick="loadPage(this);" type="button">Check Out</button>
-									<button class="btn btn-primary" type="button">Continue Shopping</button>
+									<button class="btn btn-primary" id="checkout"
+										onclick="loadPage(this);" type="button">Check Out</button>
+									<button class="btn btn-primary" type="button">Continue
+										Shopping</button>
 								</div>
 							</div>
 						</div>
@@ -252,11 +276,12 @@ $("#add").click(function(){
 		<div class="container-fluid">
 			<!-- Brand and toggle get grouped for better mobile display -->
 			<div class="navbar-header">
-				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"aria-expanded="false">
-					<span class="sr-only">Toggle navigation</span> 
-					<span class="icon-bar"></span> 
-					<span class="icon-bar"></span> 
-					<span class="icon-bar"></span>
+				<button type="button" class="navbar-toggle collapsed"
+					data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+					aria-expanded="false">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
 				</button>
 				<a class="navbar-brand" href="#">Logo</a>
 			</div>
@@ -267,23 +292,24 @@ $("#add").click(function(){
 				<ul class="nav navbar-nav">
 					<li class="active"><a href="#">Menu1 <span class="sr-only">(current)</span></a></li>
 					<li><a href="#">Menu2</a></li>
-					<li class="dropdown">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Megamenu <span class="caret"></span></a>
-							<ul class="dropdown-menu">
-								<div class="container container-1">
+					<li class="dropdown"><a href="#" class="dropdown-toggle"
+						data-toggle="dropdown" role="button" aria-haspopup="true"
+						aria-expanded="false">Megamenu <span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<div class="container container-1">
 
-									<div class="col-md-2 col-line">
-										<div class="row">hhjhhjhfd</div>
-										<div class="row">hhjhhjhfd</div>
-										<div class="row">hhjhhjhfd</div>
-										<div class="row">hhjhhjhfd</div>
-									</div>
-									<div class="col-md-2 col-line">
-										<div class="row">hhjhhjhfd</div>
-										<div class="row">hhjhhjhfd</div>
-										<div class="row">hhjhhjhfd</div>
-										<div class="row">hhjhhjhfd</div>
-									</div>
+								<div class="col-md-2 col-line">
+									<div class="row">hhjhhjhfd</div>
+									<div class="row">hhjhhjhfd</div>
+									<div class="row">hhjhhjhfd</div>
+									<div class="row">hhjhhjhfd</div>
+								</div>
+								<div class="col-md-2 col-line">
+									<div class="row">hhjhhjhfd</div>
+									<div class="row">hhjhhjhfd</div>
+									<div class="row">hhjhhjhfd</div>
+									<div class="row">hhjhhjhfd</div>
+								</div>
 								<div class="col-md-2 col-line">
 									<div class="row">hhjhhjhfd</div>
 									<div class="row">hhjhhjhfd</div>
@@ -293,21 +319,27 @@ $("#add").click(function(){
 								<div class="col-md-2 col-line prd-disp">
 
 									<div class="image">
-										<img src="Images/tea.jpg" alt="Tea" width="100px" height="100px">
+										<img src="Images/tea.jpg" alt="Tea" width="100px"
+											height="100px">
 									</div>
 									<div class="productname">Product Name:</div>
 									<div class="productprice">Product price:</div>
 									<div class="instock">Instock:</div>
-									<div class="quantity">Quantity:<input id="qtytxt" type="text" name="quantity"></div>
-									<div class="cartbtn"><button type="button" class="btn btn-success">ADD TO CART</button></div>
+									<div class="quantity">
+										Quantity:<input id="qtytxt" type="text" name="quantity">
+									</div>
+									<div class="cartbtn">
+										<button type="button" class="btn btn-success">ADD TO
+											CART</button>
+									</div>
 								</div>
 							</div>
 							<!-- div container-1 -->
-						</ul>
-						<!-- end of dropdownmenu --></li>
+						</ul> <!-- end of dropdownmenu --></li>
 					<!--end fo dropdown  -->
-					<li class="dropdown">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Megamenu <span class="caret"></span></a>
+					<li class="dropdown"><a href="#" class="dropdown-toggle"
+						data-toggle="dropdown" role="button" aria-haspopup="true"
+						aria-expanded="false">Megamenu <span class="caret"></span></a>
 						<ul class="dropdown-menu">
 							<div class="container container-1">
 
@@ -339,14 +371,14 @@ $("#add").click(function(){
 								<div class="col-md-2 col-line ">
 
 									<div class="image">
-										<img src="Images/tea.jpg" alt="Tea" width="100px" height="150px">
+										<img src="Images/tea.jpg" alt="Tea" width="100px"
+											height="150px">
 									</div>
 
 								</div>
 							</div>
 							<!-- div container-1 -->
-						</ul>
-						<!-- end of dropdownmenu --></li>
+						</ul> <!-- end of dropdownmenu --></li>
 					<!--end fo dropdown  -->
 				</ul>
 				<!--  end of nav-->
@@ -354,16 +386,16 @@ $("#add").click(function(){
 				<ul class="nav navbar-nav navbar-right">
 					<li><a id="indexBody" href="#" onclick="loadPage(this);">Home</a></li>
 					<li><a id="shopProfile" href="#" onclick="loadPage(this);">Profile</a></li>
-					<li class="dropdown">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+					<li class="dropdown"><a href="#" class="dropdown-toggle"
+						data-toggle="dropdown" role="button" aria-haspopup="true"
+						aria-expanded="false">Dropdown <span class="caret"></span></a>
 						<ul class="dropdown-menu">
 							<li><a href="#">Action</a></li>
 							<li><a href="#">Another action</a></li>
 							<li><a href="#">Something else here</a></li>
 							<li role="separator" class="divider"></li>
 							<li><a href="#">Separated link</a></li>
-						</ul>
-					</li>
+						</ul></li>
 				</ul>
 			</div>
 			<!-- /.navbar-collapse -->

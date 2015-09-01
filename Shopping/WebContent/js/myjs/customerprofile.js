@@ -28,7 +28,7 @@ function loadProfileMenu(id)
 					var custMobNo = sessionData.custPhone;
 					var custEmail = sessionData.custEmailId;
 					
-					alert(custFirstName+"  "+custLastName+"  "+custMobNo+"  "+custEmail);
+//					alert(custFirstName+"  "+custLastName+"  "+custMobNo+"  "+custEmail);
 					
 					$("#custFirstName1").val(custFirstName);
 					$("#custLastName").val(custLastName);
