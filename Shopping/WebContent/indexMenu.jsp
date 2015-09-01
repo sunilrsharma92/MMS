@@ -97,11 +97,9 @@
 									<ul class="nav nav-tabs">
 										<li class="active"><a class="font" data-toggle="tab"
 											href="#home">Login</a></li>
-										<li><a class="font" data-toggle="tab" href="#menu1">Sign
-												up</a></li>
+										<li><a class="font" data-toggle="tab" href="#menu1">Sign up</a></li>
 										<div id="userType" class="whiteLabelLink" style="float: left;"></div>
-										<li><a class="font" data-toggle="tab" href="#menu2">Forgot
-												password</a></li>
+										<li><a class="font" data-toggle="tab" href="#menu2">Forgot password</a></li>
 									</ul>
 
 									<div class="tab-content">
@@ -126,17 +124,13 @@
 											<!-- 						<label for="cmn-toggle-1"></label> <label class="font" style="float: left;"><h4>Shoper</h4></label> -->
 											<!-- 						</br> -->
 											<form class="signup-val">
-												<input class="textbox font" type="text" name="email"
+												
 												<input class="textbox font" type="text" name="firstName" id="firstNameSignUp" placeholder="Enter First Name"></br> 
-													id="emailSignUp" placeholder="Enter Email id"></br> <input
-													class="textbox font" type="text" name="mobile" id="mobile"
-													placeholder="Enter Mobile No"></br> <input
-													class="textbox font" type="password" name="password"
-													id="passSignUp" placeholder="Enter Password"></br> <input
-													class="textbox font" type="password" name="password2"
-													id="repass" placeholder="ReEnter Password"></br>
-												<div class="g-recaptcha" name="captcha"
-													data-sitekey="6LfaxwsTAAAAAEB5RYVVeSFM3AyHzAHb3YvgtGvx"></div>
+													<input class="textbox font" type="text" name="email" id="emailSignUp" placeholder="Enter Email id"></br> 
+													<input class="textbox font" type="text" name="mobile" id="mobile" placeholder="Enter Mobile No"></br> 
+													<input class="textbox font" type="password" name="password" id="passSignUp" placeholder="Enter Password"></br> 
+													<input class="textbox font" type="password" name="password2" id="repass" placeholder="ReEnter Password"></br>
+												<div class="g-recaptcha" name="captcha" data-sitekey="6LfaxwsTAAAAAEB5RYVVeSFM3AyHzAHb3YvgtGvx"></div>
 												<div id="warnings"></div>
 												<input type="button" class="btn btn-primary" id="signup"
 													value="Sign Up" />
