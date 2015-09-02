@@ -63,7 +63,7 @@ function handleData(data)
 function handlecartData(data) 
 {
 //	alert("handleData : "+data);
-	alert(data);
+//	alert(data);
 }
 
 //********************************END********************************//

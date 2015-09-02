@@ -16,13 +16,13 @@
 	<h3 class="bold">Add/Edit Address:</h3>
 	<form>
 		<table>
-			<tr><td>Address 1:</td><td><input type="text" id="custAddress1" class="textbox" name="name"></td></tr>
-			<tr><td>Address 2:</td><td><input type="text" id="custAddress2" class="textbox" name="name"></td></tr>
-			<tr><td>Street name:</td><td><input type="text" id="streetName" class="textbox" name="name"></td></tr>
+			<tr><td>Address 1:</td><td><input type="text" id="address1" class="textbox" name="name"></td></tr>
+			<tr><td>Address 2:</td><td><input type="text" id="address2" class="textbox" name="name"></td></tr>
+			<tr><td>Street name:</td><td><input type="text" id="street" class="textbox" name="name"></td></tr>
 			<tr><td>State:</td>
 				<td>
 					<!-- <input type="text" class="textbox" name="name"></td></tr> -->
-					<select class="form-control textbox" id="custState" placeholder="select state">
+					<select class="form-control textbox" id="state" placeholder="select state">
 						<option value="one">Select State</option>
 						<option value="one">Andhra Pradesh</option>
 						<option value="one">Arunachal Pradesh</option>
@@ -57,10 +57,10 @@
 				</select>
 				</td>
 			</tr>
-			<tr><td>City:</td><td><input type="text" id="custCity" class="textbox" name="name"></td></tr>
-			<tr><td>Pincode:</td><td><input type="text" id="custPincode" class="textbox" name="name"></td></tr>
+			<tr><td>City:</td><td><input type="text" id="city" class="textbox" name="name"></td></tr>
+			<tr><td>Pincode:</td><td><input type="text" id="pincode" class="textbox" name="name"></td></tr>
 			<!-- <tr><td>Email Address:</td><td><input type="text" class="textbox" name="name"></td></tr> -->
-			<tr><td></td><td><button type="button" class="btn btn-primary" onclick="saveCustomerDetails()">Save Changes</button></td></tr>
+			<tr><td></td><td><button type="button" class="btn btn-primary" onclick="saveUserDetails()">Save Changes</button></td></tr>
 		</table>
 	</form>
 

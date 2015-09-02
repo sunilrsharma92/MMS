@@ -1,8 +1,9 @@
-function handleRequest() {
+function handleRequest()
+{
 	this.handleCategoryRequest = handleCategoryRequest;
 	// this.handleSubCategoryRequest = handleSubCategoryRequest;
 	this.handleShopProfileDetails = handleShopProfileDetails;
-	this.handleCustomerDetailsSave = handleCustomerDetailsSave;
+	this.handleUserDetailsSave = handleUserDetailsSave;
 	this.handleShopProfileDisplay = handleShopProfileDisplay;
 	this.handleLogin = handleLogin;
 	this.handleRegisteration = handleRegisteration;
@@ -14,25 +15,30 @@ function handleRequest() {
 	this.searchProduct = searchProduct;
 
 	// ****** This function is used to get all main product category ******//
-	function handleCategoryRequest() {
-		try {
+	function handleCategoryRequest()
+	{
+		try
+		{
 			var strmainCategory = {};
 			strmainCategory.command = 1000;
 
 			var strjsonMsgForstrmainCategory = JSON.stringify(strmainCategory);
 			// alert("handleRequest handleCategoryRequest
 			// strjsonMsgForstrmainCategory : "+strjsonMsgForstrmainCategory);
-			console.log("handleRequest     handleCategoryRequest     strjsonMsgForstrmainCategory : "+ strjsonMsgForstrmainCategory);
+			console.log("handleRequest     handleCategoryRequest     strjsonMsgForstrmainCategory : " + strjsonMsgForstrmainCategory);
 			handleAllListResponse(strjsonMsgForstrmainCategory);
 
-		} catch (e) {
-			console.log("handleRequest     handleCategoryRequest     Exception :: "+ e);
+		}
+		catch (e)
+		{
+			console.log("handleRequest     handleCategoryRequest     Exception :: " + e);
 		}
 	}
 
-
-	function handleShopProfileDetails(firstName, lastName, address, city,state, pincode) {
-		try {
+	function handleShopProfileDetails(firstName, lastName, address, city, state, pincode)
+	{
+		try
+		{
 			var strShopProfile = {};
 			strShopProfile.firstName = firstName;
 			strShopProfile.lastName = lastName;
@@ -43,56 +49,67 @@ function handleRequest() {
 			strShopProfile.command = 1001;
 
 			var strjsonMsgForShopProfile = JSON.stringify(strShopProfile);
-			console.log("handleRequest     handleShopProfileDetails     strjsonMsgForstrShopProfile : "+ strjsonMsgForShopProfile);
+			console.log("handleRequest     handleShopProfileDetails     strjsonMsgForstrShopProfile : " + strjsonMsgForShopProfile);
 			handleAllListResponse(strjsonMsgForShopProfile);
 
-		} catch (e) {
-			console.log("handleRequest     handleShopProfileDetails     Exception :: "+ e);
+		}
+		catch (e)
+		{
+			console.log("handleRequest     handleShopProfileDetails     Exception :: " + e);
 		}
 	}
 
-	function handleCustomerDetailsSave(custFirstName, custLastName, custMobNo,custEmail, custAddress1, custAddress2, custState, custCity,custPincode) {
-		try {
-			var strCustDetails = {};
-			strCustDetails.custFirstName = custFirstName;
-			strCustDetails.custLastName = custLastName;
-			strCustDetails.custMobNo = custMobNo;
-			strCustDetails.custEmail = custEmail;
-			strCustDetails.custAddress1 = custAddress1;
-			strCustDetails.custAddress2 = custAddress2;
-			strCustDetails.custState = custState;
-			strCustDetails.custCity = custCity;
-			strCustDetails.custPincode = parseInt(custPincode);
-			strCustDetails.command = 1055;
+	function handleUserDetailsSave(firstName, lastName, mobileNo, email, address1, address2, state, city, street, pincode) {
+	{
+			var strUserDetails = {};
+			strUserDetails.firstName = firstName;
+			strUserDetails.lastName = lastName;
+			strUserDetails.mobileNo = mobileNo;
+			strUserDetails.email = email;
+			strUserDetails.address1 = address1;
+			strUserDetails.address2 = address2;
+			strUserDetails.state = state;
+			strUserDetails.city = city;
+			strUserDetails.street = street;
+			strUserDetails.pincode = parseInt(pincode);
+			strUserDetails.command = 1055;
 
-			var strjsonMsgForCustDetails = JSON.stringify(strCustDetails);
-			console.log("handleRequest     handleCustomerDetailsSave     strCustDetails : "+ strjsonMsgForCustDetails);
-			handleAllListResponse(strjsonMsgForCustDetails);
+			var strjsonMsgForUserDetails = JSON.stringify(strUserDetails);
+			console.log("handleRequest     handleUserDetailsSave     strUserDetails : "+ strjsonMsgForUserDetails);
+			handleAllListResponse(strjsonMsgForUserDetails);
 
-		} catch (e) {
-			console.log("handleRequest     handleCustomerDetailsSave     Exception :: "	+ e);
+		}
+		catch (e)
+		{
+			console.log("handleRequest     handleCustomerDetailsSave     Exception :: " + e);
 		}
 	}
 
 	// -- show shop profile for particular supplier
-	function handleShopProfileDisplay(supplierKey) {
-		try {
+	function handleShopProfileDisplay(supplierKey)
+	{
+		try
+		{
 			var strShopProfileDisplay = {};
 			strShopProfileDisplay.supplierKey = parseInt(supplierKey);
 			strShopProfileDisplay.command = 1010;
 			// alert('haha');
 			var strJsonMsgForShopProfile = JSON.stringify(strShopProfileDisplay);
-			console.log("handleRequest     handleShopProfileDisplay     strJsonMsgForShopProfile : "+ strJsonMsgForShopProfile);
+			console.log("handleRequest     handleShopProfileDisplay     strJsonMsgForShopProfile : " + strJsonMsgForShopProfile);
 
 			handleAllListResponse(strJsonMsgForShopProfile);
-		} catch (e) {
-			console.log("handleRequest handleShopProfileDisplay Exception :: "+ e)
+		}
+		catch (e)
+		{
+			console.log("handleRequest handleShopProfileDisplay Exception :: " + e)
 		}
 	}
 
 	// -- customer/shopKeeper login verification
-	function handleLogin(emailLogin, passLogin, userType, otpLogin) {
-		try {
+	function handleLogin(emailLogin, passLogin, userType, otpLogin)
+	{
+		try
+		{
 			var login = {};
 			login.emailLogin = emailLogin;
 			login.passLogin = passLogin;
@@ -101,39 +118,41 @@ function handleRequest() {
 			login.command = 1051;
 
 			var strJsonMsgForLogin = JSON.stringify(login);
-			console.log("handleRequest     handleLogin     strJsonMsgForLogin : "+ strJsonMsgForLogin);
+			console.log("handleRequest     handleLogin     strJsonMsgForLogin : " + strJsonMsgForLogin);
 
 			handleAllListResponse(strJsonMsgForLogin);
-		} catch (e) {
+		}
+		catch (e)
+		{
 			console.log("handleRequest handleLogin Exception :: " + e)
 		}
 	}
 
 	// -- Customer/ShopKeeper sign up and email verification
-	
-	function handleRegisteration(passSignUp, mobileKey, emailKey, userType)
+
+	function handleRegisteration(passSignUp, firstNameSignUp, mobileKey, emailKey, userType)
 	{
 		try
 		{
 			var signUp = {};
 			signUp.passSignUp = passSignUp;
+			signUp.firstNameSignUp = firstNameSignUp;
 			signUp.mobileKey = mobileKey;
 			signUp.emailKey = emailKey;
 			signUp.userType = userType;
 			signUp.command = 1052;
 
 			var strJsonMsgForSignUp = JSON.stringify(signUp);
-			console.log("handleRequest     handleRegisteration     strJsonMsgForSignUp : "+ strJsonMsgForSignUp);
+			console.log("handleRequest     handleRegisteration     strJsonMsgForSignUp : " + strJsonMsgForSignUp);
 
 			handleAllListResponse(strJsonMsgForSignUp);
 		}
-		catch (e) 
+		catch (e)
 		{
 			console.log("handleRequest handleRegisteration Exception :: " + e)
 		}
 	}
-	
-	
+
 	function handleResetPassword(pwd, userType, email)
 	{
 		try
@@ -143,80 +162,94 @@ function handleRequest() {
 			resetPwd.email = email;
 			resetPwd.userType = userType;
 			resetPwd.command = 1056;
-			
+
 			var strJsonMsgForResetPwd = JSON.stringify(resetPwd);
-			console.log("handleRequest     handleResetPassword     strJsonMsgForResetPwd : "+ strJsonMsgForResetPwd);
+			console.log("handleRequest     handleResetPassword     strJsonMsgForResetPwd : " + strJsonMsgForResetPwd);
 		}
-		catch(e)
+		catch (e)
 		{
-			console.log("handleRequest handleResetPassword Exceprion ::" +e);
+			console.log("handleRequest handleResetPassword Exceprion ::" + e);
 		}
 	}
 
-	function handleForgotPwd(emailForgotPwd, userType) {
-		try {
+	function handleForgotPwd(emailForgotPwd, userType)
+	{
+		try
+		{
 			var forgotPwd = {};
 			forgotPwd.emailForgotPwd = emailForgotPwd;
 			forgotPwd.userType = userType;
 			forgotPwd.command = 1054;
 
 			var strJsonMsgForForgotPwd = JSON.stringify(forgotPwd);
-			console.log("handleRequest     handleForgotPwd     strJsonMsgForForgotPwd : "+ strJsonMsgForForgotPwd);
+			console.log("handleRequest     handleForgotPwd     strJsonMsgForForgotPwd : " + strJsonMsgForForgotPwd);
 
 			handleAllListResponse(strJsonMsgForForgotPwd);
 
-		} catch (e) {
+		}
+		catch (e)
+		{
 			console.log("handleRequest handleForgotPwd Exception :: " + e)
 		}
 
 	}
 
-	function handledisplaySelectedProduct(mainCategoryID, subCategoryID) {
-		try {
+	function handledisplaySelectedProduct(mainCategoryID, subCategoryID)
+	{
+		try
+		{
 			var strSelectedProduct = {};
 			strSelectedProduct.mainCategoryID = parseInt(mainCategoryID);
 			strSelectedProduct.subCategoryID = parseInt(subCategoryID);
 			strSelectedProduct.command = 1003;
 
 			var strjsonMsgForSelectedProduct = JSON.stringify(strSelectedProduct);
-			
+
 			handleAllListResponse(strjsonMsgForSelectedProduct);
 
-		} catch (e) {
-			console.log("handleRequest     handledisplaySelectedProduct     Exception :: "+ e);
+		}
+		catch (e)
+		{
+			console.log("handleRequest     handledisplaySelectedProduct     Exception :: " + e);
 		}
 	}
 
-	function handledisplayProductinCart(productArray) {
-		try {
+	function handledisplayProductinCart(productArray)
+	{
+		try
+		{
 			var strProductinCart = {};
 			strProductinCart.productArray = productArray;
 			strProductinCart.command = 1005;
-			
+
 			var strjsonMsgForstrProductinCart = JSON.stringify(strProductinCart);
-			console.log("handleRequest     handledisplaySelectedProduct     handledisplayProductinCart : "+ strjsonMsgForstrProductinCart);
+			console.log("handleRequest     handledisplaySelectedProduct     handledisplayProductinCart : " + strjsonMsgForstrProductinCart);
 			handleAllListResponse(strjsonMsgForstrProductinCart);
 
-		} catch (e) {
-			console.log("handleRequest     handledisplaySelectedProduct     Exception :: "+ e);
+		}
+		catch (e)
+		{
+			console.log("handleRequest     handledisplaySelectedProduct     Exception :: " + e);
 		}
 	}
 
-	function searchProduct(txt) {
-		try {
+	function searchProduct(txt)
+	{
+		try
+		{
 			var strSearchProduct = {};
 			strSearchProduct.txt = txt;
 			strSearchProduct.command = 1006;
-			 
+
 			var strjsonMsgForstrSearchProduct = JSON.stringify(strSearchProduct);
-			console.log("handleRequest     searchProduct  : "+ strjsonMsgForstrSearchProduct);
+			console.log("handleRequest     searchProduct  : " + strjsonMsgForstrSearchProduct);
 			handleAllListResponse(strjsonMsgForstrSearchProduct);
 
-		} catch (e) {
-			console.log("handleRequest     handledisplaySelectedProduct     Exception :: "+ e);
+		}
+		catch (e)
+		{
+			console.log("handleRequest     handledisplaySelectedProduct     Exception :: " + e);
 		}
 	}
-
-	
 
 }
