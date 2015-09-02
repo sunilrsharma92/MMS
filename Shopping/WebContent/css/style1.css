@@ -6,6 +6,94 @@ body{
     background-color  : #fff;
     letter-spacing  : 0.01em;
 }
+/***************************************************Changed menubar************************************************************/
+
+.search-box {
+    float: right;
+/*     height: 47px; */
+/*     width: 50px; */
+	margin:15px 5px 15px 15px;
+}
+.navbar-nav.navbar-right:last-child {
+    margin-right: 0;
+}
+.cartMenu {
+    float: left;
+    display: block;
+/*     margin:15px 5px 15px 5px; */
+	margin: 5px;
+}
+.megamenu .nav, .megamenu .dropup, .megamenu .dropdown, .megamenu .collapse {
+    position: static;
+}
+.navbar-toggle {
+    background: rgba(0,0,0,0.2);
+}
+.navbar-toggle{
+	height:35px;
+}
+.getFullSearch{
+	margin-top:-5px;
+}
+#search{
+	width:80%;
+	height:40px;
+	background-color:transparent;
+	border-top:none;
+	border-left:none;
+	border-right:none;
+	border-bottom:2px solid red;
+}
+.insearch{
+	border:none;
+	background-color:transparent;
+	border-bottom: 2px solid red;
+    padding-bottom: 14px;
+    margin-left: -4px;
+}
+button.changeview {
+    border: none;
+    background-color: transparent;
+    color: #FFF;
+    width: 32px;
+    height: 32px;
+    margin-top: -10px;
+    border-radius: 4px;
+}
+button.changeview:hover {
+    background-color: #286090;
+    width: 32px;
+    height: 32px;
+    margin-top: -10px;
+    border-radius: 4px;
+}
+::-webkit-input-placeholder {
+    color: #5D5D5D;
+}
+#removesearchbtn{
+	padding: 3px;
+	margin-top: 4px;
+}
+.nav-cust{
+	background-color: #65BFBF;
+	border: 0px;
+	height: 50px;
+	border-radius: 0px;
+}
+.navbar-default{
+	background-image: none;
+}
+
+.navbar-default .navbar-nav > li > a {
+    color: #FFF;
+}
+
+/***************************************************End of Changed menubar************************************************************/
+
+
+
+
+
 /*Cart*/
 .cheight {
 	margin  : 0px;
@@ -137,14 +225,14 @@ tbody{
 	border-top : 0px;
 }
 
-#search {
-/* 	width : 700px; */
-	text-align : center;
-}
+/* #search { */
+/* /* 	width : 700px; */ */
+/* 	text-align : center; */
+/* } */
 
-#search-btn {
-	background-color : #65BFBF;
-}
+/* #search-btn { */
+/* 	background-color : #65BFBF; */
+/* } */
 
 .btn .glyphicon {
 	margin-right : 4px;
@@ -169,8 +257,12 @@ tbody{
 	width : 120px;
 }
 
+
+
+
 .foot-1 {
 /* 	height : 100%; */
+
 	background-color : #3EAFAF;
 	color : #FFFFFF;
 }
@@ -437,8 +529,8 @@ line-height : 1.4em;
 }
 
 .btn-primary :hover {
-	border-color : #204d74;
-	background-color : #286090;
+	border-color : #65BFBF;
+	background-color : #65BFBF;
 }
 
 .btn-success {
@@ -477,6 +569,9 @@ tbody{
 	color  : white;
 	text-decoration : none;
 } 
+.whiteLabel{
+	color : #FFF;
+}
 
 .cartsz {
 	width : 120px;
@@ -631,7 +726,7 @@ tbody{
 
 #loading-img {
     /*background: url(http://preloaders.net/preloaders/360/Velocity.gif) center center no-repeat;*/
-    background: url(https://lh3.googleusercontent.com/ggHLEM8bfgZQEpvltMJe2EoMD0A2NQ-ti_L8EtHk6_mF=w92-h91-no) center center no-repeat;
+    background: url(https://photos.google.com/photo/AF1QipNc_pHjWhyXYC4dqy6yYYMDCIU-mUzyry1ws5p8) center center no-repeat;
     height: 100%;
     z-index: 20;
 }

@@ -22,6 +22,22 @@ $("#add").click(function(){
 	var total = val+1;
 		$("#demo1").val(total);
 });
+$(document).ready(function(){
+    $(".changeview").click(function(){
+//         $("#searching").toggle();
+//         $("#menubar").toggle();
+        $("#menubar").toggle();
+        $("#searching").toggle();
+        
+    });
+//     $("#removesearch").click(function(){
+// //      $("#searching").toggle();
+// //      $("#menubar").toggle();
+//      $("#menubar").toggle();
+//      $("#searching").toggle();
+     
+//  });
+});
 </script>
 </head>
 <body>
@@ -143,233 +159,280 @@ $("#add").click(function(){
 			</ul>
 		</div>
 	</div>
+	
+<!-- ********************************************changed menubar************************************************************************************* -->
+	<div class="navbar navbar-default nav-cust">
+		<div class="container" id="menubar">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle pull-left" data-toggle="collapse" data-target=".navbar-collapse">
+					<span class="glyphicon glyphicon-option-vertical"></span>
+				</button>
+				<a href="#" class="navbar-brand"> Logo </a>
 
-	<div class="container-fluid mid-bar ">
-		<div class="container ">
 
-			<div class="col-md-8 col-sm-8 col-xs-9">
-				<div class="input-group list-inline" style="margin-left: -16px;">
-					<input type="text" id="search" onkeyup="searchProduct()" class="form-control" placeholder="Search your Shop/Product here">
-					<span class="input-group-btn">
-						<button class="btn " type="button">
-							<img src="Images/search.png" width="20px" height="18px">
+				<!-- <button type="button" class="pull-right"> btn</button> -->
+
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+					<span class="sr-only">Toggle button</span> 
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span> 
+					<span class="icon-bar"></span>
+				</button>
+				<button type="button" class="navbar-toggle" data-toggle="modal"	data-target=".cartmodal">
+					<span class="glyphicon glyphicon-shopping-cart"></span> 
+					<span class="hidden-xs">CART</span> 
+					<span class="badge"><label	id="productCountOnCart" style="margin: auto;">0</label></span>
+				</button>
+				<div class="search-box pull-right hidden-lg hidden-md hidden-sm">
+					<div class="input-group">
+						<button class="btn btn-nobg getFullSearch changeview" type="button">
+							<span class="glyphicon glyphicon-search"> </span>
 						</button>
-					</span>
+					</div>
 
 				</div>
-				<!-- /input-group -->
 			</div>
-			<!-- /.col-lg-6 -->
-			<div class="col-md-4 col-sm-4 col-xs-3">
+			<!--/navbar-header-->
 
-				<button id="getCartProduct" type="button" class=" pull-right btn btn-primary" data-toggle="modal"data-target="#cartmodal" style="margin-right: -11px;">
-					<span class="glyphicon glyphicon-shopping-cart"></span> 
-					<span class="hidden-xs">CART</span>
-					<span class="badge"><label id="productCountOnCart" style="margin: auto;">0</label></span>
-				</button>
 
-				<!--  -->
-				<!-- <a href="#"id="login" data-toggle="modal" data-target="#trackModal">Track your order</a></li> -->
-				<!-- Modal -->
-				<div class="modal fade" id="cartmodal" role="dialog">
-					<div class="modal-dialog modal-lg">
 
-						<!-- Modal content-->
-						<div class="modal-content">
-							<div class="modal-header">
-								<button type="button" class="close" id="checkoutClose" data-dismiss="modal">&times;</button>
-								<h4 class="modal-title">
-									<strong style="color: #FFF;">Cart Details</strong>
-								</h4>
+			<!-- Modal -->
+			<div class="modal fade cartmodal" id="cartmodal" role="dialog">
+				<div class="modal-dialog modal-lg">
+
+					<!-- Modal content-->
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" id="checkoutClose" data-dismiss="modal">&times;</button>
+							<h4 class="modal-title">
+								<strong style="color: #FFF;">Cart Details</strong>
+							</h4>
+						</div>
+						<div class="modal-body">
+							<div class="container cheight">
+
+								<table class="table table-striped" cellspacing="0" cellpadding="0">
+									<thead class="hidden-xs">
+										<tr>
+											<th class="cimg">Image</th>
+											<th class="cname">Name</th>
+											<th class="csize">Size</th>
+											<th class="cqty">Qty</th>
+											<th class="cprice">Price</th>
+											<th class="cdelete">Delete</th>
+										</tr>
+									</thead>
+									<tbody id="appendProducttoCart">
+
+									</tbody>
+								</table>
 							</div>
-							<div class="modal-body">
-								<div class="container cheight">
+							<div id="totalpurchase" class="totaldiv">
+								<!--               <span class="tlbprce">Total Price :</span> -->
+								<!--               <span class="totalprize"><strong> Rs 0</strong> </span>  -->
+								<!--               <span class="usave">You save :</span>  -->
+								<!--               <span class="rups"><strong> Rs 0</strong> </span> -->
 
-									<table class="table table-striped" cellspacing="0"
-										cellpadding="0">
-										<thead class="hidden-xs">
-											<tr>
-												<th class="cimg">Image</th>
-												<th class="cname">Name</th>
-												<th class="csize">Size</th>
-												<th class="cqty">Qty</th>
-												<th class="cprice">Price</th>
-												<th class="cdelete">Delete</th>
-											</tr>
-										</thead>
-										<tbody id="appendProducttoCart">
-
-										</tbody>
-									</table>
-								</div>
-								<div id="totalpurchase" class="totaldiv">
-									<!--               <span class="tlbprce">Total Price :</span> -->
-									<!--               <span class="totalprize"><strong> Rs 0</strong> </span>  -->
-									<!--               <span class="usave">You save :</span>  -->
-									<!--               <span class="rups"><strong> Rs 0</strong> </span> -->
-
-								</div>
-								<div class="totaldiv">
-									<button class="btn btn-primary" id="checkout" onclick="loadPage(this);" type="button">Check Out</button>
-									<button class="btn btn-primary" type="button">Continue Shopping</button>
-								</div>
+							</div>
+							<div class="totaldiv">
+								<button class="btn btn-primary" id="checkout" onclick="loadPage(this);" type="button">Check Out</button>
+								<button class="btn btn-primary" type="button">Continue Shopping</button>
 							</div>
 						</div>
 					</div>
 				</div>
-				<!-- end of Modal -->
-				<!--  -->
+			</div>
+			<!-- end of Modal -->
 
+
+
+			<ul class="nav navbar-nav navbar-left collapse navbar-collapse">
+				<li><a href="">Page1</a></li>
+				<li><a href="">Page2</a></li>
+				<li><a href="">Page3</a></li>
+				<li><a href="">Page4</a></li>
+			</ul>
+			<div class="nav navbar-nav navbar-right hidden-xs">
+				<div class="dropdown  cartMenu ">
+					<button id="getCartProduct" type="button" class=" pull-right btn btn-primary" style="border:none;" data-toggle="modal" data-target=".cartmodal" style="margin-right: -11px;">
+						<span class="glyphicon glyphicon-shopping-cart"></span> 
+						<span class="hidden-xs">CART</span> 
+						<span class="badge"><label id="productCountOnCart" style="margin: auto;">0</label></span>
+					</button>
+				</div>
+				<div class="search-box">
+					<button type="button" class="changeview">
+						<span class="glyphicon glyphicon-search"> </span>
+					</button>
+				</div>
 			</div>
 		</div>
-		<!-- /.row -->
+		<!--/container-->
+		<div class="container">
+			<div id="searching" style="display: none;">
 
-		<!-- <form class="navbar-form " role="search">
-            <div class="form-group">
-              <input type="text" id="search"class="form-control" placeholder="Search your Shop/Product here">
-              <button type="button" id="search-btn" class="btn glyphicon glyphicon-search">
-            </div>
-
-            <button type="button" class=" pull-right btn btn-primary"><span class="glyphicon glyphicon-shopping-cart"></span>CART <span class="badge">0</span></button>
-          </form> -->
+				<input type="text" id="search" onkeyup="searchProduct()" class="whiteLabel" name="search" placeholder="Search the item here">
+				<button class="insearch" type="submit">
+					<span class="glyphicon glyphicon-search"></span>
+				</button>
+				</input>
+				<button type="button" class="btn btn-circle btn-danger changeview" id="removesearchbtn">
+					<span class=" glyphicon glyphicon-remove"></span>
+				</button>
+			</div>
+		</div>
 	</div>
+	<!--/navbar navbar-inverse-->
+
+
+	<!-- ********************************************End changed menubar************************************************************************************* -->
+<!-- 	<div class="container-fluid mid-bar "> -->
+<!-- 		<div class="container "> -->
+
+<!-- 			<div class="col-md-8 col-sm-8 col-xs-9"> -->
+<!-- 				<div class="input-group list-inline" style="margin-left: -16px;"> -->
+<!-- 					<input type="text" id="search" onkeyup="searchProduct()" class="form-control" placeholder="Search your Shop/Product here"> -->
+<!-- 					<span class="input-group-btn"> -->
+<!-- 						<button class="btn " type="button"> -->
+<!-- 							<img src="Images/search.png" width="20px" height="18px"> -->
+<!-- 						</button> -->
+<!-- 					</span> -->
+
+<!-- 				</div> -->
+<!-- 				/input-group -->
+<!-- 			</div> -->
+			<!-- /.col-lg-6 -->
+<!-- 			<div class="col-md-4 col-sm-4 col-xs-3"> -->
+
+<!-- 					<button id="getCartProduct" type="button" class=" pull-right btn btn-primary" data-toggle="modal"data-target="#cartmodal" style="margin-right: -11px;"> -->
+<!-- 						<span class="glyphicon glyphicon-shopping-cart"></span>  -->
+<!-- 						<span class="hidden-xs">CART</span> -->
+<!-- 						<span class="badge"><label id="productCountOnCart" style="margin: auto;">0</label></span> -->
+<!-- 					</button> -->
+
+<!-- 				 -->
+<!-- 				<a href="#"id="login" data-toggle="modal" data-target="#trackModal">Track your order</a></li> -->
+<!-- 				Modal -->
+<!-- 				<div class="modal fade" id="cartmodal" role="dialog"> -->
+<!-- 					<div class="modal-dialog modal-lg"> -->
+
+<!-- 						Modal content -->
+<!-- 						<div class="modal-content"> -->
+<!-- 							<div class="modal-header"> -->
+<!-- 								<button type="button" class="close" id="checkoutClose" data-dismiss="modal">&times;</button> -->
+<!-- 								<h4 class="modal-title"> -->
+<!-- 									<strong style="color: #FFF;">Cart Details</strong> -->
+<!-- 								</h4> -->
+<!-- 							</div> -->
+<!-- 							<div class="modal-body"> -->
+<!-- 								<div class="container cheight"> -->
+
+<!-- 									<table class="table table-striped" cellspacing="0" -->
+<!-- 										cellpadding="0"> -->
+<!-- 										<thead class="hidden-xs"> -->
+<!-- 											<tr> -->
+<!-- 												<th class="cimg">Image</th> -->
+<!-- 												<th class="cname">Name</th> -->
+<!-- 												<th class="csize">Size</th> -->
+<!-- 												<th class="cqty">Qty</th> -->
+<!-- 												<th class="cprice">Price</th> -->
+<!-- 												<th class="cdelete">Delete</th> -->
+<!-- 											</tr> -->
+<!-- 										</thead> -->
+<!-- 										<tbody id="appendProducttoCart"> -->
+
+<!-- 										</tbody> -->
+<!-- 									</table> -->
+<!-- 								</div> -->
+<!-- 								<div id="totalpurchase" class="totaldiv"> -->
+<!-- 									              <span class="tlbprce">Total Price :</span> -->
+<!-- 									              <span class="totalprize"><strong> Rs 0</strong> </span>  -->
+<!-- 									              <span class="usave">You save :</span>  -->
+<!-- 									              <span class="rups"><strong> Rs 0</strong> </span> -->
+
+<!-- 								</div> -->
+<!-- 								<div class="totaldiv"> -->
+<!-- 									<button class="btn btn-primary" id="checkout" onclick="loadPage(this);" type="button">Check Out</button> -->
+<!-- 									<button class="btn btn-primary" type="button">Continue Shopping</button> -->
+<!-- 								</div> -->
+<!-- 							</div> -->
+<!-- 						</div> -->
+<!-- 					</div> -->
+<!-- 				</div> -->
+<!-- 				end of Modal -->
+<!-- 				 -->
+
+<!-- 			</div> -->
+<!-- 		</div> -->
+		<!-- /.row -->
+<!-- </div> -->
 	</div>
 
 	<!-- Meganav -->
-
-
-
 	<!-- end of mega nav -->
 
-
-
-
-
-
-
-
-	<nav class="navbar navbar-default middle-bar ">
-		<div class="container-fluid">
+<!-- 	<nav class="navbar navbar-default middle-bar "> -->
+<!-- 		<div class="container-fluid"> -->
 			<!-- Brand and toggle get grouped for better mobile display -->
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"aria-expanded="false">
-					<span class="sr-only">Toggle navigation</span> 
-					<span class="icon-bar"></span> 
-					<span class="icon-bar"></span> 
-					<span class="icon-bar"></span>
-				</button>
-				<a class="navbar-brand" href="#">Logo</a>
-			</div>
+<!-- 			<div class="navbar-header"> -->
+<!-- 				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"aria-expanded="false"> -->
+<!-- 					<span class="sr-only">Toggle navigation</span>  -->
+<!-- 					<span class="icon-bar"></span>  -->
+<!-- 					<span class="icon-bar"></span>  -->
+<!-- 					<span class="icon-bar"></span> -->
+<!-- 				</button> -->
+<!-- 				<a class="navbar-brand" href="#">Logo</a> -->
+<!-- 			</div> -->
 
 			<!-- Collect the nav links, forms, and other content for toggling -->
-			<div class="collapse navbar-collapse"
-				id="bs-example-navbar-collapse-1">
-				<ul class="nav navbar-nav">
-					<li class="active"><a href="#">Menu1 <span class="sr-only">(current)</span></a></li>
-					<li><a href="#">Menu2</a></li>
-					<li class="dropdown">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Megamenu <span class="caret"></span></a>
-							<ul class="dropdown-menu">
-								<div class="container container-1">
+<!-- 			<div class="collapse navbar-collapse" -->
+<!-- 				id="bs-example-navbar-collapse-1"> -->
+<!-- 				<ul class="nav navbar-nav"> -->
+<!-- 					<li class="active"><a href="#">Menu1 <span class="sr-only">(current)</span></a></li> -->
+<!-- 					<li><a href="#">Menu2</a></li> -->
+<!-- 					<li class="dropdown"> -->
+<!-- 						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Megamenu <span class="caret"></span></a> -->
+<!-- 							<ul class="dropdown-menu"> -->
+<!-- 								<div class="container container-1"> -->
 
-									<div class="col-md-2 col-line">
-										<div class="row">hhjhhjhfd</div>
-										<div class="row">hhjhhjhfd</div>
-										<div class="row">hhjhhjhfd</div>
-										<div class="row">hhjhhjhfd</div>
-									</div>
-									<div class="col-md-2 col-line">
-										<div class="row">hhjhhjhfd</div>
-										<div class="row">hhjhhjhfd</div>
-										<div class="row">hhjhhjhfd</div>
-										<div class="row">hhjhhjhfd</div>
-									</div>
-								<div class="col-md-2 col-line">
-									<div class="row">hhjhhjhfd</div>
-									<div class="row">hhjhhjhfd</div>
-									<div class="row">hhjhhjhfd</div>
-									<div class="row">hhjhhjhfd</div>
-								</div>
-								<div class="col-md-2 col-line prd-disp">
+									
+<!-- 							</div> -->
+<!-- 							div container-1 -->
+<!-- 						</ul> -->
+<!-- 						end of dropdownmenu</li> -->
+<!-- 					end fo dropdown  -->
+<!-- 					<li class="dropdown"> -->
+<!-- 						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Megamenu <span class="caret"></span></a> -->
+<!-- 						<ul class="dropdown-menu"> -->
+<!-- 							<div class="container container-1"> -->
 
-									<div class="image">
-										<img src="Images/tea.jpg" alt="Tea" width="100px" height="100px">
-									</div>
-									<div class="productname">Product Name:</div>
-									<div class="productprice">Product price:</div>
-									<div class="instock">Instock:</div>
-									<div class="quantity">Quantity:<input id="qtytxt" type="text" name="quantity"></div>
-									<div class="cartbtn"><button type="button" class="btn btn-success">ADD TO CART</button></div>
-								</div>
-							</div>
-							<!-- div container-1 -->
-						</ul>
-						<!-- end of dropdownmenu --></li>
-					<!--end fo dropdown  -->
-					<li class="dropdown">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Megamenu <span class="caret"></span></a>
-						<ul class="dropdown-menu">
-							<div class="container container-1">
+<!-- 															</div> -->
+<!-- 							div container-1 -->
+<!-- 						</ul> -->
+<!-- 						end of dropdownmenu</li> -->
+<!-- 					end fo dropdown  -->
+<!-- 				</ul> -->
+<!-- 				 end of nav -->
 
-								<div class="col-md-2 col-line">
-									<div class="row">hhjhhjhfd</div>
-									<div class="row">hhjhhjhfd</div>
-									<div class="row">hhjhhjhfd</div>
-									<div class="row">hhjhhjhfd</div>
-									<div class="row">hhjhhjhfd</div>
-									<div class="row">hhjhhjhfd</div>
-									<div class="row">hhjhhjhfd</div>
-									<div class="row">hhjhhjhfd</div>
-								</div>
-								<div class="col-md-2 col-line">
-									<div class="row">hhjhhjhfd</div>
-									<div class="row">hhjhhjhfd</div>
-									<div class="row">hhjhhjhfd</div>
-									<div class="row">hhjhhjhfd</div>
-								</div>
-								<div class="col-md-2 col-line">
-									<div class="row">hhjhhjhfd</div>
-									<div class="row">hhjhhjhfd</div>
-									<div class="row">hhjhhjhfd</div>
-									<div class="row">hhjhhjhfd</div>
-									<div class="row">hhjhhjhfd</div>
-									<div class="row">hhjhhjhfd</div>
-									<div class="row">hhjhhjhfd</div>
-								</div>
-								<div class="col-md-2 col-line ">
-
-									<div class="image">
-										<img src="Images/tea.jpg" alt="Tea" width="100px" height="150px">
-									</div>
-
-								</div>
-							</div>
-							<!-- div container-1 -->
-						</ul>
-						<!-- end of dropdownmenu --></li>
-					<!--end fo dropdown  -->
-				</ul>
-				<!--  end of nav-->
-
-				<ul class="nav navbar-nav navbar-right">
-					<li><a id="indexBody" href="#" onclick="loadPage(this);">Home</a></li>
-					<li><a id="shopProfile" href="#" onclick="loadPage(this);">Profile</a></li>
-					<li class="dropdown">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
-						<ul class="dropdown-menu">
-							<li><a href="#">Action</a></li>
-							<li><a href="#">Another action</a></li>
-							<li><a href="#">Something else here</a></li>
-							<li role="separator" class="divider"></li>
-							<li><a href="#">Separated link</a></li>
-						</ul>
-					</li>
-				</ul>
-			</div>
+<!-- 				<ul class="nav navbar-nav navbar-right"> -->
+<!-- 					<li><a id="indexBody" href="#" onclick="loadPage(this);">Home</a></li> -->
+<!-- 					<li><a id="shopProfile" href="#" onclick="loadPage(this);">Profile</a></li> -->
+<!-- 					<li class="dropdown"> -->
+<!-- 						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a> -->
+<!-- 						<ul class="dropdown-menu"> -->
+<!-- 							<li><a href="#">Action</a></li> -->
+<!-- 							<li><a href="#">Another action</a></li> -->
+<!-- 							<li><a href="#">Something else here</a></li> -->
+<!-- 							<li role="separator" class="divider"></li> -->
+<!-- 							<li><a href="#">Separated link</a></li> -->
+<!-- 						</ul> -->
+<!-- 					</li> -->
+<!-- 				</ul> -->
+<!-- 			</div> -->
 			<!-- /.navbar-collapse -->
-		</div>
+<!-- 		</div> -->
 		<!-- /.container-fluid -->
-	</nav>
+<!-- 	</nav> -->
 
 </body>
 </html>
