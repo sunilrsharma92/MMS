@@ -5,7 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
-<script>
+	<script>
 	$("#minus").click(function()
 	{
 		alert();
@@ -24,22 +24,23 @@
 		var total = val + 1;
 		$("#demo1").val(total);
 	});
-$(document).ready(function(){
-    $(".changeview").click(function(){
-//         $("#searching").toggle();
-//         $("#menubar").toggle();
-        $("#menubar").toggle();
-        $("#searching").toggle();
-        
-    });
-//     $("#removesearch").click(function(){
-// //      $("#searching").toggle();
-// //      $("#menubar").toggle();
-//      $("#menubar").toggle();
-//      $("#searching").toggle();
-     
-//  });
-});
+
+	$(document).ready(function(){
+	    $(".changeview").click(function(){
+//	         $("#searching").toggle();
+//	         $("#menubar").toggle();
+	        $("#menubar").toggle();
+	        $("#searching").toggle();
+	        
+	    });
+//	     $("#removesearch").click(function(){
+	// //      $("#searching").toggle();
+	// //      $("#menubar").toggle();
+//	      $("#menubar").toggle();
+//	      $("#searching").toggle();
+	     
+	//  });
+	});
 </script>
 </head>
 <body>
@@ -55,7 +56,7 @@ $(document).ready(function(){
 				<li class=""><a href="#" id="login" data-toggle="modal"
 					data-target="#trackModal" class="whiteLabelLink"> <span
 						class="glyphicon glyphicon-map-marker" style="margin-right: 5px;"></span>Track<span
-						class="hidden-xs">your order</span>
+						class="hidden-xs"> your order</span>
 				</a></li>
 
 				<!-- ***************************************Modal************************************* -->
@@ -178,13 +179,13 @@ $(document).ready(function(){
 		<div class="container" id="menubar">
 			<div class="navbar-header">
 				<button type="button" class="navbar-toggle pull-left" data-toggle="collapse" data-target=".navbar-collapse">
-					<span class="glyphicon glyphicon-option-vertical"></span>
-						class="form-control" placeholder="Search your Shop/Product here">
+					<span class="glyphicon glyphicon-option-vertical"></span>	
 				</button>
 				<a href="#" class="navbar-brand"> Logo </a>
 
 
 				<!-- <button type="button" class="pull-right"> btn</button> -->
+				
 
 				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
 					<span class="sr-only">Toggle button</span> 
@@ -217,7 +218,7 @@ $(document).ready(function(){
 					<div class="modal-content">
 						<div class="modal-header">
 							<button type="button" class="close" id="checkoutClose" data-dismiss="modal">&times;</button>
-									data-dismiss="modal">&times;</button>
+<!-- 									data-dismiss="modal">&times;</button> -->
 							<h4 class="modal-title">
 								<strong style="color: #FFF;">Cart Details</strong>
 							</h4>
@@ -413,12 +414,12 @@ $(document).ready(function(){
 
 									
 <!-- 							</div> -->
-											height="100px">
-									</div>
-									<div class="cartbtn">
-										<button type="button" class="btn btn-success">ADD TO
-											CART</button>
-									</div>
+<!-- 											height="100px"> -->
+<!-- 									</div> -->
+<!-- 									<div class="cartbtn"> -->
+<!-- 										<button type="button" class="btn btn-success">ADD TO -->
+<!-- 											CART</button> -->
+<!-- 									</div> -->
 <!-- 							div container-1 -->
 <!-- 						</ul> -->
 <!-- 						end of dropdownmenu</li> -->
@@ -427,7 +428,7 @@ $(document).ready(function(){
 <!-- 						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Megamenu <span class="caret"></span></a> -->
 <!-- 						<ul class="dropdown-menu"> -->
 <!-- 							<div class="container container-1"> -->
-											height="150px">
+<!-- 											height="150px"> -->
 
 <!-- 															</div> -->
 <!-- 							div container-1 -->

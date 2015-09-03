@@ -60,7 +60,8 @@ function handleRequest()
 	}
 
 	function handleUserDetailsSave(firstName, lastName, mobileNo, email, address1, address2, state, city, street, pincode) {
-	{
+	try
+		{
 			var strUserDetails = {};
 			strUserDetails.firstName = firstName;
 			strUserDetails.lastName = lastName;
