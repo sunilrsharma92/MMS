@@ -21,7 +21,27 @@ function handleMainCategoryResponse(response)
 		var a = "";
 		var nav = "nav nav-pills nav-stacked";
 		category = "<ul class='" + nav + "'>";
-
+		
+//		  +"<div class='list-group panel'>"
+//		    +"<a href='#demo4' class='list-group-item ' data-toggle='collapse' data-parent='#MainMenu'>Menu-1"
+//		      +"<span class='pull-right glyphicon glyphicon-menu-down'></span>"
+//		        +" </a>"
+//		         +"<div class='collapse' id='demo4'>"
+//		          +"<a href='' class='list-group-item'>Menu-11</a>"
+//		          +"<a href='' class='list-group-item'>Menu-12</a>"
+//		          +"<a href='' class='list-group-item'>Menu-13</a>"
+//		        +"</div>"
+//
+//		        +"<a href='#demo5' class='list-group-item ' data-toggle='collapse' data-parent='#MainMenu'>Menu-2"
+//		         +"<span class='pull-right glyphicon glyphicon-menu-down'></span>"
+//		       +"</a>"
+//		       +"<div class='collapse' id='demo5'>"
+//		        +"<a href='' class='list-group-item'>Menu-21</a>"
+//		        +"<a href='' class='list-group-item'>Menu-22</a>"
+//		        +"<a href='' class='list-group-item'>Menu-23</a>"
+//		      +"</div>"
+//		    +"</div>"
+		
 		var maincategory = response.category;
 		var submaincategory = response.subcategory;
 
@@ -178,7 +198,12 @@ function handleProductDisplayResponse(response)
 				stockcrtbtn = "";
 			}
 
-			productList = productList + '<div class="col-md-2 col-sm-3  col-xs-4 wrap">' + '<div class="portfolio-item">' + '<div class="inner-wrap">' + '<span id="ok' + productid + '" class="pull-right glyphicon glyphicon-ok oktick" style="display:none;"></span>' + '<a href="#">' + '<img id="' + productid + '" class="img-portfolio img-responsive" src="' + images + '">' + '</a>' + '</div>' + '</div>' + '<div class="align-center">' + '<div class="productname ">' + prodName + '</div>' + '<div class="productprice" style="color: ' + stockvalue + '";>Rs.' + price + '</div>'
+			productList = productList + '<div class="col-md-2 col-sm-3  col-xs-4 wrap">' 
+			+ '<div class="portfolio-item">' + '<div class="inner-wrap">' 
+			+ '<span id="ok' + productid + '" class="pull-right glyphicon glyphicon-ok oktick" style="display:none;"></span>' 
+			+ '<a href="#">' + '<img id="' + productid + '" class="img-portfolio img-responsive" src="' + images + '">' 
+			+ '</a>' + '</div>' + '</div>' + '<div class="align-center">' + '<div class="productname ">' + prodName + '</div>' 
+			+ '<div class="productprice" style="color: ' + stockvalue + '";>Rs.' + price + '</div>'
 			// + '<div class="instock ">Stock : '+stock+'</div>'
 			// + '<div class="quantity ">Quantity:<input id="qtytxt" type="text"
 			// name="quantity"></div>'
