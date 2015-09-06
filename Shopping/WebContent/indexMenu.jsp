@@ -87,8 +87,7 @@
 
 				<li class="dropdown pull-right">
 					<a data-target="#" id="myAcc" href="page.html" data-toggle="dropdown"
-						class="dropdown-toggle whiteLabelLink" style="display:none;">My Account <b class="caret"></b></a>
-						class="dropdown-toggle whiteLabelLink" style=" padding: 8px;">My Account <b class="caret"></b></a>
+						class="dropdown-toggle whiteLabelLink" style="display:none; padding: 8px;">My Account <b class="caret"></b></a>
 					<ul class="dropdown-menu">
 						<li><a href="#" id="profileLink">Profile</a></li>
 						<li><a href="#">Recent Orders</a></li>
