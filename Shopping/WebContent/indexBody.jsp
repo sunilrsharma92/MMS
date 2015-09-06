@@ -12,10 +12,12 @@
 	<div class="container main-1">
 		<div class="row row-1">
 			<div class="col-md-3 hidden-xs col-cat">
+			<div class="nav navbar-nav navbar-left collapse navbar-collapse slidemenu">
        		<div id="MainMenu">
         		<div class="list-group panel devaCategoryAlign" style='background-color: black;' id="categorybox">
         
     			</div>
+  			</div>
   			</div>
 			</div><!--/col-md-3-->
 			<!-- </div>     -->

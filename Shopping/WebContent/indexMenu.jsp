@@ -189,7 +189,7 @@
 	<div class="navbar navbar-default nav-cust">
 		<div class="container" id="menubar">
 			<div class="navbar-header">
-				<button type="button" class="navbar-toggle pull-left" data-toggle="collapse" data-target=".navbar-collapse1">
+				<button type="button" class="navbar-toggle pull-left" data-toggle="collapse" data-target=".slidemenu">
 					<span class="glyphicon glyphicon-option-vertical"></span>	
 				</button>
 				<a href="#" class="navbar-brand"> Logo </a>
