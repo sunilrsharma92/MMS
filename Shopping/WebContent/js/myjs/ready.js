@@ -137,7 +137,7 @@ $("#editbtn").click(function(){
 
 
 
-$("#getCartProduct").click(function(){
+$(".getCartProduct").click(function(){
 	
 	getProductfromCookie("prod");
 	

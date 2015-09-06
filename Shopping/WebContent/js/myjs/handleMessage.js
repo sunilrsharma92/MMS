@@ -14,34 +14,8 @@ function handleMainCategoryResponse(response)
 
 		var category = "";
 		var subcategory = "";
-		var lgi = "list-group-item";
-		var dropdownsubmenu = "dropdown-submenu";
-		var pullright = "glyphicon glyphicon-chevron-right pull-right";
-		var dropdownmenu = "dropdown-menu";
 		var a = "";
-		var nav = "nav nav-pills nav-stacked";
-		category = "<ul class='" + nav + "'>";
-		
-//		  +"<div class='list-group panel'>"
-//		    +"<a href='#demo4' class='list-group-item ' data-toggle='collapse' data-parent='#MainMenu'>Menu-1"
-//		      +"<span class='pull-right glyphicon glyphicon-menu-down'></span>"
-//		        +" </a>"
-//		         +"<div class='collapse' id='demo4'>"
-//		          +"<a href='' class='list-group-item'>Menu-11</a>"
-//		          +"<a href='' class='list-group-item'>Menu-12</a>"
-//		          +"<a href='' class='list-group-item'>Menu-13</a>"
-//		        +"</div>"
-//
-//		        +"<a href='#demo5' class='list-group-item ' data-toggle='collapse' data-parent='#MainMenu'>Menu-2"
-//		         +"<span class='pull-right glyphicon glyphicon-menu-down'></span>"
-//		       +"</a>"
-//		       +"<div class='collapse' id='demo5'>"
-//		        +"<a href='' class='list-group-item'>Menu-21</a>"
-//		        +"<a href='' class='list-group-item'>Menu-22</a>"
-//		        +"<a href='' class='list-group-item'>Menu-23</a>"
-//		      +"</div>"
-//		    +"</div>"
-		
+
 		var maincategory = response.category;
 		var submaincategory = response.subcategory;
 
@@ -52,12 +26,14 @@ function handleMainCategoryResponse(response)
 				var categoryId = maincategory[i].categoryid;
 				var categoryName = maincategory[i].categoryname;
 
-				category = category + "<li class='" + dropdownsubmenu + "'><a id='" + categoryId + "' class='" + lgi + "'>" + categoryName + "<span class='" + pullright + "'></span></a>";
-
-				var check1 = "<ul class='" + dropdownmenu + "'>";
+				category = category +"<a href='#demo" + categoryId + "' id='" + categoryId + "' class='list-group-item ' data-toggle='collapse' style='background-color: beige;' data-parent='#MainMenu'>" + categoryName 
+									+ "<span class='pull-right glyphicon glyphicon-menu-down'></span></a>";
+		          
+		          
+				var check1 = "<div class='collapse' id='demo" + categoryId + "'>";
 				if(submaincategory != "")
 				{
-					subcategory = "<ul class='" + dropdownmenu + "'>";
+					subcategory = "<div class='collapse' id='demo" + categoryId + "'>";
 					for ( var j in submaincategory)
 					{
 						var categoryId1 = submaincategory[j].categoryid;
@@ -66,25 +42,24 @@ function handleMainCategoryResponse(response)
 
 						if(categoryId1 == categoryId)
 						{
-							subcategory = subcategory + "<li><a onclick='getSelectedProduct(this," + categoryId + ");' id='" + subcategoryid + "'>" + subcategoryName + "</a></li>";
+							subcategory = subcategory + "<a onclick='getSelectedProduct(this," + categoryId + ");' id='" + subcategoryid + "' style='background-color: white;' class='list-group-item'>" + subcategoryName + "</a>";
 						}
 					}
 				}
 
 				if(subcategory.length != check1.length)
 				{
-					category = category + subcategory + "</ul></li>";
+					category = category + subcategory + "</div>";
 				}
 				else
 				{
-					category = category + "</li>";
+					category = category;
 				}
 
 				subcategory = null;
 
 			}
 		}
-		category = category + "</ul>";
 		$("#categorybox").empty();
 		$("#categorybox").append(category);
 	}
