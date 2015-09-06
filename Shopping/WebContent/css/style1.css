@@ -392,6 +392,7 @@ tbody{
 
 .list-group-item {
 	border : none;
+	margin-bottom: 0px;
 }
 
 .list-group-item.active :focus {

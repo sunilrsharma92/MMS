@@ -435,8 +435,9 @@ function getProductfromCookie(condition)
 		
 		
 		count++;
-		$("#productCountOnCart").empty();
+		$(".productCountOnCart").empty();
 		document.getElementById("productCountOnCart").innerHTML = i;
+		document.getElementById("productCountOnCart1").innerHTML = i;
 		
 		if(condition == "okenable")
 			{
@@ -450,13 +451,16 @@ function getProductfromCookie(condition)
 	if(count>0)
 		{
 			count = parseInt(i) + 1;
-			$("#productCountOnCart").empty();
+//			alert("count1 : "+count)
+			$(".productCountOnCart").empty();
 			document.getElementById("productCountOnCart").innerHTML = count;
+			document.getElementById("productCountOnCart1").innerHTML = count;
 		}
 	else
 		{
-			$("#productCountOnCart").empty();
-			document.getElementById("productCountOnCart").innerHTML = count;
+			$(".productCountOnCart").empty();
+			document.getElementById("productCountOnCart").innerHTML = count; 	
+			document.getElementById("productCountOnCart1").innerHTML = count; 	
 		}
 	
 	
@@ -516,8 +520,9 @@ function addproducttoCArt(productid)
 	
 	var len = arrayofProduct.length;
 	
-	$("#productCountOnCart").empty();
+	$(".productCountOnCart").empty();
 	document.getElementById("productCountOnCart").innerHTML=len;
+	document.getElementById("productCountOnCart1").innerHTML=len;
 	
 	$.cookie('key',JSON.stringify(arrayofProduct));
 	
@@ -544,8 +549,9 @@ function removeproductfromCArt(id)
 	
 	if(gotCookiesArray == "")
 		{
-			$("#productCountOnCart").empty();
+			$(".productCountOnCart").empty();
 			document.getElementById("productCountOnCart").innerHTML="0";
+			document.getElementById("productCountOnCart1").innerHTML="0";
 		}
 //	console.log("getcookies()   JSON.parse(a)   : "+gotCookiesArray);
 	arrayofProduct = [];
