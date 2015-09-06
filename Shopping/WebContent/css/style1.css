@@ -6,6 +6,17 @@ body{
     background-color  : #fff;
     letter-spacing  : 0.01em;
 }
+/***************************************************topMenuBar*****************************************************************/
+li.dropdown.pull-right {
+    margin: 3px;
+}
+
+ul.dropdown-menu {
+    margin-top: 7px;
+}
+/***************************************************End of topMenuBar**********************************************************/
+
+
 /***************************************************Changed menubar************************************************************/
 
 .search-box {
@@ -14,6 +25,17 @@ body{
 /*     width: 50px; */
 	margin:15px 5px 15px 15px;
 }
+button.btn.btn-nobg.getFullSearch.changeview {
+    width: inherit;
+    height: 33px;
+    margin-top: -5px;
+}
+button#removesearchbtn {
+    width: 25px;
+    height: 25px;
+    border-radius: 15px;
+}
+
 .navbar-nav.navbar-right:last-child {
     margin-right: 0;
 }
@@ -61,7 +83,7 @@ button.changeview {
     border-radius: 4px;
 }
 button.changeview:hover {
-    background-color: #286090;
+    background-color: #3EAFAF;
     width: 32px;
     height: 32px;
     margin-top: -10px;
@@ -77,7 +99,7 @@ button.changeview:hover {
 .nav-cust{
 	background-color: #65BFBF;
 	border: 0px;
-	height: 50px;
+/* 	height: 50px; */
 	border-radius: 0px;
 }
 .navbar-default{
@@ -87,7 +109,25 @@ button.changeview:hover {
 .navbar-default .navbar-nav > li > a {
     color: #FFF;
 }
+button#getCartProduct:hover {
+    background-color: #3EAFAF;
+}
+button.navbar-toggle.pull-left,button.navbar-toggle.pull-left:visited {
+    background-color: #65BFBF;
+    border-color: #65BFBF;
+}
+button.navbar-toggle.pull-left:hover {
+    background-color: #3EAFAF;
+}
 
+
+span.glyphicon.glyphicon-option-vertical {
+    color: #FFF;
+}
+button.navbar-toggle {
+    background-color: #65BFBF;
+    border: transparent;
+}
 /***************************************************End of Changed menubar************************************************************/
 
 

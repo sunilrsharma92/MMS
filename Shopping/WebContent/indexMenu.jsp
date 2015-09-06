@@ -56,7 +56,7 @@
 				<li class=""><a href="#" id="login" data-toggle="modal"
 					data-target="#trackModal" class="whiteLabelLink"> <span
 						class="glyphicon glyphicon-map-marker" style="margin-right: 5px;"></span>Track<span
-						class="hidden-xs"> your order</span>
+						class="hidden-xs">your order</span>
 				</a></li>
 
 				<!-- ***************************************Modal************************************* -->
@@ -84,14 +84,24 @@
 					</div>
 				</div>
 				<!-- ***********************************end of Modal*********************************** -->
-				<li class="pull-right"><a href="#" class="whiteLabelLink"><span
-						class="glyphicon glyphicon-home" style="margin-right: 5px;"></span>Home</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					<!-- Trigger the modal with a button --> <!-- 					<a href="#"	data-toggle="modal" data-target="#LoginModal" id="login" class="whiteLabelLink"> -->
-					<a href="#" data-toggle="modal" data-target="#LoginModal"
-					id="myAccount" class="whiteLabelLink"> <span
-						class="glyphicon glyphicon-user" style="margin-right: 5px;"></span><label
-						id="loginlabel">Login</label>
-				</a> <!-- Modal -->
+
+				<li class="dropdown pull-right">
+					<a data-target="#" href="page.html" data-toggle="dropdown"
+						class="dropdown-toggle whiteLabelLink">My Account <b class="caret"></b></a>
+					<ul class="dropdown-menu">
+						<li><a href="#">Profile</a></li>
+						<li><a href="#">Recent Orders</a></li>
+						<li><a href="#">Favorite Shop</a></li>
+						<li class="divider"></li>
+						<li><a href="#">Logout</a></li>
+					</ul>
+				</li>
+
+				<a href="#" data-toggle="modal" data-target="#LoginModal" id="myAccount" class="whiteLabelLink pull-right"> 
+						<span class="glyphicon glyphicon-user" style="margin-right: 4px;"></span>
+						<label id="loginlabel">Login</label>
+					</a> <!-- Modal -->
+					
 					<div class="modal fade" id="LoginModal" role="dialog">
 						<div class="modal-dialog">
 							<!-- Modal content-->
@@ -115,8 +125,9 @@
 										<li class="active"><a class="font" data-toggle="tab"
 											href="#home">Login</a></li>
 										<li><a class="font" data-toggle="tab" href="#menu1">Sign up</a></li>
-										<div id="userType" class="whiteLabelLink" style="float: left;"></div>
+										
 										<li><a class="font" data-toggle="tab" href="#menu2">Forgot password</a></li>
+										<div id="userType" class="whiteLabelLink" style="float: left;"></div>
 									</ul>
 
 									<div class="tab-content">
@@ -178,7 +189,7 @@
 	<div class="navbar navbar-default nav-cust">
 		<div class="container" id="menubar">
 			<div class="navbar-header">
-				<button type="button" class="navbar-toggle pull-left" data-toggle="collapse" data-target=".navbar-collapse">
+				<button type="button" class="navbar-toggle pull-left" data-toggle="collapse" data-target=".navbar-collapse1">
 					<span class="glyphicon glyphicon-option-vertical"></span>	
 				</button>
 				<a href="#" class="navbar-brand"> Logo </a>
@@ -194,7 +205,7 @@
 					<span class="icon-bar"></span>
 				</button>
 				<button type="button" class="navbar-toggle" data-toggle="modal"	data-target=".cartmodal">
-					<span class="hidden-xs">CART</span> 
+					<span class="glyphicon glyphicon-shopping-cart"></span> 
 					<span class="badge"><label	id="productCountOnCart" style="margin: auto;">0</label></span>
 				</button>
 				<div class="search-box pull-right hidden-lg hidden-md hidden-sm">
@@ -218,7 +229,7 @@
 					<div class="modal-content">
 						<div class="modal-header">
 							<button type="button" class="close" id="checkoutClose" data-dismiss="modal">&times;</button>
-<!-- 									data-dismiss="modal">&times;</button> -->
+
 							<h4 class="modal-title">
 								<strong style="color: #FFF;">Cart Details</strong>
 							</h4>
@@ -252,8 +263,6 @@
 							<div class="totaldiv">
 								<button class="btn btn-primary" id="checkout" onclick="loadPage(this);" type="button">Check Out</button>
 								<button class="btn btn-primary" type="button">Continue Shopping</button>
-									<button class="btn btn-primary" type="button">Continue
-										Shopping</button>
 							</div>
 						</div>
 					</div>
@@ -264,7 +273,7 @@
 
 
 			<ul class="nav navbar-nav navbar-left collapse navbar-collapse">
-				<li><a href="">Page1</a></li>
+				<li><a href="" active="active">HOME</a></li>
 				<li><a href="">Page2</a></li>
 				<li><a href="">Page3</a></li>
 				<li><a href="">Page4</a></li>
