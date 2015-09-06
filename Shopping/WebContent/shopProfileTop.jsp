@@ -6,6 +6,7 @@
 <meta http-equiv = "Content-Type" content = "text/html; charset = ISO-8859-1">
 <title>Insert title here</title>
 <link rel = "stylesheet" href = "stylesheet.css">
+<script type="text/javascript" src="js/myjs/customerprofile.js"></script>
 </head>
 <body>
 

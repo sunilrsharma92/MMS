@@ -20,7 +20,8 @@
  <script type= "text/javascript" src= "js/myjs/handleResponse.js"></script>
  <script type= "text/javascript" src= "js/myjs/handleMessage.js"></script>
  <script type= "text/javascript" src= "js/myjs/callServlet.js"></script> -->
-<script type= "text/javascript" src= "js/myjs/ready.js"></script>
+<!-- <script type= "text/javascript" src= "js/myjs/ready.js"></script> -->
+<!-- <script type="text/javascript" src="js/myjs/customerprofile.js"></script> -->
 <!--  <script src= "js/bootstrap.js"></script>
  <script src= "js/bootstrap.min.js"></script>  -->
 

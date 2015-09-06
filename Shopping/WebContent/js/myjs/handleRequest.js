@@ -131,13 +131,13 @@ function handleRequest()
 
 	// -- Customer/ShopKeeper sign up and email verification
 
-	function handleRegisteration(passSignUp, firstNameSignUp, mobileKey, emailKey, userType)
+	function handleRegisteration(passSignUp, mobileKey, emailKey, userType)
 	{
 		try
 		{
 			var signUp = {};
 			signUp.passSignUp = passSignUp;
-			signUp.firstNameSignUp = firstNameSignUp;
+//			signUp.firstNameSignUp = firstNameSignUp;
 			signUp.mobileKey = mobileKey;
 			signUp.emailKey = emailKey;
 			signUp.userType = userType;

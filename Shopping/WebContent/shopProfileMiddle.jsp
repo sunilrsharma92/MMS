@@ -18,6 +18,7 @@
      <a href = "#" class = "list-group-item"><span class = "glyphicon glyphicon-pencil"></span> Edit Featured</a>
      <a href = "#" class = "list-group-item"><span class = "glyphicon glyphicon-pencil"></span> Edit New item</a>
      <hr class = "large">
+     <jsp:include page="customerProfileMenu.jsp" />
      <a href = "table.html" class = "list-group-item"><span class = "glyphicon glyphicon-plus"></span> Add Products</a>
 
    </div>

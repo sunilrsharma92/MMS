@@ -344,12 +344,17 @@ function handleLoginResponse(response)
 	{
 //		jAlert("Login Successfull", "Alert Message");
 		var custName = response.firstName;
-		setLoginDropDown(custName);
+		$("#myAcc").show();
+		$("#loginDialogLink").hide();
+		$( "#crossClose" ).trigger( "click" );
+		
+		
+//		setLoginDropDown(custName);
 	}
 
 }
 
-function setLoginDropDown(custName)
+/*function setLoginDropDown(custName)
 {
 
 	$("#myAccount").attr('data-target', '');
@@ -369,4 +374,4 @@ function setLoginDropDown(custName)
 		+ '</li></ul>';
 
 	$("#crossClose").trigger("click");
-}
+}*/

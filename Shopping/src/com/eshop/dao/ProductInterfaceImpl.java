@@ -439,14 +439,14 @@ public class ProductInterfaceImpl implements ProductInterface
 						if (userType != null && userType.trim().equalsIgnoreCase("customer"))
 						{
 							emailExist = "select email from customers";
-							sqlInsert = "insert into customers(email,phone,password,first_name) values(?,?,?,?)";
+							sqlInsert = "insert into customers(email,phone,password) values(?,?,?)";
 							user = "customers";
 						}
 
 						if (userType != null && userType.trim().equalsIgnoreCase("supplier"))
 						{
 							emailExist = "select email from suppliers";
-							sqlInsert = "insert into suppliers(email,phone,password,first_name) values(?,?,?,?)";
+							sqlInsert = "insert into suppliers(email,phone,password) values(?,?,?)";
 							user = "suppliers";
 						}
 
@@ -472,7 +472,7 @@ public class ProductInterfaceImpl implements ProductInterface
 							// ps.setString(2, usernameSignUp);
 							ps.setString(2, (String) object.get("mobileKey"));
 							ps.setString(3, (String) object.get("passSignUp"));
-							ps.setString(4, (String) object.get("firstNameSignUp"));
+//							ps.setString(4, (String) object.get("firstNameSignUp"));
 
 							try
 							{
