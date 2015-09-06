@@ -11,15 +11,16 @@
 	<!-- Main Page -->
 	<div class="container main-1">
 		<div class="row row-1">
-			<div class="col-md-2 hidden-xs col-cat ">
-				<!-- <div class="container"> -->
-				<div id="categorybox" class="list-group side-bar" style="width: 223px; margin-left: -69px; margin-top: 20px;">
-
-				</div>
-			</div>
+			<div class="col-md-3 hidden-xs col-cat">
+       		<div id="MainMenu">
+        		<div class="list-group panel devaCategoryAlign" style='background-color: black;' id="categorybox">
+        
+    			</div>
+  			</div>
+			</div><!--/col-md-3-->
 			<!-- </div>     -->
 
-			<div class="col-md-10 col-sm-9 ">
+			<div class="col-md-9 col-sm-9 ">
 				<!-- Slider -->
 
 				<br>

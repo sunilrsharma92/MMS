@@ -1,4 +1,4 @@
-package com.eshop.dao;
+package com.eshop.database.utility;
 
 import java.net.InetAddress;
 import java.net.NetworkInterface;

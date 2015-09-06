@@ -88,6 +88,7 @@
 				<li class="dropdown pull-right">
 					<a data-target="#" id="myAcc" href="page.html" data-toggle="dropdown"
 						class="dropdown-toggle whiteLabelLink" style="display:none;">My Account <b class="caret"></b></a>
+						class="dropdown-toggle whiteLabelLink" style=" padding: 8px;">My Account <b class="caret"></b></a>
 					<ul class="dropdown-menu">
 						<li><a href="#" id="profileLink">Profile</a></li>
 						<li><a href="#">Recent Orders</a></li>
@@ -199,7 +200,7 @@
 					<span class="icon-bar"></span> 
 					<span class="icon-bar"></span>
 				</button>
-				<button type="button" class="navbar-toggle" data-toggle="modal"	data-target=".cartmodal">
+				<button type="button" class="navbar-toggle getCartProduct" data-toggle="modal"	data-target=".cartmodal">
 					<span class="glyphicon glyphicon-shopping-cart"></span> 
 					<span class="badge"><label	id="productCountOnCart" class="productCountOnCart" style="margin: auto;">0</label></span>
 				</button>
@@ -275,7 +276,7 @@
 			</ul>
 			<div class="nav navbar-nav navbar-right hidden-xs">
 				<div class="dropdown  cartMenu ">
-					<button id="getCartProduct" type="button" class=" pull-right btn btn-primary" style="border:none;" data-toggle="modal" data-target=".cartmodal" style="margin-right: -11px;">
+					<button id="getCartProduct" type="button" class="pull-right btn btn-primary getCartProduct" style="border:none;" data-toggle="modal" data-target=".cartmodal" style="margin-right: -11px;">
 						<span class="glyphicon glyphicon-shopping-cart"></span> 
 						<span class="hidden-xs">CART</span> 
 						<span class="badge"><label id="productCountOnCart1" class="productCountOnCart" style="margin: auto;">0</label></span>
