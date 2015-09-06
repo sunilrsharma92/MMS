@@ -8,8 +8,7 @@ function handleAllListResponse(jsonMsg)
 	{
 		callServlet(jsonMsg, function(strJsonResponse)
 		{
-
-			if(strJsonResponse != null)
+			if(strJsonResponse != null && strJsonResponse.length >10)
 			{
 				var response = JSON.parse(strJsonResponse);
 				var command = response.command;
@@ -19,6 +18,7 @@ function handleAllListResponse(jsonMsg)
 			}
 			else
 			{
+				$(".overlay").show().delay(100).fadeOut();
 	        		jAlert("Response is blank", "Message");
 			}
 
@@ -110,7 +110,7 @@ function listResponseHandler(response, command, status)
 
 					case 1052:
 //						alert("10");
-						handleSignUpCustResponse(response);
+						handleSignUpResponse(response);
 						break
 				}
 				break;
@@ -119,7 +119,7 @@ function listResponseHandler(response, command, status)
 				switch (command)
 				{
 					case 1052:
-						handleSignUpCustResponse(response);
+						handleSignUpResponse(response);
 						break
 				}
 				break;
@@ -128,7 +128,7 @@ function listResponseHandler(response, command, status)
 				switch (command)
 				{
 					case 1052:
-						handleSignUpCustResponse(response);
+						handleSignUpResponse(response);
 						break
 				}
 				break;

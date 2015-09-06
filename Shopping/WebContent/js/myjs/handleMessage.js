@@ -316,6 +316,7 @@ function handleForgetPasswordResponse(response)
 
 function handleLoginResponse(response)
 {
+	
 	$(".overlay").show().delay(100).fadeOut();
 	var action = response.status;
 

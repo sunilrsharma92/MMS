@@ -31,6 +31,9 @@
 //	         $("#menubar").toggle();
 	        $("#menubar").toggle();
 	        $("#searching").toggle();
+	        $("#search").val("");
+	        $("#search").show();
+			$("#search").focus();
 	        
 	    });
 //	     $("#removesearch").click(function(){
@@ -205,7 +208,7 @@
 				</button>
 				<div class="search-box pull-right hidden-lg hidden-md hidden-sm">
 					<div class="input-group">
-						<button class="btn btn-nobg getFullSearch changeview" type="button">
+						<button class="btn btn-nobg getFullSearch changeview" id="searchfocus" type="button">
 							<span class="glyphicon glyphicon-search"> </span>
 						</button>
 					</div>
@@ -292,7 +295,7 @@
 		<div class="container">
 			<div id="searching" style="display: none;">
 
-				<input type="text" id="search" onkeyup="searchProduct()" class="whiteLabel" name="search" placeholder="Search the item here">
+				<input type="text" id="search" onkeyup="searchProduct()" class="whiteLabel" style="text-align: center;" name="search" placeholder="Search the item here">
 				<button class="insearch" type="submit">
 					<span class="glyphicon glyphicon-search"></span>
 				</button>

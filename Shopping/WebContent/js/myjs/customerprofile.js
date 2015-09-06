@@ -13,7 +13,7 @@ $(document).ready(function(){
 	
 	if(userType == "supplier")
 		{
-			alert("PPP userType : "+userType);
+//			alert("PPP userType : "+userType);
 			$("#custOrderPanel").hide(); // -- not needed for shopkeeper
 //			document.getElementById("custOrderPanel").style.display = "none"; // -- not needed for shopkeeper
 			
