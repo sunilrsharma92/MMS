@@ -24,7 +24,7 @@
    </div>
 
  </div><!-- end of col-2 -->
- <div class = "col-md-10">
+ <div id="dashboard" class = "col-md-10">
 
    <!-- Slider -->
 

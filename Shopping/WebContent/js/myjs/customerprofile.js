@@ -13,9 +13,8 @@ $(document).ready(function(){
 	
 	if(userType == "supplier")
 		{
-			alert("PPP userType : "+userType);
+//			alert("PPP userType : "+userType);
 			$("#custOrderPanel").hide(); // -- not needed for shopkeeper
-//			document.getElementById("custOrderPanel").style.display = "none"; // -- not needed for shopkeeper
 			
 		}
 });
@@ -28,20 +27,18 @@ function loadProfileMenu(id)
 	$("#loadpagecontent").load(idofpage+".jsp");
 	
 	
-//	$("#custOrderPanel").hide(); // -- not needed for shopkeeper
-	document.getElementById("custOrderPanel").style.display = "none"; 
+	$("#dashboard").hide(); // -- hide dashboard after profile click,to avoid mixture of profile and dashboard 
 	
-
-		if (idofpage == "personalDetails" || idofpage == "addresses")
-		{
+	if (idofpage == "personalDetails" || idofpage == "addresses")
+	{
 		var loginData = $.session.get('loginData');
-//		alert("loginData   "+JSON.stringify(loginData));
+	//		alert("loginData   "+JSON.stringify(loginData));
 		var userType = $.session.get('userType');
-
+	
 		if (loginData != null)
 		{
 			var sessionData = JSON.parse(loginData);
-
+	
 			if (userType == "customer")
 			{
 				if (idofpage == "personalDetails")
@@ -70,18 +67,18 @@ function loadProfileMenu(id)
 					$("#custAddress1").val(address);
 					$("#custAddress2").val(address2);
 					$("#streetName").val(street);
-//					document.getElementById("custState").innerHTML = '<option selected>'+state+'</option>';
+	//					document.getElementById("custState").innerHTML = '<option selected>'+state+'</option>';
 					$("#custCity").val(city);
 					$("#custPincode").val(pincode);
 				}
 				
 			}
-
+	
 			if (userType == "supplier")
 			{
 				
 			}
 		}
 
-	}
+}
 }

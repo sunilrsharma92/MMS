@@ -11,7 +11,7 @@
 <body>
 
 	<!-- start of top -->
-	<div class = "container" style = "background-color: #3EAFAF;">
+	<div class = "container-fluid" style = "background-color: #3EAFAF; margin-top:-15px; margin-bottom:15px;">
 		<div class = "row row1">
 			<div class = "col-md-3 col-sm-6 col-xs-12 prof">
 				<img class = "img-responsive" src = "Images/profileImg.jpg">
