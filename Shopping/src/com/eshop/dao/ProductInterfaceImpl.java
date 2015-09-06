@@ -648,7 +648,9 @@ public class ProductInterfaceImpl implements ProductInterface
 				case 1055: // -- Save Customer/Shopkeepers Details //
 					try
 					{
-						Long custPincode = 0L;
+						Long pincode = 0L;
+						Long key = 0L;
+						String sql = null;
 						JSONObject object = (JSONObject) JSONValue.parse(jsonMsg);
 
 						// String usernameCust = (String)
@@ -664,11 +666,18 @@ public class ProductInterfaceImpl implements ProductInterface
 						String street = (String) object.get("street");
 						String userType = (String) object.get("userType");
 
-						if (object.get("custPincode") != null)
-							custPincode = (Long) object.get("custPincode");
-
-						String sql = "update customers set ";
-
+						if (object.get("pincode") != null)
+							pincode = (Long) object.get("pincode");
+						
+						if (object.get("key") != null)
+							key = (Long) object.get("key");
+						
+						if(userType != null && userType.trim().equalsIgnoreCase("customer"))
+							sql = "update customers set ";
+						
+						else if(userType != null && userType.trim().equalsIgnoreCase("supplier"))
+							sql = "update suppliers set ";
+						
 						if (firstName != null && !firstName.trim().isEmpty())
 							sql += " first_name = '" + firstName + "' ";
 
@@ -678,8 +687,8 @@ public class ProductInterfaceImpl implements ProductInterface
 						if (mobileNo != null && !mobileNo.trim().isEmpty())
 							sql += " ,phone = '" + mobileNo + "' ";
 
-						if (email != null && !email.trim().isEmpty())
-							sql += " ,email = '" + email + "' ";
+//						if (email != null && !email.trim().isEmpty())
+//							sql += " ,email = '" + email + "' ";
 
 						if (firstName != null && !firstName.trim().isEmpty()) // --
 																				// Personal
@@ -707,13 +716,23 @@ public class ProductInterfaceImpl implements ProductInterface
 						if (street != null && !street.trim().isEmpty())
 							sql += " ,street = '" + street + "' ";
 
-						if (custPincode != 0)
-							sql += " ,postal_code = " + custPincode + " ";
-
-						sql += "where customer_key = ?";
+						if (pincode != 0)
+							sql += " ,postal_code = " + pincode + " ";
+						
+						if(userType != null && key != null && userType.trim().equalsIgnoreCase("customer"))
+							sql += "where customer_key = ?";
+						
+						else if(userType != null  && key != null && userType.trim().equalsIgnoreCase("supplier"))
+							sql += "where supplier_key = ?";
+						
+						if (email != null && !email.trim().isEmpty())
+							sql += " and email = ? ";
 
 						ps = conn.prepareStatement(sql);
-						ps.setInt(1, 6);
+						ps.setLong(1, key);
+						if (email != null && !email.trim().isEmpty())
+							ps.setString(2, email);
+						
 						result = ps.executeUpdate();
 
 						if (result > 0)

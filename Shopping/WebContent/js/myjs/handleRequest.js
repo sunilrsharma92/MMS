@@ -59,7 +59,7 @@ function handleRequest()
 		}
 	}
 
-	function handleUserDetailsSave(firstName, lastName, mobileNo, email, address1, address2, state, city, street, pincode) {
+	function handleUserDetailsSave(firstName, lastName, mobileNo, email, address1, address2, state, city, street, pincode, userType, key) {
 	try
 		{
 			var strUserDetails = {};
@@ -73,6 +73,8 @@ function handleRequest()
 			strUserDetails.city = city;
 			strUserDetails.street = street;
 			strUserDetails.pincode = parseInt(pincode);
+			strUserDetails.userType = userType;
+			strUserDetails.key = +key;
 			strUserDetails.command = 1055;
 
 			var strjsonMsgForUserDetails = JSON.stringify(strUserDetails);

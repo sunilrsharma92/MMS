@@ -273,6 +273,31 @@ $("#signup").click(function(){
 
 //*************************** Document ready function ends here ***********************************
 
+/*function getDataFromSession(requestedValue)
+{
+	var data = requestedValue;
+	console.log("requestedValue : "+requestedValue);
+	var loginData = $.session.get('loginData');
+	var sessionData = JSON.parse(loginData);
+	
+	var responseVal = sessionData.data;
+	
+	console.log("getDataFromSession responseVal : " + responseVal);
+	return responseVal;
+}
+
+function getIntDataFromSession(requestedValue)
+{
+	console.log("requestedValue1 : "+requestedValue);
+	var loginData = $.session.get('loginData');
+	var sessionData = JSON.parse(loginData);
+	
+	var responseVal = sessionData.requestedValue;
+	var email = sessionData.emailId;
+	console.log("getIntDataFromSession responseVal : " + responseVal + "  email : " + email);
+	return responseVal;
+}*/
+
 function loadPage(id)
 {
 	var vid = $(id).attr("id");
@@ -325,22 +350,33 @@ function saveUserDetails()
 {
 
 	document.getElementById("action").value = "edit";
-	var firstName = $("#firstName").val();
-	var lastName = $("#lastName").val();
-	var mobileNo = $("#mobileNo").val();
-	var email = $("#email").val();
-	var address1 = $("#address1").val();
-	var address2 = $("#address2").val();
-	var state = $("#state").val();
-	var street = $("#street").val();
-	var city = $("#city").val();
-	var pincode = $("#pincode").val();
-//	var 
+	var firstName = $("#firstNameSave").val();
+	var lastName = $("#lastNameSave").val();
+	var mobileNo = $("#mobileNoSave").val();
+//	var sessionEmail = $("#emailSave").val();
+	var address1 = $("#address1Save").val();
+	var address2 = $("#address2Save").val();
+	var state = $("#stateSave").val();
+	var street = $("#streetSave").val();
+	var city = $("#citySave").val();
+	var pincode = $("#pincodeSave").val();
+	var userType = $.session.get('userType'); 
+	
+	/*var email = getDataFromSession("emailId");
+	var key = getIntDataFromSession("key");*/
+	
+	var loginData = $.session.get('loginData');
+	var sessionData = JSON.parse(loginData);
+	
+	var email = sessionData.emailId;
+	var key = sessionData.key;
+	
 	
 	console.log("firstName : " + firstName + "  lastName : " + lastName + "  mobileNo : " + mobileNo +"  email : "+email+"" +
-			"  address1 : "+address1+"  address2 : "+address2 +"  state : "+state +"  city : "+city +"  street : "+street +"  pincode : "+pincode  );
+			"  address1 : "+address1+"  address2 : "+address2 +"  state : "+state +"  city : "+city +"  street : "+street +"  pincode : "+pincode+" userType :"+userType 
+			+" key "+key);
 
-objhandleRequest.handleUserDetailsSave(firstName, lastName, mobileNo, email, address1, address2, state, city, street, pincode);
+objhandleRequest.handleUserDetailsSave(firstName, lastName, mobileNo, email, address1, address2, state, city, street, pincode, userType, key);
 
 }
 
