@@ -16,16 +16,18 @@
 			<!-- Start of row -->
 			<div class="row">
 				<div class="col-md-3">
-					<h3><span class="label label-default"> MY ACCOUNT</span></h3>
-					<hr class="large">
-					<div class=""  style="margin-bottom:10px"; >
-					<img src="https://lh3.googleusercontent.com/riyn5OOpMRzhiuI5Mnz-mCwUoP_dgW-9Vg87sfXzOEXo=s512-no" class="img-circle" style="width:50%; background-color:whitesmoke;"> 
-				</div>
-					<div class="strong"><span class="glyphicon glyphicon-list-alt"></span> Orders</div>
-
-					<div class="list-group side-bar">
-						<a href="#" id="orders" class="list-group-item" onclick="loadPage(this)">My orders</a>
+					<div id="custOrderPanel">
+						<h3><span class="label label-default"> MY ACCOUNT</span></h3>
 						<hr class="large">
+						<div class=""  style="margin-bottom:10px"; >
+						<img src="https://lh3.googleusercontent.com/riyn5OOpMRzhiuI5Mnz-mCwUoP_dgW-9Vg87sfXzOEXo=s512-no" class="img-circle" style="width:50%; background-color:whitesmoke;"> 
+						</div>
+						<div class="strong"><span class="glyphicon glyphicon-list-alt"></span> Orders</div>
+	
+						<div class="list-group side-bar">
+							<a href="#" id="orders" class="list-group-item" onclick="loadPage(this)">My orders</a>
+							<hr class="large">
+						</div>
 					</div>
 					<div class="strong">
 						<span class="glyphicon glyphicon-user"></span> Profile

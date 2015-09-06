@@ -2,11 +2,34 @@
  * 
  */
 
+
+$(document).ready(function(){
+	
+	var userType = $.session.get('userType');
+	if(userType == "customer")
+		{
+			$("#custOrderPanel").show(); // -- not needed for shopkeeper
+		}
+	
+	if(userType == "supplier")
+		{
+			alert("PPP userType : "+userType);
+			$("#custOrderPanel").hide(); // -- not needed for shopkeeper
+//			document.getElementById("custOrderPanel").style.display = "none"; // -- not needed for shopkeeper
+			
+		}
+});
+
+
+
 function loadProfileMenu(id)
 {
 	var idofpage = $(id).attr("id");
 	$("#loadpagecontent").load(idofpage+".jsp");
 	
+	
+//	$("#custOrderPanel").hide(); // -- not needed for shopkeeper
+	document.getElementById("custOrderPanel").style.display = "none"; 
 	
 
 		if (idofpage == "personalDetails" || idofpage == "addresses")

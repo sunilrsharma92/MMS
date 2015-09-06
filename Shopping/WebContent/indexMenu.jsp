@@ -86,18 +86,18 @@
 				<!-- ***********************************end of Modal*********************************** -->
 
 				<li class="dropdown pull-right">
-					<a data-target="#" href="page.html" data-toggle="dropdown"
-						class="dropdown-toggle whiteLabelLink">My Account <b class="caret"></b></a>
+					<a data-target="#" id="myAcc" href="page.html" data-toggle="dropdown"
+						class="dropdown-toggle whiteLabelLink" style="display:none;">My Account <b class="caret"></b></a>
 					<ul class="dropdown-menu">
-						<li><a href="#">Profile</a></li>
+						<li><a href="#" id="profileLink">Profile</a></li>
 						<li><a href="#">Recent Orders</a></li>
 						<li><a href="#">Favorite Shop</a></li>
 						<li class="divider"></li>
-						<li><a href="#">Logout</a></li>
+						<li><a href="#" id="logoutLink">Logout</a></li>
 					</ul>
 				</li>
 
-				<a href="#" data-toggle="modal" data-target="#LoginModal" id="myAccount" class="whiteLabelLink pull-right"> 
+				<a href="#" data-toggle="modal" data-target="#LoginModal" id="loginDialogLink" class="whiteLabelLink pull-right"> 
 						<span class="glyphicon glyphicon-user" style="margin-right: 4px;"></span>
 						<label id="loginlabel">Login</label>
 					</a> <!-- Modal -->
@@ -134,14 +134,10 @@
 										<div id="home" class="tab-pane fade in active">
 											<h3 class="font">Login:</h3>
 											<form class="login-val">
-												<input class="textbox font" type="text" id="emailLogin"
-													name="email" placeholder="Enter Email Id"></br> <input
-													class="textbox font" type="password" id="passLoginTemp"
-													name="password" placeholder="Enter Password"></br> <input
-													class="textbox font" type="text" id="otpLogin"
-													placeholder="OTP" style="display: none"></br> <input
-													type="button" class="btn btn-primary" id="userlogin"
-													value="Login" />
+												<input class="textbox font" type="text" id="emailLogin"	name="email" placeholder="Enter Email Id"></br>
+												 <input	class="textbox font" type="password" id="passLoginTemp"	name="password" placeholder="Enter Password"></br> 
+												<input class="textbox font" type="text" id="otpLogin" placeholder="OTP" style="display: none"></br>
+												 <input	type="button" class="btn btn-primary" id="userlogin" value="Login" />
 												<!-- 												<button onclick="login()" class="btn btn-primary" type="button">Login</button> -->
 											</form>
 										</div>
@@ -153,7 +149,6 @@
 											<!-- 						</br> -->
 											<form class="signup-val">
 												
-												<input class="textbox font" type="text" name="firstName" id="firstNameSignUp" placeholder="Enter First Name"></br> 
 													<input class="textbox font" type="text" name="email" id="emailSignUp" placeholder="Enter Email id"></br> 
 													<input class="textbox font" type="text" name="mobile" id="mobile" placeholder="Enter Mobile No"></br> 
 													<input class="textbox font" type="password" name="password" id="passSignUp" placeholder="Enter Password"></br> 

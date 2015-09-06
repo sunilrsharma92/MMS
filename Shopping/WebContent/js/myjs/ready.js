@@ -26,26 +26,32 @@ $(document).ready(function(){
 	
 	$('#userType').jqxSwitchButton({ height: 27, width: 81, checked: true });
 	
-	// -- check session to put login drop down
+//	 -- check session to put login drop down
 	var loginData = $.session.get('loginData');
-	var userType = $.session.get('userType');
+//	var userType = $.session.get('userType');
 
 	if(loginData != null)
 	{
+		// -- makes myAcc visible is session is present
+		$("#myAcc").show();
+		$("#loginDialogLink").hide();
+		
 		var sessionData = JSON.parse(loginData);
 		
-		if(userType == "customer")
-			var name = sessionData.custFirstName;
+		/*if(userType == "customer")
+			var name = sessionData.custFirstName;*/
 		
 		if(userType == "supplier")
-			var name = sessionData.supplierFirstName;
+		{
+			$("#custOrderPanel").hide(); // -- not needed for shopkeeper
+		}
 		
-		setLoginDropDown(name);
+//		setLoginDropDown(name);
 	}
 	else
 	{
-		$("#myAccount").attr('data-target','#LoginModal');
-		document.getElementById("loginlabel").innerHTML ="Login";
+//		$("#myAccount").attr('data-target','#LoginModal'); // -- not useful,since #myAcc is shown and #login is hided
+//		document.getElementById("loginlabel").innerHTML ="Login";
 	}
 	// -- check session to put login drop down
 	
@@ -63,10 +69,14 @@ $(document).ready(function(){
 //		alert("profileLink");
 		var userType = $.session.get('userType');
 		if(userType == "customer")
-			$("#loadpage").load("customerProfile.jsp");
+			{
+				$("#loadpage").load("customerProfile.jsp");
+			}
 		
 		if(userType == "supplier")
-			$("#loadpage").load("shopProfile.jsp");
+			{
+				$("#loadpage").load("shopProfile.jsp");
+			}
 		
 	});
 
@@ -226,7 +236,7 @@ $("#signup").click(function(){
 //	alert("SignUp");
 	
 	var passSignUp = $('#passSignUp').val();
-	var firstNameSignUp = $('#firstNameSignUp').val();
+//	var firstNameSignUp = $('#firstNameSignUp').val();
 	var mobileKey = $('#mobile').val();
 	var emailKey = $('#emailSignUp').val();
 	var userType = $("#userType").val();
@@ -239,15 +249,16 @@ $("#signup").click(function(){
 	{
 		userType = "supplier";
 	}
-	console.log("passSignUp" + passSignUp + "firstNameSignUp" +firstNameSignUp+ "mobileKey" + mobileKey	+ "emailKey" + emailKey + "userType" + userType);
+//	console.log("passSignUp" + passSignUp + "firstNameSignUp" +firstNameSignUp+ "mobileKey" + mobileKey	+ "emailKey" + emailKey + "userType" + userType);
+	console.log("passSignUp" + passSignUp +"mobileKey" + mobileKey	+ "emailKey" + emailKey + "userType" + userType);
 	
 //	return false;
 	var result = jConfirm("Are you sure you want to register as "+userType,"Make My Shopy",function(e)
 	{
 		if(e)
 		{
-						$(".overlay").show();
-			objhandleRequest.handleRegisteration(passSignUp, firstNameSignUp, mobileKey, emailKey, userType);
+			$(".overlay").show();
+			objhandleRequest.handleRegisteration(passSignUp, mobileKey, emailKey, userType);
 			return true;
 		}
 		else

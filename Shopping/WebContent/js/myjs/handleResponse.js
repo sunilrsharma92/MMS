@@ -64,11 +64,11 @@ function listResponseHandler(response, command, status)
 						break;
 
 					case 2051:
-				handleLoginResponse(response);
+						handleLoginResponse(response);
 						break;
 
 					case 2052:
-				handleSignUpResponse(response);
+						handleSignUpResponse(response);
 						break;
 
 					case 2054:
@@ -90,11 +90,13 @@ function listResponseHandler(response, command, status)
 						break;
 
 					case 1051:
-						handleLoginCustResponse(response);
+						handleLoginResponse(response);
 						break;
+						
 					case 1052:
-						handleSignUpCustResponse(response);
+						handleSignUpResponse(response);
 						break;
+						
 					case 1054:
 						handleForgetPasswordResponse(response);
 						break;
