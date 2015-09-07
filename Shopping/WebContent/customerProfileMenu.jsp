@@ -16,7 +16,7 @@
 			<!-- Start of row -->
 			<div class="row">
 				<div class="col-md-3">
-					<div id="custOrderPanel">
+					<div id="custOrderPanel" style="display: none;">
 						<h3><span class="label label-default"> MY ACCOUNT</span></h3>
 						<hr class="large">
 						<div class=""  style="margin-bottom:10px"; >

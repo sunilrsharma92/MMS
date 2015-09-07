@@ -361,7 +361,7 @@ public class ProductInterfaceImpl implements ProductInterface
 						{
 							if (parentjson.get("active") != null && parentjson.get("active").toString().equalsIgnoreCase("0"))
 							{
-								if (otpLogin != null && otpLogin.trim().equalsIgnoreCase((String) parentjson.get("otp")))
+								if (otpLogin != null && otpLogin.trim().equals((String) parentjson.get("otp")))
 								{
 
 									if (password != null && parentjson.get("password") != null && password.trim().equals(parentjson.get("password")))
@@ -383,13 +383,18 @@ public class ProductInterfaceImpl implements ProductInterface
 									else
 									// -- password
 									{
+										parentjson = new JSONObject();
 										parentjson = CommonMethodImpl.putFailedJson(parentjson, command);
+										parentjson.put("statusdesc", "Login Failed, Incorrect username or password.");
 									}
 								}
 								else
 								// -- otp
 								{
-									parentjson = CommonMethodImpl.putFailedJson(parentjson, command);
+//									parentjson = CommonMethodImpl.putFailedJson(parentjson, command);
+									parentjson.put("status", 10);// email already exist
+									parentjson.put("statusdesc", "In valid OTP. Please check your mail for the valid OTP");
+									parentjson.put("command", command);
 								}
 							}
 							else
@@ -407,7 +412,9 @@ public class ProductInterfaceImpl implements ProductInterface
 							}
 							else
 							{
+								parentjson = new JSONObject();
 								parentjson = CommonMethodImpl.putFailedJson(parentjson, command);
+								parentjson.put("statusdesc", "Login Failed, Incorrect username or password.");
 							}
 						}
 

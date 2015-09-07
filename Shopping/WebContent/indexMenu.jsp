@@ -126,9 +126,8 @@
 									<!-- Loading img -->
 
 									<ul class="nav nav-tabs">
-										<li class="active"><a class="font" data-toggle="tab"
-											href="#home">Login</a></li>
-										<li><a class="font" data-toggle="tab" href="#menu1">Sign up</a></li>
+										<li class="active"><a id="logintab" class="font" data-toggle="tab" href="#home">Login</a></li>
+										<li><a class="font" id="signuptab" data-toggle="tab" href="#menu1">Sign up</a></li>
 										
 										<li><a class="font" data-toggle="tab" href="#menu2">Forgot</a></li>
 <!-- 										<div id="userType" class="whiteLabelLink" style="float: left;"></div> -->
@@ -141,7 +140,7 @@
 												<input class="textbox font" type="text" id="emailLogin"	name="email" placeholder="Enter Email Id"></br>
 												 <input	class="textbox font" type="password" id="passLoginTemp"	name="password" placeholder="Enter Password"></br> 
 												<input class="textbox font" type="text" id="otpLogin" placeholder="OTP" style="display: none"></br>
-												 <input	type="button" class="btn btn-primary" id="userlogin" value="Login" />
+												 <input	type="button" class="btn btn-primary btn_width_93_perc" id="userlogin" value="Login" />
 												<!-- 												<button onclick="login()" class="btn btn-primary" type="button">Login</button> -->
 											</form>
 										</div>
@@ -159,17 +158,14 @@
 													<input class="textbox font" type="password" name="password2" id="repass" placeholder="ReEnter Password"></br>
 												<div class="g-recaptcha" name="captcha" data-sitekey="6LfaxwsTAAAAAEB5RYVVeSFM3AyHzAHb3YvgtGvx"></div>
 												<div id="warnings"></div>
-												<input type="button" class="btn btn-primary" id="signup"
-													value="Sign Up" />
+												<input type="button" class="btn btn-primary btn_width_93_percF" id="signup" value="Sign Up" />
 											</form>
 										</div>
 										<div id="menu2" class="tab-pane fade">
 											<h3 class="font">Forgot Password:</h3>
 											<form class="forgot-val"style="text-align: center;">
-												<input class="textbox font" type="text" name="email"
-													id="emailForgotPwd" placeholder="Enter Email id"></br>
-												<button onclick="forgotPwd()" class="btn btn-primary"
-													type="button">Submit</button>
+												<input class="textbox font" type="text" name="email" id="emailForgotPwd" placeholder="Enter Email id"></br>
+												<button onclick="forgotPwd()" class="btn btn-primary btn_width_93_perc" type="button">Submit</button>
 											</form>
 										</div>
 									</div>
@@ -272,7 +268,7 @@
 
 
 			<ul class="nav navbar-nav navbar-left collapse navbar-collapse">
-				<li><a href="" active="active">HOME</a></li>
+				<li><a href="" id="indexBody" active="active" onclick="loadPage(this);">HOME</a></li>
 				<li><a href="">Page2</a></li>
 				<li><a href="">Page3</a></li>
 				<li><a href="">Page4</a></li>

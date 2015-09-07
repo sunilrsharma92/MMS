@@ -86,7 +86,21 @@ function listResponseHandler(response, command, status)
 					case 1005:
 						$("#appendProducttoCart").empty();
 						$("#productCountOnCart").empty();
+						
+						$("#monylabel").empty();
+						$("#prodCount").empty();
+						$("#appendProducttoCheckoutCart").empty();
+						$("#totalpurchaseOnCheckout").empty();
+						
+						$("#monylabel").append("0");
+						$("#prodCount").append("0");
+						$("#totalpurchase").append('<span class="tlbprce">Total Price :</span>' + '<span class="totalprize"><strong> Rs 0.00</strong> </span>');
+						$("#totalpurchaseOnCheckout").append('<span class="tlbprce">Total Price :</span>' + '<span class="totalprize"><strong> Rs 0.00</strong> </span>');
+						
 						document.getElementById("productCountOnCart").innerHTML = "0";
+						
+						
+						
 						break;
 
 					case 1051:
@@ -112,6 +126,11 @@ function listResponseHandler(response, command, status)
 //						alert("10");
 						handleSignUpResponse(response);
 						break
+						
+					case 1051:
+						handleLoginResponse(response);
+						break;
+						
 				}
 				break;
 
