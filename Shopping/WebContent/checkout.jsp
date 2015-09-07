@@ -29,8 +29,8 @@
 				</div>
 				<div id="collapseOne" class="panel-collapse collapse in">
 					<div class="panel-body">
-						<button class="btn btn-primary" type="button">Sign In</button>
-						<button class="btn btn-primary" type="button">Sign Up</button>
+						<button class="btn btn-primary" type="button" id="acordionsignin">Sign In</button>
+						<button class="btn btn-primary" type="button" id="acordionsignup">Sign Up</button>
 						<a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" class="btn btn-primary pull-right">Next</a>
 					</div>
 				</div>

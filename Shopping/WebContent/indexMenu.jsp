@@ -106,7 +106,7 @@
 					</a> <!-- Modal -->
 					
 					<div class="modal fade" id="LoginModal" role="dialog">
-						<div class="modal-dialog">
+						<div class="modal-dialog modal-sm">
 							<!-- Modal content-->
 							<div class="modal-content">
 								<div class="modal-header">
@@ -114,6 +114,7 @@
 										data-dismiss="modal">&times;</button>
 									<h4 class="modal-title">
 										<strong> Login</strong>
+										<div id="userType" class="whiteLabelLink pull-right" style="margin-right:15px;"></div>
 									</h4>
 								</div>
 								<div class="modal-body">
@@ -129,14 +130,14 @@
 											href="#home">Login</a></li>
 										<li><a class="font" data-toggle="tab" href="#menu1">Sign up</a></li>
 										
-										<li><a class="font" data-toggle="tab" href="#menu2">Forgot password</a></li>
-										<div id="userType" class="whiteLabelLink" style="float: left;"></div>
+										<li><a class="font" data-toggle="tab" href="#menu2">Forgot</a></li>
+<!-- 										<div id="userType" class="whiteLabelLink" style="float: left;"></div> -->
 									</ul>
 
 									<div class="tab-content">
 										<div id="home" class="tab-pane fade in active">
 											<h3 class="font">Login:</h3>
-											<form class="login-val">
+											<form class="login-val" style="text-align: center;">
 												<input class="textbox font" type="text" id="emailLogin"	name="email" placeholder="Enter Email Id"></br>
 												 <input	class="textbox font" type="password" id="passLoginTemp"	name="password" placeholder="Enter Password"></br> 
 												<input class="textbox font" type="text" id="otpLogin" placeholder="OTP" style="display: none"></br>
@@ -150,7 +151,7 @@
 
 											<!-- 						<label for="cmn-toggle-1"></label> <label class="font" style="float: left;"><h4>Shoper</h4></label> -->
 											<!-- 						</br> -->
-											<form class="signup-val">
+											<form class="signup-val" style="text-align: center;">
 												
 													<input class="textbox font" type="text" name="email" id="emailSignUp" placeholder="Enter Email id"></br> 
 													<input class="textbox font" type="text" name="mobile" id="mobile" placeholder="Enter Mobile No"></br> 
@@ -164,7 +165,7 @@
 										</div>
 										<div id="menu2" class="tab-pane fade">
 											<h3 class="font">Forgot Password:</h3>
-											<form class="forgot-val">
+											<form class="forgot-val"style="text-align: center;">
 												<input class="textbox font" type="text" name="email"
 													id="emailForgotPwd" placeholder="Enter Email id"></br>
 												<button onclick="forgotPwd()" class="btn btn-primary"
@@ -295,7 +296,7 @@
 		<div class="container">
 			<div id="searching" style="display: none;">
 
-				<input type="text" id="search" onkeyup="searchProduct()" class="whiteLabel" style="text-align: center;" name="search" placeholder="Search the item here">
+				<input type="text" id="search" onkeyup="searchProduct()" class="whiteLabel" style="text-align: center; outline: 0;" name="search" placeholder="Search the item here">
 				<button class="insearch" type="submit">
 					<span class="glyphicon glyphicon-search"></span>
 				</button>
