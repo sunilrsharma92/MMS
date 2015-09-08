@@ -5,6 +5,15 @@
 
 $(document).ready(function(){
 	
+	var contentState = $.session.get('contentState');
+	if(contentState !=null && contentState !="")
+		{
+			$("#dashboard").hide();
+			$("#loadpagecontent").load(contentState+".jsp");
+		}
+	
+	
+	
 	var userType = $.session.get('userType');
 	if(userType == "customer")
 		{
@@ -25,7 +34,7 @@ function loadProfileMenu(id)
 {
 	var idofpage = $(id).attr("id");
 	$("#loadpagecontent").load(idofpage+".jsp");
-	
+	$.session.set('contentState', idofpage);
 	
 	$("#dashboard").hide(); // -- hide dashboard after profile click,to avoid mixture of profile and dashboard 
 	

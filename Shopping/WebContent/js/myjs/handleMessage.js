@@ -215,6 +215,7 @@ function handleProductDisplayinCartResponse(response)
 		var productList = "";
 		var totalpurchase = "";
 		var total = 0;
+		var count = 0;
 		var product = response.product;
 		if(product == "")
 		{
@@ -222,7 +223,7 @@ function handleProductDisplayinCartResponse(response)
 		}
 		for ( var i in product)
 		{
-
+			count++;
 			var productid = product[i].productid;
 			var price = product[i].price;
 			var stock = product[i].stock;
@@ -251,7 +252,15 @@ function handleProductDisplayinCartResponse(response)
 
 		$("#totalpurchase").empty();
 		$("#totalpurchase").append(totalpurchase);
-
+		
+		var checkout = $.session.get('checkout');
+		if(checkout !=null && checkout !=="" && checkout == "checkout")
+			{
+			
+				appendProducttoCheckoutTable(productList, totalpurchase, total, count);
+				$.session.remove('checkout');
+			}
+		
 	}
 	catch (e)
 	{
@@ -319,6 +328,7 @@ function handleLoginResponse(response)
 	
 	$(".overlay").show().delay(100).fadeOut();
 	var action = response.status;
+	var statusdesc = response.statusdesc;
 
 	var userType = response.userType;
 //	alert(response.userType);
@@ -339,15 +349,17 @@ function handleLoginResponse(response)
 
 	if(action != 3)
 	{
-		jAlert("Login Failed, Incorrect username or password.", "Alert Message");
+		jAlert(statusdesc, "Alert Message");
 	}
 	else
 	{
 //		jAlert("Login Successfull", "Alert Message");
+		location.replace("indexTemplate.jsp");
 		var custName = response.firstName;
 		$("#myAcc").show();
 		$("#loginDialogLink").hide();
 		$( "#crossClose" ).trigger( "click" );
+		
 		
 		
 //		setLoginDropDown(custName);
