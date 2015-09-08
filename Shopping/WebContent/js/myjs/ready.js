@@ -6,8 +6,7 @@ var action = "";
 var arrayofProduct = [];
 
 $(document).ready(function(){
-	
-	
+//*******************************************************************************************************************
 	var path = window.location.pathname;
 	var page = path.split("/").pop();
 	console.log( page );
@@ -20,12 +19,17 @@ $(document).ready(function(){
 		if(query == "otp")
 		{
 			$("#otpLogin").show();
+			$("#loginlabel").trigger("click");
 		}
 		
 	}
+
+//*******************************************************************************************************************	
 	
 	$('#userType').jqxSwitchButton({ height: 27, width: 81, checked: true });
-	
+
+//*******************************************************************************************************************	
+
 //	 -- check session to put login drop down
 	var loginData = $.session.get('loginData');
 //	var userType = $.session.get('userType');
@@ -55,7 +59,8 @@ $(document).ready(function(){
 	}
 	// -- check session to put login drop down
 	
-	
+//*******************************************************************************************************************
+
 	// -- logout
 	$("#logoutLink").click(function() {
 //		alert("hahaa");
@@ -64,23 +69,33 @@ $(document).ready(function(){
 		window.location.replace("indexTemplate.jsp");
 	});
 	
+//*******************************************************************************************************************
+	
 	// -- My Profile link
 	$("#profileLink").click(function() {
 //		alert("profileLink");
+		var vid = "";
 		var userType = $.session.get('userType');
 		if(userType == "customer")
 			{
+				vid = "customerProfile";
 				$("#loadpage").load("customerProfile.jsp");
 			}
 		
 		if(userType == "supplier")
 			{
+				vid = "shopProfile";
 				$("#loadpage").load("shopProfile.jsp");
 			}
 		
+		$.session.set('pageState', vid);
+		
 	});
 
-	$.cookie('pageState',"indexBody");
+//*******************************************************************************************************************
+	
+//	$.cookie('pageState',"indexBody");
+	
 	
 	$('.btn-toggle').click(function() {
 	    $(this).find('.btn').toggleClass('active');  
@@ -94,21 +109,24 @@ $(document).ready(function(){
 	       
 	});
 	
-	
+//*******************************************************************************************************************
 	
 	action = "length";
 	getProductfromCookie(action);
 	
-	//***********Request for all product category *******************//
-		objhandleRequest.handleCategoryRequest();
-	//*********************** END *************************//
-	
+//***********Request for all product category ************************************************************************
+
+	objhandleRequest.handleCategoryRequest();
+
+//*********************** END ************************************************************************************
+		
 	// -- shud be called only when profile page is openend -- For Deva
 //	var supplierKey = 1;
 //	objhandleRequest.handleShopProfileDisplay(supplierKey);
 	//*********************** END *************************//
 	
-
+//*******************************************************************************************************************
+		
 $("#editbtn").click(function(){
 	var action=$("#action").val();
 	if(action=="edit")
@@ -145,7 +163,7 @@ $("#editbtn").click(function(){
 });
 
 
-
+//*******************************************************************************************************************
 
 $(".getCartProduct").click(function(){
 	
@@ -153,8 +171,7 @@ $(".getCartProduct").click(function(){
 	
 });
 
-
-
+//*******************************************************************************************************************
 
 
 $('#checkout').click(function(){
@@ -165,7 +182,7 @@ $('#checkout').click(function(){
 });
 
 
-
+//*******************************************************************************************************************
 
 
 
@@ -231,6 +248,7 @@ $("#userlogin").click(function(){
 	
 });
 
+//*******************************************************************************************************************
 
 $("#signup").click(function(){
 //	alert("SignUp");
@@ -269,6 +287,7 @@ $("#signup").click(function(){
 		
 });
 
+//*******************************************************************************************************************
 
 });
 
@@ -299,6 +318,7 @@ function getIntDataFromSession(requestedValue)
 	return responseVal;
 }*/
 
+
 function loadPage(id)
 {
 	var vid = $(id).attr("id");
@@ -306,16 +326,17 @@ function loadPage(id)
 	
 	if(vid == "indexBody")
 		{
-			$.cookie('pageState',vid);
+			$.session.set('pageState', vid);
+//			$.cookie('pageState',vid);
 		}
 	else if(vid == "shopProfile")
 			{
-				$.cookie('pageState',vid);
+				$.session.set('pageState', vid);
 				ShopProfileDisplay();
 			}
 	else if(vid == "checkout")
 	{
-		$.cookie('pageState',vid);
+		$.session.set('pageState', vid);
 		$("#checkoutClose").trigger("click");
 	}
 	
@@ -456,7 +477,6 @@ function getSelectedProduct(subid,strmainCategoryid)
 //*********************Getting Product Count on load of page to display in cart.*********************//
 function getProductfromCookie(condition)
 {
-
 	try
 	{
 	var i = 0;

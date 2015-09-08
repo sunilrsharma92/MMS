@@ -8,8 +8,7 @@ function handleAllListResponse(jsonMsg)
 	{
 		callServlet(jsonMsg, function(strJsonResponse)
 		{
-
-			if(strJsonResponse != null)
+			if(strJsonResponse != null && strJsonResponse.length >10)
 			{
 				var response = JSON.parse(strJsonResponse);
 				var command = response.command;
@@ -19,6 +18,7 @@ function handleAllListResponse(jsonMsg)
 			}
 			else
 			{
+				$(".overlay").show().delay(100).fadeOut();
 	        		jAlert("Response is blank", "Message");
 			}
 
@@ -90,7 +90,21 @@ function listResponseHandler(response, command, status)
 					case 1005:
 						$("#appendProducttoCart").empty();
 						$("#productCountOnCart").empty();
+						
+						$("#monylabel").empty();
+						$("#prodCount").empty();
+						$("#appendProducttoCheckoutCart").empty();
+						$("#totalpurchaseOnCheckout").empty();
+						
+						$("#monylabel").append("0");
+						$("#prodCount").append("0");
+						$("#totalpurchase").append('<span class="tlbprce">Total Price :</span>' + '<span class="totalprize"><strong> Rs 0.00</strong> </span>');
+						$("#totalpurchaseOnCheckout").append('<span class="tlbprce">Total Price :</span>' + '<span class="totalprize"><strong> Rs 0.00</strong> </span>');
+						
 						document.getElementById("productCountOnCart").innerHTML = "0";
+						
+						
+						
 						break;
 
 					case 1051:
@@ -119,8 +133,13 @@ function listResponseHandler(response, command, status)
 
 					case 1052:
 //						alert("10");
-						handleSignUpCustResponse(response);
+						handleSignUpResponse(response);
 						break
+						
+					case 1051:
+						handleLoginResponse(response);
+						break;
+						
 				}
 				break;
 
@@ -128,7 +147,7 @@ function listResponseHandler(response, command, status)
 				switch (command)
 				{
 					case 1052:
-						handleSignUpCustResponse(response);
+						handleSignUpResponse(response);
 						break
 				}
 				break;
@@ -137,7 +156,7 @@ function listResponseHandler(response, command, status)
 				switch (command)
 				{
 					case 1052:
-						handleSignUpCustResponse(response);
+						handleSignUpResponse(response);
 						break
 				}
 				break;
