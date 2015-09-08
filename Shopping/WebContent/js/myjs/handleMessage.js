@@ -314,6 +314,63 @@ function handleForgetPasswordResponse(response)
 	// return false;
 }
 
+function handleSaveUserDetailsResponse(response)
+{
+	// alert(JSON.stringify(response));
+	// alert("hii");
+//	$(".overlay").show().delay(100).fadeOut();
+	var action = response.status;
+	var userType = response.userType;
+	
+	if(action == 3)
+	{
+		var saveType = response.saveType;
+		alert("saveType : "+saveType)
+		if(saveType == "personalDetail")
+		{
+			var firstName = response.firstName;
+			var lastName = response.lastName;
+			var phone = response.phone;
+			if(userType == "supplier")
+			{
+				$("label[for='firstNameDisplay']").html(firstName);
+				$("label[for='lastNameDisplay']").html(lastName);
+			}
+			
+			// -- take data from session
+			// delete the old variables in loginData
+			// set session with the updated part
+		}
+		if(saveType == "address")
+		{
+			var address1 = response.address1;
+			var address2 = response.address2;
+			var street = response.street;
+			var city = response.city;
+			var state = response.state;
+			var pinCode = response.pinCode;
+			
+			if(userType == "supplier")
+			{
+				$("label[for='stateDisplay']").html(state);
+				$("label[for='addressDisplay']").html(address1);
+				$("label[for='cityDisplay']").html(city);
+				$("label[for='pincodeDisplay']").html(pinCode);
+			}
+			
+			// -- take data from session
+			// delete the old variables in loginData
+			// set session with the updated part
+			
+		}
+	}
+	else
+	{
+		var statusdesc = response.statusdesc;
+		jAlert(statusdesc, "Alert Message");
+	}
+}
+
 function handleLoginResponse(response)
 {
 	$(".overlay").show().delay(100).fadeOut();

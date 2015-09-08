@@ -50,10 +50,10 @@ function loadProfileMenu(id)
 					
 					alert(firstName+"  "+lastName+"  "+phone+"  "+emailId);
 					
-					$("#custFirstName1").val(firstName);
-					$("#custLastName").val(lastName);
-					$("#custMobNo").val(phone);
-					$("#custEmail").val(emailId);
+					$("#firstNameSave").val(firstName);
+					$("#lastNameSave").val(lastName);
+					$("#mobileNoSave").val(phone);
+					$("#emailSave").val(emailId);
 				}
 				else if (idofpage == "addresses")
 				{
@@ -64,20 +64,16 @@ function loadProfileMenu(id)
 					var city = sessionData.city;
 					var pincode = sessionData.pincode;
 					
-					$("#custAddress1").val(address);
-					$("#custAddress2").val(address2);
-					$("#streetName").val(street);
+					$("#address1Save").val(address);
+					$("#address2Save").val(address2);
+					$("#streetSave").val(street);
 	//					document.getElementById("custState").innerHTML = '<option selected>'+state+'</option>';
-					$("#custCity").val(city);
-					$("#custPincode").val(pincode);
+					$("#citySave").val(city);
+					$("#pincodeSave").val(pincode);
 				}
 				
 			}
 	
-			if (userType == "supplier")
-			{
-				
-			}
 		}
 
 }

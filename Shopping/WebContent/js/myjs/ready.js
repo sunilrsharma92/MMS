@@ -382,15 +382,19 @@ objhandleRequest.handleUserDetailsSave(firstName, lastName, mobileNo, email, add
 }
 
 
-function resetPassword()
+function changePassword()
 {
-
+	var oldPwd = $("#oldPwd").val();
 	var password1 = $("#password1").val();
 	var password2 = $("#password2").val();
-	var email = "sharma.sunil.nov@gmail.com";
-	var userType = "customer"; // -- change: after login,put usertype here
 	
-	objhandleRequest.handleResetPassword(password1, userType, email);
+	var userType = $.session.get('userType');
+	var loginData = $.session.get('loginData');
+	var sessionData = JSON.parse(loginData);
+	
+	var email = sessionData.emailId;
+	
+	objhandleRequest.handleChangePassword(oldPwd, password1, userType, email);
 	
 }
 

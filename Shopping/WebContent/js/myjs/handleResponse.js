@@ -74,6 +74,10 @@ function listResponseHandler(response, command, status)
 					case 2054:
 						handleForgetPasswordResponse(response);
 						break;
+						
+					case 2055:
+						handleSaveUserDetailsResponse(response);
+						break;
 				}
 				break;
 
@@ -99,6 +103,11 @@ function listResponseHandler(response, command, status)
 						
 					case 1054:
 						handleForgetPasswordResponse(response);
+						break;
+						
+					case 1055:
+						alert("1055");
+						handleSaveUserDetailsResponse(response);
 						break;
 
 				}

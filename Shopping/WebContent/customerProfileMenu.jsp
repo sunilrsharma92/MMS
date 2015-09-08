@@ -35,7 +35,7 @@
 					<div class="list-group side-bar">
 						<a href="#" id="personalDetails" class="list-group-item " onclick="loadProfileMenu(this)">Personal Info</a> 
 						<a href="#"	id="addresses" class="list-group-item" onclick="loadProfileMenu(this)">Addresses</a>
-						<a href="#"	id="resetpassword" class="list-group-item"	onclick="loadProfileMenu(this)">Change Password</a> 
+						<a href="#"	id="changePassword" class="list-group-item"	onclick="loadProfileMenu(this)">Change Password</a> 
 						<!-- <a href="#" class="list-group-item">Update Email/Mobile</a> -->
 						<a href="#" id="deactivate" class="list-group-item"	onclick="loadProfileMenu(this)">Deactivate Account</a> 
 						<a href="#" id="" class="list-group-item">Manage Notifications</a>
