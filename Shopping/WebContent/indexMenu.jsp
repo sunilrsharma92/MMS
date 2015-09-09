@@ -267,7 +267,7 @@
 							</div>
 							<div class="totaldiv">
 								<button class="btn btn-primary" id="checkout" onclick="loadPage(this);" type="button">Check Out</button>
-								<button class="btn btn-primary" type="button">Continue Shopping</button>
+								<button class="btn btn-primary" id="continueshopping" type="button">Continue Shopping</button>
 							</div>
 						</div>
 					</div>
