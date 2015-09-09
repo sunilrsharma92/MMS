@@ -23,5 +23,6 @@
 			<!-- <tr><td>Email Address:</td><td><input type="text" class="textbox" name="name"></td></tr> -->
 			<tr><td></td><td><button type="button" class="btn btn-primary">Save Changes</button></td></tr>
 		</table>
+	</form>
 </body>
 </html>

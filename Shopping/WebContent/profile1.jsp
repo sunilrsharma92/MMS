@@ -103,11 +103,10 @@
 					</tr>
 				</table>
 				<!-- end of table -->
-				</br> <span class = "pull-right">Social Connect:
-					<button type = "button" class = "btn btn-default">
-						<span class = "glyphicon glyphicon-thumbs-up"></span> facebook
-				</span>
-				</button>
+				</br> 
+				<span class = "pull-right">Social Connect:
+				<button type="button" class = "btn btn-default"><span class = "glyphicon glyphicon-thumbs-up"></span> facebook</span></button>
+				
 			</div>
 
 		</div>
@@ -162,8 +161,7 @@
 						<div class = "item active">
 							<img src = "Images/11.jpg">
 							<h4 class = "font" align = "center">This is header</h4>
-							<p class = "font" align = "center">This is paragraph with
-								description</p>
+							<p class = "font" align = "center">This is paragraph with description</p>
 						</div>
 
 						<div class = "item">

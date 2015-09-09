@@ -44,6 +44,15 @@
 	     
 	//  });
 	});
+	$(window).scroll(function() {    
+	    var scroll = $(window).scrollTop();
+
+	    if (scroll >= 1) {
+	        $(".nav-cust").addClass("navbar-fixed-top");
+	    } else {
+	        $(".nav-cust").removeClass("navbar-fixed-top");
+	    }
+	});
 </script>
 </head>
 <body>
@@ -172,7 +181,8 @@
 								</div>
 							</div>
 						</div>
-					</div> <!-- </div> --></li>
+					</div> <!-- </div> -->
+					
 
 
 
@@ -268,7 +278,7 @@
 
 
 			<ul class="nav navbar-nav navbar-left collapse navbar-collapse">
-				<li><a href="" id="indexBody" active="active" onclick="loadPage(this);">HOME</a></li>
+				<li><a href="" id="indexBody" onclick="loadPage(this);">HOME</a></li>
 				<li><a href="">Page2</a></li>
 				<li><a href="">Page3</a></li>
 				<li><a href="">Page4</a></li>
@@ -293,9 +303,9 @@
 			<div id="searching" style="display: none;">
 
 				<input type="text" id="search" onkeyup="searchProduct()" class="whiteLabel" style="text-align: center; outline: 0;" name="search" placeholder="Search the item here">
-				<button class="insearch" type="submit">
-					<span class="glyphicon glyphicon-search"></span>
-				</button>
+					<button class="insearch" type="submit">
+						<span class="glyphicon glyphicon-search"></span>
+					</button>
 				</input>
 				<button type="button" class="btn btn-circle btn-danger changeview" id="removesearchbtn">
 					<span class=" glyphicon glyphicon-remove"></span>
@@ -303,10 +313,5 @@
 			</div>
 		</div>
 	</div>
-	
-	</div>
-
-	
-
 </body>
 </html>
