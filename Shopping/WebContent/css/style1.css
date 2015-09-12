@@ -377,6 +377,7 @@ tbody{
 
 .col-cat {
 	background-color : #FFFFFF;
+	    
 }
 /*profile page*/
 .list-group-item :hover {
@@ -767,9 +768,8 @@ tbody{
 /*Loading Inage*/
 
 #loading-img {
-/*     background: url(https://goo.gl/photos/RYbiQrhqqYTFns568) center center no-repeat; */
-    background: url(http://preloaders.net/preloaders/360/Velocity.gif) center center no-repeat;
-/*     background: url(https://photos.google.com/photo/AF1QipNc_pHjWhyXYC4dqy6yYYMDCIU-mUzyry1ws5p8) center center no-repeat; */
+/*     background: url(http://preloaders.net/preloaders/360/Velocity.gif) center center no-repeat; */
+    background: url(https://goo.gl/photos/D1uwSqvhgVwdeAQXA) center center no-repeat;
     height: 100%;
     z-index: 20;
 }
@@ -790,4 +790,4 @@ tbody{
 .btn_width_93_perc
 {
 	width: 93%;
-}
+}		

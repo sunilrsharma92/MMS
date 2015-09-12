@@ -44,6 +44,15 @@
 	     
 	//  });
 	});
+	$(window).scroll(function() {    
+	    var scroll = $(window).scrollTop();
+
+	    if (scroll >= 1) {
+	        $(".nav-cust").addClass("navbar-fixed-top");
+	    } else {
+	        $(".nav-cust").removeClass("navbar-fixed-top");
+	    }
+	});
 </script>
 </head>
 <body>
@@ -158,7 +167,7 @@
 													<input class="textbox font" type="password" name="password2" id="repass" placeholder="ReEnter Password"></br>
 												<div class="g-recaptcha" name="captcha" data-sitekey="6LfaxwsTAAAAAEB5RYVVeSFM3AyHzAHb3YvgtGvx"></div>
 												<div id="warnings"></div>
-												<input type="button" class="btn btn-primary btn_width_93_percF" id="signup" value="Sign Up" />
+												<input type="button" class="btn btn-primary btn_width_93_perc" id="signup" value="Sign Up" />
 											</form>
 										</div>
 										<div id="menu2" class="tab-pane fade">
@@ -172,7 +181,8 @@
 								</div>
 							</div>
 						</div>
-					</div> <!-- </div> --></li>
+					</div> <!-- </div> -->
+					
 
 
 
@@ -187,7 +197,7 @@
 				<button type="button" class="navbar-toggle pull-left" data-toggle="collapse" data-target=".slidemenu">
 					<span class="glyphicon glyphicon-option-vertical"></span>	
 				</button>
-				<a href="#" class="navbar-brand"> Logo </a>
+				<a href="#" class="navbar-brand"><img src="Images/rgb.png" class="img-rounded" alt="Cinque Terre" width="25px" height="25px"> </a>
 
 
 				<!-- <button type="button" class="pull-right"> btn</button> -->
@@ -257,7 +267,7 @@
 							</div>
 							<div class="totaldiv">
 								<button class="btn btn-primary" id="checkout" onclick="loadPage(this);" type="button">Check Out</button>
-								<button class="btn btn-primary" type="button">Continue Shopping</button>
+								<button class="btn btn-primary" id="continueshopping" type="button">Continue Shopping</button>
 							</div>
 						</div>
 					</div>
@@ -268,7 +278,7 @@
 
 
 			<ul class="nav navbar-nav navbar-left collapse navbar-collapse">
-				<li><a href="" id="indexBody" active="active" onclick="loadPage(this);">HOME</a></li>
+				<li><a href="" id="indexBody" onclick="loadPage(this);">HOME</a></li>
 				<li><a href="">Page2</a></li>
 				<li><a href="">Page3</a></li>
 				<li><a href="">Page4</a></li>
@@ -293,9 +303,9 @@
 			<div id="searching" style="display: none;">
 
 				<input type="text" id="search" onkeyup="searchProduct()" class="whiteLabel" style="text-align: center; outline: 0;" name="search" placeholder="Search the item here">
-				<button class="insearch" type="submit">
-					<span class="glyphicon glyphicon-search"></span>
-				</button>
+					<button class="insearch" type="submit">
+						<span class="glyphicon glyphicon-search"></span>
+					</button>
 				</input>
 				<button type="button" class="btn btn-circle btn-danger changeview" id="removesearchbtn">
 					<span class=" glyphicon glyphicon-remove"></span>
@@ -303,10 +313,5 @@
 			</div>
 		</div>
 	</div>
-	
-	</div>
-
-	
-
 </body>
 </html>

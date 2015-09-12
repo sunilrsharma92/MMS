@@ -56,7 +56,7 @@
 					</tr>
 				</table>
 				<!-- end of table -->
-				</br>
+				<br>
 
 				<p>
 					Rating: 
@@ -86,7 +86,7 @@
 	<!-- end of row-->
 
 
-	</div>
+
 	<!--end of container top -->
 	<!-- end of top -->
 </body>
