@@ -167,7 +167,7 @@
 													<input class="textbox font" type="password" name="password2" id="repass" placeholder="ReEnter Password"></br>
 												<div class="g-recaptcha" name="captcha" data-sitekey="6LfaxwsTAAAAAEB5RYVVeSFM3AyHzAHb3YvgtGvx"></div>
 												<div id="warnings"></div>
-												<input type="button" class="btn btn-primary btn_width_93_percF" id="signup" value="Sign Up" />
+												<input type="button" class="btn btn-primary btn_width_93_perc" id="signup" value="Sign Up" />
 											</form>
 										</div>
 										<div id="menu2" class="tab-pane fade">

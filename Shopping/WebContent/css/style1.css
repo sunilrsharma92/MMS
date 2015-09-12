@@ -377,6 +377,7 @@ tbody{
 
 .col-cat {
 	background-color : #FFFFFF;
+	    
 }
 /*profile page*/
 .list-group-item :hover {
@@ -789,4 +790,4 @@ tbody{
 .btn_width_93_perc
 {
 	width: 93%;
-}
+}		
