@@ -35,7 +35,7 @@ public class CommonMethodImpl {
 				parentjson.put("emailId", rs.getString("email"));
 				//parentjson.put("custUsername", rs.getString("username"));
 				parentjson.put("key", rs.getLong("customer_key"));
-				parentjson.put("address", rs.getString("address1"));
+				parentjson.put("address1", rs.getString("address1"));
 				parentjson.put("address2", rs.getString("address2"));
 				parentjson.put("street", rs.getString("street"));
 				parentjson.put("city", rs.getString("city"));
@@ -81,7 +81,7 @@ public class CommonMethodImpl {
 				parentjson.put("emailId", rs.getString("email"));
 				//parentjson.put("custUsername", rs.getString("username"));
 				parentjson.put("key", rs.getLong("supplier_key"));
-				parentjson.put("address", rs.getString("address1"));
+				parentjson.put("address1", rs.getString("address1"));
 				parentjson.put("address2", rs.getString("address2"));
 				parentjson.put("street", rs.getString("street"));
 				parentjson.put("city", rs.getString("city"));

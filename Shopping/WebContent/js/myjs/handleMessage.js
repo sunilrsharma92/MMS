@@ -68,7 +68,7 @@ function handleMainCategoryResponse(response)
 		console.log("handleMainCategoryResponse :::::: Exception" + e);
 	}
 }
-
+/*
 function handleShopProfileDetailResponse(response)
 {
 	try
@@ -101,36 +101,36 @@ function handleShopProfileDetailResponse(response)
 	{
 		console.log("handleShopProfileDetailResponse :::::: Exception" + e);
 	}
-}
+}*/
 
 function handleShopProfDispResponse(response)
 {
 	try
 	{
+		var action = response.status;
+		if(action == 3)
+		{
+			var firstName = response.firstName;
+			var lastName = response.lastName;
+			var address1 = response.address1;
+			var city = response.city;
+			var state = response.state;
+			var pinCode = response.pinCode;
+			
+			$("label[for='firstNameDisplay']").html(firstName);
+			$("label[for='lastNameDisplay']").html(lastName);
+			$("label[for='stateDisplay']").html(state);
+			$("label[for='addressDisplay']").html(address1);
+			$("label[for='cityDisplay']").html(city);
+			$("label[for='pincodeDisplay']").html(pinCode);
+		}
+		else
+		{
+			jAlert(statusdesc, "Error occurred while populating shop details");
+		}
 		console.log('handleShopProfDispResponse :::::: ' + JSON.stringify(response));
 
-		var supFirstName = response.supFirstName;
-		var supLastName = response.supLastName;
-		var supAddress = response.supAddress;
-		var supCity = response.supCity;
-		var supState = response.supState;
-		var supPinCode = response.supPinCode;
-
-		$("#firstName1").empty();
-		$("#lastName1").empty();
-		$("#address1").empty();
-		$("#state1").empty();
-		$("#city1").empty();
-		$("#pincode1").empty();
-
-		document.getElementById("firstName1").innerHTML = '<label id="firstName">' + supFirstName + '</label>';
-		document.getElementById("lastName1").innerHTML = '<label id="lastName">' + supLastName + '</label>';
-		document.getElementById("address1").innerHTML = '<label id="address">' + supAddress + '</label>';
-		document.getElementById("state1").innerHTML = '<label id="state">' + supState + '</label>';
-		document.getElementById("city1").innerHTML = '<label id="city">' + supCity + '</label>';
-		document.getElementById("pincode1").innerHTML = '<label id="pincode">' + supPinCode + '</label>';
-
-		getCustomerOfflineData(response);
+//		getCustomerOfflineData(response); // -- not aware of the use,may be was to store session
 
 	}
 	catch (e)
@@ -392,16 +392,7 @@ function handleLoginResponse(response)
 
 	 if (userType != null) 
 	{
-		delete response["password"];
-
-		console.log("response :: " + JSON.stringify(response));
-
-		$.session.remove('loginData');
-		$.session.set('loginData', JSON.stringify(response));
-
-		$.session.remove('userType');
-		$.session.set('userType', userType);
-
+		 removePwdFromSession(response, userType);
 	}
 
 	if(action != 3)
@@ -412,7 +403,6 @@ function handleLoginResponse(response)
 	{
 //		jAlert("Login Successfull", "Alert Message");
 		location.replace("indexTemplate.jsp");
-		var custName = response.firstName;
 		$("#myAcc").show();
 		$("#loginDialogLink").hide();
 		$( "#crossClose" ).trigger( "click" );
@@ -422,6 +412,19 @@ function handleLoginResponse(response)
 //		setLoginDropDown(custName);
 	}
 
+}
+
+function removePwdFromSession(response, userType)
+{
+	delete response["password"];
+
+	console.log("response :: " + JSON.stringify(response));
+
+	$.session.remove('loginData');
+	$.session.set('loginData', JSON.stringify(response));
+
+	$.session.remove('userType');
+	$.session.set('userType', userType);
 }
 
 /*function setLoginDropDown(custName)

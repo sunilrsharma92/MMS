@@ -13,7 +13,6 @@ $(document).ready(function(){
 		}
 	
 	
-	
 	var userType = $.session.get('userType');
 	if(userType == "customer")
 		{
@@ -25,10 +24,16 @@ $(document).ready(function(){
 //			alert("PPP userType : "+userType);
 			$("#custOrderPanel").hide(); // -- not needed for shopkeeper
 			
+			var loginData = $.session.get('loginData');
+			var sessionData = JSON.parse(loginData);
+			var supplierKey = sessionData.key;
+			
+			shopProfileDisplay(supplierKey);
 		}
+	
 });
 
-
+// *************************************************************************************
 
 function loadProfileMenu(id)
 {
@@ -87,3 +92,18 @@ function loadProfileMenu(id)
 
 }
 }
+
+//*************************************************************************************
+
+
+//*************************************************************************************
+
+function shopProfileDisplay(supplierKey)
+{
+	console.log("supplierKey : " + supplierKey);
+	
+	objhandleRequest.handleShopProfileDisplay(supplierKey);
+}
+
+
+//*************************************************************************************

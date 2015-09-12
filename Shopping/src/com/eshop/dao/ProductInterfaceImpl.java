@@ -80,6 +80,7 @@ public class ProductInterfaceImpl implements ProductInterface
 					}
 					break;
 
+					// -- not in use
 				case 1001: // -- Update shop profile.//
 					try
 					{
@@ -87,7 +88,7 @@ public class ProductInterfaceImpl implements ProductInterface
 
 						String sql = "update suppliers set address1 = ?, city = ?, state = ?, postal_code = ?,contact_fname = ?, contact_lname = ?  where supplier_key = ?";
 						ps = conn.prepareStatement(sql);
-						ps.setString(1, (String) parentjson.get("address"));
+						ps.setString(1, (String) parentjson.get("address1"));
 						ps.setString(2, (String) parentjson.get("city"));
 						ps.setString(3, (String) parentjson.get("state"));
 						ps.setLong(4, (Long) parentjson.get("pincode"));
@@ -294,36 +295,18 @@ public class ProductInterfaceImpl implements ProductInterface
 					try
 					{
 						JSONObject object = (JSONObject) JSONValue.parse(jsonMsg);
-
-						String sqlSelect = "";
-						sqlSelect = "select * from suppliers where supplier_key = ?";
-						ps1 = conn.prepareStatement(sqlSelect);
-						ps1.setLong(1, (Long) object.get("supplierKey")); // --
-																			// supplier
-																			// key
-																			// is
-																			// to
-																			// be
-																			// inserted
-						rs1 = ps1.executeQuery();
-
-						if (rs1.next())
+						
+						Long supplierKey = (Long) object.get("supplierKey");
+						parentjson = CommonMethodImpl.getShopkeeperDetailsByProperty("supplier_key", supplierKey, parentjson);
+						if(parentjson != null)
 						{
-							parentjson.put("supKey", rs1.getLong("supplier_key"));
-							parentjson.put("supFirstName", rs1.getString("contact_fname"));
-							parentjson.put("supLastName", rs1.getString("contact_lname"));
-							parentjson.put("supAddress", rs1.getString("address1"));
-							parentjson.put("supCity", rs1.getString("city"));
-							parentjson.put("supState", rs1.getString("state"));
-							parentjson.put("supPinCode", rs1.getLong("postal_code"));
-
 							parentjson = CommonMethodImpl.putSuccessJson(parentjson, 2010);
 						}
 						else
 						{
 							parentjson = CommonMethodImpl.putFailedJson(parentjson, command);
-
 						}
+						
 						output = parentjson.toString();
 						// System.out.println("output ::::::::: "+output);
 						return output;
@@ -335,6 +318,7 @@ public class ProductInterfaceImpl implements ProductInterface
 					}
 					break;
 
+					
 				case 1051: // -- Customer/Shopkeeper Login //
 					try
 					{

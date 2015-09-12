@@ -43,6 +43,7 @@ function listResponseHandler(response, command, status)
 						handleMainCategoryResponse(response);
 						break;
 
+						// -- not in use
 					case 2001:
 						handleShopProfileDetailResponse(response);
 						break;
@@ -106,6 +107,10 @@ function listResponseHandler(response, command, status)
 						
 						
 						break;
+						
+					case 1010:
+						handleShopProfDispResponse(response);
+						break;
 
 					case 1051:
 						handleLoginResponse(response);
@@ -120,7 +125,6 @@ function listResponseHandler(response, command, status)
 						break;
 						
 					case 1055:
-						alert("1055");
 						handleSaveUserDetailsResponse(response);
 						break;
 
