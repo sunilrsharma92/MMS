@@ -197,7 +197,7 @@
 				<button type="button" class="navbar-toggle pull-left" data-toggle="collapse" data-target=".slidemenu">
 					<span class="glyphicon glyphicon-option-vertical"></span>	
 				</button>
-				<a href="#" class="navbar-brand"> Logo </a>
+				<a href="#" class="navbar-brand"><img src="Images/rgb.png" class="img-rounded" alt="Cinque Terre" width="25px" height="25px"> </a>
 
 
 				<!-- <button type="button" class="pull-right"> btn</button> -->
