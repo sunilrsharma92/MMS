@@ -768,8 +768,8 @@ tbody{
 /*Loading Inage*/
 
 #loading-img {
-/*     background: url(http://preloaders.net/preloaders/360/Velocity.gif) center center no-repeat; */
-    background: url(https://goo.gl/photos/D1uwSqvhgVwdeAQXA) center center no-repeat;
+    background: url(http://preloaders.net/preloaders/360/Velocity.gif) center center no-repeat;
+/*     background: url(https://goo.gl/photos/D1uwSqvhgVwdeAQXA) center center no-repeat; */
     height: 100%;
     z-index: 20;
 }
