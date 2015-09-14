@@ -2,12 +2,12 @@ function handleRequest()
 {
 	this.handleCategoryRequest = handleCategoryRequest;
 	// this.handleSubCategoryRequest = handleSubCategoryRequest;
-	this.handleShopProfileDetails = handleShopProfileDetails;
+//	this.handleShopProfileDetails = handleShopProfileDetails;
 	this.handleUserDetailsSave = handleUserDetailsSave;
 	this.handleShopProfileDisplay = handleShopProfileDisplay;
 	this.handleLogin = handleLogin;
 	this.handleRegisteration = handleRegisteration;
-	this.handleResetPassword = handleResetPassword;
+	this.handleChangePassword = handleChangePassword;
 	// this.handleUsernameAvailCust = handleUsernameAvailCust;
 	this.handleForgotPwd = handleForgotPwd;
 	this.handledisplaySelectedProduct = handledisplaySelectedProduct;
@@ -35,7 +35,8 @@ function handleRequest()
 		}
 	}
 
-	function handleShopProfileDetails(firstName, lastName, address, city, state, pincode)
+	// -- old method,currently not in use
+	/*function handleShopProfileDetails(firstName, lastName, address, city, state, pincode)
 	{
 		try
 		{
@@ -57,7 +58,7 @@ function handleRequest()
 		{
 			console.log("handleRequest     handleShopProfileDetails     Exception :: " + e);
 		}
-	}
+	}*/
 
 	function handleUserDetailsSave(firstName, lastName, mobileNo, email, address1, address2, state, city, street, pincode, userType, key) {
 	try
@@ -85,26 +86,6 @@ function handleRequest()
 		catch (e)
 		{
 			console.log("handleRequest     handleCustomerDetailsSave     Exception :: " + e);
-		}
-	}
-
-	// -- show shop profile for particular supplier
-	function handleShopProfileDisplay(supplierKey)
-	{
-		try
-		{
-			var strShopProfileDisplay = {};
-			strShopProfileDisplay.supplierKey = parseInt(supplierKey);
-			strShopProfileDisplay.command = 1010;
-			// alert('haha');
-			var strJsonMsgForShopProfile = JSON.stringify(strShopProfileDisplay);
-			console.log("handleRequest     handleShopProfileDisplay     strJsonMsgForShopProfile : " + strJsonMsgForShopProfile);
-
-			handleAllListResponse(strJsonMsgForShopProfile);
-		}
-		catch (e)
-		{
-			console.log("handleRequest handleShopProfileDisplay Exception :: " + e)
 		}
 	}
 
@@ -156,22 +137,23 @@ function handleRequest()
 		}
 	}
 
-	function handleResetPassword(pwd, userType, email)
+	function handleChangePassword(oldPwd, password1, userType, email)
 	{
 		try
 		{
-			var resetPwd = {};
-			resetPwd.pwd = pwd;
-			resetPwd.email = email;
-			resetPwd.userType = userType;
-			resetPwd.command = 1056;
+			var changePwd = {};
+			changePwd.oldPwd = oldPwd;
+			changePwd.pwd = password1;
+			changePwd.email = email;
+			changePwd.userType = userType;
+			changePwd.command = 1056;
 
-			var strJsonMsgForResetPwd = JSON.stringify(resetPwd);
-			console.log("handleRequest     handleResetPassword     strJsonMsgForResetPwd : " + strJsonMsgForResetPwd);
+			var strJsonMsgForChangePwd = JSON.stringify(changePwd);
+			console.log("handleRequest     handleChangePassword     strJsonMsgForChangePwd : " + strJsonMsgForChangePwd);
 		}
 		catch (e)
 		{
-			console.log("handleRequest handleResetPassword Exceprion ::" + e);
+			console.log("handleRequest handleChangePassword Exceprion ::" + e);
 		}
 	}
 
@@ -196,7 +178,27 @@ function handleRequest()
 		}
 
 	}
+	
+	// -- show shop profile for particular supplier
+	function handleShopProfileDisplay(supplierKey)
+	{
+		try
+		{
+			var strShopProfileDisplay = {};
+			strShopProfileDisplay.supplierKey = parseInt(supplierKey);
+			strShopProfileDisplay.command = 1010;
+			// alert('haha');
+			var strJsonMsgForShopProfile = JSON.stringify(strShopProfileDisplay);
+			console.log("handleRequest     handleShopProfileDisplay     strJsonMsgForShopProfile : " + strJsonMsgForShopProfile);
 
+			handleAllListResponse(strJsonMsgForShopProfile);
+		}
+		catch (e)
+		{
+			console.log("handleRequest handleShopProfileDisplay Exception :: " + e)
+		}
+	}
+	
 	function handledisplaySelectedProduct(mainCategoryID, subCategoryID)
 	{
 		try

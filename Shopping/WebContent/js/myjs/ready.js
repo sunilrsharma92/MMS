@@ -95,6 +95,7 @@ $(document).ready(function(){
 			{
 				vid = "shopProfile";
 				$("#loadpage").load("shopProfile.jsp");
+				shopProfileDisplay();
 			}
 		
 		$.session.set('pageState', vid);
@@ -136,7 +137,7 @@ $(document).ready(function(){
 	
 //*******************************************************************************************************************
 		
-$("#editbtn").click(function(){
+/*$("#editbtn").click(function(){
 	var action=$("#action").val();
 	if(action=="edit")
 	{
@@ -169,7 +170,7 @@ $("#editbtn").click(function(){
 	{
 		saveShopkeeperDetails();
 	}
-});
+});*/
 
 
 //*******************************************************************************************************************
@@ -358,8 +359,8 @@ function loadPage(id)
 
 
 
-
-function saveShopkeeperDetails()
+// -- old method,currently not in use
+/*function saveShopkeeperDetails()
  {
 
 	$("#action").val("edit");
@@ -375,7 +376,7 @@ function saveShopkeeperDetails()
 
 objhandleRequest.handleShopProfileDetails(firstName, lastName,address,city,state,pincode);
 
-}
+}*/
 
 function saveUserDetails()
 {
@@ -412,15 +413,19 @@ objhandleRequest.handleUserDetailsSave(firstName, lastName, mobileNo, email, add
 }
 
 
-function resetPassword()
+function changePassword()
 {
-
+	var oldPwd = $("#oldPwd").val();
 	var password1 = $("#password1").val();
 	var password2 = $("#password2").val();
-	var email = "sharma.sunil.nov@gmail.com";
-	var userType = "customer"; // -- change: after login,put usertype here
 	
-	objhandleRequest.handleResetPassword(password1, userType, email);
+	var userType = $.session.get('userType');
+	var loginData = $.session.get('loginData');
+	var sessionData = JSON.parse(loginData);
+	
+	var email = sessionData.emailId;
+	
+	objhandleRequest.handleChangePassword(oldPwd, password1, userType, email);
 	
 }
 
@@ -708,12 +713,6 @@ function quantity(txtboxid,action)
 				$("#"+txtboxid).val(total);
 			}
 		}
-}
-
-function ShopProfileDisplay()
-{
-	var supplierKey = 1;
-	objhandleRequest.handleShopProfileDisplay(supplierKey);
 }
 
 //objhandleRequest.handleCategoryRequest();

@@ -27,33 +27,27 @@
 				<table>
 					<tr>
 						<td><span>First	Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: </span></td>
-						<!--         <td><a href = "#" id = "name" class = "a" data-type = "text" data-placement = "right" data-title = "Enter username">Rahul Madakatti</a></td>-->
-						<td><div id = "firstName1"><label id = "firstName" class = "labelfont"></label></div></td>
+						<td><label class = "labelfont" for="firstNameDisplay"></label></td>
 					</tr>
 					<tr>
 						<td><span>Last Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: </span></td>
-						<!--         <td><a href = "#" id = "name" class = "a" data-type = "text" data-placement = "right" data-title = "Enter username">Rahul Madakatti</a></td>-->
-						<td><div id = "lastName1"><label id = "lastName" class = "labelfont"></label></div></td>
+						<td><label class = "labelfont" for="lastNameDisplay"></label></td>
 					</tr>
 					<tr>
 						<td><span>Address &nbsp;&nbsp;: </span></td>
-						<!--        <td><a href = "#" id = "address" class = "a" data-type = "textarea" data-rows = "2" data-placement = "right" data-title = "Enter address">Tulsi Aangan Near Ganesh Ghat</a></td>-->
-						<td><div id = "address1"><label id = "address" class = "labelfont"></label></div></td>
+						<td><label class = "labelfont" for="addressDisplay"></label></td>
 					</tr>
 					<tr>
 						<td><span>State&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:</span></td>
-						<!--        <td><a href = "#" id = "state" class = "a" data-type = "text" data-placement = "right" data-title = "Enter state">Maharashtra</a></td>-->
-						<td><div id = "state1"><label id = "state" class = "labelfont"></label></div></td>
+						<td><label class = "labelfont" for="stateDisplay"></label></td>
 					</tr>
 					<tr>
 						<td><span>City&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:</span></td>
-						<!--        <td><a href = "#" id = "city" class = "a" data-type = "text" data-placement = "right" data-title = "Enter city">Thane</a></td>-->
-						<td><div id = "city1"><label id = "city" class = "labelfont"></label></div></td>
+						<td><label class = "labelfont" for="cityDisplay"></label></td>
 					</tr>
 					<tr>
 						<td><span>Pin Code&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: </span></td>
-						<!--        <td><a href = "#" id = "pin" class = "a" data-type = "text" data-placement = "right" data-title = "Enter pin">421503</a></td>-->
-						<td><div id = "pincode1"><label id = "pincode" class = "labelfont"></label></div></td>
+						<td><label class = "labelfont" for="pincodeDisplay"></label></td>
 					</tr>
 				</table>
 				<!-- end of table -->

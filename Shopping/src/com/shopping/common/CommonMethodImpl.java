@@ -17,7 +17,7 @@ public class CommonMethodImpl {
 	
 	
 	@SuppressWarnings("unchecked")
-	public static JSONObject getCustDetailsByProperty(String property,Object value,JSONObject object, JSONObject parentjson)
+	public static JSONObject getCustDetailsByProperty(String property,Object value, JSONObject parentjson)
 	{
 		Connection conn = null;
 		PreparedStatement stmt = null;
@@ -35,7 +35,7 @@ public class CommonMethodImpl {
 				parentjson.put("emailId", rs.getString("email"));
 				//parentjson.put("custUsername", rs.getString("username"));
 				parentjson.put("key", rs.getLong("customer_key"));
-				parentjson.put("address", rs.getString("address1"));
+				parentjson.put("address1", rs.getString("address1"));
 				parentjson.put("address2", rs.getString("address2"));
 				parentjson.put("street", rs.getString("street"));
 				parentjson.put("city", rs.getString("city"));
@@ -44,6 +44,7 @@ public class CommonMethodImpl {
 				parentjson.put("phone", rs.getString("phone"));
 				parentjson.put("active", rs.getInt("active"));
 				parentjson.put("otp", rs.getString("otp"));
+				parentjson.put("userType", "customer");
 				
 			}
 			
@@ -62,7 +63,7 @@ public class CommonMethodImpl {
 	
 	
 	@SuppressWarnings("unchecked")
-	public static JSONObject getShopkeeperDetailsByProperty(String property,Object value,JSONObject object, JSONObject parentjson)
+	public static JSONObject getShopkeeperDetailsByProperty(String property,Object value, JSONObject parentjson)
 	{
 		Connection conn = null;
 		PreparedStatement stmt = null;
@@ -80,7 +81,7 @@ public class CommonMethodImpl {
 				parentjson.put("emailId", rs.getString("email"));
 				//parentjson.put("custUsername", rs.getString("username"));
 				parentjson.put("key", rs.getLong("supplier_key"));
-				parentjson.put("address", rs.getString("address1"));
+				parentjson.put("address1", rs.getString("address1"));
 				parentjson.put("address2", rs.getString("address2"));
 				parentjson.put("street", rs.getString("street"));
 				parentjson.put("city", rs.getString("city"));
@@ -89,6 +90,7 @@ public class CommonMethodImpl {
 				parentjson.put("phone", rs.getString("phone"));
 				parentjson.put("active", rs.getInt("active"));
 				parentjson.put("otp", rs.getString("otp"));
+				parentjson.put("userType", "supplier");
 				
 			}
 			
