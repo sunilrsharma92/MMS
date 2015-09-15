@@ -53,8 +53,8 @@ function loadProfileMenu(id)
 		{
 			var sessionData = JSON.parse(loginData);
 	
-			if (userType == "customer")
-			{
+//			if (userType == "customer")
+//			{
 				if (idofpage == "personalDetails")
 				{
 					var firstName = sessionData.firstName;
@@ -86,7 +86,7 @@ function loadProfileMenu(id)
 					$("#pincodeSave").val(pincode);
 				}
 				
-			}
+//			}
 	
 		}
 
