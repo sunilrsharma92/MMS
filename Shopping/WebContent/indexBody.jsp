@@ -38,7 +38,7 @@
 					<!-- Wrapper for slides -->
 					<div class="carousel-inner" role="listbox">
 						<div class="item active">
-							<img src="Images/11.jpg">
+							<img src="Images/slide1.png">
 							<h4 align="center">This is header</h4>
 							<p align="center">This is paragraph with description</p>
 						</div>
