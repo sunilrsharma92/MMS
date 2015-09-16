@@ -44,7 +44,7 @@
 						</div>
 
 						<div class="item">
-							<img src="Images/22.jpg">
+							<img src="Images/slide2.png">
 							<h4 align="center">This is header</h4>
 							<p align="center">This is paragraph with description</p>
 						</div>
