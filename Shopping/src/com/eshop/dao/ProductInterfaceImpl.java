@@ -27,6 +27,7 @@ public class ProductInterfaceImpl implements ProductInterface
 
 	public static final String OTP_REGISTER = "otpRegister";
 	public static final String FORGOT_PASSWORD = "ForgotPassword";
+	public static final String CHANGE_PASSWORD = "changPassword";
 
 	@Override
 	public String handleRequestResponse(String jsonMsg, int command)
@@ -696,6 +697,8 @@ public class ProductInterfaceImpl implements ProductInterface
 
 						if (address2 != null && !address2.trim().isEmpty())
 							sql += " ,address2 = '" + address2 + "' ";
+						
+						sql += " ,country = 'India' ";
 
 						if (state != null && !state.trim().isEmpty())
 							sql += " ,state = '" + state + "' ";
@@ -733,13 +736,24 @@ public class ProductInterfaceImpl implements ProductInterface
 
 						if (result > 0)
 						{
+							if(userType != null && key != null && userType.trim().equalsIgnoreCase("customer"))
+							{
+								parentjson = CommonMethodImpl.getCustDetailsByProperty(CommonMethodImpl.EMAIL_ID, email, parentjson);
+							}
+							else if(userType != null  && key != null && userType.trim().equalsIgnoreCase("supplier"))
+							{
+								parentjson = CommonMethodImpl.getShopkeeperDetailsByProperty(CommonMethodImpl.EMAIL_ID, email, parentjson);
+							}
+							
 							parentjson = CommonMethodImpl.putSuccessJson(parentjson, 2055);
+							
 						}
 
 						else
 						{
 							parentjson = new JSONObject();
 							parentjson = CommonMethodImpl.putFailedJson(parentjson, command);
+							parentjson.put("statusdesc", "Updation failed");
 						}
 
 						output = parentjson.toString();
@@ -754,7 +768,7 @@ public class ProductInterfaceImpl implements ProductInterface
 
 					break;
 
-				case 1056: // -- Reset Password Cust/Shopkeeper Details //
+				case 1056: // -- Change Password Cust/Shopkeeper Details //
 					try
 					{
 						JSONObject object = (JSONObject) JSONValue.parse(jsonMsg);
@@ -796,7 +810,16 @@ public class ProductInterfaceImpl implements ProductInterface
 										result = ps.executeUpdate();
 										if (result > 0)
 										{
-											parentjson = CommonMethodImpl.putSuccessJson(parentjson, 2056);
+											boolean verification = EmailUtility.sendEmail(email, null, CHANGE_PASSWORD, null);
+											if(verification)
+											{
+												parentjson = CommonMethodImpl.putSuccessJson(parentjson, 2056);
+											}
+											else
+											{
+												parentjson = CommonMethodImpl.putFailedJson(parentjson, command);
+												parentjson.put("statusdesc", "Error occurred during sending email,Please try again");
+											}
 										}
 										else
 										{

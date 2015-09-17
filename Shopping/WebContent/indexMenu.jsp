@@ -202,7 +202,7 @@
 
 				<!-- <button type="button" class="pull-right"> btn</button> -->
 				
-
+				
 				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
 					<span class="sr-only">Toggle button</span> 
 					<span class="icon-bar"></span>
@@ -212,6 +212,7 @@
 				<button type="button" class="navbar-toggle getCartProduct" data-toggle="modal"	data-target=".cartmodal">
 					<span class="glyphicon glyphicon-shopping-cart"></span> 
 					<span class="badge"><label	id="productCountOnCart" class="productCountOnCart" style="margin: auto;">0</label></span>
+					
 				</button>
 				<div class="search-box pull-right hidden-lg hidden-md hidden-sm">
 					<div class="input-group">
@@ -266,6 +267,7 @@
 
 							</div>
 							<div class="totaldiv">
+								<input type="hidden" name="txttotalcartAmmounthidden" value="" id="totalcartAmmounthidden">
 								<button class="btn btn-primary" id="checkout" onclick="loadPage(this);" type="button">Check Out</button>
 								<button class="btn btn-primary" id="continueshopping" type="button">Continue Shopping</button>
 							</div>

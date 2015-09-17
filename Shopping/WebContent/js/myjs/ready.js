@@ -66,6 +66,7 @@ $(document).ready(function(){
 //		alert("hahaa");
 		$.session.remove('loginData');
 		$.session.remove('usertype');
+		$.session.remove('pageState');
 		window.location.replace("indexTemplate.jsp");
 	});
 	
@@ -95,7 +96,7 @@ $(document).ready(function(){
 			{
 				vid = "shopProfile";
 				$("#loadpage").load("shopProfile.jsp");
-				shopProfileDisplay();
+//				shopProfileDisplay();
 			}
 		
 		$.session.set('pageState', vid);
@@ -378,8 +379,23 @@ objhandleRequest.handleShopProfileDetails(firstName, lastName,address,city,state
 
 }*/
 
-function saveUserDetails()
+function saveUserDetails(id)
 {
+	if(id == "address")
+	{
+		$("#firstNameSave").val('');
+		$("#lastNameSave").val('');
+		$("#mobileNoSave").val('');
+	}
+	else
+	{
+		$("#address1Save").val('');
+		$("#address2Save").val('');
+		$("#stateSave").val('');
+		$("#streetSave").val('');
+		$("#citySave").val('');
+		$("#pincodeSave").val('');
+	}
 
 	document.getElementById("action").value = "edit";
 	var firstName = $("#firstNameSave").val();
@@ -388,7 +404,10 @@ function saveUserDetails()
 //	var sessionEmail = $("#emailSave").val();
 	var address1 = $("#address1Save").val();
 	var address2 = $("#address2Save").val();
-	var state = $("#stateSave").val();
+
+	var state = $("#stateSave option:selected").text();
+//	alert("state : "+state);
+	
 	var street = $("#streetSave").val();
 	var city = $("#citySave").val();
 	var pincode = $("#pincodeSave").val();
@@ -695,14 +714,21 @@ function callAlerts(msg)
 //	$("#"+id).css('border-color','red');
 //}
 
-function quantity(txtboxid,action)
+function quantity(txtboxid,action,price)
 {
 //	var btnid = $(id).attr("id");
+	var totalcartAmmount = $("#totalcartAmmounthidden").val();
 	if(action == "add")
 		{
 			var val = parseInt($("#"+txtboxid).val());
 			var total = val+1;
 		    $("#"+txtboxid).val(total);
+		    var pricePerProduct = price*total;
+		    var oldpricePerProduct = price*val;
+		    var totalPrice = parseInt(totalcartAmmount) - parseInt(oldpricePerProduct);
+		    var totalPurchaseprice = totalPrice+pricePerProduct;
+		    $("#totalcartAmmounthidden").val(totalPurchaseprice);
+		    console.log("quantity : "+total+" oldpricePerProduct :"+oldpricePerProduct+" quantity * pricePerProduct : "+pricePerProduct+" totalPrice after - price : "+totalPrice+" totalPurchaseprice : "+totalPurchaseprice);
 		}
 	else if(action == "minus")
 		{
@@ -711,6 +737,11 @@ function quantity(txtboxid,action)
 			{
 				var total = val-1;
 				$("#"+txtboxid).val(total);
+				var pricePerProduct = price*total;
+				var oldpricePerProduct = price*val;
+			    var totalPrice = parseInt(totalcartAmmount) - parseInt(oldpricePerProduct);
+			    var totalPurchaseprice = totalPrice+pricePerProduct;
+			    console.log("quantity : "+total+" oldpricePerProduct :"+oldpricePerProduct+" quantity * pricePerProduct : "+pricePerProduct+" totalPrice after - price : "+totalPrice+" totalPurchaseprice : "+totalPurchaseprice);
 			}
 		}
 }

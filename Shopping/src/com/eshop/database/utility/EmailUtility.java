@@ -168,6 +168,12 @@ public class EmailUtility
 					message.setSubject("Confidential");
 					message.setText("Your password is : " + password + " Please keep it confidential");
 				}
+				
+				if (propertyValue != null && propertyValue.equalsIgnoreCase(ProductInterfaceImpl.CHANGE_PASSWORD))
+				{
+					message.setSubject("Information Alert");
+					message.setText("Your password has been changed,If it wasn't you,Make Forgot Password from our website to get your updated password");
+				}
 
 				// 3rd step)send message
 				Transport.send(message);

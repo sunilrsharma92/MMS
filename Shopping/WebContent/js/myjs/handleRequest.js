@@ -149,6 +149,7 @@ function handleRequest()
 			changePwd.command = 1056;
 
 			var strJsonMsgForChangePwd = JSON.stringify(changePwd);
+			handleAllListResponse(strJsonMsgForChangePwd);
 			console.log("handleRequest     handleChangePassword     strJsonMsgForChangePwd : " + strJsonMsgForChangePwd);
 		}
 		catch (e)

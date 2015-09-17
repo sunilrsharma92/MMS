@@ -38,45 +38,53 @@ $(document).ready(function(){
 function loadProfileMenu(id)
 {
 	var idofpage = $(id).attr("id");
-	$("#loadpagecontent").load(idofpage+".jsp");
-	$.session.set('contentState', idofpage);
+	console.log("idofpage : "+idofpage);
+	// -- id 
+	for(var i=0; i<=3 ; i++)
+		{
+			$("#"+i+"1").hide();
+		}
+	
+	$("#"+idofpage+"1").show();
+	
+//	$.session.set('contentState', idofpage);
 	
 	$("#dashboard").hide(); // -- hide dashboard after profile click,to avoid mixture of profile and dashboard 
 	
-	if (idofpage == "personalDetails" || idofpage == "addresses")
+	if (idofpage == "0" || idofpage == "1")
 	{
 		var loginData = $.session.get('loginData');
-	//		alert("loginData   "+JSON.stringify(loginData));
+//			alert("loginData   "+JSON.stringify(loginData));
 		var userType = $.session.get('userType');
 	
 		if (loginData != null)
 		{
 			var sessionData = JSON.parse(loginData);
 	
-			if (userType == "customer")
-			{
-				if (idofpage == "personalDetails")
+//			if (userType == "customer")
+//			{
+				if (idofpage == "0")
 				{
 					var firstName = sessionData.firstName;
 					var lastName = sessionData.lastName;
 					var phone = sessionData.phone;
 					var emailId = sessionData.emailId;
 					
-					alert(firstName+"  "+lastName+"  "+phone+"  "+emailId);
+//					alert(firstName+"  "+lastName+"  "+phone+"  "+emailId);
 					
 					$("#firstNameSave").val(firstName);
 					$("#lastNameSave").val(lastName);
 					$("#mobileNoSave").val(phone);
 					$("#emailSave").val(emailId);
 				}
-				else if (idofpage == "addresses")
+				else if (idofpage == "1")
 				{
-					var address = sessionData.address;
+					var address = sessionData.address1;
 					var address2 = sessionData.address2;
 					var street = sessionData.street;
 					var state = sessionData.state;
 					var city = sessionData.city;
-					var pincode = sessionData.pincode;
+					var pincode = sessionData.pinCode;
 					
 					$("#address1Save").val(address);
 					$("#address2Save").val(address2);
@@ -86,7 +94,7 @@ function loadProfileMenu(id)
 					$("#pincodeSave").val(pincode);
 				}
 				
-			}
+//			}
 	
 		}
 

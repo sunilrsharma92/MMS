@@ -26,13 +26,13 @@
 				</span>
 				<table>
 					<tr>
-						<td><span>First	Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: </span></td>
+						<td><span>Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: </span></td>
 						<td><label class = "labelfont" for="firstNameDisplay"></label></td>
 					</tr>
-					<tr>
+					<!-- <tr>
 						<td><span>Last Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: </span></td>
 						<td><label class = "labelfont" for="lastNameDisplay"></label></td>
-					</tr>
+					</tr> -->
 					<tr>
 						<td><span>Address &nbsp;&nbsp;: </span></td>
 						<td><label class = "labelfont" for="addressDisplay"></label></td>
