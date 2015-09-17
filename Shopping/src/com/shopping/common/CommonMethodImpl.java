@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 import com.eshop.database.utility.MyConnection;
@@ -96,6 +97,53 @@ public class CommonMethodImpl {
 			
 			closeConnectionUpdate(stmt, conn);
 			
+			if(parentjson != null)
+				return parentjson;
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+	
+	
+	@SuppressWarnings("unchecked")
+	public static JSONObject getShippingDetails(String property,Object value, JSONObject parentjson, String address, JSONArray jsonarray)
+	{
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		try
+		{
+			conn = MyConnection.getConnection();
+			String sql = "select * from shippingaddress where "+property+" = "+value+"";
+			stmt = conn.prepareStatement(sql);
+			ResultSet rs = stmt.executeQuery();
+			while (rs.next())
+			{
+				JSONObject childjson = new JSONObject();
+				if(address == "address")
+				{
+					childjson.put("shippingaddress", rs.getString("shippingaddress"));
+					jsonarray.add(childjson);
+				}
+				else
+				{
+					childjson.put("id", rs.getLong("id"));
+					childjson.put("name", rs.getString("name"));
+					childjson.put("shippingaddress", rs.getString("shippingaddress"));
+					childjson.put("email", rs.getString("email"));
+					childjson.put("mobile", rs.getString("mobile"));
+					childjson.put("totalammount", rs.getFloat("totalammount"));
+					childjson.put("orderid", rs.getString("orderid"));
+					jsonarray.add(childjson);
+				}
+			}
+			
+			closeConnectionUpdate(stmt, conn);
+//			System.out.println("parentjson Address : "+parentjson);
+			parentjson.put("address", jsonarray);
 			if(parentjson != null)
 				return parentjson;
 		}

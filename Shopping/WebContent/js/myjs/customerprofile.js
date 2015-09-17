@@ -62,7 +62,7 @@ function loadProfileMenu(id)
 					var phone = sessionData.phone;
 					var emailId = sessionData.emailId;
 					
-					alert(firstName+"  "+lastName+"  "+phone+"  "+emailId);
+//					alert(firstName+"  "+lastName+"  "+phone+"  "+emailId);
 					
 					$("#firstNameSave").val(firstName);
 					$("#lastNameSave").val(lastName);
@@ -71,12 +71,12 @@ function loadProfileMenu(id)
 				}
 				else if (idofpage == "addresses")
 				{
-					var address = sessionData.address;
+					var address = sessionData.address1;
 					var address2 = sessionData.address2;
 					var street = sessionData.street;
 					var state = sessionData.state;
 					var city = sessionData.city;
-					var pincode = sessionData.pincode;
+					var pincode = sessionData.pinCode;
 					
 					$("#address1Save").val(address);
 					$("#address2Save").val(address2);

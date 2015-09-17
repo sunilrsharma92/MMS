@@ -4,78 +4,40 @@
 <meta charset="UTF-8">
 <title>Checkout</title>
 
+<script type="text/javascript" src="js/myjs/checkout.js"></script>
+
 <style type="text/css">
 	.bs-example {
 		margin: 20px;
 	}
+	
+	.space
+	{
+		height: 10px;
+	}
+	
+	.divSection
+	{
+		width: 30%;
+		float: left;
+	}
+	
+	.mainDivSection
+	{
+		padding-left: 10px;
+		width: 100%;
+	}
+	
+	.alignleft
+	{
+		width: 100%;
+		float: left;
+		margin-top: 20px;
+		position: relative;
+		display: block;
+		margin-bottom: 10px;
+	}
 </style>
-
-
-<script type="text/javascript">
-
-
-//*******************************************************************************************************************	
-
-	$("#acordionsignin").click(function() {
-
-		$("#loginlabel").trigger("click");
-		$("#logintab").trigger("click");
-		
-	});
-	
-	
-//*******************************************************************************************************************	
-	
-	$("#acordionsignup").click(function() {
-		
-		$("#loginlabel").trigger("click");
-		$("#signuptab").trigger("click");
-		
-		
-	});
-	
-	$(".2nd_next").click(function(){
-		
-		$.session.set('checkout','checkout');
-		getProductfromCookie("prod");
-		
-	});
-
-	
-	var loginData = $.session.get('loginData');
-	if(loginData != null)
-	{
-// 		$("#panelbody").hide();
-		$("#acordionsignin").hide();
-		$("#acordionsignup").hide();
-		$(".2nd_previous").hide();
-		$("#nextAccordion").trigger("click");
-		
-	}
-	else
-		{
-			$("#acordionsignin").show();
-			$("#acordionsignup").show();
-			$(".2nd_previous").show();
-			
-		}
-	
-	function appendProducttoCheckoutTable(productList, totalpurchase, total, count)
-	{
-		$("#monylabel").empty();
-		$("#monylabel").append(total);
-		
-		$("#prodCount").empty();
-		$("#prodCount").append(count);
-
-		$("#appendProducttoCheckoutCart").empty();
-		$("#appendProducttoCheckoutCart").append(productList);
-	
-		$("#totalpurchaseOnCheckout").empty();
-		$("#totalpurchaseOnCheckout").append(totalpurchase);
-	}
-	
-</script>
 
 </head>
 <body>
@@ -106,25 +68,26 @@
 					<div class="panel-body">
 						<div class="container" style="width: 100%;">
 							<div class="radio">
-								<label><input type="radio" id="oldadd" value="one" checked="checked" name="optradio">Same as my Account Address<a href=""> view</a></label>
+								<label><input type="radio" id="oldadd" value="one" style="margin-top: 0px;" checked="checked" name="optradio">Same as my Account Address</label>
 								<div class="pull-right sameadd " style="display: block;">
 									<a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" class="btn btn-primary 2nd_previous" id="ckaddcont">Pre</a>
 									<a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" class="btn btn-primary 2nd_next" id="ckaddcont">Next</a>
 								</div>
-							</div>
-							<div class="radio">
-								<label><input type="radio" id="newadd" value="two" name="optradio">New Address</label>
-								<div class="pull-right data" style="display: none;">
-									<a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" class="btn btn-primary " id="ckaddcont">Pre</a>
-									<a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" class="btn btn-primary " id="ckaddcont">Next</a>
+								
+								<div>
+								<div class="mainDivSection" id="displayExistAddress">
 								</div>
-								<table class="data" style="display: none;">
-									<tr><td>Address 1:</td><td><input type="text" class="textbox" name="name"></td></tr>
-									<tr><td>Address 2:</td><td><input type="text" class="textbox" name="name"></td></tr>
-									<tr><td>Street name:</td><td><input type="text" class="textbox" name="name"></td></tr>
-									<tr><td>State:</td>										<td>
+								</div>
+								
+								<div id="addresstable1" style="display: none;">
+								<table>
+									<tr><td>Address 1:</td><td><input type="text" id="address1Save" class="textbox" name="name"></td></tr>
+									<tr><td>Address 2:</td><td><input type="text" id="address2Save" class="textbox" name="name"></td></tr>
+									<tr><td>Street name:</td><td><input type="text" id="streetSave" class="textbox" name="name"></td></tr>
+									<tr><td>State:</td>
+										<td>
 											<!-- <input type="text" class="textbox" name="name"></td></tr> -->
-											<select class="form-control textbox" placeholder="select state">
+											<select class="form-control textbox" id="stateSave" placeholder="select state">
 												<option value="one">Select State</option>
 												<option value="one">Andhra Pradesh</option>
 												<option value="one">Arunachal Pradesh</option>
@@ -135,7 +98,7 @@
 												<option value="one">Gujarat</option>
 												<option value="one">Haryana</option>
 												<option value="one">Himachal Pradesh</option>
-												<option value="one">Jammu & Kashmir</option>
+												<option value="one">Jammu Kashmir</option>
 												<option value="one">Jharkhand</option>
 												<option value="one">Karnataka</option>
 												<option value="one">Kerala</option>
@@ -154,20 +117,30 @@
 												<option value="one">Uttarkhand</option>
 												<option value="one">Uttar Pradesh</option>
 												<option value="one">West Bengal</option>
-
-
+						
+						
 										</select>
-										</td></tr>
-									<tr><td>City:</td><td><input type="text" class="textbox" name="name"></td></tr>
-									<tr><td>Pincode:</td><td><input type="text" class="textbox" name="name"></td></tr>
-									<!-- <tr><td>Email Address:</td><td><input type="text" class="textbox" name="name"></td></tr> -->
-									<tr><td></td><td>
-											<!-- <button type="button" class="btn btn-primary" id="ckaddcont"> -->
-											<a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" class="btn btn-primary" id="ckaddcont">Save</a>
 										</td>
 									</tr>
-
+									<tr><td>City:</td><td><input type="text" id="citySave" class="textbox" name="name"></td></tr>
+									<tr><td>Pincode:</td><td><input type="text" id="pincodeSave" class="textbox" name="name"></td></tr>
+									<!-- <tr><td>Email Address:</td><td><input type="text" class="textbox" name="name"></td></tr> -->
+									<tr><td></td><td><button type="button" class="btn btn-primary" onclick="saveUserDetails()">Save Changes</button></td></tr>
 								</table>
+								</div>
+								
+							</div>
+							
+<!-- 							<div class="space"></div> -->
+							
+							<div class="alignleft">
+								<label><input type="radio" id="newadd" value="two" name="optradio"> New Address</label>
+								<div class="pull-right data" style="display: none;">
+									<a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" class="btn btn-primary " id="ckaddcont">Pre</a>
+									<a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" class="btn btn-primary " id="ckaddcont">Next</a>
+								</div>
+								<div class="space"></div>
+								<div id="newaddtextarea" style="padding-left: 10px;display: none;"><textarea rows="7" cols="100"></textarea></div>
 
 							</div>
 						</div>
@@ -206,8 +179,8 @@
 
 							</div>
 						<div class="pull-right">
-							<a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" class="btn btn-primary " id="ckaddcont">Pre</a>
-							<a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" class="btn btn-primary " id="ckaddcont">Next</a>
+							<a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" class="btn btn-primary" id="ckaddcont">Pre</a>
+							<a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" class="btn btn-primary" onclick="conformOrder();" id="conformOrder">Conform Order</a>
 						</div>
 					</div>
 				</div>

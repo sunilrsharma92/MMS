@@ -1,9 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<%--     <%@page import="java.util.*" %> --%>
-<%--     <%@page import="com.eshop.pojo.Product"%> --%>
     <html>
-<!-- <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"> -->
 <html>
 <head>
 <title>MakeMyShopy</title>
@@ -13,15 +10,16 @@
 <link rel="stylesheet" href="css/jqx/jqx.base.css">
 <link rel="stylesheet" href="js/jAlert/css/jquery.alerts.css">
 
-<!-- <script src='https://www.google.com/recaptcha/api.js'></script> -->
 
 <script type="text/javascript" src="js/jAlert/js/jquery.js"></script>
 <script type="text/javascript" src="js/jAlert/js/jquery.ui.draggable.js"></script>
 <script type="text/javascript" src="js/jAlert/js/jquery.alerts.js"></script>
 
 
-
 <script type="text/javascript" src="js/jquery-2.1.4.js"></script>
+
+<script type="text/javascript" src='js/jquery.elevatezoom.js'></script>
+
 <script type="text/javascript" src="js/jquery.validate.min.js"></script>
 <script type="text/javascript" src="js/myjs/validation.js"></script>
 
@@ -50,8 +48,6 @@ ul li:hover ul.dropdown-menu {
 }
 </style>
 </head>
-<!-- <body background="Images/background/backgroundimg.jpg"> -->
-<!-- <body class="well" > -->
 <body>
 <jsp:include page="indexMenu.jsp" />
 
@@ -59,11 +55,8 @@ ul li:hover ul.dropdown-menu {
 <jsp:include page="indexBody.jsp" />
 </div>
 
+<div style="margin-bottom: 0px;">
 <jsp:include page="footer.jsp" />
-
-<!-- <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.1.3.min.js"></script>  -->
-<!-- 	<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.0/jquery.validate.min.js"></script>  -->
-<!-- 	<script src="js/myjs/validation.js"></script> -->
-
+</div>
 </body>
 </html>

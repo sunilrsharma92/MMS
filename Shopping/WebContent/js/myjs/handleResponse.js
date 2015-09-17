@@ -63,6 +63,10 @@ function listResponseHandler(response, command, status)
 					case 2005:
 						handleProductDisplayinCartResponse(response);
 						break;
+						
+					case 2007:
+						handleUserShippingAddressResponse(response);
+						break;
 
 					case 2051:
 						handleLoginResponse(response);
@@ -108,6 +112,10 @@ function listResponseHandler(response, command, status)
 						
 						break;
 						
+					case 1007:
+						handleUserShippingAddressResponse(response);
+						break;
+
 					case 1010:
 						handleShopProfDispResponse(response);
 						break;
