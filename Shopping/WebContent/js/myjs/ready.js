@@ -676,7 +676,7 @@ function removeproductfromCArt(id)
 		}
 	catch (e)
 	{
-		console.log("ready.js  :: removeproductfromCArt(id)  :: Exception"+e)
+		console.log("ready.js  :: removeproductfromCArt(id)  :: Exception"+e);
 	}
 	
 }

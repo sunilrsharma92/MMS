@@ -149,8 +149,8 @@
 												<input class="textbox font" type="text" id="emailLogin"	name="email" placeholder="Enter Email Id"></br>
 												 <input	class="textbox font" type="password" id="passLoginTemp"	name="password" placeholder="Enter Password"></br> 
 												<input class="textbox font" type="text" id="otpLogin" placeholder="OTP" style="display: none"></br>
-												 <input	type="button" class="btn btn-primary btn_width_93_perc" id="userlogin" value="Login" />
-												<!-- 												<button onclick="login()" class="btn btn-primary" type="button">Login</button> -->
+												 <input	type="submit" class="btn btn-primary btn_width_93_perc" id="userlogin" value="Login" />
+												<!-- <button onclick="login()" class="btn btn-primary" type="button">Login</button> -->
 											</form>
 										</div>
 										<div id="menu1" class="tab-pane fade">
@@ -167,14 +167,14 @@
 													<input class="textbox font" type="password" name="password2" id="repass" placeholder="ReEnter Password"></br>
 												<div class="g-recaptcha" name="captcha" data-sitekey="6LfaxwsTAAAAAEB5RYVVeSFM3AyHzAHb3YvgtGvx"></div>
 												<div id="warnings"></div>
-												<input type="button" class="btn btn-primary btn_width_93_perc" id="signup" value="Sign Up" />
+												<input type="submit" class="btn btn-primary btn_width_93_perc" id="signup" value="Sign Up" />
 											</form>
 										</div>
 										<div id="menu2" class="tab-pane fade">
 											<h3 class="font">Forgot Password:</h3>
 											<form class="forgot-val"style="text-align: center;">
 												<input class="textbox font" type="text" name="email" id="emailForgotPwd" placeholder="Enter Email id"></br>
-												<button onclick="forgotPwd()" class="btn btn-primary btn_width_93_perc" type="button">Submit</button>
+												<button onclick="forgotPwd()" class="btn btn-primary btn_width_93_perc" type="submit">Submit</button>
 											</form>
 										</div>
 									</div>
