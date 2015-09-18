@@ -55,7 +55,7 @@
 					<div class="panel-body" id="panelbody">
 						<button class="btn btn-primary" type="button" id="acordionsignin">Sign In</button>
 						<button class="btn btn-primary" type="button" id="acordionsignup">Sign Up</button>
-						<a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" id="nextAccordion" class="btn btn-primary pull-right">Next</a>
+						<a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" id="nextAccordion" onclick="proceed('login');" class="btn btn-primary pull-right">Next</a>
 					</div>
 				</div>
 			</div>
@@ -71,7 +71,7 @@
 								<label><input type="radio" id="oldadd" value="one" style="margin-top: 0px;" checked="checked" name="optradio">Same as my Account Address</label>
 								<div class="pull-right sameadd " style="display: block;">
 									<a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" class="btn btn-primary 2nd_previous" id="ckaddcont">Pre</a>
-									<a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" class="btn btn-primary 2nd_next" id="ckaddcont">Next</a>
+									<a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" onclick="proceed('address');" class="btn btn-primary 2nd_next" id="nextAccordion1">Next</a>
 								</div>
 								
 								<div>
@@ -136,11 +136,11 @@
 							<div class="alignleft">
 								<label><input type="radio" id="newadd" value="two" name="optradio"> New Address</label>
 								<div class="pull-right data" style="display: none;">
-									<a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" class="btn btn-primary " id="ckaddcont">Pre</a>
-									<a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" class="btn btn-primary " id="ckaddcont">Next</a>
+<!-- 									<a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" class="btn btn-primary " id="ckaddcont">Pre</a> -->
+									<a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" onclick="proceed('newaddress');" class="btn btn-primary" id="newaddressnbtn">Next</a>
 								</div>
 								<div class="space"></div>
-								<div id="newaddtextarea" style="padding-left: 10px;display: none;"><textarea rows="7" cols="100"></textarea></div>
+								<div id="newaddtextarea" style="padding-left: 10px;display: none;"><textarea id="newatxtddress" rows="7" cols="100"></textarea></div>
 
 							</div>
 						</div>

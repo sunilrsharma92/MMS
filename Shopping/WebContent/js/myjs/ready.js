@@ -64,9 +64,19 @@ $(document).ready(function(){
 
 	// -- logout
 	$("#logoutLink").click(function() {
-//		alert("hahaa");
+
 		$.session.remove('loginData');
 		$.session.remove('usertype');
+		$.session.remove('pageState');
+		$.session.remove('checkout');
+		$.session.remove('contentState');
+		$.session.remove('addressList');
+		$.session.remove('count');
+		$.session.remove('viewprod');
+		$.session.remove('zoominage');
+		$.session.remove('prodDisc');
+		$.session.remove('checkoutlogin');
+
 		window.location.replace("indexTemplate.jsp");
 	});
 	
@@ -362,6 +372,7 @@ function loadPage(id)
 	{
 		$.session.set('pageState', vid);
 		$("#checkoutClose").trigger("click");
+		
 	}
 	
 	$("#loadpage").load(vid+".jsp");

@@ -1,6 +1,6 @@
 var objhandleRequest=new handleRequest();
 //*******************************************************************************************************************	
-
+var count = 0;
 $(document).ready(function(){
 try
 {
@@ -27,7 +27,7 @@ try
 					
 					objhandleRequest.getUserAddressfromShippingaddress(key, userType);
 					var addressList = $.session.get('addressList');
-					var count = $.session.get('count');
+					count = $.session.get('count');
 					addresslistcheck = addressList;
 					if(address !="" && address !=null)
 						{
@@ -35,9 +35,9 @@ try
 							count = parseInt(count)+1;
 							addressList = addressList + '<div class="divSection">'
 							+'<div class="space"></div>'
-							+'<label><input id="" value="one" style="margin-top: 0px;" name="addList" type="radio">Address '+count+' : </label>'
+							+'<label><input id="radio'+count+'" value="one" style="margin-top: 0px;" name="addList" type="radio">Address '+count+' : </label>'
 							+'<div class="space"></div>'
-							+'<textarea  rows="5" cols="30">'+address+'</textarea>'
+							+'<textarea  id="textarea'+count+'" rows="5" cols="30">'+address+'</textarea>'
 							+'</div>';
 						}
 					if(address2 !="" && address2 !=null)
@@ -46,11 +46,14 @@ try
 							count = parseInt(count)+1;
 							addressList = addressList + '<div class="divSection">'
 							+'<div class="space"></div>'
-							+'<label><input id="" value="one" style="margin-top: 0px;" name="addList" type="radio">Address '+count+' : </label>'
+							+'<label><input id="radio'+count+'" value="one" style="margin-top: 0px;" name="addList" type="radio">Address '+count+' : </label>'
 							+'<div class="space"></div>'
-							+'<textarea  rows="5" cols="30">'+address2+'</textarea>'
+							+'<textarea  id="textarea'+count+'" rows="5" cols="30">'+address2+'</textarea>'
 							+'</div>';
 					}
+//					alert("count : before : "+count)
+//					$.session.remove('count');
+//					$.session.set('count',count);
 //					alert(addressList);
 					if(addressList !="" && addressList != null)
 						{
@@ -63,13 +66,13 @@ try
 							$("#addresstable1").show();
 							document.getElementById("addresstable1").style.display = 'block';
 						}
-					
 		}
 
 	$("#acordionsignin").click(function() {
 
 		$("#loginlabel").trigger("click");
 		$("#logintab").trigger("click");
+		$.session.set('checkoutlogin','checkoutlogin')
 		
 	});
 	
@@ -151,4 +154,89 @@ catch (e) {
 	function conformOrder()
 	{
 		jAlert("Order Successful");
+	}
+	
+	function proceed(condition)
+	{
+		var txtareaAddress = "";
+		if(condition == "login")
+			{
+				var loginData = $.session.get('loginData');
+				if(loginData == null)
+					{
+						jAlert('Please login first to proceed', 'Message');
+						$("#nextAccordion").attr('data-toggle','');
+						return false;
+					}
+				else
+					{
+						$("#nextAccordion").attr('data-toggle','collapse');
+						return true;
+					}
+			}
+		if(condition == "address")
+			{
+			var oldadd = $("#oldadd").is(":checked");
+			
+			if(oldadd == true)
+			{
+				
+				for(var i=0; i<count; i++)
+				{
+				var j = parseInt(i)+1;
+				var bool = $("#radio"+j).is(":checked");
+					if(bool == true)
+						{
+							txtareaAddress = "";
+							txtareaAddress = $("#textarea"+j).val();
+						}
+					
+				}
+					if(txtareaAddress != "" && txtareaAddress != null && txtareaAddress.length != 0)
+						{
+						$(".2nd_next").attr('data-toggle','collapse');
+						jConfirm('Address : '+txtareaAddress, 'Message',function(e){
+							if(e == true)
+								{
+									return true;
+								}
+							else
+								{
+//									$(".2nd_next").attr('data-toggle','');
+									return false;
+								}
+						});
+							
+						}
+					else
+						{
+							jAlert('Please select atleast one address or add a new address','Message');
+							$("#nextAccordion1").attr('data-toggle','');
+							return false;
+						}
+				
+			}
+				
+			}
+		if(condition == "newaddress")
+			{
+				var newadd = $("#newadd").is(":checked");
+				if(newadd == true)
+				{
+					var newAddress = $("#newatxtddress").val();
+					if(newAddress != "" && newAddress != null && newAddress.length != 0)
+					{
+						$("#newaddressnbtn").attr('data-toggle','collapse');
+						return true;
+					}
+					else
+					{
+						jAlert('Please Enter the new address details','Message');
+						$("#newaddressnbtn").attr('data-toggle','');
+						return false;
+					}
+				}
+			
+			}
+		
 	}

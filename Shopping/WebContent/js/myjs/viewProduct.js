@@ -8,8 +8,6 @@ $(document).ready(function(){
 		
 	document.getElementById("productdisc").innerHTML = prodDisc;
 	
-	
-	
 });
 
 function disablebtn(productid)
