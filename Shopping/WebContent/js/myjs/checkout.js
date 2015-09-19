@@ -26,46 +26,58 @@ try
 					$("#pincodeSave").val(pincode);
 					
 					objhandleRequest.getUserAddressfromShippingaddress(key, userType);
-					var addressList = $.session.get('addressList');
-					count = $.session.get('count');
-					addresslistcheck = addressList;
-					if(address !="" && address !=null)
-						{
-//						alert("address = "+address);
-							count = parseInt(count)+1;
-							addressList = addressList + '<div class="divSection">'
-							+'<div class="space"></div>'
-							+'<label><input id="radio'+count+'" value="one" style="margin-top: 0px;" name="addList" type="radio">Address '+count+' : </label>'
-							+'<div class="space"></div>'
-							+'<textarea  id="textarea'+count+'" rows="5" cols="30">'+address+'</textarea>'
-							+'</div>';
-						}
-					if(address2 !="" && address2 !=null)
-					{
-//						alert("address2 = "+address2);
-							count = parseInt(count)+1;
-							addressList = addressList + '<div class="divSection">'
-							+'<div class="space"></div>'
-							+'<label><input id="radio'+count+'" value="one" style="margin-top: 0px;" name="addList" type="radio">Address '+count+' : </label>'
-							+'<div class="space"></div>'
-							+'<textarea  id="textarea'+count+'" rows="5" cols="30">'+address2+'</textarea>'
-							+'</div>';
-					}
-//					alert("count : before : "+count)
-//					$.session.remove('count');
-//					$.session.set('count',count);
-//					alert(addressList);
-					if(addressList !="" && addressList != null)
-						{
-							$("#displayExistAddress").empty();
-							document.getElementById("displayExistAddress").innerHTML = addressList;
-							$("#addresstable").hide();
-						}
-					else
-						{
-							$("#addresstable1").show();
-							document.getElementById("addresstable1").style.display = 'block';
-						}
+					
+					var num = 0;
+					var stopInterval = setInterval(function(){
+						num++;
+						if(num>1)
+							{
+								clearInterval(stopInterval);
+								
+								var addressList = $.session.get('addressList');
+								count = $.session.get('count');
+								addresslistcheck = addressList;
+								if(address !="" && address !=null)
+									{
+//									alert("address = "+address);
+										count = parseInt(count)+1;
+										addressList = addressList + '<div class="divSection">'
+										+'<div class="space"></div>'
+										+'<label><input id="radio'+count+'" value="one" style="margin-top: 0px;" name="addList" type="radio">Address '+count+' : </label>'
+										+'<div class="space"></div>'
+										+'<textarea  id="textarea'+count+'" rows="5" cols="30">'+address+'</textarea>'
+										+'</div>';
+									}
+								if(address2 !="" && address2 !=null)
+								{
+//									alert("address2 = "+address2);
+										count = parseInt(count)+1;
+										addressList = addressList + '<div class="divSection">'
+										+'<div class="space"></div>'
+										+'<label><input id="radio'+count+'" value="one" style="margin-top: 0px;" name="addList" type="radio">Address '+count+' : </label>'
+										+'<div class="space"></div>'
+										+'<textarea  id="textarea'+count+'" rows="5" cols="30">'+address2+'</textarea>'
+										+'</div>';
+								}
+//								alert("count : before : "+count)
+//								$.session.remove('count');
+//								$.session.set('count',count);
+//								alert(addressList);
+								if(addressList !="" && addressList != null)
+									{
+										$("#displayExistAddress").empty();
+										document.getElementById("displayExistAddress").innerHTML = addressList;
+										$("#addresstable").hide();
+									}
+								else
+									{
+										$("#addresstable1").show();
+										document.getElementById("addresstable1").style.display = 'block';
+									}
+							}
+					}, 500);
+					
+					
 		}
 
 	$("#acordionsignin").click(function() {
@@ -149,11 +161,28 @@ catch (e) {
 	
 		$("#totalpurchaseOnCheckout").empty();
 		$("#totalpurchaseOnCheckout").append(totalpurchase);
+		$("#totalpurchaseOnCheckoutHidden").val(total);
 	}
 	
 	function conformOrder()
 	{
-		jAlert("Order Successful");
+		var totalammount = $("#totalpurchaseOnCheckoutHidden").val();
+		var address = "";
+		
+		for(var i=0; i<count; i++)
+		{
+		var j = parseInt(i)+1;
+		var bool = $("#radio"+j).is(":checked");
+			if(bool == true)
+				{
+					address = "";
+					address = $("#textarea"+j).val();
+				}
+			
+		}
+		alert("totalammount : "+totalammount+" address : "+address);
+		
+		jAlert("Order Successful");	
 	}
 	
 	function proceed(condition)
@@ -195,7 +224,7 @@ catch (e) {
 					if(txtareaAddress != "" && txtareaAddress != null && txtareaAddress.length != 0)
 						{
 						$(".2nd_next").attr('data-toggle','collapse');
-						jConfirm('Address : '+txtareaAddress, 'Message',function(e){
+						/*jConfirm('Address : '+txtareaAddress, 'Message',function(e){
 							if(e == true)
 								{
 									return true;
@@ -205,7 +234,7 @@ catch (e) {
 //									$(".2nd_next").attr('data-toggle','');
 									return false;
 								}
-						});
+						});*/
 							
 						}
 					else

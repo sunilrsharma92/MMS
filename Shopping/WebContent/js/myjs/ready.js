@@ -370,9 +370,25 @@ function loadPage(id)
 			}
 	else if(vid == "checkout")
 	{
-		$.session.set('pageState', vid);
-		$("#checkoutClose").trigger("click");
-		
+		var ammount = $("#totalpurchase").text();
+		if(ammount == "Total Price : Rs 0.00 ")
+			{
+				jAlert('Add product in cart to proceed further', 'Message');
+				vid = "";
+				return false;
+			}
+		else
+			{
+				$.session.set('pageState', vid);
+				$("#checkoutClose").trigger("click");
+			}
+			
+//			}
+//		else
+//			{
+//				jAlert('Add product in cart to proceed further', 'Message');
+//				return false;
+//			}
 	}
 	
 	$("#loadpage").load(vid+".jsp");

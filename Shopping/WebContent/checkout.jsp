@@ -172,12 +172,9 @@
 							</table>
 						</div>
 						<div id="totalpurchaseOnCheckout" class="totaldiv">
-								<!--               <span class="tlbprce">Total Price :</span> -->
-								<!--               <span class="totalprize"><strong> Rs 0</strong> </span>  -->
-								<!--               <span class="usave">You save :</span>  -->
-								<!--               <span class="rups"><strong> Rs 0</strong> </span> -->
-
+								
 							</div>
+							<input type="hidden" name="txttotalpurchaseOnCheckoutHidden" id="totalpurchaseOnCheckoutHidden" value="">
 						<div class="pull-right">
 							<a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" class="btn btn-primary" id="ckaddcont">Pre</a>
 							<a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" class="btn btn-primary" onclick="conformOrder();" id="conformOrder">Conform Order</a>

@@ -448,58 +448,67 @@ function handleLoginResponse(response)
 		var checkoutlogin = $.session.get('checkoutlogin');
 		if(checkoutlogin == 'checkoutlogin')
 		{
-//			alert('checkoutlogin : '+checkoutlogin);
+			$("#loadpage").load("checkout.jsp");
+//			var num = 0;
+//			var stopInterval = setInterval(function(){
+//				num++;
+////				$("#loadpage").load("checkout.jsp");
+//				if(num>1)
+//					{
+//						clearInterval(stopInterval);
+//					}
+//			}, 500);
 			
-			var loginData = $.session.get('loginData');
-			var sessionData = JSON.parse(loginData);
-			
-			var address = sessionData.address1;
-			var address2 = sessionData.address2;
-			var key = sessionData.key;
-			var userType = sessionData.userType;
-			
-			objhandleRequest.getUserAddressfromShippingaddress(key, userType);
-			var addressList = $.session.get('addressList');
-			var count = $.session.get('count');
-			addresslistcheck = addressList;
-			
-			if(address !="" && address !=null)
-				{
-					count = parseInt(count)+1;
-					addressList = addressList + '<div class="divSection">'
-					+'<div class="space"></div>'
-					+'<label><input id="" value="one" style="margin-top: 0px;" name="addList" type="radio">Address '+count+' : </label>'
-					+'<div class="space"></div>'
-					+'<textarea  rows="5" cols="30">'+address+'</textarea>'
-					+'</div>';
-				}
-			if(address2 !="" && address2 !=null)
-			{
-//				alert("address2 = "+address2);
-					count = parseInt(count)+1;
-					addressList = addressList + '<div class="divSection">'
-					+'<div class="space"></div>'
-					+'<label><input id="" value="one" style="margin-top: 0px;" name="addList" type="radio">Address '+count+' : </label>'
-					+'<div class="space"></div>'
-					+'<textarea  rows="5" cols="30">'+address2+'</textarea>'
-					+'</div>';
-			}
-
-			if(addressList !="" && addressList != null)
-				{
-					$("#displayExistAddress").empty();
-					document.getElementById("displayExistAddress").innerHTML = addressList;
-					$("#addresstable").hide();
-				}
-			else
-				{
-					$("#addresstable1").show();
-					document.getElementById("addresstable1").style.display = 'block';
-				}
-			for(var i = 0;i<2;i++)
-				{
-					$("#loadpage").load("checkout.jsp");
-				}
+//			var loginData = $.session.get('loginData');
+//			var sessionData = JSON.parse(loginData);
+//			
+//			var address = sessionData.address1;
+//			var address2 = sessionData.address2;
+//			var key = sessionData.key;
+//			var userType = sessionData.userType;
+//			
+//			objhandleRequest.getUserAddressfromShippingaddress(key, userType);
+//			var addressList = $.session.get('addressList');
+//			var count = $.session.get('count');
+//			addresslistcheck = addressList;
+//			
+//			if(address !="" && address !=null)
+//				{
+//					count = parseInt(count)+1;
+//					addressList = addressList + '<div class="divSection">'
+//					+'<div class="space"></div>'
+//					+'<label><input id="" value="one" style="margin-top: 0px;" name="addList" type="radio">Address '+count+' : </label>'
+//					+'<div class="space"></div>'
+//					+'<textarea  rows="5" cols="30">'+address+'</textarea>'
+//					+'</div>';
+//				}
+//			if(address2 !="" && address2 !=null)
+//			{
+////				alert("address2 = "+address2);
+//					count = parseInt(count)+1;
+//					addressList = addressList + '<div class="divSection">'
+//					+'<div class="space"></div>'
+//					+'<label><input id="" value="one" style="margin-top: 0px;" name="addList" type="radio">Address '+count+' : </label>'
+//					+'<div class="space"></div>'
+//					+'<textarea  rows="5" cols="30">'+address2+'</textarea>'
+//					+'</div>';
+//			}
+//
+//			if(addressList !="" && addressList != null)
+//				{
+//					$("#displayExistAddress").empty();
+//					document.getElementById("displayExistAddress").innerHTML = addressList;
+//					$("#addresstable").hide();
+//				}
+//			else
+//				{
+//					$("#addresstable1").show();
+//					document.getElementById("addresstable1").style.display = 'block';
+//				}
+//			for(var i = 0;i<2;i++)
+//				{
+//					$("#loadpage").load("checkout.jsp");
+//				}
 			
 		}
 		else
