@@ -193,113 +193,6 @@ $('#checkout').click(function(){
 });
 
 
-//*******************************************************************************************************************
-
-
-
-$("#userlogin").click(function(){
-	
-//	alert("Hii");
-	var emailLogin = $("#emailLogin").val();
-	var passLogin = $("#passLoginTemp").val();
-	var otpLogin = $("#otpLogin").val();
-	var userType = $("#userType").val();
-	
-
-	if(userType)
-	{
-		userType = "customer";
-	}
-	else
-	{
-		userType = "supplier";
-	}
-	
-	console.log("emailLogin : " + emailLogin + "  passLogin : " + passLogin + "  userType : " + userType +"  otpLogin : "+otpLogin );
-	$(".overlay").show();
-	objhandleRequest.handleLogin(emailLogin, passLogin, userType, otpLogin);
-	
-//	if(emailLogin != "" && passLogin != "")
-//		{
-//			if(document.getElementById('otpLogin').style.display == 'block' && otpLogin == "")
-//			{
-//					validationMsg("otpLogin","OTP is required..!! Check it in your mail");
-//					return false;
-//			}
-//			else
-//			{
-//				var result = jConfirm("Are you sure you want to register as "+userType,"Make My Shopy",function()
-//						{
-//							
-//						});
-//					
-//				if(result)
-//				{
-//					return true;
-//					objhandleRequest.handleLogin(emailLogin, passLogin, userType, otpLogin);
-//				}
-//				else
-//				{
-//					return false;
-//				}
-//			}
-//		}
-//	else
-//		{
-//			if(emailLogin == "" )
-//			{
-//				validationMsg("emailLogin","Email is required");
-//			}
-//			if(passLogin == "" )
-//			{
-//				validationMsg("passLoginTemp","Password is required");
-//			}
-//			return false;
-//		}
-	
-});
-
-//*******************************************************************************************************************
-
-$("#signup").click(function(){
-//	alert("SignUp");
-	
-	var passSignUp = $('#passSignUp').val();
-//	var firstNameSignUp = $('#firstNameSignUp').val();
-	var mobileKey = $('#mobile').val();
-	var emailKey = $('#emailSignUp').val();
-	var userType = $("#userType").val();
-
-	if(userType)
-	{
-		userType = "customer";
-	}
-	else
-	{
-		userType = "supplier";
-	}
-//	console.log("passSignUp" + passSignUp + "firstNameSignUp" +firstNameSignUp+ "mobileKey" + mobileKey	+ "emailKey" + emailKey + "userType" + userType);
-	console.log("passSignUp" + passSignUp +"mobileKey" + mobileKey	+ "emailKey" + emailKey + "userType" + userType);
-	
-//	return false;
-	var result = jConfirm("Are you sure you want to register as "+userType,"Make My Shopy",function(e)
-	{
-		if(e)
-		{
-			$(".overlay").show();
-			objhandleRequest.handleRegisteration(passSignUp, mobileKey, emailKey, userType);
-			return true;
-		}
-		else
-		{
-			return false;
-		}
-	});
-		
-});
-
-//*******************************************************************************************************************
-
 });
 
 //*************************** Document ready function ends here ***********************************
@@ -459,6 +352,105 @@ function resetPassword()
 	console.log("usernameSignUp" + usernameSignUp + "for availability");
 	objhandleRequest.handleUsernameAvailCust(usernameSignUp);
 }*/
+
+function login()
+{
+//	alert("Hii");
+	var emailLogin = $("#emailLogin").val();
+	var passLogin = $("#passLoginTemp").val();
+	var otpLogin = $("#otpLogin").val();
+	var userType = $("#userType").val();
+	
+
+	if(userType)
+	{
+		userType = "customer";
+	}
+	else
+	{
+		userType = "supplier";
+	}
+	
+	console.log("emailLogin : " + emailLogin + "  passLogin : " + passLogin + "  userType : " + userType +"  otpLogin : "+otpLogin );
+	$(".overlay").show();
+	objhandleRequest.handleLogin(emailLogin, passLogin, userType, otpLogin);
+	
+//	if(emailLogin != "" && passLogin != "")
+//		{
+//			if(document.getElementById('otpLogin').style.display == 'block' && otpLogin == "")
+//			{
+//					validationMsg("otpLogin","OTP is required..!! Check it in your mail");
+//					return false;
+//			}
+//			else
+//			{
+//				var result = jConfirm("Are you sure you want to register as "+userType,"Make My Shopy",function()
+//						{
+//							
+//						});
+//					
+//				if(result)
+//				{
+//					return true;
+//					objhandleRequest.handleLogin(emailLogin, passLogin, userType, otpLogin);
+//				}
+//				else
+//				{
+//					return false;
+//				}
+//			}
+//		}
+//	else
+//		{
+//			if(emailLogin == "" )
+//			{
+//				validationMsg("emailLogin","Email is required");
+//			}
+//			if(passLogin == "" )
+//			{
+//				validationMsg("passLoginTemp","Password is required");
+//			}
+//			return false;
+//		}
+	
+}
+
+function signUp()
+{
+	alert("SignUp");
+	var passSignUp = $('#passSignUp').val();
+//	var firstNameSignUp = $('#firstNameSignUp').val();
+	var mobileKey = $('#mobile').val();
+	var emailKey = $('#emailSignUp').val();
+	var userType = $("#userType").val();
+
+	if(userType)
+	{
+		userType = "customer";
+	}
+	else
+	{
+		userType = "supplier";
+	}
+//	console.log("passSignUp" + passSignUp + "firstNameSignUp" +firstNameSignUp+ "mobileKey" + mobileKey	+ "emailKey" + emailKey + "userType" + userType);
+	console.log("passSignUp" + passSignUp +"mobileKey" + mobileKey	+ "emailKey" + emailKey + "userType" + userType);
+	
+//	return false;
+	var result = jConfirm("Are you sure you want to register as "+userType,"Make My Shopy",function(e)
+	{
+		if(e)
+		{
+			$(".overlay").show();
+			objhandleRequest.handleRegisteration(passSignUp, mobileKey, emailKey, userType);
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	});
+		
+}
 
 function forgotPwd()
  {
