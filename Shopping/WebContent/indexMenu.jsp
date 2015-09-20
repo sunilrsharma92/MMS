@@ -115,7 +115,7 @@
 					</a> <!-- Modal -->
 					
 					<div class="modal fade" id="LoginModal" role="dialog">
-						<div class="modal-dialog modal-sm">
+						<div class="modal-dialog modal-md">
 							<!-- Modal content-->
 							<div class="modal-content">
 								<div class="modal-header">
@@ -150,7 +150,7 @@
 												 <input	class="textbox font" type="password" id="passLoginTemp"	name="password" placeholder="Enter Password"></br> 
 												<input class="textbox font" type="text" id="otpLogin" placeholder="OTP" style="display: none"></br>
 												 <input	type="button" class="btn btn-primary btn_width_93_perc" id="userlogin" value="Login" />
-												<!-- <button onclick="login()" class="btn btn-primary" type="button">Login</button> -->
+												<button onsubmit="login()" class="btn btn-primary btn_width_93_perc" type="button">Login</button>
 											</form>
 										</div>
 										<div id="menu1" class="tab-pane fade">
@@ -168,13 +168,14 @@
 												<div class="g-recaptcha" name="captcha" data-sitekey="6LfaxwsTAAAAAEB5RYVVeSFM3AyHzAHb3YvgtGvx"></div>
 												<div id="warnings"></div>
 												<input type="button" class="btn btn-primary btn_width_93_perc" id="signup" value="Sign Up" />
+													<button onsubmit="signUp()" class="btn btn-primary btn_width_93_perc" type="submit">Sign Up</button>
 											</form>
 										</div>
 										<div id="menu2" class="tab-pane fade">
 											<h3 class="font">Forgot Password:</h3>
 											<form class="forgot-val"style="text-align: center;">
 												<input class="textbox font" type="text" name="email" id="emailForgotPwd" placeholder="Enter Email id"></br>
-												<button onclick="forgotPwd()" class="btn btn-primary btn_width_93_perc" type="submit">Submit</button>
+												<button onsubmit="forgotPwd()" class="btn btn-primary btn_width_93_perc" type="submit">Submit</button>
 											</form>
 										</div>
 									</div>
@@ -202,7 +203,7 @@
 
 				<!-- <button type="button" class="pull-right"> btn</button> -->
 				
-
+				
 				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
 					<span class="sr-only">Toggle button</span> 
 					<span class="icon-bar"></span>
@@ -212,6 +213,7 @@
 				<button type="button" class="navbar-toggle getCartProduct" data-toggle="modal"	data-target=".cartmodal">
 					<span class="glyphicon glyphicon-shopping-cart"></span> 
 					<span class="badge"><label	id="productCountOnCart" class="productCountOnCart" style="margin: auto;">0</label></span>
+					
 				</button>
 				<div class="search-box pull-right hidden-lg hidden-md hidden-sm">
 					<div class="input-group">

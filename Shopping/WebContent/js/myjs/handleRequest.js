@@ -7,7 +7,7 @@ function handleRequest()
 	this.handleShopProfileDisplay = handleShopProfileDisplay;
 	this.handleLogin = handleLogin;
 	this.handleRegisteration = handleRegisteration;
-	this.handleChangePassword = handleChangePassword;
+	this.handleResetPassword = handleResetPassword;
 	// this.handleUsernameAvailCust = handleUsernameAvailCust;
 	this.handleForgotPwd = handleForgotPwd;
 	this.handledisplaySelectedProduct = handledisplaySelectedProduct;
@@ -138,23 +138,24 @@ function handleRequest()
 		}
 	}
 
-	function handleChangePassword(oldPwd, password1, userType, email)
+	function handleResetPassword(password1, userType, email)
 	{
 		try
 		{
-			var changePwd = {};
-			changePwd.oldPwd = oldPwd;
-			changePwd.pwd = password1;
-			changePwd.email = email;
-			changePwd.userType = userType;
-			changePwd.command = 1056;
+			var resetPwd = {};
+//			changePwd.oldPwd = oldPwd;
+			resetPwd.pwd = password1;
+			resetPwd.email = email;
+			resetPwd.userType = userType;
+			resetPwd.command = 1056;
 
-			var strJsonMsgForChangePwd = JSON.stringify(changePwd);
-			console.log("handleRequest     handleChangePassword     strJsonMsgForChangePwd : " + strJsonMsgForChangePwd);
+			var strJsonMsgForResetPwd = JSON.stringify(resetPwd);
+			handleAllListResponse(strJsonMsgForResetPwd);
+			console.log("handleRequest     handleResetPassword     strJsonMsgForResetPwd : " + strJsonMsgForResetPwd);
 		}
 		catch (e)
 		{
-			console.log("handleRequest handleChangePassword Exceprion ::" + e);
+			console.log("handleRequest handleResetPassword Exception ::" + e);
 		}
 	}
 

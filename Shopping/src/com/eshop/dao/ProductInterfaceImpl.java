@@ -9,6 +9,7 @@ import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
 
 import com.eshop.database.utility.EmailUtility;
+import com.eshop.database.utility.EncryptionUtility;
 import com.eshop.database.utility.MyConnection;
 import com.eshop.database.utility.RandomStringUtilsTrial;
 import com.shopping.common.CommonMethodImpl;
@@ -27,6 +28,7 @@ public class ProductInterfaceImpl implements ProductInterface
 
 	public static final String OTP_REGISTER = "otpRegister";
 	public static final String FORGOT_PASSWORD = "ForgotPassword";
+	public static final String CHANGE_PASSWORD = "changPassword";
 
 	@Override
 	public String handleRequestResponse(String jsonMsg, int command)
@@ -363,7 +365,7 @@ public class ProductInterfaceImpl implements ProductInterface
 						JSONObject object = (JSONObject) JSONValue.parse(jsonMsg);
 
 						String email = (String) object.get("emailLogin");
-						String password = (String) object.get("passLogin");
+						String normalPwd = (String) object.get("passLogin");
 						String userType = (String) object.get("userType");
 						String otpLogin = (String) object.get("otpLogin");
 						String sql = "";
@@ -385,29 +387,40 @@ public class ProductInterfaceImpl implements ProductInterface
 							{
 								if (otpLogin != null && otpLogin.trim().equals((String) parentjson.get("otp")))
 								{
-
-									if (password != null && parentjson.get("password") != null && password.trim().equals(parentjson.get("password")))
+									String encryptedPwd = EncryptionUtility.encryptUsingMD5(normalPwd);
+									if(encryptedPwd != null)
 									{
-
-										ps = conn.prepareStatement(sql);
-										ps.setString(1, email);
-										result = ps.executeUpdate();
-										if (result > 0)
+										boolean validPwd = EncryptionUtility.validatePassword((String) parentjson.get("password"), encryptedPwd);
+	
+										if (validPwd)
 										{
-											parentjson = CommonMethodImpl.putSuccessJson(parentjson, 2051);
-											parentjson.put("userType", userType);
+											ps = conn.prepareStatement(sql);
+											ps.setString(1, email);
+											result = ps.executeUpdate();
+											if (result > 0)
+											{
+												parentjson = CommonMethodImpl.putSuccessJson(parentjson, 2051);
+												parentjson.put("userType", userType);
+											}
+											else
+											{
+												parentjson = CommonMethodImpl.putFailedJson(parentjson, command);
+											}
 										}
-										else
+										else // -- Incorrect password
 										{
+											parentjson = new JSONObject();
 											parentjson = CommonMethodImpl.putFailedJson(parentjson, command);
+											parentjson.put("statusdesc", "Login Failed, Incorrect username or password.");
+											System.out.println("Login Failed, Incorrect username or password.");
 										}
 									}
-									else
-									// -- password
+									else // --  Encryption of password failed
 									{
-										parentjson = new JSONObject();
-										parentjson = CommonMethodImpl.putFailedJson(parentjson, command);
-										parentjson.put("statusdesc", "Login Failed, Incorrect username or password.");
+										parentjson.put("status", 10);// --  Encryption of password failed
+										parentjson.put("statusdesc", "Login Failed,Please try again");
+										parentjson.put("command", command);
+										System.out.println("Encryption of password failed,Unregistered user");
 									}
 								}
 								else
@@ -427,16 +440,29 @@ public class ProductInterfaceImpl implements ProductInterface
 						}// -- Registered user
 						else
 						{
-							if (password != null && parentjson.get("password") != null && password.trim().equals(parentjson.get("password")))
+							String encryptedPwd = EncryptionUtility.encryptUsingMD5(normalPwd);
+							if(encryptedPwd != null)
 							{
-								parentjson = CommonMethodImpl.putSuccessJson(parentjson, 2051);
-								parentjson.put("userType", userType);
+								boolean validPwd = EncryptionUtility.validatePassword((String) parentjson.get("password"), encryptedPwd);
+								
+								if (validPwd)
+								{
+									parentjson = CommonMethodImpl.putSuccessJson(parentjson, 2051);
+									parentjson.put("userType", userType);
+								}
+								else
+								{
+									parentjson = new JSONObject();
+									parentjson = CommonMethodImpl.putFailedJson(parentjson, command);
+									parentjson.put("statusdesc", "Login Failed, Incorrect username or password.");
+								}
 							}
 							else
 							{
-								parentjson = new JSONObject();
-								parentjson = CommonMethodImpl.putFailedJson(parentjson, command);
-								parentjson.put("statusdesc", "Login Failed, Incorrect username or password.");
+								parentjson.put("status", 10);// Encryption of password failed
+								parentjson.put("statusdesc", "Login Failed,Please try again");
+								parentjson.put("command", command);
+								System.out.println("Encryption of password failed,Registered user");
 							}
 						}
 
@@ -492,69 +518,86 @@ public class ProductInterfaceImpl implements ProductInterface
 
 						if (checkEmailExist == 0)
 						{
-							ps = conn.prepareStatement(sqlInsert);
-
-							// String usernameSignUp = (String)
-							// object.get("usernameSignUp");
-
-							ps.setString(1, emailSignUp);
-							// ps.setString(2, usernameSignUp);
-							ps.setString(2, (String) object.get("mobileKey"));
-							ps.setString(3, (String) object.get("passSignUp"));
-//							ps.setString(4, (String) object.get("firstNameSignUp"));
-
-							try
+							String normalPwd = (String) object.get("passSignUp");
+							
+							String encryptedPwd = EncryptionUtility.encryptUsingMD5(normalPwd);
+							
+							if(encryptedPwd != null)
 							{
-								result = ps.executeUpdate();
-							}
-							catch (Exception e)
-							{
-								e.printStackTrace();
-							}
-
-							if (result > 0)
-							{
-								String sql1 = "";
-
-								tempOtp = RandomStringUtilsTrial.orderNumber();
-
-								if (tempOtp != null && !tempOtp.trim().isEmpty())
+								ps = conn.prepareStatement(sqlInsert);
+	
+								// String usernameSignUp = (String)
+								// object.get("usernameSignUp");
+	
+								ps.setString(1, emailSignUp);
+								// ps.setString(2, usernameSignUp);
+								ps.setString(2, (String) object.get("mobileKey"));
+								ps.setString(3, encryptedPwd);
+	//							ps.setString(4, (String) object.get("firstNameSignUp"));
+	
+								try
 								{
-									boolean verification = EmailUtility.sendEmail(emailSignUp, null, OTP_REGISTER, tempOtp);
-//									if (userType != null && userType.trim().equalsIgnoreCase("customer"))
-//									{
-//										user = "customers";
-//									}
-//									else if (userType != null && userType.trim().equalsIgnoreCase("supplier"))
-//									{
-//										user = "suppliers";
-//									}
-
-									if (verification)
+									result = ps.executeUpdate();
+								}
+								catch (Exception e)
+								{
+									e.printStackTrace();
+								}
+	
+								if (result > 0)
+								{
+									String sql1 = "";
+	
+									tempOtp = RandomStringUtilsTrial.orderNumber();
+	
+									if (tempOtp != null && !tempOtp.trim().isEmpty())
 									{
-										sql1 = "update " + user + " set otp = ? where email = ?";
-										ps1 = conn.prepareStatement(sql1);
-										ps1.setString(1, tempOtp);
-										ps1.setString(2, emailSignUp);
-										resultTemp = ps1.executeUpdate();
-										if (resultTemp > 0)
+										boolean verification = EmailUtility.sendEmail(emailSignUp, null, OTP_REGISTER, tempOtp);
+	//									if (userType != null && userType.trim().equalsIgnoreCase("customer"))
+	//									{
+	//										user = "customers";
+	//									}
+	//									else if (userType != null && userType.trim().equalsIgnoreCase("supplier"))
+	//									{
+	//										user = "suppliers";
+	//									}
+	
+										if (verification)
 										{
-											parentjson = new JSONObject();
-											parentjson = CommonMethodImpl.putSuccessJson(parentjson, 2052);// succcess
-											parentjson.put("email", emailSignUp);
-											parentjson.put("statusdesc", "Success");
+											sql1 = "update " + user + " set otp = ? where email = ?";
+											ps1 = conn.prepareStatement(sql1);
+											ps1.setString(1, tempOtp);
+											ps1.setString(2, emailSignUp);
+											resultTemp = ps1.executeUpdate();
+											if (resultTemp > 0)
+											{
+												parentjson = new JSONObject();
+												parentjson = CommonMethodImpl.putSuccessJson(parentjson, 2052);// succcess
+												parentjson.put("email", emailSignUp);
+												parentjson.put("statusdesc", "Success");
+											}
+											else
+											{
+												parentjson.put("status", 11);// OTP
+																				// Updation
+																				// Failed
+												parentjson.put("statusdesc", "OTP Updation Failed");
+												parentjson.put("command", command);
+											}
 										}
 										else
 										{
-											parentjson.put("status", 11);// OTP
-																			// Updation
+											parentjson.put("status", 12);// //Email
+																			// sending
 																			// Failed
-											parentjson.put("statusdesc", "OTP Updation Failed");
+											parentjson.put("email", emailSignUp);
+											parentjson.put("statusdesc", "Email sending Failed");
 											parentjson.put("command", command);
 										}
 									}
 									else
 									{
+										// OTP generation Failed
 										parentjson.put("status", 12);// //Email
 																		// sending
 																		// Failed
@@ -562,25 +605,22 @@ public class ProductInterfaceImpl implements ProductInterface
 										parentjson.put("statusdesc", "Email sending Failed");
 										parentjson.put("command", command);
 									}
+	
 								}
 								else
 								{
-									// OTP generation Failed
-									parentjson.put("status", 12);// //Email
-																	// sending
-																	// Failed
-									parentjson.put("email", emailSignUp);
-									parentjson.put("statusdesc", "Email sending Failed");
+									parentjson = CommonMethodImpl.putFailedJson(parentjson, command);// Registeration
+																										// failed
+									parentjson.put("statusdesc", "Registration failed");// Registeration
+																						// failed
 									parentjson.put("command", command);
 								}
-
-							}
+						}
 							else
 							{
-								parentjson = CommonMethodImpl.putFailedJson(parentjson, command);// Registeration
-																									// failed
-								parentjson.put("statusdesc", "Registration failed");// Registeration
-																					// failed
+								parentjson = CommonMethodImpl.putFailedJson(parentjson, command);// Encryption password failed
+								parentjson.put("statusdesc", "Registration failed");// Registeration failed
+								System.out.println("Encrypting password failed");
 								parentjson.put("command", command);
 							}
 
@@ -630,6 +670,9 @@ public class ProductInterfaceImpl implements ProductInterface
 				case 1054: // -- Forgot/Shopkeeper Password Customer//
 					try
 					{
+						String tempOtp = "";
+						String sql1 = "";
+						String user = "";
 						JSONObject object = (JSONObject) JSONValue.parse(jsonMsg);
 
 						String email = (String) object.get("emailForgotPwd");
@@ -640,6 +683,8 @@ public class ProductInterfaceImpl implements ProductInterface
 						{
 							if (email != null && !email.trim().isEmpty())
 								parentjson = CommonMethodImpl.getCustDetailsByProperty(CommonMethodImpl.EMAIL_ID, email, parentjson);
+							
+							user = "customers";
 						}
 
 						// -- for supplier
@@ -647,13 +692,70 @@ public class ProductInterfaceImpl implements ProductInterface
 						{
 							if (email != null && !email.trim().isEmpty())
 								parentjson = CommonMethodImpl.getShopkeeperDetailsByProperty(CommonMethodImpl.EMAIL_ID, email, parentjson);
+							
+							user = "suppliers";
 						}
 						if (parentjson != null && !parentjson.isEmpty())
 						{
-							EmailUtility.sendEmail((String) parentjson.get("emailId"), (String) parentjson.get("password"), FORGOT_PASSWORD, null);
-							parentjson = new JSONObject();
-							parentjson = CommonMethodImpl.putSuccessJson(parentjson, 2054);
-							parentjson.put("email", email);
+							tempOtp = RandomStringUtilsTrial.orderNumber();
+							
+							if (tempOtp != null && !tempOtp.trim().isEmpty())
+							{
+								boolean verification = EmailUtility.sendEmail((String) parentjson.get("emailId"), (String) parentjson.get("password"), FORGOT_PASSWORD, tempOtp);
+								if(verification)
+								{
+									String encryptedPwd = EncryptionUtility.encryptUsingMD5(tempOtp); // -- otp set as pwd 
+								
+									if(encryptedPwd != null)
+									{
+										sql1 = "update " + user + " set password = ? where email = ?";
+										ps1 = conn.prepareStatement(sql1);
+										ps1.setString(1, tempOtp); // -- set otp as password
+										ps1.setString(2, email);
+										resultTemp = ps1.executeUpdate();
+										
+										if (resultTemp > 0)
+										{
+											parentjson = new JSONObject();
+											parentjson = CommonMethodImpl.putSuccessJson(parentjson, 2054);// succcess
+											parentjson.put("email", email);
+											parentjson.put("statusdesc", "Success");
+											System.out.println("OTP as password updation succeeded");
+										}
+										else
+										{
+											parentjson.put("status", 11);// OTP Updation Failed
+											parentjson.put("statusdesc", "OTP as password updation failed");
+											parentjson.put("command", command);
+											System.out.println("OTP as password updation failed");
+										}
+									}
+									else
+									{
+										parentjson.put("status", 10);// Encryption of password failed
+										parentjson.put("statusdesc", "Forgot Password Failed,Please try again");
+										parentjson.put("command", command);
+										System.out.println("Encryption of password failed,Forgot password");
+									}
+								}
+								else
+								{
+									parentjson.put("status", 12); //Email sending Failed
+									parentjson.put("email", email);
+									parentjson.put("statusdesc", "Email sending Failed");
+									parentjson.put("command", command);
+									System.out.println("Email sending failed");
+								}
+							}
+							else
+							{
+								// OTP generation Failed
+								parentjson.put("status", 12);// OTP generation failed
+								parentjson.put("email", email);
+								parentjson.put("statusdesc", "Email sending Failed");
+								parentjson.put("command", command);
+								System.out.println("OTP generation failed");
+							}
 						}
 						else
 						{
@@ -666,7 +768,6 @@ public class ProductInterfaceImpl implements ProductInterface
 						return output;
 
 					}
-
 					catch (Exception e)
 					{
 						e.printStackTrace();
@@ -734,6 +835,8 @@ public class ProductInterfaceImpl implements ProductInterface
 
 						if (address2 != null && !address2.trim().isEmpty())
 							sql += " ,address2 = '" + address2 + "' ";
+						
+						sql += " ,country = 'India' ";
 
 						if (state != null && !state.trim().isEmpty())
 							sql += " ,state = '" + state + "' ";
@@ -771,13 +874,24 @@ public class ProductInterfaceImpl implements ProductInterface
 
 						if (result > 0)
 						{
+							if(userType != null && key != null && userType.trim().equalsIgnoreCase("customer"))
+							{
+								parentjson = CommonMethodImpl.getCustDetailsByProperty(CommonMethodImpl.EMAIL_ID, email, parentjson);
+							}
+							else if(userType != null  && key != null && userType.trim().equalsIgnoreCase("supplier"))
+							{
+								parentjson = CommonMethodImpl.getShopkeeperDetailsByProperty(CommonMethodImpl.EMAIL_ID, email, parentjson);
+							}
+							
 							parentjson = CommonMethodImpl.putSuccessJson(parentjson, 2055);
+							
 						}
 
 						else
 						{
 							parentjson = new JSONObject();
 							parentjson = CommonMethodImpl.putFailedJson(parentjson, command);
+							parentjson.put("statusdesc", "Updation failed");
 						}
 
 						output = parentjson.toString();
@@ -797,62 +911,65 @@ public class ProductInterfaceImpl implements ProductInterface
 					{
 						JSONObject object = (JSONObject) JSONValue.parse(jsonMsg);
 						
-						String sqlSelect = "";
+//						String sqlSelect = "";
 						String sqlUpdate = "";
-						String tempPwd = null;
+//						String tempPwd = null;
 						
 //						String usernameCust = (String) object.get("usernameForgotPwd");
-						String oldPwd = (String) object.get("oldPwd");
-						String pwd = (String) object.get("pwd");
+//						String oldPwd = (String) object.get("oldPwd");
+						String normalPwd = (String) object.get("pwd");
 						String email = (String) object.get("email");
 						String userType = (String) object.get("userType");
 						
-						if (pwd != null && !pwd.trim().isEmpty() && oldPwd != null && userType != null)
+						if (normalPwd != null && !normalPwd.trim().isEmpty())
 						{
 							if(userType.trim().equalsIgnoreCase("customer"))
 							{
-								sqlSelect = "select password from customers where email = ?";
+//								sqlSelect = "select password from customers where email = ?";
 								sqlUpdate = "update customers set password = ? where email = ?";
 							}
 							else if(userType.trim().equalsIgnoreCase("supplier"))
 							{
-								sqlSelect = "select password from suppliers where email = ?";
+//								sqlSelect = "select password from suppliers where email = ?";
 								sqlUpdate = "update suppliers set password = ? where email = ?";
 							}
-								ps = conn.prepareStatement(sqlSelect);
-								ps.setString(1, email);
-								rs = ps.executeQuery();
-								if (rs.next())
+							
+							String encryptedPwd = EncryptionUtility.encryptUsingMD5(normalPwd);
+							if(encryptedPwd != null)	
+							{
+								ps = conn.prepareStatement(sqlUpdate);
+								ps.setString(1, encryptedPwd);
+								ps.setString(2, email);
+								result = ps.executeUpdate();
+								if (result > 0)
 								{
-									tempPwd = rs.getString("password");
-									
-									if(tempPwd != null && tempPwd.trim().equalsIgnoreCase(oldPwd))
+									boolean verification = EmailUtility.sendEmail(email, null, CHANGE_PASSWORD, null);
+									if(verification)
 									{
-										ps = conn.prepareStatement(sqlUpdate);
-										ps.setString(1, pwd);
-										ps.setString(2, email);
-										result = ps.executeUpdate();
-										if (result > 0)
-										{
-											parentjson = CommonMethodImpl.putSuccessJson(parentjson, 2056);
-										}
-										else
-										{
-											parentjson = CommonMethodImpl.putFailedJson(parentjson, command);
-											parentjson.put("statusdesc", "Error occurred during update,Please try again");
-										}
+										parentjson = CommonMethodImpl.putSuccessJson(parentjson, 2056);
+										System.out.println("Email sending success");
 									}
 									else
 									{
 										parentjson = CommonMethodImpl.putFailedJson(parentjson, command);
-										parentjson.put("statusdesc", "Old Password is incorrect");
+										parentjson.put("statusdesc", "Error occurred during sending email,Please try again");
+										System.out.println("Email sending failed");
 									}
-
 								}
 								else
 								{
 									parentjson = CommonMethodImpl.putFailedJson(parentjson, command);
+									parentjson.put("statusdesc", "Error occurred during reset,Please try again");
+									System.out.println("Error occurred during update query of reset");
 								}
+							}
+							else
+							{
+								parentjson = CommonMethodImpl.putFailedJson(parentjson, command);
+								parentjson.put("statusdesc", "Error occurred,Please try again");
+								System.out.println("Error occurred during encryption");
+							}
+
 						}
 						else
 						{
@@ -866,7 +983,7 @@ public class ProductInterfaceImpl implements ProductInterface
 					}
 					catch (Exception e)
 					{
-
+						e.printStackTrace();
 					}
 					break;
 

@@ -14,7 +14,7 @@ $(document).ready(function(){
 	
 	if(page == "indexTemplate.jsp")
 	{
-		var query = window.location.search.substring(1);
+		var query = window.location.search.substring(1, 4);
 		console.log(query);
 		
 		if(query == "otp")
@@ -106,7 +106,7 @@ $(document).ready(function(){
 			{
 				vid = "shopProfile";
 				$("#loadpage").load("shopProfile.jsp");
-				shopProfileDisplay();
+//				shopProfileDisplay();
 			}
 		
 		$.session.set('pageState', vid);
@@ -202,113 +202,6 @@ $('#checkout').click(function(){
 //	getCustOfflineDetails();
 });
 
-
-//*******************************************************************************************************************
-
-
-
-$("#userlogin").click(function(){
-	
-//	alert("Hii");
-	var emailLogin = $("#emailLogin").val();
-	var passLogin = $("#passLoginTemp").val();
-	var otpLogin = $("#otpLogin").val();
-	var userType = $("#userType").val();
-	
-
-	if(userType)
-	{
-		userType = "customer";
-	}
-	else
-	{
-		userType = "supplier";
-	}
-	
-	console.log("emailLogin : " + emailLogin + "  passLogin : " + passLogin + "  userType : " + userType +"  otpLogin : "+otpLogin );
-	$(".overlay").show();
-	objhandleRequest.handleLogin(emailLogin, passLogin, userType, otpLogin);
-	
-//	if(emailLogin != "" && passLogin != "")
-//		{
-//			if(document.getElementById('otpLogin').style.display == 'block' && otpLogin == "")
-//			{
-//					validationMsg("otpLogin","OTP is required..!! Check it in your mail");
-//					return false;
-//			}
-//			else
-//			{
-//				var result = jConfirm("Are you sure you want to register as "+userType,"Make My Shopy",function()
-//						{
-//							
-//						});
-//					
-//				if(result)
-//				{
-//					return true;
-//					objhandleRequest.handleLogin(emailLogin, passLogin, userType, otpLogin);
-//				}
-//				else
-//				{
-//					return false;
-//				}
-//			}
-//		}
-//	else
-//		{
-//			if(emailLogin == "" )
-//			{
-//				validationMsg("emailLogin","Email is required");
-//			}
-//			if(passLogin == "" )
-//			{
-//				validationMsg("passLoginTemp","Password is required");
-//			}
-//			return false;
-//		}
-	
-});
-
-//*******************************************************************************************************************
-
-$("#signup").click(function(){
-//	alert("SignUp");
-	
-	var passSignUp = $('#passSignUp').val();
-//	var firstNameSignUp = $('#firstNameSignUp').val();
-	var mobileKey = $('#mobile').val();
-	var emailKey = $('#emailSignUp').val();
-	var userType = $("#userType").val();
-
-	if(userType)
-	{
-		userType = "customer";
-	}
-	else
-	{
-		userType = "supplier";
-	}
-//	console.log("passSignUp" + passSignUp + "firstNameSignUp" +firstNameSignUp+ "mobileKey" + mobileKey	+ "emailKey" + emailKey + "userType" + userType);
-	console.log("passSignUp" + passSignUp +"mobileKey" + mobileKey	+ "emailKey" + emailKey + "userType" + userType);
-	
-//	return false;
-	var result = jConfirm("Are you sure you want to register as "+userType,"Make My Shopy",function(e)
-	{
-		if(e)
-		{
-			$(".overlay").show();
-			objhandleRequest.handleRegisteration(passSignUp, mobileKey, emailKey, userType);
-			return true;
-		}
-		else
-		{
-			return false;
-		}
-	});
-		
-});
-
-//*******************************************************************************************************************
 
 });
 
@@ -425,8 +318,23 @@ objhandleRequest.handleShopProfileDetails(firstName, lastName,address,city,state
 
 }*/
 
-function saveUserDetails()
+function saveUserDetails(id)
 {
+	if(id == "address")
+	{
+		$("#firstNameSave").val('');
+		$("#lastNameSave").val('');
+		$("#mobileNoSave").val('');
+	}
+	else
+	{
+		$("#address1Save").val('');
+		$("#address2Save").val('');
+		$("#stateSave").val('');
+		$("#streetSave").val('');
+		$("#citySave").val('');
+		$("#pincodeSave").val('');
+	}
 
 	document.getElementById("action").value = "edit";
 	var firstName = $("#firstNameSave").val();
@@ -435,7 +343,10 @@ function saveUserDetails()
 //	var sessionEmail = $("#emailSave").val();
 	var address1 = $("#address1Save").val();
 	var address2 = $("#address2Save").val();
-	var state = $("#stateSave").val();
+
+	var state = $("#stateSave option:selected").text();
+//	alert("state : "+state);
+	
 	var street = $("#streetSave").val();
 	var city = $("#citySave").val();
 	var pincode = $("#pincodeSave").val();
@@ -460,9 +371,9 @@ objhandleRequest.handleUserDetailsSave(firstName, lastName, mobileNo, email, add
 }
 
 
-function changePassword()
+function resetPassword()
 {
-	var oldPwd = $("#oldPwd").val();
+//	var oldPwd = $("#oldPwd").val();
 	var password1 = $("#password1").val();
 	var password2 = $("#password2").val();
 	
@@ -472,7 +383,7 @@ function changePassword()
 	
 	var email = sessionData.emailId;
 	
-	objhandleRequest.handleChangePassword(oldPwd, password1, userType, email);
+	objhandleRequest.handleResetPassword(password1, userType, email);
 	
 }
 
@@ -487,6 +398,105 @@ function changePassword()
 	console.log("usernameSignUp" + usernameSignUp + "for availability");
 	objhandleRequest.handleUsernameAvailCust(usernameSignUp);
 }*/
+
+function login()
+{
+//	alert("Hii");
+	var emailLogin = $("#emailLogin").val();
+	var passLogin = $("#passLoginTemp").val();
+	var otpLogin = $("#otpLogin").val();
+	var userType = $("#userType").val();
+	
+
+	if(userType)
+	{
+		userType = "customer";
+	}
+	else
+	{
+		userType = "supplier";
+	}
+	
+	console.log("emailLogin : " + emailLogin + "  passLogin : " + passLogin + "  userType : " + userType +"  otpLogin : "+otpLogin );
+	$(".overlay").show();
+	objhandleRequest.handleLogin(emailLogin, passLogin, userType, otpLogin);
+	
+//	if(emailLogin != "" && passLogin != "")
+//		{
+//			if(document.getElementById('otpLogin').style.display == 'block' && otpLogin == "")
+//			{
+//					validationMsg("otpLogin","OTP is required..!! Check it in your mail");
+//					return false;
+//			}
+//			else
+//			{
+//				var result = jConfirm("Are you sure you want to register as "+userType,"Make My Shopy",function()
+//						{
+//							
+//						});
+//					
+//				if(result)
+//				{
+//					return true;
+//					objhandleRequest.handleLogin(emailLogin, passLogin, userType, otpLogin);
+//				}
+//				else
+//				{
+//					return false;
+//				}
+//			}
+//		}
+//	else
+//		{
+//			if(emailLogin == "" )
+//			{
+//				validationMsg("emailLogin","Email is required");
+//			}
+//			if(passLogin == "" )
+//			{
+//				validationMsg("passLoginTemp","Password is required");
+//			}
+//			return false;
+//		}
+	
+}
+
+function signUp()
+{
+	alert("SignUp");
+	var passSignUp = $('#passSignUp').val();
+//	var firstNameSignUp = $('#firstNameSignUp').val();
+	var mobileKey = $('#mobile').val();
+	var emailKey = $('#emailSignUp').val();
+	var userType = $("#userType").val();
+
+	if(userType)
+	{
+		userType = "customer";
+	}
+	else
+	{
+		userType = "supplier";
+	}
+//	console.log("passSignUp" + passSignUp + "firstNameSignUp" +firstNameSignUp+ "mobileKey" + mobileKey	+ "emailKey" + emailKey + "userType" + userType);
+	console.log("passSignUp" + passSignUp +"mobileKey" + mobileKey	+ "emailKey" + emailKey + "userType" + userType);
+	
+//	return false;
+	var result = jConfirm("Are you sure you want to register as "+userType,"Make My Shopy",function(e)
+	{
+		if(e)
+		{
+			$(".overlay").show();
+			objhandleRequest.handleRegisteration(passSignUp, mobileKey, emailKey, userType);
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	});
+		
+}
 
 function forgotPwd()
  {
@@ -851,14 +861,21 @@ function callAlerts(msg)
 //	$("#"+id).css('border-color','red');
 //}
 
-function quantity(txtboxid,action)
+function quantity(txtboxid,action,price)
 {
 //	var btnid = $(id).attr("id");
+	var totalcartAmmount = $("#totalcartAmmounthidden").val();
 	if(action == "add")
 		{
 			var val = parseInt($("#"+txtboxid).val());
 			var total = val+1;
 		    $("#"+txtboxid).val(total);
+		    var pricePerProduct = price*total;
+		    var oldpricePerProduct = price*val;
+		    var totalPrice = parseInt(totalcartAmmount) - parseInt(oldpricePerProduct);
+		    var totalPurchaseprice = totalPrice+pricePerProduct;
+		    $("#totalcartAmmounthidden").val(totalPurchaseprice);
+		    console.log("quantity : "+total+" oldpricePerProduct :"+oldpricePerProduct+" quantity * pricePerProduct : "+pricePerProduct+" totalPrice after - price : "+totalPrice+" totalPurchaseprice : "+totalPurchaseprice);
 		}
 	else if(action == "minus")
 		{
@@ -867,6 +884,11 @@ function quantity(txtboxid,action)
 			{
 				var total = val-1;
 				$("#"+txtboxid).val(total);
+				var pricePerProduct = price*total;
+				var oldpricePerProduct = price*val;
+			    var totalPrice = parseInt(totalcartAmmount) - parseInt(oldpricePerProduct);
+			    var totalPurchaseprice = totalPrice+pricePerProduct;
+			    console.log("quantity : "+total+" oldpricePerProduct :"+oldpricePerProduct+" quantity * pricePerProduct : "+pricePerProduct+" totalPrice after - price : "+totalPrice+" totalPurchaseprice : "+totalPurchaseprice);
 			}
 		}
 }

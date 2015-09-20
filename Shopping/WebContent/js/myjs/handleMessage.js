@@ -117,8 +117,7 @@ function handleShopProfDispResponse(response)
 			var state = response.state;
 			var pinCode = response.pinCode;
 			
-			$("label[for='firstNameDisplay']").html(firstName);
-			$("label[for='lastNameDisplay']").html(lastName);
+			$("label[for='firstNameDisplay']").html(firstName+" "+lastName);
 			$("label[for='stateDisplay']").html(state);
 			$("label[for='addressDisplay']").html(address1);
 			$("label[for='cityDisplay']").html(city);
@@ -231,13 +230,18 @@ function handleProductDisplayinCartResponse(response)
 			var stock = product[i].stock;
 			var prodName = product[i].prodName;
 			var images = product[i].images;
-			var quantityfunctionAdd = "quantity('demo" + productid + "','add');"
-			var quantityfunctionMinus = "quantity('demo" + productid + "','minus');"
 			total = total + price;
-
+			var quantityfunctionAdd = "quantity('demo" + productid + "','add','"+price+"');"
+			var quantityfunctionMinus = "quantity('demo" + productid + "','minus','"+price+"');"
+			
 			productList = productList + '<tr>' + '<td class="cimg"><img class="cartimgsize" id="' + productid + '" src="' + images + '"></td>' + '<td class="cname">' + prodName + '</td>' + '<td class="csize">' + stock + ' kg</td>' + '<td class="cqty">'
 
-			+ '<div class="input-group bootstrap-touchspin quantitybtn">' + '<span class="input-group-btn">' + '<button class="btn btn-default bootstrap-touchspin-down" id="minus' + productid + '" onclick="' + quantityfunctionMinus + '" type="button">-</button></span>' + '<input id="demo' + productid + '" type="text" value="1" name="demo1" class="form-control cartquantity">' + '<span class="input-group-btn">' + '<button class="btn btn-default bootstrap-touchspin-up" id="add' + productid + '" onclick="' + quantityfunctionAdd + '" type="button">+</button></span>' + '</div>'
+			+ '<div class="input-group bootstrap-touchspin quantitybtn">' 
+			+ '<span class="input-group-btn">' 
+			+ '<button class="btn btn-default bootstrap-touchspin-down" id="minus' + productid + '" onclick="' + quantityfunctionMinus + '" type="button">-</button></span>' + '<input id="demo' + productid + '" type="text" value="1" name="demo1" class="form-control cartquantity">' + '<span class="input-group-btn">' 
+			+ '<button class="btn btn-default bootstrap-touchspin-up" id="add' + productid + '" onclick="' + quantityfunctionAdd + '" type="button">+</button>'
+			+'</span>' 
+			+ '</div>'
 
 			+ '</td>' + '<td class="cprice">' + price + '</td>' + '<td align="center"><button type="button" onclick="removeproductfromCArt(' + productid + ')" class="btn btn-danger btn-xs cartdelbtn"><span id="cdel" class="glyphicon glyphicon-remove"></span></button></td>' + '</tr>';
 
@@ -254,6 +258,8 @@ function handleProductDisplayinCartResponse(response)
 
 		$("#totalpurchase").empty();
 		$("#totalpurchase").append(totalpurchase);
+		
+		$("#totalcartAmmounthidden").val(total);
 		
 		var checkout = $.session.get('checkout');
 		if(checkout !=null && checkout !=="" && checkout == "checkout")
@@ -377,17 +383,20 @@ function handleSaveUserDetailsResponse(response)
 			var firstName = response.firstName;
 			var lastName = response.lastName;
 			var phone = response.phone;
+//			alert("userType rr : "+userType);
 			if(userType == "supplier")
 			{
-				$("label[for='firstNameDisplay']").html(firstName);
-				$("label[for='lastNameDisplay']").html(lastName);
+//				alert("inside : "+userType);
+				var name = firstName+" "+lastName;
+				$("label[for='firstNameDisplay']").html(name);
+//				$("label[for='lastNameDisplay']").html(lastName);
 			}
 			
 			// -- take data from session
 			// delete the old variables in loginData
 			// set session with the updated part
 		}
-		if(saveType == "address")
+		if(saveType == "address")	
 		{
 			var address1 = response.address1;
 			var address2 = response.address2;
@@ -409,6 +418,16 @@ function handleSaveUserDetailsResponse(response)
 			// set session with the updated part
 			
 		}
+		
+		delete response["password"];
+
+//		console.log("response after save details :: " + JSON.stringify(response));
+
+		$.session.remove('loginData');
+		$.session.set('loginData', JSON.stringify(response));
+		
+		jAlert("Updated successfully", "Alert Message");
+		
 	}
 	else
 	{
@@ -417,6 +436,22 @@ function handleSaveUserDetailsResponse(response)
 	}
 }
 var addresslistcheck = "";
+function handleChangePasswordResponse(response)
+{
+	$(".overlay").show().delay(100).fadeOut();
+	var action = response.status;
+	var statusdesc = response.statusdesc;
+	if(action != 3)
+	{
+		jAlert(statusdesc, "Alert Message");
+	}
+	else
+	{
+		jAlert("Password changed successfully", "Alert Message");
+	}
+//	
+}
+
 function handleLoginResponse(response)
 {
 	
@@ -438,7 +473,7 @@ function handleLoginResponse(response)
 	}
 	else
 	{
-//		jAlert("Login Successfull", "Alert Message");
+		jAlert("Login Successfull", "Alert Message");
 		
 		$("#myAcc").show();
 		$("#loginDialogLink").hide();

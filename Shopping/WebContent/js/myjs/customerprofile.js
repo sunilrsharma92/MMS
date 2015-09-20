@@ -38,15 +38,23 @@ $(document).ready(function(){
 function loadProfileMenu(id)
 {
 	var idofpage = $(id).attr("id");
-	$("#loadpagecontent").load(idofpage+".jsp");
-	$.session.set('contentState', idofpage);
+	console.log("idofpage : "+idofpage);
+	// -- id 
+	for(var i=0; i<=3 ; i++)
+		{
+			$("#"+i+"1").hide();
+		}
+	
+	$("#"+idofpage+"1").show();
+	
+//	$.session.set('contentState', idofpage);
 	
 	$("#dashboard").hide(); // -- hide dashboard after profile click,to avoid mixture of profile and dashboard 
 	
-	if (idofpage == "personalDetails" || idofpage == "addresses")
+	if (idofpage == "0" || idofpage == "1")
 	{
 		var loginData = $.session.get('loginData');
-	//		alert("loginData   "+JSON.stringify(loginData));
+//			alert("loginData   "+JSON.stringify(loginData));
 		var userType = $.session.get('userType');
 	
 		if (loginData != null)
@@ -55,7 +63,7 @@ function loadProfileMenu(id)
 	
 //			if (userType == "customer")
 //			{
-				if (idofpage == "personalDetails")
+				if (idofpage == "0")
 				{
 					var firstName = sessionData.firstName;
 					var lastName = sessionData.lastName;
@@ -69,7 +77,7 @@ function loadProfileMenu(id)
 					$("#mobileNoSave").val(phone);
 					$("#emailSave").val(emailId);
 				}
-				else if (idofpage == "addresses")
+				else if (idofpage == "1")
 				{
 					var address = sessionData.address1;
 					var address2 = sessionData.address2;
