@@ -13,7 +13,7 @@ $(document).ready(function(){
 	
 	if(page == "indexTemplate.jsp")
 	{
-		var query = window.location.search.substring(1);
+		var query = window.location.search.substring(1, 4);
 		console.log(query);
 		
 		if(query == "otp")
@@ -432,9 +432,9 @@ objhandleRequest.handleUserDetailsSave(firstName, lastName, mobileNo, email, add
 }
 
 
-function changePassword()
+function resetPassword()
 {
-	var oldPwd = $("#oldPwd").val();
+//	var oldPwd = $("#oldPwd").val();
 	var password1 = $("#password1").val();
 	var password2 = $("#password2").val();
 	
@@ -444,7 +444,7 @@ function changePassword()
 	
 	var email = sessionData.emailId;
 	
-	objhandleRequest.handleChangePassword(oldPwd, password1, userType, email);
+	objhandleRequest.handleResetPassword(password1, userType, email);
 	
 }
 

@@ -37,7 +37,7 @@
 						<a href="#"	id="1" class="list-group-item" onclick="loadProfileMenu(this)">Addresses</a>
 						<a href="#"	id="2" class="list-group-item"	onclick="loadProfileMenu(this)">Change Password</a> 
 						<!-- <a href="#" class="list-group-item">Update Email/Mobile</a> -->
-						<a href="#" id="3" class="list-group-item"	onclick="loadProfileMenu(this)">Deactivate Account</a> 
+<!-- 						<a href="#" id="3" class="list-group-item"	onclick="loadProfileMenu(this)">Deactivate Account</a>  -->
 						<a href="#" id="" class="list-group-item">Manage Notifications</a>
 						<hr class="large">
 					</div>
@@ -122,11 +122,11 @@
 							<tr><td>New Password:</td><td><input type="text" class="textbox" name="name" id="password1"></td></tr>
 							<tr><td>Retype New Password:</td><td><input type="text" class="textbox" name="name" id="password2"></td></tr>
 							<!-- <tr><td>Email Address:</td><td><input type="text" class="textbox" name="name"></td></tr> -->
-							<tr><td></td><td><button type="button" class="btn btn-primary" onclick="changePassword()">Save Changes</button></td></tr>
+							<tr><td></td><td><button type="button" class="btn btn-primary" onclick="resetPassword()">Save Changes</button></td></tr>
 						</table>
 					</form>
 				</div>
-<!-- 		**************		Change Password:	******************** -->		
+<!-- 		**************		Deactivate Account:	******************** -->		
 				<div id="31" style="display:none;">
 					<h3 class="bold">Deactivate Account:</h3>
 					<form>

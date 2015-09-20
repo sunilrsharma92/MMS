@@ -1,4 +1,4 @@
-/*package com.eshop.database.utility;
+package com.eshop.database.utility;
 
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
@@ -17,32 +17,46 @@ public class EncryptionUtility {
 	
 //	private static final Logger log = Logger.getLogger(EncryptionUtility.class);
 	
-	public static synchronized String encryptUsingMD5(String plaintext) throws Exception{
+	public static synchronized String encryptUsingMD5(String plaintext) throws Exception
+	{
 		char[] arr = null;
 		MessageDigest msgDigest = null;
-        try {
-			msgDigest = MessageDigest.getInstance("MD5");
-			msgDigest.update(plaintext.getBytes("UTF-8"));
-			byte rawByte[] = msgDigest.digest();
-			arr = Hex.encodeHex(rawByte);
+		
+        try 
+        {
+        	if(plaintext != null && !plaintext.trim().isEmpty())
+        	{
+				msgDigest = MessageDigest.getInstance("MD5");
+				msgDigest.update(plaintext.getBytes("UTF-8"));
+				byte rawByte[] = msgDigest.digest();
+				arr = Hex.encodeHex(rawByte);
+        	}
+        	else 
+        		return null;
         }
-        catch (NoSuchAlgorithmException nse) {
-            System.out.println("No Such Algorithm Exists");
-            nse.printStackTrace();
-        }
-        catch (UnsupportedEncodingException ue) {
-            System.out.println("The Encoding Is Not Supported");
-            ue.printStackTrace();
-        }
+        
         catch (Exception e) {
             e.printStackTrace();
         }
 		String encryptedHexStr = new String(arr);
-		log.debug("encryptedHexStr :   "+encryptedHexStr);
+//		log.debug("encryptedHexStr :   "+encryptedHexStr);
 		return encryptedHexStr;
 	}
+   
+   public static boolean validatePassword(String storedPwd,String generatedPwd)
+   {
+	   boolean result = false;
+	   
+	   if(storedPwd != null && !storedPwd.trim().isEmpty() && generatedPwd != null && !generatedPwd.trim().isEmpty())
+	   {
+		   if(storedPwd.equals(generatedPwd))
+			   result = true;
+	   }
+	   
+	   return result;
+   }
 	
-	public static synchronized String diiplPackageDecrypt(String encryptedData){
+	/*public static synchronized String diiplPackageDecrypt(String encryptedData){
 		DecryptService decSvc = new DecryptService();
 		EncryptService enc = null;//EncryptService();
 		enc.
@@ -83,5 +97,5 @@ public class EncryptionUtility {
 				return null;
 			}
 			return encData;
-	}
-}*/
+	}*/
+}
