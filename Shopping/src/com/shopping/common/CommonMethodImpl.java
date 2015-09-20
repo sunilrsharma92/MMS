@@ -139,6 +139,7 @@ public class CommonMethodImpl {
 					childjson.put("orderid", rs.getString("orderid"));
 					jsonarray.add(childjson);
 				}
+				
 			}
 			
 			closeConnectionUpdate(stmt, conn);

@@ -101,6 +101,7 @@ function listResponseHandler(response, command, status)
 						$("#appendProducttoCheckoutCart").empty();
 						$("#totalpurchase").empty();
 						$("#totalpurchaseOnCheckout").empty();
+						$("#totalpurchase").empty();
 						
 						$("#monylabel").append("0");
 						$("#prodCount").append("0");

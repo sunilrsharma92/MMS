@@ -169,20 +169,31 @@ catch (e) {
 		var totalammount = $("#totalpurchaseOnCheckoutHidden").val();
 		var address = "";
 		
-		for(var i=0; i<count; i++)
-		{
-		var j = parseInt(i)+1;
-		var bool = $("#radio"+j).is(":checked");
-			if(bool == true)
-				{
-					address = "";
-					address = $("#textarea"+j).val();
-				}
-			
-		}
-		alert("totalammount : "+totalammount+" address : "+address);
+		var ammount = $("#totalpurchaseOnCheckout").text();
+		if(ammount == "Total Price : Rs 0.00 ")
+			{
+				jAlert('Your cart is empty, Add product in cart to proceed further', 'Message');
+				$("#conformOrder").attr('data-toggle','');
+				return false;
+			}
+		else
+			{
 		
-		jAlert("Order Successful");	
+				for(var i=0; i<count; i++)
+				{
+				var j = parseInt(i)+1;
+				var bool = $("#radio"+j).is(":checked");
+					if(bool == true)
+						{
+							address = "";
+							address = $("#textarea"+j).val();
+						}
+					
+				}
+				alert("totalammount : "+totalammount+" address : "+address);
+				jAlert("Order Successful");
+				$("#conformOrder").attr('data-toggle','collapse');
+			}
 	}
 	
 	function proceed(condition)

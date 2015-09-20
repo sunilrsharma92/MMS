@@ -266,6 +266,7 @@
 
 							</div>
 							<div class="totaldiv">
+							<input type="hidden" name="txttotalcartAmmounthidden" value="" id="totalcartAmmounthidden">
 								<button class="btn btn-primary" id="checkout" onclick="loadPage(this);" type="button">Check Out</button>
 								<button class="btn btn-primary" id="continueshopping" type="button">Continue Shopping</button>
 							</div>

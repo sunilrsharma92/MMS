@@ -15,7 +15,6 @@
 <script type="text/javascript" src="js/jAlert/js/jquery.ui.draggable.js"></script>
 <script type="text/javascript" src="js/jAlert/js/jquery.alerts.js"></script>
 
-
 <script type="text/javascript" src="js/jquery-2.1.4.js"></script>
 
 <script type="text/javascript" src='js/jquery.elevatezoom.js'></script>

@@ -26,7 +26,7 @@
  }
  
 	</style>
-	
+	<script type="text/javascript" src='js/jquery.elevatezoom.js'></script>
 	<script type="text/javascript" src="js/myjs/viewProduct.js"></script>
 </head>
 <body>
