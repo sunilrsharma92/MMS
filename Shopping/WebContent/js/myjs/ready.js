@@ -895,3 +895,4 @@ function quantity(txtboxid,action,price)
 
 //objhandleRequest.handleCategoryRequest();
 var objhandleRequest=new handleRequest();
+}
