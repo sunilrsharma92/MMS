@@ -222,7 +222,7 @@ tbody{
 
 .textbox {
 	margin : 5px;
-	width : 250px;
+	width : 66%;
 	height : 40px;
 	border  : 1px solid gray;
 	border-radius : 4px;
@@ -768,7 +768,7 @@ tbody{
 /*Loading Inage*/
 
 #loading-img {
-    background: url(http://preloaders.net/preloaders/360/Velocity.gif) center center no-repeat;
+    background: url(../loader_img/load.gif) center center no-repeat;
 /*     background: url(https://goo.gl/photos/D1uwSqvhgVwdeAQXA) center center no-repeat; */
     height: 100%;
     z-index: 20;
@@ -789,5 +789,5 @@ tbody{
 
 .btn_width_93_perc
 {
-	width: 93%;
+	width: 66%;
 }		 
