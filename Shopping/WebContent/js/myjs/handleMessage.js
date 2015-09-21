@@ -171,9 +171,11 @@ function handleProductDisplayResponse(response)
 				stockvalue = "green";
 				stockcrtbtn = "";
 			}
-
+			var viewProductclick = "viewProduct('"+images+"','"+prodName+"','"+price+"','"+stockvalue+"','"+productid+"','"+stockcrtbtn+"');"
+			var loadProductViewPage = "loadProductViewPage('viewProduct');"			
+			
 			productList = productList + '<div class="col-md-2 col-sm-3  col-xs-4 wrap">' 
-			+ '<div class="portfolio-item">' + '<div class="inner-wrap">' 
+			+ '<div class="portfolio-item" onclick="'+loadProductViewPage+' '+viewProductclick+'">' + '<div class="inner-wrap">' 
 			+ '<span id="ok' + productid + '" class="pull-right glyphicon glyphicon-ok oktick" style="display:none;"></span>' 
 			+ '<a href="#">' + '<img id="' + productid + '" class="img-portfolio img-responsive" src="' + images + '">' 
 			+ '</a>' + '</div>' + '</div>' + '<div class="align-center">' + '<div class="productname ">' + prodName + '</div>' 
@@ -309,6 +311,41 @@ function handleSignUpResponse(response)
 	// return false;
 }
 
+function handleUserShippingAddressResponse(response)
+{
+//	$(".overlay").show().delay(100).fadeOut();
+	var action = response.status;
+	var statusdesc = response.statusdesc;
+	
+	if(action == 3)
+	{
+		
+		var addressList = "";
+		var count = 0;
+		var addressdetails = response.address;
+		
+//		jAlert(JSON.stringify(addressdetails), "Message");
+		for(var j in addressdetails)
+			{
+				count = parseInt(j)+1;
+				var address = addressdetails[j].shippingaddress;
+				addressList = addressList + '<div class="divSection">'
+						+'<div class="space"></div>'
+						+'<label><input id="radio'+count+'" value="one" style="margin-top: 0px;" name="addList" type="radio">Address '+count+' : </label>'
+						+'<div class="space"></div>'
+						+'<textarea id="textarea'+count+'" rows="5" cols="30">'+address+'</textarea>'
+						+'</div>';
+				
+			}
+		$.session.set('addressList', addressList);
+		$.session.set('count', count);
+	}
+	else
+	{
+		jAlert(statusdesc, "Alert Message");
+	}
+}
+
 function handleForgetPasswordResponse(response)
 {
 	// alert(JSON.stringify(response));
@@ -340,7 +377,7 @@ function handleSaveUserDetailsResponse(response)
 	if(action == 3)
 	{
 		var saveType = response.saveType;
-//		alert("saveType 44 : "+saveType);
+//		alert("saveType : "+saveType)
 		if(saveType == "personalDetail")
 		{
 			var firstName = response.firstName;
@@ -398,7 +435,7 @@ function handleSaveUserDetailsResponse(response)
 		jAlert(statusdesc, "Alert Message");
 	}
 }
-
+var addresslistcheck = "";
 function handleChangePasswordResponse(response)
 {
 	$(".overlay").show().delay(100).fadeOut();
@@ -437,12 +474,82 @@ function handleLoginResponse(response)
 	else
 	{
 		jAlert("Login Successfull", "Alert Message");
-		location.replace("indexTemplate.jsp");
+		
 		$("#myAcc").show();
 		$("#loginDialogLink").hide();
 		$( "#crossClose" ).trigger( "click" );
 		
-		
+//		alert('checkoutlogin : Before');
+		var checkoutlogin = $.session.get('checkoutlogin');
+		if(checkoutlogin == 'checkoutlogin')
+		{
+			$("#loadpage").load("checkout.jsp");
+//			var num = 0;
+//			var stopInterval = setInterval(function(){
+//				num++;
+////				$("#loadpage").load("checkout.jsp");
+//				if(num>1)
+//					{
+//						clearInterval(stopInterval);
+//					}
+//			}, 500);
+			
+//			var loginData = $.session.get('loginData');
+//			var sessionData = JSON.parse(loginData);
+//			
+//			var address = sessionData.address1;
+//			var address2 = sessionData.address2;
+//			var key = sessionData.key;
+//			var userType = sessionData.userType;
+//			
+//			objhandleRequest.getUserAddressfromShippingaddress(key, userType);
+//			var addressList = $.session.get('addressList');
+//			var count = $.session.get('count');
+//			addresslistcheck = addressList;
+//			
+//			if(address !="" && address !=null)
+//				{
+//					count = parseInt(count)+1;
+//					addressList = addressList + '<div class="divSection">'
+//					+'<div class="space"></div>'
+//					+'<label><input id="" value="one" style="margin-top: 0px;" name="addList" type="radio">Address '+count+' : </label>'
+//					+'<div class="space"></div>'
+//					+'<textarea  rows="5" cols="30">'+address+'</textarea>'
+//					+'</div>';
+//				}
+//			if(address2 !="" && address2 !=null)
+//			{
+////				alert("address2 = "+address2);
+//					count = parseInt(count)+1;
+//					addressList = addressList + '<div class="divSection">'
+//					+'<div class="space"></div>'
+//					+'<label><input id="" value="one" style="margin-top: 0px;" name="addList" type="radio">Address '+count+' : </label>'
+//					+'<div class="space"></div>'
+//					+'<textarea  rows="5" cols="30">'+address2+'</textarea>'
+//					+'</div>';
+//			}
+//
+//			if(addressList !="" && addressList != null)
+//				{
+//					$("#displayExistAddress").empty();
+//					document.getElementById("displayExistAddress").innerHTML = addressList;
+//					$("#addresstable").hide();
+//				}
+//			else
+//				{
+//					$("#addresstable1").show();
+//					document.getElementById("addresstable1").style.display = 'block';
+//				}
+//			for(var i = 0;i<2;i++)
+//				{
+//					$("#loadpage").load("checkout.jsp");
+//				}
+			
+		}
+		else
+			{
+				location.replace("indexTemplate.jsp");
+			}
 		
 //		setLoginDropDown(custName);
 	}

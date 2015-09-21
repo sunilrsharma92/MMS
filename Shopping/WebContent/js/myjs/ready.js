@@ -7,6 +7,7 @@ var arrayofProduct = [];
 
 $(document).ready(function(){
 //*******************************************************************************************************************
+	$.session.set('viewprod','');
 	var path = window.location.pathname;
 	var page = path.split("/").pop();
 	console.log( page );
@@ -63,10 +64,19 @@ $(document).ready(function(){
 
 	// -- logout
 	$("#logoutLink").click(function() {
-//		alert("hahaa");
+
 		$.session.remove('loginData');
 		$.session.remove('usertype');
 		$.session.remove('pageState');
+		$.session.remove('checkout');
+		$.session.remove('contentState');
+		$.session.remove('addressList');
+		$.session.remove('count');
+		$.session.remove('viewprod');
+		$.session.remove('zoominage');
+		$.session.remove('prodDisc');
+		$.session.remove('checkoutlogin');
+
 		window.location.replace("indexTemplate.jsp");
 	});
 	
@@ -222,17 +232,30 @@ function getIntDataFromSession(requestedValue)
 	return responseVal;
 }*/
 
+function loadProductViewPage(id)
+{
+	$.session.set('viewprod','viewprod');
+	$("#loadpage").load(id+".jsp");
+}
 
 function loadPage(id)
 {
+	$.session.set('viewprod','');
 	var vid = $(id).attr("id");
-//	alert("ready.js_266  "+vid);
+//	alert("Page Name  "+vid);
 	
 	if(vid == "indexBody")
 		{
 			$.session.set('pageState', vid);
 //			$.cookie('pageState',vid);
 		}
+	
+	/*if(vid == "viewProduct")
+	{
+		$.session.set('pageState', vid);
+//			$.cookie('pageState',vid);
+	}*/
+	
 	else if(vid == "shopProfile")
 			{
 				$.session.set('pageState', vid);
@@ -240,11 +263,34 @@ function loadPage(id)
 			}
 	else if(vid == "checkout")
 	{
-		$.session.set('pageState', vid);
-		$("#checkoutClose").trigger("click");
+		var ammount = $("#totalpurchase").text();
+		if(ammount == "Total Price : Rs 0.00 ")
+			{
+				jAlert('Add product in cart to proceed further', 'Message');
+				vid = "";
+				return false;
+			}
+		else
+			{
+				$.session.set('pageState', vid);
+				$("#checkoutClose").trigger("click");
+			}
+			
+//			}
+//		else
+//			{
+//				jAlert('Add product in cart to proceed further', 'Message');
+//				return false;
+//			}
 	}
 	
 	$("#loadpage").load(vid+".jsp");
+	
+	if(vid == "checkout")
+		{
+			$.session.set('checkout','checkout');
+			getProductfromCookie("prod");
+		}
 	
 //	var pageState = $.cookie("pageState");
 //	alert("pageState : "+pageState);
@@ -513,9 +559,6 @@ function getProductfromCookie(condition)
 	{
 		var gettingProductId = gettingCookieValue[i];
 		
-		
-		
-		
 		if(i==0)
 			{
 				prodjoin = gettingProductId+"#";
@@ -554,11 +597,6 @@ function getProductfromCookie(condition)
 			document.getElementById("productCountOnCart").innerHTML = count; 	
 			document.getElementById("productCountOnCart1").innerHTML = count; 	
 		}
-	
-	
-
-	
-	
 	
 	
 	if (condition === "prod")
@@ -626,9 +664,110 @@ function addproducttoCArt(productid)
 	console.log("getcookies()   JSON.parse(checkAllCookies_AddedorNot)   : "+checkCookiesArray);
 	
 	document.getElementById("btn"+productid).disabled = true;
+
+}
+//************************************************************************************//
+
+function viewProduct(images, prodName, price, stockvalue,productid ,stockcrtbtn)
+{
+	var disablebtn = '';
+	if(document.getElementById("btn"+productid).disabled == true)
+		{
+			disablebtn = 'disabled="disabled"';
+		}
+	else
+		{
+			disablebtn = '';
+		}
 	
+	var zoominage = '<div class="row">'
+		+'<img id="img_01" style="width:550px; height:350px;" src="'+images+'" data-zoom-image="'+images+'"/>'
+		+'</div>'
+		+'<div class="row" id="gallery_01">'
+		+'<a href="#" data-image="'+images+'" data-zoom-image="'+images+'">'
+		+'<img id="img_01" class="heightWidth"  src="'+images+'" />'
+		+'</a>'
+
+		/*+'<a href="#" data-image="img/small/1001002a.png" data-zoom-image="img/large/1001002a.png">'
+		+'<img id="img_01" class="heightWidth"  src="img/thumb/1001002a.png" />'
+		+'</a>'
+
+		+'<a href="#" data-image="img/small/1001004a.png" data-zoom-image="img/large/1001004a.png">'
+		+'<img id="img_01" class="heightWidth"  src="img/thumb/1001004a.png" />'
+		+'</a>'
+
+		+'<a href="#" data-image="img/small/1001005a.png" data-zoom-image="img/large/1001005a.png">'
+		+'<img id="img_01" class="heightWidth"  src="img/thumb/1001005a.png" />'
+		+'</a>'*/
+
+		+'</div>';
+
+
+	var prodDisc = '<div class="row" style="width:100%; margin-top:20px;margin-left:20px;">'
+		+'<label><h2>Name of product : <h2>'+prodName+'</label>'
+		+'</div><!--/row-->'
+		+'<div class="row" style="width:100%;margin-top:20px;margin-left:20px;">'
+		+'<label><h3>Product Describtion</h3></label>'
+		+'<p>Cotton Blanket Also Known As Solapuri Chaddar Is Very Attractive And Durable. Cotton Blanket Is Made On Jacquard Design To Give Adorable Centre Design Like Galicha.</p>'
+		+'</div><!--/row-->'
+		+'<div class="row" style="width:100%;margin-top:20px;margin-left:20px;">'
+		+'<div class="cartbtn "><button type="button" ' + disablebtn + ' onclick="disablebtn('+productid+'); addproducttoCArt(' + productid + ');" class="btn btn-success cartsz " id="btn' + productid + '">Add <span class="pull-right glyphicon glyphicon-shopping-cart"></span></button></div>'
+		+'</div>';
+	
+	$.session.set('zoominage',zoominage);
+	$.session.set('prodDisc',prodDisc);
+
+function viewProduct(images, prodName, price, stockvalue,productid ,stockcrtbtn)
+{
+	var disablebtn = '';
+	if(document.getElementById("btn"+productid).disabled == true)
+		{
+			disablebtn = 'disabled="disabled"';
+		}
+	else
+		{
+			disablebtn = '';
+		}
+	
+	var zoominage = '<div class="row">'
+		+'<img id="img_01" style="width:550px; height:350px;" src="'+images+'" data-zoom-image="'+images+'"/>'
+		+'</div>'
+		+'<div class="row" id="gallery_01">'
+		+'<a href="#" data-image="'+images+'" data-zoom-image="'+images+'">'
+		+'<img id="img_01" class="heightWidth"  src="'+images+'" />'
+		+'</a>'
+
+		/*+'<a href="#" data-image="img/small/1001002a.png" data-zoom-image="img/large/1001002a.png">'
+		+'<img id="img_01" class="heightWidth"  src="img/thumb/1001002a.png" />'
+		+'</a>'
+
+		+'<a href="#" data-image="img/small/1001004a.png" data-zoom-image="img/large/1001004a.png">'
+		+'<img id="img_01" class="heightWidth"  src="img/thumb/1001004a.png" />'
+		+'</a>'
+
+		+'<a href="#" data-image="img/small/1001005a.png" data-zoom-image="img/large/1001005a.png">'
+		+'<img id="img_01" class="heightWidth"  src="img/thumb/1001005a.png" />'
+		+'</a>'*/
+
+		+'</div>';
+
+
+	var prodDisc = '<div class="row" style="width:100%; margin-top:20px;margin-left:20px;">'
+		+'<label><h2>Name of product : <h2>'+prodName+'</label>'
+		+'</div><!--/row-->'
+		+'<div class="row" style="width:100%;margin-top:20px;margin-left:20px;">'
+		+'<label><h3>Product Describtion</h3></label>'
+		+'<p>Cotton Blanket Also Known As Solapuri Chaddar Is Very Attractive And Durable. Cotton Blanket Is Made On Jacquard Design To Give Adorable Centre Design Like Galicha.</p>'
+		+'</div><!--/row-->'
+		+'<div class="row" style="width:100%;margin-top:20px;margin-left:20px;">'
+		+'<div class="cartbtn "><button type="button" ' + disablebtn + ' onclick="disablebtn('+productid+'); addproducttoCArt(' + productid + ');" class="btn btn-success cartsz " id="btn' + productid + '">Add <span class="pull-right glyphicon glyphicon-shopping-cart"></span></button></div>'
+		+'</div>';
+	
+	$.session.set('zoominage',zoominage);
+	$.session.set('prodDisc',prodDisc);
 	
 }
+
 //************************************************************************************//
 
 
@@ -662,7 +801,23 @@ function removeproductfromCArt(id)
 		}
 	$.cookie('key',JSON.stringify(arrayofProduct));
 	
+	
+	var pageState = $.session.get('pageState');
+	if(pageState == "checkout")
+	{
+		$.session.set('checkout','checkout');
+		getProductfromCookie("prod");
+	}
+	
+	
 	getProductfromCookie("prod");
+	
+	var viewprod = $.session.get('viewprod');
+	if(viewprod == "viewprod")
+	{
+		enablebtn(id);
+	}
+	
 	document.getElementById("ok"+id).style.display = "none";
 	document.getElementById("btn"+id).disabled = false;
 		}

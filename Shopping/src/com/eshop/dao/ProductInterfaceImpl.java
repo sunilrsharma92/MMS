@@ -292,6 +292,44 @@ public class ProductInterfaceImpl implements ProductInterface
 						e.printStackTrace();
 					}
 					break;
+					
+				case 1007:
+					try
+					{
+						JSONObject object = (JSONObject) JSONValue.parse(jsonMsg);
+						Long key = (Long) object.get("key");
+						String usertype = (String) object.get("userType");
+						if(usertype.equalsIgnoreCase("customer"))
+						{
+							usertype = "customer_key";
+						}
+						else if(usertype.equalsIgnoreCase("supplier"))
+							{
+								usertype = "supplier_key";
+							}
+						
+						parentjson = CommonMethodImpl.getShippingDetails(usertype, key, parentjson, "address", jsonarray);
+						if (parentjson != null)
+						{
+							parentjson = CommonMethodImpl.putSuccessJson(parentjson, 2007);
+							parentjson.put("statusdesc", "Success.");
+						}
+						else
+						{
+							parentjson = new JSONObject();
+							parentjson = CommonMethodImpl.putFailedJson(parentjson, command);
+							parentjson.put("statusdesc", "No address Found.");
+						}
+
+						output = parentjson.toString();
+						// //System.out.println("output ::::::::: "+output);
+						return output;
+					}
+					catch (Exception e)
+					{
+						e.printStackTrace();
+					}
+					break;
 
 				case 1010: // -- Supplier/ Shop Profile info on load of page //
 					try

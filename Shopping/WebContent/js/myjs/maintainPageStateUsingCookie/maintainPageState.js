@@ -11,4 +11,11 @@ $(document).ready(function(){
 	
 	$("#loadpage").load(pageState+".jsp");
 	
+	if(pageState == "checkout")
+	{
+//		alert("state : "+pageState);
+		$.session.set('checkout','checkout');
+		getProductfromCookie("prod");
+	}
+	
 });

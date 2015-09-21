@@ -8,7 +8,7 @@
 	<script>
 	$("#minus").click(function()
 	{
-		alert();
+// 		alert();
 		var val = parseInt($("#demo1").val());
 		if(val > 1)
 		{
@@ -198,7 +198,7 @@
 				<button type="button" class="navbar-toggle pull-left" data-toggle="collapse" data-target=".slidemenu">
 					<span class="glyphicon glyphicon-option-vertical"></span>	
 				</button>
-				<a href="#" class="navbar-brand"><img src="Images/rgb.png" class="img-rounded" alt="Cinque Terre" width="25px" height="25px"> </a>
+				<a href="#" id="indexBody1" onclick="loadPage(this);" class="navbar-brand"><img src="Images/rgb.png" class="img-rounded" alt="Cinque Terre" width="25px" height="25px"> </a>
 
 
 				<!-- <button type="button" class="pull-right"> btn</button> -->
@@ -268,7 +268,7 @@
 
 							</div>
 							<div class="totaldiv">
-								<input type="hidden" name="txttotalcartAmmounthidden" value="" id="totalcartAmmounthidden">
+							<input type="hidden" name="txttotalcartAmmounthidden" value="" id="totalcartAmmounthidden">
 								<button class="btn btn-primary" id="checkout" onclick="loadPage(this);" type="button">Check Out</button>
 								<button class="btn btn-primary" id="continueshopping" type="button">Continue Shopping</button>
 							</div>

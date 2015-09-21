@@ -13,6 +13,7 @@ function handleRequest()
 	this.handledisplaySelectedProduct = handledisplaySelectedProduct;
 	this.handledisplayProductinCart = handledisplayProductinCart;
 	this.searchProduct = searchProduct;
+	this.getUserAddressfromShippingaddress = getUserAddressfromShippingaddress;
 
 	// ****** This function is used to get all main product category ******//
 	function handleCategoryRequest()
@@ -251,6 +252,25 @@ function handleRequest()
 			console.log("handleRequest     searchProduct  : " + strjsonMsgForstrSearchProduct);
 			handleAllListResponse(strjsonMsgForstrSearchProduct);
 
+		}
+		catch (e)
+		{
+			console.log("handleRequest     handledisplaySelectedProduct     Exception :: " + e);
+		}
+	}
+	function getUserAddressfromShippingaddress(key, userType)
+	{
+		try
+		{
+			var strSearchAddress = {};
+			strSearchAddress.key = +key;
+			strSearchAddress.userType = userType;
+			strSearchAddress.command = 1007;
+			
+			var strjsonMsgForstrSearchAddress = JSON.stringify(strSearchAddress);
+			console.log("handleRequest     getUserAddressfromShippingaddress  : " + strjsonMsgForstrSearchAddress);
+			handleAllListResponse(strjsonMsgForstrSearchAddress);
+			
 		}
 		catch (e)
 		{
