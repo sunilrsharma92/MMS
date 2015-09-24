@@ -43,6 +43,7 @@
 //	      $("#searching").toggle();
 	     
 	//  });
+	   
 	});
 	$(window).scroll(function() {    
 	    var scroll = $(window).scrollTop();
@@ -53,6 +54,10 @@
 	        $(".nav-cust").removeClass("navbar-fixed-top");
 	    }
 	});
+	
+	
+	
+	
 </script>
 </head>
 <body>
@@ -195,7 +200,7 @@
 	<div class="navbar navbar-default nav-cust">
 		<div class="container" id="menubar">
 			<div class="navbar-header">
-				<button type="button" class="navbar-toggle pull-left" data-toggle="collapse" data-target=".slidemenu">
+				<button type="button" class="navbar-toggle pull-left" id="mobcat" data-toggle="collapse" data-target=".slidemenu">
 					<span class="glyphicon glyphicon-option-vertical"></span>	
 				</button>
 				<a href="#" id="indexBody1" onclick="loadPage(this);" class="navbar-brand"><img src="Images/rgb.png" class="img-rounded" alt="Cinque Terre" width="25px" height="25px"> </a>
