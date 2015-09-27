@@ -14,7 +14,7 @@ public class MyConnection {
 	      if(con==null)
 	      {
 	        Class.forName("com.mysql.jdbc.Driver");  
-	       // con=DriverManager.getConnection("jdbc:mysql://localhost:3306/heenabou_shopprofile","heenabou_shop","rahulm@2015");
+	        con=DriverManager.getConnection("jdbc:mysql://localhost:3306/heenabou_shopprofile","heenabou_shop","rahulm@2015");
 	        con=DriverManager.getConnection("jdbc:mysql://localhost:3306/shopprofile","root","root");
 	      }
 	    }

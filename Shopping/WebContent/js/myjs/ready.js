@@ -24,6 +24,12 @@ $(document).ready(function(){
 		}
 		
 	}
+//*******************************************************************************************************************
+	 $("#mobcat").click(function(){
+//			alert("mobile category clicked")
+			$(".col-cat").removeClass("hidden-xs");
+			
+		});
 
 //*******************************************************************************************************************	
 	
@@ -536,6 +542,8 @@ function getSelectedProduct(subid,strmainCategoryid)
 {
 	var strsubCategoryid=$(subid).attr("id");
 	$("#myCarousel").hide();
+//	$(".col-cat").addClass("hidden-xs");
+	$("#mobcat").click();
 //	alert("strsubCategoryid : "+strsubCategoryid+" strmainCategoryid : "+strmainCategoryid);
 	
 	objhandleRequest.handledisplaySelectedProduct(strmainCategoryid , strsubCategoryid);
@@ -847,3 +855,4 @@ function quantity(txtboxid,action,price)
 
 //objhandleRequest.handleCategoryRequest();
 var objhandleRequest=new handleRequest();
+}
