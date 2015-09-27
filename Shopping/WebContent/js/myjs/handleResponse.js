@@ -90,7 +90,11 @@ function listResponseHandler(response, command, status)
 						break;
 						
 					case 2056:
-						handleChangePasswordResponse(response);
+						handleResetPasswordResponse(response);
+						break;
+						
+					case 2057:
+						handleProfilePicResponse(response);
 						break;
 				}
 				break;

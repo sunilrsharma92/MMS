@@ -113,5 +113,15 @@ function shopProfileDisplay(supplierKey)
 	objhandleRequest.handleShopProfileDisplay(supplierKey);
 }
 
+function uploadProfilePic()
+{
+	var profileImg = "";
+	var email = "";
+	var key = 1;
+	
+	console.log("profileImg : " + profileImg +" key : " +key + " userType :" + userType + " email : " + email);
+	objhandleRequest.handleUpdateProfilePic(profileImg, key, userType, email);
+}
+
 
 //*************************************************************************************

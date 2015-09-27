@@ -434,7 +434,7 @@ function handleSaveUserDetailsResponse(response)
 	}
 }
 var addresslistcheck = "";
-function handleChangePasswordResponse(response)
+function handleResetPasswordResponse(response)
 {
 	$(".overlay").show().delay(100).fadeOut();
 	var action = response.status;
@@ -588,3 +588,33 @@ function removePwdFromSession(response, userType)
 
 	$("#crossClose").trigger("click");
 }*/
+
+function handleProfilePicResponse(response)
+{
+	var action = response.status;
+	var statusdesc = response.statusdesc;
+	if(action != 3)
+	{
+		jAlert(statusdesc, "Alert Message");
+	}
+	else
+	{
+		jAlert("Password changed successfully", "Alert Message");
+		
+		var profileImg = response.profileImg;
+		var loginData = $.session.get('loginData');
+		
+		console.log("response :: " + JSON.stringify(loginData));
+		
+		delete loginData["profileImg"];
+		
+		loginData.profileImg = profileImg;
+		console.log("response :: " + JSON.stringify(loginData));
+
+		$.session.remove('loginData');
+		$.session.set('loginData', JSON.stringify(loginData));
+		
+		$("#profilePic").attr('src',profileImg);
+		
+	}
+}

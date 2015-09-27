@@ -211,6 +211,7 @@ $('#checkout').click(function(){
 });
 
 
+
 });
 
 //*************************** Document ready function ends here ***********************************
@@ -738,55 +739,6 @@ function viewProduct(images, prodName, price, stockvalue,productid ,stockcrtbtn)
 	$.session.set('zoominage',zoominage);
 	$.session.set('prodDisc',prodDisc);
 }
-
-function viewProduct(images, prodName, price, stockvalue,productid ,stockcrtbtn)
-{
-	var disablebtn = '';
-	if(document.getElementById("btn"+productid).disabled == true)
-		{
-			disablebtn = 'disabled="disabled"';
-		}
-	else
-		{
-			disablebtn = '';
-		}
-	
-	var zoominage = '<div class="row">'
-		+'<img id="img_01" style="width:550px; height:350px;" src="'+images+'" data-zoom-image="'+images+'"/>'
-		+'</div>'
-		+'<div class="row" id="gallery_01">'
-		+'<a href="#" data-image="'+images+'" data-zoom-image="'+images+'">'
-		+'<img id="img_01" class="heightWidth"  src="'+images+'" />'
-		+'</a>'
-
-		/*+'<a href="#" data-image="img/small/1001002a.png" data-zoom-image="img/large/1001002a.png">'
-		+'<img id="img_01" class="heightWidth"  src="img/thumb/1001002a.png" />'
-		+'</a>'
-
-		+'<a href="#" data-image="img/small/1001004a.png" data-zoom-image="img/large/1001004a.png">'
-		+'<img id="img_01" class="heightWidth"  src="img/thumb/1001004a.png" />'
-		+'</a>'
-
-		+'<a href="#" data-image="img/small/1001005a.png" data-zoom-image="img/large/1001005a.png">'
-		+'<img id="img_01" class="heightWidth"  src="img/thumb/1001005a.png" />'
-		+'</a>'*/
-
-		+'</div>';
-
-
-	var prodDisc = '<div class="row" style="width:100%; margin-top:20px;margin-left:20px;">'
-		+'<label><h2>Name of product : <h2>'+prodName+'</label>'
-		+'</div><!--/row-->'
-		+'<div class="row" style="width:100%;margin-top:20px;margin-left:20px;">'
-		+'<label><h3>Product Describtion</h3></label>'
-		+'<p>Cotton Blanket Also Known As Solapuri Chaddar Is Very Attractive And Durable. Cotton Blanket Is Made On Jacquard Design To Give Adorable Centre Design Like Galicha.</p>'
-		+'</div><!--/row-->'
-		+'<div class="row" style="width:100%;margin-top:20px;margin-left:20px;">'
-		+'<div class="cartbtn "><button type="button" ' + disablebtn + ' onclick="disablebtn('+productid+'); addproducttoCArt(' + productid + ');" class="btn btn-success cartsz " id="btn' + productid + '">Add <span class="pull-right glyphicon glyphicon-shopping-cart"></span></button></div>'
-		+'</div>';
-	
-	$.session.set('zoominage',zoominage);
-	$.session.set('prodDisc',prodDisc);
 	
 }
 

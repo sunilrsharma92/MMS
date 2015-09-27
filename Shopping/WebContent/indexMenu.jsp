@@ -173,6 +173,7 @@
 												<div class="g-recaptcha" name="captcha" data-sitekey="6LfaxwsTAAAAAEB5RYVVeSFM3AyHzAHb3YvgtGvx"></div>
 												<div id="warnings"></div>
 												<input type="button" onclick="signUp()" class="btn btn-primary btn_width_93_perc" id="signup" value="Sign Up" />
+<!-- 												<input type="button" class="btn btn-primary btn_width_93_perc" id="signup" value="Sign Up" /> -->
 <!-- 													<button onsubmit="signUp()" class="btn btn-primary btn_width_93_perc" type="submit">Sign Up</button> -->
 											</form>
 										</div>
@@ -180,6 +181,7 @@
 											<h3 class="font">Forgot Password:</h3>
 											<form class="forgot-val"style="text-align: center;">
 												<input class="textbox font" type="text" name="email" id="emailForgotPwd" placeholder="Enter Email id"></br>
+												<button  class="btn btn-primary btn_width_93_perc" type="submit">Submit</button>
 												<button onclick="forgotPwd()" class="btn btn-primary btn_width_93_perc" type="button">Submit</button>
 											</form>
 										</div>

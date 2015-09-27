@@ -83,7 +83,7 @@ public class ProductInterfaceImpl implements ProductInterface
 					break;
 
 					// -- not in use
-				case 1001: // -- Update shop profile.//
+/*				case 1001: // -- Update shop profile.//
 					try
 					{
 						JSONObject parentjson = (JSONObject) JSONValue.parse(jsonMsg);
@@ -108,16 +108,16 @@ public class ProductInterfaceImpl implements ProductInterface
 
 						if (result > 0)
 						{
-							/*
+							
 							 * String sqlSelect = ""; sqlSelect =
 							 * "select * from suppliers where supplier_key = ?";
 							 * ps1 = conn.prepareStatement(sqlSelect);
 							 * ps1.setLong(1, 1); rs1 = ps1.executeQuery();
-							 */
+							 
 
 							// if(rs1.next())
 							// {
-							/*
+							
 							 * parentjson.put("supKey",
 							 * rs1.getLong("supplier_key"));
 							 * parentjson.put("supFirstName",
@@ -131,7 +131,7 @@ public class ProductInterfaceImpl implements ProductInterface
 							 * rs1.getString("state"));
 							 * parentjson.put("supPinCode",
 							 * rs1.getLong("postal_code"));
-							 */
+							 
 
 							parentjson = CommonMethodImpl.putSuccessJson(parentjson, 2001);
 
@@ -150,7 +150,7 @@ public class ProductInterfaceImpl implements ProductInterface
 						e.printStackTrace();
 					}
 					break;
-
+*/
 				case 1002:
 
 					break;
@@ -441,6 +441,7 @@ public class ProductInterfaceImpl implements ProductInterface
 						else
 						{
 							String encryptedPwd = EncryptionUtility.encryptUsingMD5(normalPwd);
+							System.out.println("encryptedPwd : "+encryptedPwd);
 							if(encryptedPwd != null)
 							{
 								boolean validPwd = EncryptionUtility.validatePassword((String) parentjson.get("password"), encryptedPwd);
@@ -985,6 +986,76 @@ public class ProductInterfaceImpl implements ProductInterface
 					{
 						e.printStackTrace();
 					}
+					break;
+					
+				case 1057: // -- Update Customer/Shopkeepers Profile Image //
+					try
+					{
+						Long key = 0L;
+						String sql = null;
+						JSONObject object = (JSONObject) JSONValue.parse(jsonMsg);
+
+						String profileImg = (String) object.get("profileImg");
+						String userType = (String) object.get("userType");
+						String email = (String) object.get("email");
+						
+						if (object.get("key") != null)
+							key = (Long) object.get("key");
+						
+						if(userType != null && userType.trim().equalsIgnoreCase("customer"))
+							sql = "update customers set ";
+						
+						else if(userType != null && userType.trim().equalsIgnoreCase("supplier"))
+							sql = "update suppliers set ";
+						
+						if (profileImg != null && !profileImg.trim().isEmpty())
+							sql += " profile_img = '" + profileImg + "' ";
+
+						if(userType != null && key != null && userType.trim().equalsIgnoreCase("customer"))
+						{
+							sql += "where customer_key = ?";
+						}
+						
+						else if(userType != null  && key != null && userType.trim().equalsIgnoreCase("supplier"))
+						{
+							sql += "where supplier_key = ?";
+						}
+						
+						if (email != null && !email.trim().isEmpty())
+							sql += " and email = ? ";
+
+						ps = conn.prepareStatement(sql);
+						ps.setString(1, profileImg);
+						ps.setLong(2, key);
+						if (email != null && !email.trim().isEmpty())
+							ps.setString(3, email);
+						
+						result = ps.executeUpdate();
+
+						if (result > 0)
+						{
+							parentjson = CommonMethodImpl.putSuccessJson(parentjson, 2057);
+							parentjson.put("profileImg", profileImg);
+						}
+
+						else
+						{
+							parentjson = new JSONObject();
+							parentjson = CommonMethodImpl.putFailedJson(parentjson, command);
+							parentjson.put("statusdesc", "Updation failed");
+							System.out.println("Updation failed");
+						}
+
+						output = parentjson.toString();
+						// System.out.println("output ::::::::: "+output);
+						return output;
+
+					}
+					catch (Exception e)
+					{
+						e.printStackTrace();
+					}
+
 					break;
 
 				default:
