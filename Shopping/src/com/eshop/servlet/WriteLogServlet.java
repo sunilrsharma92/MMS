@@ -29,15 +29,35 @@ public class WriteLogServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		MakemyshopyLogger mmsl = new MakemyshopyLogger();
-		mmsl.writeLogs("MakeMyShopy v0.0.0.1", 1);
+		
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		
+		MakemyshopyLogger mms = new MakemyshopyLogger();
+		try
+		{
+			String logMsg = "";
+			int flag = 0;
+			if(request.getParameter("logMsg") != null || !request.getParameter("logMsg").equals(""))
+			{
+				logMsg = request.getParameter("logMsg");
+			}
+			
+			if(request.getParameter("flag") != null || !request.getParameter("flag").equals(""))
+			{
+				flag = Integer.parseInt(request.getParameter("flag"));
+			}
+			
+			mms.writeLogs(logMsg, flag);
+		}
+		catch(Exception e)
+		{
+			mms.writeLogs("Exception in write log servlet : "+e, 0);
+		}
 	}
 
 }

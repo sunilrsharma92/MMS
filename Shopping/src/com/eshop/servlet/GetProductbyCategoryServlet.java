@@ -14,6 +14,7 @@ import org.json.simple.JSONValue;
 
 import com.eshop.dao.ProductInterface;
 import com.eshop.dao.ProductInterfaceImpl;
+import com.eshop.logger.MakemyshopyLogger;
 
 /**
  * Servlet implementation class GetProductbyCategoryServlet
@@ -49,17 +50,19 @@ public class GetProductbyCategoryServlet extends HttpServlet
 
 		PrintWriter out = response.getWriter();
 		ProductInterface getResponse = new ProductInterfaceImpl();
+		MakemyshopyLogger mms = new MakemyshopyLogger();
 		HttpSession session = request.getSession();
 
 		String jsonMsg = request.getParameter("jsonMsg");
 		int command = Integer.parseInt(request.getParameter("command"));
-
+		
+//		mms.writeLogs("Command : "+command+" JSON Request TO SERVLET : "+jsonMsg, 1);
+		
 		// System.out.println("jsonMsg  :::::::::::: "+jsonMsg+"  Command :::::::::::: "+command);
 
 		String strjsonMsgResponse = getResponse.handleRequestResponse(jsonMsg, command);
-
-		System.out.println("Response :::::::::::: " + strjsonMsgResponse);
-
+		
+//		mms.writeLogs("JSON Response FROM SERVLET : "+strjsonMsgResponse, 1);
 		out.println(strjsonMsgResponse);
 
 	}

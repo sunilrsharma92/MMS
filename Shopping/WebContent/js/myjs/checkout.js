@@ -144,7 +144,7 @@ try
 		}
 }
 catch (e) {
-	console.log("Exception on Checkout.js : "+e);
+	writeLogAjax("Exception on Checkout.js : "+e,0);
 }
 });
 	

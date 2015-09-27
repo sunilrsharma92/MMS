@@ -38,7 +38,7 @@ $(document).ready(function(){
 function loadProfileMenu(id)
 {
 	var idofpage = $(id).attr("id");
-	console.log("idofpage : "+idofpage);
+	writeLogAjax("idofpage : "+idofpage,1);
 	// -- id 
 	for(var i=0; i<=3 ; i++)
 		{
@@ -108,7 +108,7 @@ function loadProfileMenu(id)
 
 function shopProfileDisplay(supplierKey)
 {
-	console.log("supplierKey : " + supplierKey);
+	writeLogAjax("supplierKey : " + supplierKey,1);
 	
 	objhandleRequest.handleShopProfileDisplay(supplierKey);
 }

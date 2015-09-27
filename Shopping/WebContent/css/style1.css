@@ -83,7 +83,7 @@ button.changeview {
     border-radius: 4px;
 }
 button.changeview:hover {
-    background-color: #3EAFAF;
+    background-color: #037DBB;
     width: 32px;
     height: 32px;
     margin-top: -10px;
@@ -97,7 +97,7 @@ button.changeview:hover {
 	margin-top: 4px;
 }
 .nav-cust{
-	background-color: #65BFBF;
+	background-color: #008ed6;
 	border: 0px;
 /* 	height: 50px; */
 	border-radius: 0px;
@@ -110,14 +110,14 @@ button.changeview:hover {
     color: #FFF;
 }
 button#getCartProduct:hover {
-    background-color: #3EAFAF;
+    background-color: #037DBB;
 }
 button.navbar-toggle.pull-left,button.navbar-toggle.pull-left:visited {
-    background-color: #65BFBF;
-    border-color: #65BFBF;
+    background-color: #008ed6;
+    border-color: #008ed6;
 }
 button.navbar-toggle.pull-left:hover {
-    background-color: #3EAFAF;
+    background-color: #037DBB;
 }
 
 
@@ -125,7 +125,7 @@ span.glyphicon.glyphicon-option-vertical {
     color: #FFF;
 }
 button.navbar-toggle {
-    background-color: #65BFBF;
+    background-color: #008ed6;
     border: transparent;
 }
 /***************************************************End of Changed menubar************************************************************/
@@ -209,7 +209,7 @@ tbody{
 
 .top-bar {
 	height : 25px;
-	background-color : #3EAFAF;
+	background-color : #037DBB;
 	color : #FFFFFF;
 }
 #home {
@@ -241,7 +241,7 @@ tbody{
 	/*padding : 10px;*/
 	/*margin-top : 0px;*/
 	/*margin-bottom : 0px;*/
-	/*background-color : #3EAFAF;*/
+	/*background-color : #037DBB;*/
 	background-color : transparent;
 }
 
@@ -254,12 +254,12 @@ tbody{
 }
 
 .middle-bar {
-	background-color : #65BFBF;
+	background-color : #008ed6;
 	border-top : 0px;
 }
 
 .mid-bar {
-	background-color : #65BFBF;
+	background-color : #008ed6;
 	padding-top : 5px;
 	padding-bottom : 5px;
 	border-top : 0px;
@@ -271,7 +271,7 @@ tbody{
 /* } */
 
 /* #search-btn { */
-/* 	background-color : #65BFBF; */
+/* 	background-color : #008ed6; */
 /* } */
 
 .btn .glyphicon {
@@ -303,7 +303,7 @@ tbody{
 .foot-1 {
 /* 	height : 100%; */
 
-	background-color : #3EAFAF;
+	background-color : #008ed6;
 	color : #FFFFFF;
 }
 
@@ -388,7 +388,7 @@ tbody{
 .list-group-item.active {
 	font-size : 15px;
 	font-weight : bold;
-	background-color : #3EAFAF;
+	background-color : #037DBB;
 }
 
 .list-group-item {
@@ -398,7 +398,7 @@ tbody{
 }
 
 .list-group-item.active :focus {
-	background-color : #65BFBF;
+	background-color : #008ed6;
 	border : none;
 }
 
@@ -562,29 +562,34 @@ line-height : 1.4em;
 }
 /*End of side Menu*/
 .modal-header {
-	background-color : #65BFBF;
+	background-color : #008ed6;
 }
 
 .btn-primary {
 	color : #fff;
-	background-color : #65BFBF;
-	border-color : #1F5858;
+	background-color : #008ed6;
+	border-color : #008ed6;
 }
 
 .btn-primary :hover {
-	border-color : #65BFBF;
-	background-color : #65BFBF;
+	border-color : #037DBB;
+	background-color : #037DBB;
 }
 
 .btn-success {
 	color : #fff;
-	background-color : #65BFBF;
-	border-color : #3EAFAF;
+	background-color : #008ed6;
+	border-color : #008ed6;
+}
+.btn-success:hover {
+    color: #fff;
+    background-color: #037DBB;
+    border-color: #037DBB;
 }
 
 .pagination>.active>a {
-	background-color : #65BFBF;
-	border-color : #65BFBF;
+	background-color : #008ed6;
+	border-color : #008ed6;
 } 
 
 /*tr{
@@ -623,7 +628,7 @@ tbody{
 /*profile page*/
 .list-group-item.active, .list-group-item.active :focus, .list-group-item.active :hover
 	{
-	background-color : #65BFBF;
+	background-color : #008ed6;
 	border-color : #1F5858;
 }
 
@@ -718,29 +723,29 @@ tbody{
 }
 /*End of side Menu*/
 .modal-header {
-	background-color : #65BFBF;
+	background-color : #008ed6;
 }
 
 .btn-primary {
 	color : #fff;
-	background-color : #65BFBF;
-	border-color : #1F5858;
+	background-color : #008ed6;
+	border-color : #008ed6;
 }
 
 .btn-primary :hover {
-	border-color : #204d74;
-	background-color : #286090;
+	border-color : #037DBB;
+	background-color : #037DBB;
 }
 
 .btn-success {
 	color : #fff;
-	background-color : #65BFBF;
-	border-color : #3EAFAF;
+	background-color : #008ed6;
+	border-color : #008ed6;
 }
 
 .pagination>.active>a {
-	background-color : #65BFBF;
-	border-color : #65BFBF;
+	background-color : #008ed6;
+	border-color : #008ed6;
 }
 
 .switch-wrapper {

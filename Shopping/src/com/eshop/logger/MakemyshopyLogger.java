@@ -9,13 +9,13 @@ public class MakemyshopyLogger implements Constants{
 	    {
 	           if(flag == 1)
 	           {
-	                logger.debug(logMsg+"\n");
-	                System.out.println(""+logMsg);
+	                logger.debug(logMsg+"\n-----------------------------------------------------------------------------------------\n");
+//	                System.out.println(""+logMsg);
 	           }
 	           else 
 	           {
-	               logger.error(logMsg+"\n");
-	               System.out.println(""+logMsg);
+	               logger.error(logMsg+"\n\n");
+//	               System.out.println(""+logMsg);
 	           }
 	    }
 	    

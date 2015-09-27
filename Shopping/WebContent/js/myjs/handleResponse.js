@@ -6,6 +6,7 @@ function handleAllListResponse(jsonMsg)
 {
 	try
 	{
+		
 		callServlet(jsonMsg, function(strJsonResponse)
 		{
 			if(strJsonResponse != null && strJsonResponse.length >10)
@@ -13,13 +14,16 @@ function handleAllListResponse(jsonMsg)
 				var response = JSON.parse(strJsonResponse);
 				var command = response.command;
 				var status = parseInt(response.status);
-
+				
+				writeLogAjax("command : "+command+" status : "+status+" JSON Response FROM SERVLET :  "+JSON.stringify(response), 1);
+				
 				listResponseHandler(response, command, status);
 			}
 			else
 			{
 				$(".overlay").show().delay(100).fadeOut();
 	        		jAlert("Response is blank", "Message");
+	        		writeLogAjax("***********************************No Response FROM SERVLET***********************************", 0);
 			}
 
 		});
@@ -27,6 +31,7 @@ function handleAllListResponse(jsonMsg)
 	catch (e)
 	{
 		console.log("handleAllListResponse(jsonMsg) Exception : " + e);
+		writeLogAjax("handleAllListResponse(jsonMsg) Exception : " + e,0);
 	}
 }
 

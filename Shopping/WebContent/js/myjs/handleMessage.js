@@ -9,8 +9,7 @@ function handleMainCategoryResponse(response)
 {
 	try
 	{
-		// console.log('handleMainCategoryResponse ::::::
-		// '+JSON.stringify(response));
+		// writeLogAjax('handleMainCategoryResponse :::::: '+JSON.stringify(response),1);
 
 		var category = "";
 		var subcategory = "";
@@ -26,7 +25,7 @@ function handleMainCategoryResponse(response)
 				var categoryId = maincategory[i].categoryid;
 				var categoryName = maincategory[i].categoryname;
 
-				category = category +"<a href='#demo" + categoryId + "' id='" + categoryId + "' class='list-group-item ' data-toggle='collapse' style='background-color: beige;' data-parent='#MainMenu'>" + categoryName 
+				category = category +"<a href='#demo" + categoryId + "' id='" + categoryId + "' class='list-group-item ' data-toggle='collapse' data-parent='#MainMenu'>" + categoryName 
 									+ "<span class='pull-right glyphicon glyphicon-menu-down'></span></a>";
 		          
 		          
@@ -65,7 +64,7 @@ function handleMainCategoryResponse(response)
 	}
 	catch (e)
 	{
-		console.log("handleMainCategoryResponse :::::: Exception" + e);
+		writeLogAjax("handleMainCategoryResponse :::::: Exception" + e,0);
 	}
 }
 /*
@@ -73,7 +72,7 @@ function handleShopProfileDetailResponse(response)
 {
 	try
 	{
-		console.log('handleShopProfileDetailResponse :::::: ' + JSON.stringify(response));
+		writeLogAjax('handleShopProfileDetailResponse :::::: ' + JSON.stringify(response),1);
 
 		var supFirstName = response.supFirstName;
 		var supLastName = response.supLastName;
@@ -99,7 +98,7 @@ function handleShopProfileDetailResponse(response)
 	}
 	catch (e)
 	{
-		console.log("handleShopProfileDetailResponse :::::: Exception" + e);
+		writeLogAjax("handleShopProfileDetailResponse :::::: Exception" + e,0);
 	}
 }*/
 
@@ -127,14 +126,14 @@ function handleShopProfDispResponse(response)
 		{
 			jAlert(statusdesc, "Error occurred while populating shop details");
 		}
-		console.log('handleShopProfDispResponse :::::: ' + JSON.stringify(response));
+		writeLogAjax('handleShopProfDispResponse :::::: ' + JSON.stringify(response),1);
 
 //		getCustomerOfflineData(response); // -- not aware of the use,may be was to store session
 
 	}
 	catch (e)
 	{
-		console.log("handleShopProfDispResponse :::::: Exception" + e);
+		writeLogAjax("handleShopProfDispResponse :::::: Exception" + e,0);
 	}
 }
 
@@ -143,8 +142,7 @@ function handleProductDisplayResponse(response)
 	try
 	{
 
-		// console.log('handleProductDisplayResponse ::::::
-		// '+JSON.stringify(response));
+		// writeLogAjax('handleProductDisplayResponse :::::: '+JSON.stringify(response),1);
 		var productList = "";
 		// var total = 0;
 		var product = response.product;
@@ -204,7 +202,7 @@ function handleProductDisplayResponse(response)
 	}
 	catch (e)
 	{
-		console.log("handleProductDisplayResponse :::::: Exception" + e);
+		writeLogAjax("handleProductDisplayResponse :::::: Exception" + e,0);
 	}
 }
 
@@ -212,7 +210,7 @@ function handleProductDisplayinCartResponse(response)
 {
 	try
 	{
-		console.log('handleProductDisplayinCartResponse :::::: ' + JSON.stringify(response));
+		writeLogAjax('handleProductDisplayinCartResponse :::::: ' + JSON.stringify(response),1);
 		var productList = "";
 		var totalpurchase = "";
 		var total = 0;
@@ -247,7 +245,7 @@ function handleProductDisplayinCartResponse(response)
 
 		}
 
-		// console.log(total);
+		// writeLogAjax(total,1);
 
 		totalpurchase = totalpurchase + '<span class="tlbprce">Total Price :</span>' + '<span class="totalprize"><strong> Rs ' + total + '</strong> </span>';
 		// +'<!--<span class="usave">You save :</span> '
@@ -272,7 +270,7 @@ function handleProductDisplayinCartResponse(response)
 	}
 	catch (e)
 	{
-		console.log("handleProductDisplayinCartResponse :::::: Exception" + e);
+		writeLogAjax("handleProductDisplayinCartResponse :::::: Exception" + e,0);
 	}
 }
 
@@ -421,7 +419,7 @@ function handleSaveUserDetailsResponse(response)
 		
 		delete response["password"];
 
-//		console.log("response after save details :: " + JSON.stringify(response));
+//		writeLogAjax("response after save details :: " + JSON.stringify(response),1);
 
 		$.session.remove('loginData');
 		$.session.set('loginData', JSON.stringify(response));
@@ -560,7 +558,7 @@ function removePwdFromSession(response, userType)
 {
 	delete response["password"];
 
-	console.log("response :: " + JSON.stringify(response));
+	writeLogAjax("response :: " + JSON.stringify(response),1);
 
 	$.session.remove('loginData');
 	$.session.set('loginData', JSON.stringify(response));

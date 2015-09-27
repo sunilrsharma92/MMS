@@ -11,11 +11,13 @@ $(document).ready(function(){
 	var path = window.location.pathname;
 	var page = path.split("/").pop();
 	console.log( page );
+	writeLogAjax( "Page : "+page ,1);
 	
 	if(page == "indexTemplate.jsp")
 	{
 		var query = window.location.search.substring(1, 4);
 		console.log(query);
+		writeLogAjax("query : "+query,1);
 		
 		if(query == "otp")
 		{
@@ -371,6 +373,9 @@ function saveUserDetails(id)
 	console.log("firstName : " + firstName + "  lastName : " + lastName + "  mobileNo : " + mobileNo +"  email : "+email+"" +
 			"  address1 : "+address1+"  address2 : "+address2 +"  state : "+state +"  city : "+city +"  street : "+street +"  pincode : "+pincode+" userType :"+userType 
 			+" key "+key);
+	writeLogAjax("firstName : " + firstName + "  lastName : " + lastName + "  mobileNo : " + mobileNo +"  email : "+email+"" +
+			"  address1 : "+address1+"  address2 : "+address2 +"  state : "+state +"  city : "+city +"  street : "+street +"  pincode : "+pincode+" userType :"+userType 
+			+" key "+key,1);
 
 objhandleRequest.handleUserDetailsSave(firstName, lastName, mobileNo, email, address1, address2, state, city, street, pincode, userType, key);
 
@@ -424,6 +429,7 @@ function login()
 	}
 	
 	console.log("emailLogin : " + emailLogin + "  passLogin : " + passLogin + "  userType : " + userType +"  otpLogin : "+otpLogin );
+	writeLogAjax("emailLogin : " + emailLogin + "  passLogin : " + passLogin + "  userType : " + userType +"  otpLogin : "+otpLogin ,1);
 	$(".overlay").show();
 	objhandleRequest.handleLogin(emailLogin, passLogin, userType, otpLogin);
 	
@@ -486,6 +492,7 @@ function signUp()
 	}
 //	console.log("passSignUp" + passSignUp + "firstNameSignUp" +firstNameSignUp+ "mobileKey" + mobileKey	+ "emailKey" + emailKey + "userType" + userType);
 	console.log("passSignUp" + passSignUp +"mobileKey" + mobileKey	+ "emailKey" + emailKey + "userType" + userType);
+	writeLogAjax("passSignUp" + passSignUp +"mobileKey" + mobileKey	+ "emailKey" + emailKey + "userType" + userType,1);
 	
 //	return false;
 	var result = jConfirm("Are you sure you want to register as "+userType,"Make My Shopy",function(e)
@@ -522,6 +529,7 @@ function forgotPwd()
 	}
 
 	console.log("emailForgotPwd : "+ emailForgotPwd+"   userType"+ userType);
+	writeLogAjax("emailForgotPwd : "+ emailForgotPwd+"   userType"+ userType,1);
 	$(".overlay").show();
 	objhandleRequest.handleForgotPwd(emailForgotPwd, userType);
 
@@ -563,6 +571,7 @@ function getProductfromCookie(condition)
 		{
 	var gettingCookieValue = JSON.parse(gettingCookieArray);
 	console.log("JSON.parse(gettingCookieArray) : "+gettingCookieValue);
+	writeLogAjax("JSON.parse(gettingCookieArray) : "+gettingCookieValue,1);
 	for (i in gettingCookieValue)
 	{
 		var gettingProductId = gettingCookieValue[i];
@@ -610,6 +619,7 @@ function getProductfromCookie(condition)
 	if (condition === "prod")
 	{
 		console.log("prodjoin : "+prodjoin);
+		writeLogAjax("prodjoin : "+prodjoin,1);
 		
 		objhandleRequest.handledisplayProductinCart(prodjoin);
 	}
@@ -617,6 +627,7 @@ function getProductfromCookie(condition)
 	catch (e)
 	{
 		console.log("ready.js    getProductfromCookie(condition)    Exception : "+e);
+		writeLogAjax("ready.js    getProductfromCookie(condition)    Exception : "+e,0);
 	}
 	
 }
@@ -640,6 +651,7 @@ function getcookies()
 	catch (e)
 	{
 		console.log("ready.js  :: getcookies()  :: Exception"+e)
+		writeLogAjax("ready.js  :: getcookies()  :: Exception"+e,0)
 	}
 }
 //************************************************************************************//
@@ -670,6 +682,7 @@ function addproducttoCArt(productid)
 	var checkAllCookies_AddedorNot = $.cookie("key");
 	var checkCookiesArray = JSON.parse(checkAllCookies_AddedorNot);
 	console.log("getcookies()   JSON.parse(checkAllCookies_AddedorNot)   : "+checkCookiesArray);
+	writeLogAjax("getcookies()   JSON.parse(checkAllCookies_AddedorNot)   : "+checkCookiesArray,1);
 	
 	document.getElementById("btn"+productid).disabled = true;
 
@@ -724,6 +737,7 @@ function viewProduct(images, prodName, price, stockvalue,productid ,stockcrtbtn)
 	
 	$.session.set('zoominage',zoominage);
 	$.session.set('prodDisc',prodDisc);
+}
 
 function viewProduct(images, prodName, price, stockvalue,productid ,stockcrtbtn)
 {
@@ -832,6 +846,7 @@ function removeproductfromCArt(id)
 	catch (e)
 	{
 		console.log("ready.js  :: removeproductfromCArt(id)  :: Exception"+e);
+		writeLogAjax("ready.js  :: removeproductfromCArt(id)  :: Exception"+e,0);
 	}
 	
 }
@@ -884,6 +899,7 @@ function quantity(txtboxid,action,price)
 		    var totalPurchaseprice = totalPrice+pricePerProduct;
 		    $("#totalcartAmmounthidden").val(totalPurchaseprice);
 		    console.log("quantity : "+total+" oldpricePerProduct :"+oldpricePerProduct+" quantity * pricePerProduct : "+pricePerProduct+" totalPrice after - price : "+totalPrice+" totalPurchaseprice : "+totalPurchaseprice);
+		    writeLogAjax("quantity : "+total+" oldpricePerProduct :"+oldpricePerProduct+" quantity * pricePerProduct : "+pricePerProduct+" totalPrice after - price : "+totalPrice+" totalPurchaseprice : "+totalPurchaseprice,1);
 		}
 	else if(action == "minus")
 		{
@@ -897,10 +913,13 @@ function quantity(txtboxid,action,price)
 			    var totalPrice = parseInt(totalcartAmmount) - parseInt(oldpricePerProduct);
 			    var totalPurchaseprice = totalPrice+pricePerProduct;
 			    console.log("quantity : "+total+" oldpricePerProduct :"+oldpricePerProduct+" quantity * pricePerProduct : "+pricePerProduct+" totalPrice after - price : "+totalPrice+" totalPurchaseprice : "+totalPurchaseprice);
+			    writeLogAjax("quantity : "+total+" oldpricePerProduct :"+oldpricePerProduct+" quantity * pricePerProduct : "+pricePerProduct+" totalPrice after - price : "+totalPrice+" totalPurchaseprice : "+totalPurchaseprice,1);
 			}
 		}
 }
 
+
+
+
 //objhandleRequest.handleCategoryRequest();
 var objhandleRequest=new handleRequest();
-}

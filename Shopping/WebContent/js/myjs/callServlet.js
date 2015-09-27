@@ -7,6 +7,8 @@ function callServlet(jsonMsg, handleData)
 {
     var response = JSON.parse(jsonMsg);
     var commandvalue = response.command;
+    
+    writeLogAjax("Command : "+commandvalue+" JSON Request TO SERVLET : "+JSON.stringify(response), 1);
 
     $.ajax({
         url: 'GetProductbyCategoryServlet',
@@ -27,11 +29,36 @@ function callServlet(jsonMsg, handleData)
     });
 }
 
+function writeLogAjax(logMsg, flag)
+{
+	
+	$.ajax({
+		url: 'WriteLogServlet',
+		type: 'POST',
+		data:
+		{
+			logMsg: logMsg,
+			flag: flag,
+		},
+		success: function (data)
+		{
+			handleLogWriteSuccessData(data);
+		},
+		error: function (data) {
+			handleLogWriteSuccessData(data);
+		},
+		async: true
+	});
+}
+
 
 function handleData(data) 
 {
-//	alert("handleData : "+data);
     return data;
+}
+
+function handleLogWriteSuccessData(data) 
+{
 }
 
 

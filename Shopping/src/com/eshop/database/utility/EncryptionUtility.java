@@ -6,21 +6,16 @@ import java.security.NoSuchAlgorithmException;
 
 import org.apache.commons.codec.DecoderException;
 import org.apache.commons.codec.binary.Hex;
-//import org.apache.log4j.Logger;
 
-//import com.diipl.securecrypto.impl.SecureKeyManager;
-//import com.diipl.securecrypto.services.DecryptService;
-//import com.diipl.securecrypto.services.EncryptService;
-
-
+import com.eshop.logger.MakemyshopyLogger;
 public class EncryptionUtility {
-	
-//	private static final Logger log = Logger.getLogger(EncryptionUtility.class);
 	
 	public static synchronized String encryptUsingMD5(String plaintext) throws Exception
 	{
 		char[] arr = null;
 		MessageDigest msgDigest = null;
+		String encryptedHexStr = null;
+		MakemyshopyLogger mms = new MakemyshopyLogger();
 		
         try 
         {
@@ -30,27 +25,44 @@ public class EncryptionUtility {
 				msgDigest.update(plaintext.getBytes("UTF-8"));
 				byte rawByte[] = msgDigest.digest();
 				arr = Hex.encodeHex(rawByte);
+				encryptedHexStr = new String(arr);
+				mms.writeLogs("encrypted Password :   "+encryptedHexStr,1);
         	}
         	else 
         		return null;
         }
-        
-        catch (Exception e) {
+        catch (Exception e)
+        {
             e.printStackTrace();
+            mms.writeLogs("EncryptionUtility encryptUsingMD5() Exception : "+e,0);
         }
-		String encryptedHexStr = new String(arr);
-//		log.debug("encryptedHexStr :   "+encryptedHexStr);
+        finally
+ 	   {
+ 		   mms = null;
+ 	   }
+		
 		return encryptedHexStr;
 	}
    
    public static boolean validatePassword(String storedPwd,String generatedPwd)
    {
+	   MakemyshopyLogger mms = new MakemyshopyLogger();
 	   boolean result = false;
-	   
+	   try
+	   {
 	   if(storedPwd != null && !storedPwd.trim().isEmpty() && generatedPwd != null && !generatedPwd.trim().isEmpty())
 	   {
 		   if(storedPwd.equals(generatedPwd))
 			   result = true;
+	   }
+	   }
+	   catch(Exception e)
+	   {
+		   mms.writeLogs("EncryptionUtility validatePassword() Exception : "+e,0);
+	   }
+	   finally
+	   {
+		   mms = null;
 	   }
 	   
 	   return result;
