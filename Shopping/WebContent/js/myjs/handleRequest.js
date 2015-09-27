@@ -14,6 +14,7 @@ function handleRequest()
 	this.handledisplayProductinCart = handledisplayProductinCart;
 	this.searchProduct = searchProduct;
 	this.getUserAddressfromShippingaddress = getUserAddressfromShippingaddress;
+	this.handleUpdateProfilePic = handleUpdateProfilePic;
 
 	// ****** This function is used to get all main product category ******//
 	function handleCategoryRequest()
@@ -275,6 +276,28 @@ function handleRequest()
 		catch (e)
 		{
 			console.log("handleRequest     handledisplaySelectedProduct     Exception :: " + e);
+		}
+	}
+	
+	function handleUpdateProfilePic(profileImg, key, userType, email)
+	{
+		try
+		{
+			var strUpdateProfilePic = {};
+			strUpdateProfilePic.key = +key;
+			strUpdateProfilePic.userType = userType;
+			strUpdateProfilePic.profileImg = profileImg;
+			strUpdateProfilePic.email = email;
+			strUpdateProfilePic.command = 1057;
+			
+			var strjsonMsgForUpdateProfilePic = JSON.stringify(strUpdateProfilePic);
+			console.log("handleRequest     getUserAddressfromShippingaddress  : " + strjsonMsgForUpdateProfilePic);
+			handleAllListResponse(strjsonMsgForUpdateProfilePic);
+			
+		}
+		catch (e)
+		{
+			console.log("handleRequest     handleUpdateProfilePic     Exception :: " + e);
 		}
 	}
 

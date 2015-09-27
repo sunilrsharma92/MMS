@@ -20,7 +20,7 @@
 						<h3><span class="label label-default"> MY ACCOUNT</span></h3>
 						<hr class="large">
 						<div class=""  style="margin-bottom:10px"; >
-						<img src="https://lh3.googleusercontent.com/riyn5OOpMRzhiuI5Mnz-mCwUoP_dgW-9Vg87sfXzOEXo=s512-no" class="img-circle" style="width:50%; background-color:whitesmoke;"> 
+						<img src="Images/default_profile_pic.png" class="img-circle" style="width:50%; background-color:whitesmoke;"> 
 						</div>
 						<div class="strong"><span class="glyphicon glyphicon-list-alt"></span> Orders</div>
 	
