@@ -31,7 +31,8 @@ public class EmailUtility
 		String link = null;
 		String msg = null;
 
-		link = "http://localhost:8080/shopping1/indexTemplate.jsp?otp";
+		link = "http://localhost:8080/shopping1/indexTemplate.jsp?otp";  //changed accordingly
+//		link = "http://www.makemyshopy.com/shopping/indexTemplate.jsp?otp";
 		
 		String mailTemplet ="<!DOCTYPE html>"+
 				"<html style=\"-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;font-family: sans-serif;-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;font-size: 10px;-webkit-tap-highlight-color: rgba(0,0,0,0);\">"+

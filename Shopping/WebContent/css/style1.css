@@ -127,6 +127,15 @@ span.glyphicon.glyphicon-option-vertical {
 button.navbar-toggle {
     background-color: #008ed6;
     border: transparent;
+    
+}
+
+
+.navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus {
+    background-color: #037DBB;
+}
+.navbar-default .navbar-toggle .icon-bar {
+    background-color: #FFF;
 }
 /***************************************************End of Changed menubar************************************************************/
 
@@ -135,6 +144,17 @@ button.navbar-toggle {
 
 
 /*Cart*/
+.badge{
+	background-color: #FFF;
+}
+.productCountOnCart{
+	color:#037DBB
+}
+.glyphicon-shopping-cart{
+	color:#FFF;
+}
+
+
 .cheight {
 	margin  : 0px;
 	width : auto;
