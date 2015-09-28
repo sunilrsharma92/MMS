@@ -117,7 +117,7 @@ public class CommonMethodImpl {
 		try
 		{
 			conn = MyConnection.getConnection();
-			String sql = "select * from shipping_address where "+property+" = "+value+"";
+			String sql = "select * from shippingaddress where "+property+" = "+value+"";
 			stmt = conn.prepareStatement(sql);
 			ResultSet rs = stmt.executeQuery();
 			while (rs.next())
@@ -125,14 +125,14 @@ public class CommonMethodImpl {
 				JSONObject childjson = new JSONObject();
 				if(address == "address")
 				{
-					childjson.put("shippingaddress", rs.getString("shipping_address"));
+					childjson.put("shippingaddress", rs.getString("shippingaddress"));
 					jsonarray.add(childjson);
 				}
 				else
 				{
 					childjson.put("id", rs.getLong("id"));
 					childjson.put("name", rs.getString("name"));
-					childjson.put("shippingaddress", rs.getString("shipping_address"));
+					childjson.put("shippingaddress", rs.getString("shippingaddress"));
 					childjson.put("email", rs.getString("email"));
 					childjson.put("mobile", rs.getString("mobile"));
 					childjson.put("totalammount", rs.getFloat("totalammount"));

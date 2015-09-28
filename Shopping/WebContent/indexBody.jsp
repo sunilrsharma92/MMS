@@ -96,13 +96,14 @@
 					<hr class="small">
 
 					<%
-						for (int i = 0; i < 6; i++) {
+						for (int i = 1; i <= 6; i++) {
+							String img = "Images/chadders/"+i+".jpg";
 					%>
 
 					<div class="col-md-2 col-sm-3  col-xs-4 wrap">
 						<div class="portfolio-item">
 							<div class="inner-wrap">
-								<a href="#"> <img class="img-portfolio img-responsive" src="Images/tea1.png">
+								<a href="#"> <img class="img-portfolio img-responsive inner-wrap" src="<%=img%>">
 								</a>
 							</div>
 						</div>
@@ -128,12 +129,13 @@
 					<hr class="small">
 
 					<%
-						for (int i = 0; i < 6; i++) {
+						for (int i = 7; i <=12; i++) {
+							String img1 = "Images/chadders/"+i+".jpg";
 					%>
 					<div class="col-md-2 col-sm-3  col-xs-4 wrap">
 						<div class="portfolio-item">
 							<div class="inner-wrap">
-								<a href="#"> <img class="img-portfolio img-responsive" src="Images/tea1.png"></a>
+								<a href="#"> <img class="img-portfolio img-responsive inner-wrap" src="<%=img1%>"></a>
 							</div>
 						</div>
 						<div class="align-center">

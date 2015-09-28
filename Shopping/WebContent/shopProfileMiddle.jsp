@@ -75,220 +75,88 @@
   <!-- End of slider  -->
 
 
-  <div class = "row">
-   <hr class = "small">
-   <h3 class = "font" align = "center">Featured Items</h3>
-   <hr class = "small">
+				<div class="row">
+					<hr class="small">
+					<h3 class="font" align="center">Featured Items</h3>
+					<hr class="small">
 
-   
-   <div class = "col-md-2 col-sm-3  col-xs-4 wrap">
-    <div class = "portfolio-item">
-    <div class = "inner-wrap">
-      <a href = "#">
-        <img class = "img-portfolio img-responsive" src = "Images/tea2.png">
-      </a>
-    </div>
-    </div>
-    <div class = "align-center">
-      <div class = "productname font">Product Name:</div>
-      <div class = "productprice font">price:120</div>
-      <div class = "instock font">Instock:</div>
-      <div class = "quantity font">Quantity:<input id = "qtytxt" type = "text" name = "quantity"></div>
-      <div class = "cartbtn font"><button type = "button" class = "btn btn-success cartsz ">ADD</button></div>
-    </div>
-  </div>
 
-  <div class = "col-md-2 col-sm-3  col-xs-4 wrap">
-    <div class = "portfolio-item">
-    <div class = "inner-wrap">
-      <a href = "#">
-        <img class = "img-portfolio img-responsive" src = "Images/tea2.png">
-      </a>
-    </div>
-    </div>
-    <div class = "align-center">
-      <div class = "productname font">Product Name:</div>
-      <div class = "productprice font">price:120</div>
-      <div class = "instock font">Instock:</div>
-      <div class = "quantity font">Quantity:<input id = "qtytxt" type = "text" name = "quantity"></div>
-      <div class = "cartbtn font"><button type = "button" class = "btn btn-success cartsz ">ADD</button></div>
-    </div>
-  </div>
-  <div class = "col-md-2 col-sm-3  col-xs-4 wrap">
-    <div class = "portfolio-item">
-    <div class = "inner-wrap">
-      <a href = "#">
-        <img class = "img-portfolio img-responsive" src = "Images/tea2.png">
-      </a>
-    </div>
-    </div>
-    <div class = "align-center">
-      <div class = "productname font">Product Name:</div>
-      <div class = "productprice font">price:120</div>
-      <div class = "instock font">Instock:</div>
-      <div class = "quantity font">Quantity:<input id = "qtytxt" type = "text" name = "quantity"></div>
-      <div class = "cartbtn font"><button type = "button" class = "btn btn-success cartsz ">ADD</button></div>
-    </div>
-  </div>
-  <div class = "col-md-2 col-sm-3  col-xs-4 wrap">
-    <div class = "portfolio-item">
-    <div class = "inner-wrap">
-      <a href = "#">
-        <img class = "img-portfolio img-responsive" src = "Images/tea2.png">
-      </a>
-    </div>
-    </div>
-    <div class = "align-center">
-      <div class = "productname font">Product Name:</div>
-      <div class = "productprice font">price:120</div>
-      <div class = "instock font">Instock:</div>
-      <div class = "quantity font">Quantity:<input id = "qtytxt" type = "text" name = "quantity"></div>
-      <div class = "cartbtn font"><button type = "button" class = "btn btn-success cartsz ">ADD</button></div>
-    </div>
-  </div>
-  <div class = "col-md-2 col-sm-3  col-xs-4 wrap">
-    <div class = "portfolio-item">
-    <div class = "inner-wrap">
-      <a href = "#">
-        <img class = "img-portfolio img-responsive" src = "Images/tea2.png">
-      </a>
-    </div>
-    </div>
-    <div class = "align-center">
-      <div class = "productname font">Product Name:</div>
-      <div class = "productprice font">price:120</div>
-      <div class = "instock font">Instock:</div>
-      <div class = "quantity font">Quantity:<input id = "qtytxt" type = "text" name = "quantity"></div>
-      <div class = "cartbtn font"><button type = "button" class = "btn btn-success cartsz ">ADD</button></div>
-    </div>
-  </div>
-  <div class = "col-md-2 col-sm-3  col-xs-4 wrap">
-    <div class = "portfolio-item">
-    <div class = "inner-wrap">
-      <a href = "#">
-        <img class = "img-portfolio img-responsive" src = "Images/tea2.png">
-      </a>
-    </div>
-    </div>
-    <div class = "align-center">
-      <div class = "productname font">Product Name:</div>
-      <div class = "productprice font">price:120</div>
-      <div class = "instock font">Instock:</div>
-      <div class = "quantity font">Quantity:<input id = "qtytxt" type = "text" name = "quantity"></div>
-      <div class = "cartbtn font"><button type = "button" class = "btn btn-success cartsz ">ADD</button></div>
-    </div>
-  </div>
+					<%
+						for (int i = 1; i <= 6; i++)
+						{
+							String img = "Images/chadders/" + i + ".jpg";
+					%>
+
+					<div class="col-md-2 col-sm-3  col-xs-4 wrap">
+						<div class="portfolio-item">
+							<div class="inner-wrap">
+								<a href="#"> <img
+									class="img-portfolio img-responsive inner-wrap" src="<%=img%>">
+								</a>
+							</div>
+						</div>
+						<div class="align-center">
+							<div class="productname ">Product Name:</div>
+							<div class="productprice">price:120</div>
+							<div class="instock ">Instock:</div>
+							<div class="quantity ">
+								Quantity:<input id="qtytxt" type="text" name="quantity">
+							</div>
+							<div class="cartbtn ">
+								<button type="button" class="btn btn-success cartsz ">ADD</button>
+							</div>
+						</div>
+					</div>
+
+					<%
+						}
+					%>
+
+
+				</div>
+				<!-- End of inner row -->
+				<div class="row">
+					<hr class="small">
+					<h3 class="font" align="center">Top New Items</h3>
+					<hr class="small">
+					<%
+						for (int i = 1; i <= 6; i++)
+						{
+							String img = "Images/chadders/" + i + ".jpg";
+					%>
+
+					<div class="col-md-2 col-sm-3  col-xs-4 wrap">
+						<div class="portfolio-item">
+							<div class="inner-wrap">
+								<a href="#"> <img
+									class="img-portfolio img-responsive inner-wrap" src="<%=img%>">
+								</a>
+							</div>
+						</div>
+						<div class="align-center">
+							<div class="productname ">Product Name:</div>
+							<div class="productprice">price:120</div>
+							<div class="instock ">Instock:</div>
+							<div class="quantity ">
+								Quantity:<input id="qtytxt" type="text" name="quantity">
+							</div>
+							<div class="cartbtn ">
+								<button type="button" class="btn btn-success cartsz ">ADD</button>
+							</div>
+						</div>
+					</div>
+
+					<%
+						}
+					%>
 
 
 
-</div><!-- End of inner row -->
-<div class = "row">
-   <hr class = "small">
-   <h3 class = "font" align = "center">Top New Items</h3>
-   <hr class = "small">
-   <div class = "col-md-2 col-sm-3  col-xs-4 wrap">
-    <div class = "portfolio-item">
-    <div class = "inner-wrap">
-      <a href = "#">
-        <img class = "img-portfolio img-responsive" src = "Images/tea2.png">
-      </a>
-    </div>
-    </div>
-    <div class = "align-center">
-      <div class = "productname font">Product Name:</div>
-      <div class = "productprice font">price:120</div>
-      <div class = "instock font">Instock:</div>
-      <div class = "quantity font">Quantity:<input id = "qtytxt" type = "text" name = "quantity"></div>
-      <div class = "cartbtn font"><button type = "button" class = "btn btn-success cartsz ">ADD</button></div>
-    </div>
-  </div>
-  <div class = "col-md-2 col-sm-3  col-xs-4 wrap">
-    <div class = "portfolio-item">
-    <div class = "inner-wrap">
-      <a href = "#">
-        <img class = "img-portfolio img-responsive" src = "Images/tea2.png">
-      </a>
-    </div>
-    </div>
-    <div class = "align-center">
-      <div class = "productname font">Product Name:</div>
-      <div class = "productprice font">price:120</div>
-      <div class = "instock font">Instock:</div>
-      <div class = "quantity font">Quantity:<input id = "qtytxt" type = "text" name = "quantity"></div>
-      <div class = "cartbtn font"><button type = "button" class = "btn btn-success cartsz ">ADD</button></div>
-    </div>
-  </div>
-  <div class = "col-md-2 col-sm-3  col-xs-4 wrap">
-    <div class = "portfolio-item">
-    <div class = "inner-wrap">
-      <a href = "#">
-        <img class = "img-portfolio img-responsive" src = "Images/tea2.png">
-      </a>
-    </div>
-    </div>
-    <div class = "align-center">
-      <div class = "productname font">Product Name:</div>
-      <div class = "productprice font">price:120</div>
-      <div class = "instock font">Instock:</div>
-      <div class = "quantity font">Quantity:<input id = "qtytxt" type = "text" name = "quantity"></div>
-      <div class = "cartbtn font"><button type = "button" class = "btn btn-success cartsz ">ADD</button></div>
-    </div>
-  </div>
-  <div class = "col-md-2 col-sm-3  col-xs-4 wrap">
-    <div class = "portfolio-item">
-    <div class = "inner-wrap">
-      <a href = "#">
-        <img class = "img-portfolio img-responsive" src = "Images/tea2.png">
-      </a>
-    </div>
-    </div>
-    <div class = "align-center">
-      <div class = "productname font">Product Name:</div>
-      <div class = "productprice font">price:120</div>
-      <div class = "instock font">Instock:</div>
-      <div class = "quantity font">Quantity:<input id = "qtytxt" type = "text" name = "quantity"></div>
-      <div class = "cartbtn font"><button type = "button" class = "btn btn-success cartsz ">ADD</button></div>
-    </div>
-  </div>
-  <div class = "col-md-2 col-sm-3  col-xs-4 wrap">
-    <div class = "portfolio-item">
-    <div class = "inner-wrap">
-      <a href = "#">
-        <img class = "img-portfolio img-responsive" src = "Images/tea2.png">
-      </a>
-    </div>
-    </div>
-    <div class = "align-center">
-      <div class = "productname font">Product Name:</div>
-      <div class = "productprice font">price:120</div>
-      <div class = "instock font">Instock:</div>
-      <div class = "quantity font">Quantity:<input id = "qtytxt" type = "text" name = "quantity"></div>
-      <div class = "cartbtn font"><button type = "button" class = "btn btn-success cartsz ">ADD</button></div>
-    </div>
-  </div>
-  <div class = "col-md-2 col-sm-3  col-xs-4 wrap">
-    <div class = "portfolio-item">
-    <div class = "inner-wrap">
-      <a href = "#">
-        <img class = "img-portfolio img-responsive" src = "Images/tea2.png">
-      </a>
-    </div>
-    </div>
-    <div class = "align-center">
-      <div class = "productname font">Product Name:</div>
-      <div class = "productprice font">price:120</div>
-      <div class = "instock font">Instock:</div>
-      <div class = "quantity font">Quantity:<input id = "qtytxt" type = "text" name = "quantity"></div>
-      <div class = "cartbtn font"><button type = "button" class = "btn btn-success cartsz ">ADD</button></div>
-    </div>
-  </div>
+				</div>
+				<!-- End of inner row -->
 
 
-
-</div><!-- End of inner row -->
-
-
-</div><!-- end col-10 -->
+			</div><!-- end col-10 -->
 </div><!-- end of row -->
 </div><!-- end of container -->
 <!--end of middle  -->

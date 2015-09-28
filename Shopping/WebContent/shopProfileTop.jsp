@@ -19,7 +19,7 @@
 			<!-- end of col-3 -->
 			<div class = "col-md-9 col-sm-6 col-xs-12">
 				<h3>Shop Dash</h3>
-				<span class = "fade-in">
+				<span class = "fade-in" style="display:none;">
 					<button id = "editbtn" type = "button" class = "btn btn-default pull-right bbtn" data-toggle = "tooltip" data-placement = "right" title = "Edit below details" aria-pressed = "false" autocomplete = "off">
 						<span class = "glyphicon glyphicon-pencil"></span>
 					</button>

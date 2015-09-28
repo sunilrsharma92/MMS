@@ -205,7 +205,8 @@
 				<button type="button" class="navbar-toggle pull-left" id="mobcat" data-toggle="collapse" data-target=".slidemenu">
 					<span class="glyphicon glyphicon-option-vertical"></span>	
 				</button>
-				<a href="#" id="indexBody1" onclick="loadPage(this);" class="navbar-brand"><img src="Images/rgb.png" class="img-rounded" alt="Cinque Terre" width="25px" height="25px"> </a>
+<!-- 				<a href="#" id="indexBody1" onclick="loadPage(this);" class="navbar-brand"><img src="Images/rgb.gif" class="img-rounded" alt="Cinque Terre" style="width: 111px; height: 45px; margin-top: -7px;"> </a> -->
+				<a href="#" id="indexBody1" onclick="loadPage(this);" class="navbar-brand"><img src="Images/Modified.png" class="img-rounded" alt="Cinque Terre" style="width: 111px; height: 45px; margin-top: -7px;"> </a>
 
 
 				<!-- <button type="button" class="pull-right"> btn</button> -->
