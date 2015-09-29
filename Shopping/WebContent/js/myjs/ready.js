@@ -739,8 +739,6 @@ function viewProduct(images, prodName, price, stockvalue,productid ,stockcrtbtn)
 	$.session.set('zoominage',zoominage);
 	$.session.set('prodDisc',prodDisc);
 }
-	
-
 
 //************************************************************************************//
 
