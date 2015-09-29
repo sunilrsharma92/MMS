@@ -181,7 +181,7 @@
 											<h3 class="font">Forgot Password:</h3>
 											<form class="forgot-val"style="text-align: center;">
 												<input class="textbox font" type="text" name="email" id="emailForgotPwd" placeholder="Enter Email id"></br>
-												<button  class="btn btn-primary btn_width_93_perc" type="submit">Submit</button>
+<!-- 												<button  class="btn btn-primary btn_width_93_perc" type="submit">Submit</button> -->
 												<button onclick="forgotPwd()" class="btn btn-primary btn_width_93_perc" type="button">Submit</button>
 											</form>
 										</div>

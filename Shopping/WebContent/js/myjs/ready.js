@@ -28,7 +28,7 @@ $(document).ready(function(){
 	}
 //*******************************************************************************************************************
 	 $("#mobcat").click(function(){
-//			alert("mobile category clicked")
+			alert("mobile category clicked")
 			$(".col-cat").removeClass("hidden-xs");
 			
 		});
@@ -740,7 +740,7 @@ function viewProduct(images, prodName, price, stockvalue,productid ,stockcrtbtn)
 	$.session.set('prodDisc',prodDisc);
 }
 	
-}
+
 
 //************************************************************************************//
 
