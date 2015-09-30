@@ -193,9 +193,7 @@ catch (e) {
 //				alert("totalammount : "+totalammount+" address : "+address);
 				jAlert("Order Successful");
 				
-//				$.cookie('key',''),
-						
-				$("#conformOrder").attr('data-toggle','collapse');
+				$.cookie('key', null);
 			}
 	}
 	
