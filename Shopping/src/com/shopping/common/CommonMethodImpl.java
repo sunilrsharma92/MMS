@@ -130,12 +130,15 @@ public class CommonMethodImpl {
 				}
 				else
 				{
-					childjson.put("id", rs.getLong("id"));
+//					childjson.put("id", rs.getLong("id"));
+					childjson.put("id", rs.getLong("shipping_address_key"));
+					childjson.put("customerid", rs.getLong("customer_key"));
+					childjson.put("supplierid", rs.getLong("supplier_key"));
 					childjson.put("name", rs.getString("name"));
 					childjson.put("shippingaddress", rs.getString("shipping_address"));
 					childjson.put("email", rs.getString("email"));
 					childjson.put("mobile", rs.getString("mobile"));
-					childjson.put("totalammount", rs.getFloat("totalammount"));
+					childjson.put("totalammount", rs.getFloat("total_ammount"));
 					childjson.put("orderid", rs.getString("orderid"));
 					jsonarray.add(childjson);
 				}
