@@ -32,41 +32,7 @@ public class WriteLogServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		try
-		{
-			SmsOwl client = new SmsOwl("56078e483284c21d24b9a708", "dAdXpTZSJGSSdxCdB9GycKRRzymc5ymKCcFkwZtxytB6RKanQh3");
-			
-			
-			HashMap<String, String> data = new HashMap<String, String>();
-			data.put("test", " Viruss");
-//			data.put("Ammount", "20000000");
-			
-	//		client.sendTransactionalSms(senderId, to, templateId, placeholderMap)
-			String mobNumber = "";
-			for(int i = 0;i < 3;i++)
-			{
-				if(i == 0)
-				{
-					mobNumber = "+918976605993";
-				}
-				else if(i == 1)
-				{
-					mobNumber = "+919970181137";
-				}
-				else if(i == 2)
-				{
-					mobNumber = "+919029813369";
-				}
-				
-				client.sendTransactionalSms("MMSTRA", mobNumber, "a4baf07c1259be39fb3c0ba7", data);
-				
-			}
-			
-		}
-		catch(Exception e)
-		{
-			e.printStackTrace();
-		}
+		
 	}
 
 	/**

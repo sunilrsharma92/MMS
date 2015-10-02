@@ -155,6 +155,7 @@
 												 <input	class="textbox font" type="password" id="passLoginTemp"	name="password" placeholder="Enter Password"></br> 
 												<input class="textbox font" type="text" id="otpLogin" placeholder="OTP" style="display: none"></br>
 												 <input	type="button" onclick="login()" class="btn btn-primary btn_width_93_perc" id="userlogin" value="Login" />
+												 
 <!-- 												<button onsubmit="login()" class="btn btn-primary btn_width_93_perc" type="button">Login</button> -->
 											</form>
 										</div>

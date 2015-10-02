@@ -476,7 +476,6 @@ function login()
 
 function signUp()
 {
-	alert("SignUp");
 	var passSignUp = $('#passSignUp').val();
 //	var firstNameSignUp = $('#firstNameSignUp').val();
 	var mobileKey = $('#mobile').val();

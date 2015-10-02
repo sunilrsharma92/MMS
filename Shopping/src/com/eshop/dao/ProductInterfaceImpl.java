@@ -12,6 +12,7 @@ import com.eshop.database.utility.EmailUtility;
 import com.eshop.database.utility.EncryptionUtility;
 import com.eshop.database.utility.MyConnection;
 import com.eshop.database.utility.RandomStringUtilsTrial;
+import com.eshop.database.utility.SendMessage;
 import com.shopping.common.CommonMethodImpl;
 
 public class ProductInterfaceImpl implements ProductInterface
@@ -386,7 +387,7 @@ public class ProductInterfaceImpl implements ProductInterface
 							if (parentjson.get("active") != null && parentjson.get("active").toString().equalsIgnoreCase("0"))
 							{
 								if (otpLogin != null && otpLogin.trim().equals((String) parentjson.get("otp")))
-								{
+									{
 									String encryptedPwd = EncryptionUtility.encryptUsingMD5(normalPwd);
 									if(encryptedPwd != null)
 									{
@@ -428,9 +429,10 @@ public class ProductInterfaceImpl implements ProductInterface
 								{
 //									parentjson = CommonMethodImpl.putFailedJson(parentjson, command);
 									parentjson.put("status", 10);// email already exist
-									parentjson.put("statusdesc", "In valid OTP. Please check your mail for the valid OTP");
+									parentjson.put("statusdesc", "Invalid OTP. Please check your mail or mobile for the valid OTP");
 									parentjson.put("command", command);
 								}
+							
 							}
 							else
 							// -- inactive
@@ -438,6 +440,12 @@ public class ProductInterfaceImpl implements ProductInterface
 								parentjson = CommonMethodImpl.putFailedJson(parentjson, command);
 							}
 						}// -- Registered user
+						else if (parentjson.get("active") != null && parentjson.get("active").toString().equalsIgnoreCase("0"))
+						{
+							parentjson.put("status", 10);// email already exist
+							parentjson.put("statusdesc", "Your account is not yet verified. Please enter your verification code(OTP)");
+							parentjson.put("command", command);	
+						}
 						else
 						{
 							String encryptedPwd = EncryptionUtility.encryptUsingMD5(normalPwd);
@@ -482,6 +490,7 @@ public class ProductInterfaceImpl implements ProductInterface
 							// Verification //
 					try
 					{
+						SendMessage sm = new SendMessage();
 						JSONObject object = (JSONObject) JSONValue.parse(jsonMsg);
 						String userType = (String) object.get("userType");
 						String emailSignUp = (String) object.get("emailKey");
@@ -572,6 +581,7 @@ public class ProductInterfaceImpl implements ProductInterface
 											resultTemp = ps1.executeUpdate();
 											if (resultTemp > 0)
 											{
+												boolean result = sm.sendMessage("+91"+(String) object.get("mobileKey"),tempOtp);
 												parentjson = new JSONObject();
 												parentjson = CommonMethodImpl.putSuccessJson(parentjson, 2052);// succcess
 												parentjson.put("email", emailSignUp);

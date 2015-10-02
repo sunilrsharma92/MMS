@@ -299,8 +299,10 @@ function handleSignUpResponse(response)
 	if(action == 3)
 	{
 		var email = response.email;
-		jAlert("we have send OTP to " + email + " please provide us during your first login", "Message");
-			$( "#crossClose" ).trigger( "click" );
+		jAlert("we have send OTP to " + email + " and to your registered mobile please provide us during your first login", "Message");
+//			$("#crossClose").trigger( "click" );
+			$("#logintab").trigger( "click" );
+			$("#otpLogin").show();
 	}
 	else
 	{
@@ -456,7 +458,8 @@ function handleLoginResponse(response)
 	$(".overlay").show().delay(100).fadeOut();
 	var action = response.status;
 	var statusdesc = response.statusdesc;
-
+	var msg = "Your account is not yet verified. Please enter your verification code(OTP)";
+	var invalidOTP = "Invalid OTP. Please check your mail for the valid OTP";
 	var userType = response.userType;
 //	alert(response.userType);
 
@@ -468,6 +471,22 @@ function handleLoginResponse(response)
 	if(action != 3)
 	{
 		jAlert(statusdesc, "Alert Message");
+		if(statusdesc == msg || statusdesc == invalidOTP)
+			{
+				document.getElementById("otpLogin").style.display = "inline-flex";
+			}
+		else
+			{
+			if($("#otpLogin").val() != null && $("#otpLogin").val() != "")
+				{
+					document.getElementById("otpLogin").style.display = "inline-flex";
+				}
+			else
+				{
+					$("#otpLogin").hide();
+				}
+				
+			}
 	}
 	else
 	{
