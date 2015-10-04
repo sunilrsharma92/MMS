@@ -13,6 +13,7 @@ import com.eshop.database.utility.EncryptionUtility;
 import com.eshop.database.utility.MyConnection;
 import com.eshop.database.utility.RandomStringUtilsTrial;
 import com.eshop.database.utility.SendMessage;
+import com.eshop.logger.MakemyshopyLogger;
 import com.shopping.common.CommonMethodImpl;
 
 public class ProductInterfaceImpl implements ProductInterface
@@ -21,10 +22,11 @@ public class ProductInterfaceImpl implements ProductInterface
 	JSONObject parentjson = new JSONObject();
 	JSONArray jsonarray = new JSONArray();
 	JSONArray jsonarray1 = new JSONArray();
+	MakemyshopyLogger mms = null;
 	PreparedStatement ps, ps1, ps2 = null;
 	Connection conn = null;
 	ResultSet rs, rs1 = null;
-	int result, resultTemp = 0;
+	int result, result1, resultTemp = 0;
 	String output = null;
 
 	public static final String OTP_REGISTER = "otpRegister";
@@ -34,6 +36,7 @@ public class ProductInterfaceImpl implements ProductInterface
 	@Override
 	public String handleRequestResponse(String jsonMsg, int command)
 	{
+		mms = new MakemyshopyLogger();
 		try
 		{
 			conn = MyConnection.getConnection();
@@ -80,6 +83,7 @@ public class ProductInterfaceImpl implements ProductInterface
 					catch (Exception e)
 					{
 						e.printStackTrace();
+						mms.writeLogs("ProductInterfaceImpl handleRequestResponse() "+command+" Exception : "+e,0);
 					}
 					break;
 
@@ -149,6 +153,7 @@ public class ProductInterfaceImpl implements ProductInterface
 					catch (Exception e)
 					{
 						e.printStackTrace();
+//						mms.writeLogs("ProductInterfaceImpl handleRequestResponse() "+command+" Exception : "+e,0);
 					}
 					break;
 */
@@ -196,6 +201,7 @@ public class ProductInterfaceImpl implements ProductInterface
 					catch (Exception e)
 					{
 						e.printStackTrace();
+						mms.writeLogs("ProductInterfaceImpl handleRequestResponse() "+command+" Exception : "+e,0);
 					}
 					break;
 
@@ -250,6 +256,7 @@ public class ProductInterfaceImpl implements ProductInterface
 						parentjson = CommonMethodImpl.putFailedJson(parentjson, command);
 
 						output = parentjson.toString();
+						mms.writeLogs("ProductInterfaceImpl handleRequestResponse() "+command+" Exception : "+e,0);
 						// System.out.println("output ::::::::: "+output);
 						// return output;
 						// e.printStackTrace();
@@ -291,6 +298,7 @@ public class ProductInterfaceImpl implements ProductInterface
 					catch (Exception e)
 					{
 						e.printStackTrace();
+						mms.writeLogs("ProductInterfaceImpl handleRequestResponse() "+command+" Exception : "+e,0);
 					}
 					break;
 					
@@ -329,6 +337,7 @@ public class ProductInterfaceImpl implements ProductInterface
 					catch (Exception e)
 					{
 						e.printStackTrace();
+						mms.writeLogs("ProductInterfaceImpl handleRequestResponse() "+command+" Exception : "+e,0);
 					}
 					break;
 
@@ -356,6 +365,7 @@ public class ProductInterfaceImpl implements ProductInterface
 					catch (Exception e)
 					{
 						e.printStackTrace();
+						mms.writeLogs("ProductInterfaceImpl handleRequestResponse() "+command+" Exception : "+e,0);
 					}
 					break;
 
@@ -369,17 +379,21 @@ public class ProductInterfaceImpl implements ProductInterface
 						String normalPwd = (String) object.get("passLogin");
 						String userType = (String) object.get("userType");
 						String otpLogin = (String) object.get("otpLogin");
+						String ipaddress = (String) object.get("ipaddress");
 						String sql = "";
+						String usertypecolumnname = "";
 
 						if (userType != null && userType.trim().equalsIgnoreCase("customer"))
 						{
 							parentjson = CommonMethodImpl.getCustDetailsByProperty(CommonMethodImpl.EMAIL_ID, email, parentjson);
 							sql = "update customers set active = 1 where email = ?";
+							usertypecolumnname = "customer_key"; 
 						}
 						else if (userType != null && userType.trim().equalsIgnoreCase("supplier"))
 						{
 							parentjson = CommonMethodImpl.getShopkeeperDetailsByProperty(CommonMethodImpl.EMAIL_ID, email, parentjson);
 							sql = "update suppliers set active = 1 where email = ?";
+							usertypecolumnname = "supplier_key";
 						}
 						// -- Unregistered user
 						if (otpLogin != null && !otpLogin.trim().isEmpty())
@@ -449,13 +463,30 @@ public class ProductInterfaceImpl implements ProductInterface
 						else
 						{
 							String encryptedPwd = EncryptionUtility.encryptUsingMD5(normalPwd);
-							System.out.println("encryptedPwd : "+encryptedPwd);
+//							System.out.println("encryptedPwd : "+encryptedPwd);
 							if(encryptedPwd != null)
 							{
 								boolean validPwd = EncryptionUtility.validatePassword((String) parentjson.get("password"), encryptedPwd);
 								
 								if (validPwd)
 								{
+//									insert into login_log(supplier_key,ipaddress,login_datetime) values(6,'192.168.2.119',now());
+									try
+									{
+										ps2 = conn.prepareStatement("insert into login_log("+usertypecolumnname+",ipaddress,login_datetime) values(?,?,now())");
+										ps2.setLong(1, (Long) parentjson.get("key"));
+										ps2.setString(2, ipaddress);
+										result1 = ps2.executeUpdate();
+										if (result1 > 0)
+										{
+											parentjson.put("loginlog", "Login log successfull");
+										}
+									}
+									catch(Exception e)
+									{
+										e.printStackTrace();
+										mms.writeLogs("ProductInterfaceImpl handleRequestResponse() "+command+" Exception : "+e,0);
+									}
 									parentjson = CommonMethodImpl.putSuccessJson(parentjson, 2051);
 									parentjson.put("userType", userType);
 								}
@@ -483,6 +514,7 @@ public class ProductInterfaceImpl implements ProductInterface
 					catch (Exception e)
 					{
 						e.printStackTrace();
+						mms.writeLogs("ProductInterfaceImpl handleRequestResponse() "+command+" Exception : "+e,0);
 					}
 					break;
 
@@ -552,6 +584,7 @@ public class ProductInterfaceImpl implements ProductInterface
 								catch (Exception e)
 								{
 									e.printStackTrace();
+									mms.writeLogs("ProductInterfaceImpl handleRequestResponse() "+command+" Exception : "+e,0);
 								}
 	
 								if (result > 0)
@@ -651,6 +684,7 @@ public class ProductInterfaceImpl implements ProductInterface
 					catch (Exception e)
 					{
 						e.printStackTrace();
+						mms.writeLogs("ProductInterfaceImpl handleRequestResponse() "+command+" Exception : "+e,0);
 					}
 					break;
 
@@ -675,7 +709,11 @@ public class ProductInterfaceImpl implements ProductInterface
 				 * //System.out.println("output ::::::::: "+output); return
 				 * output; }
 				 * 
-				 * catch (Exception e) { e.printStackTrace(); } break;
+				 * catch (Exception e) 
+				 * { 
+				 * 		e.printStackTrace();
+				 * 		mms.writeLogs("ProductInterfaceImpl handleRequestResponse() "+command+" Exception : "+e,0); 
+				 * } break;
 				 */
 
 				case 1054: // -- Forgot/Shopkeeper Password Customer//
@@ -782,6 +820,7 @@ public class ProductInterfaceImpl implements ProductInterface
 					catch (Exception e)
 					{
 						e.printStackTrace();
+						mms.writeLogs("ProductInterfaceImpl handleRequestResponse() "+command+" Exception : "+e,0);
 					}
 
 					break;
@@ -913,6 +952,7 @@ public class ProductInterfaceImpl implements ProductInterface
 					catch (Exception e)
 					{
 						e.printStackTrace();
+						mms.writeLogs("ProductInterfaceImpl handleRequestResponse() "+command+" Exception : "+e,0);
 					}
 
 					break;
@@ -995,6 +1035,7 @@ public class ProductInterfaceImpl implements ProductInterface
 					catch (Exception e)
 					{
 						e.printStackTrace();
+						mms.writeLogs("ProductInterfaceImpl handleRequestResponse() "+command+" Exception : "+e,0);
 					}
 					break;
 					
@@ -1064,6 +1105,7 @@ public class ProductInterfaceImpl implements ProductInterface
 					catch (Exception e)
 					{
 						e.printStackTrace();
+						mms.writeLogs("ProductInterfaceImpl handleRequestResponse() "+command+" Exception : "+e,0);
 					}
 
 					break;
@@ -1079,6 +1121,7 @@ public class ProductInterfaceImpl implements ProductInterface
 		catch (Exception e)
 		{
 			e.printStackTrace();
+			mms.writeLogs("ProductInterfaceImpl handleRequestResponse() "+command+" Exception : "+e,0);
 			return null;
 		}
 		finally
@@ -1091,6 +1134,7 @@ public class ProductInterfaceImpl implements ProductInterface
 			ps1 = null;
 			conn = null;
 			rs = null;
+			mms = null;
 		}
 
 	}

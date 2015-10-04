@@ -685,6 +685,23 @@ function addproducttoCArt(productid)
 	writeLogAjax("getcookies()   JSON.parse(checkAllCookies_AddedorNot)   : "+checkCookiesArray,1);
 	
 	document.getElementById("btn"+productid).disabled = true;
+	
+	var loginData = $.session.get('loginData');
+		if (loginData != null)
+		{
+			var sessionData = JSON.parse(loginData);
+			var userid = sessionData.key;
+			var userType = sessionData.userType;
+			
+			objhandleRequest.aadToCartForLoggedUser(userid, userType, productid, ipaddress, authoriseduser);
+		}
+		else
+	    {
+			objhandleRequest.aadToCartForLoggedUser(0, "", productid, ipaddress, unauthorised);
+		}
+					
+	
+	
 
 }
 //************************************************************************************//

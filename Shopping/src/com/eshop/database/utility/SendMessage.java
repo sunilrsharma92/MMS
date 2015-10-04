@@ -33,11 +33,11 @@ public class SendMessage
 				FileReader fileReader = new FileReader("F:\\D Drive\\My Career\\Fixed Local Code\\Shopping\\sms.properties");
 				properties.load(fileReader);
 
-				accountid = properties.getProperty("accountid");
-				apikey = properties.getProperty("apikey");
-				Senderid = properties.getProperty("Senderid");
-				templateid = properties.getProperty("templateid");
-				templatename = properties.getProperty("templatename");
+				accountid = properties.getProperty("otp_accountid");
+				apikey = properties.getProperty("otp_apikey");
+				Senderid = properties.getProperty("otp_Senderid");
+				templateid = properties.getProperty("otp_templateid");
+				templatename = properties.getProperty("otp_templatename");
 				
 				readvalue = "accountid : "+accountid+" apikey : "+apikey+" Senderid: "+Senderid+" templatename : "+templatename+" templateid : "+templateid+" accountid : "+accountid+"";
 				System.out.println(readvalue);
@@ -56,7 +56,7 @@ public class SendMessage
 			
 			
 			HashMap<String, String> data = new HashMap<String, String>();
-			data.put("test", " "+tempOtp);
+			data.put("otp", " "+tempOtp);
 //			data.put("otp", " "+tempOtp);
 			
 			//client.sendTransactionalSms(senderId, to, templateId, placeholderMap)

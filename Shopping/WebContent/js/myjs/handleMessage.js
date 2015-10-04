@@ -490,7 +490,7 @@ function handleLoginResponse(response)
 	}
 	else
 	{
-		jAlert("Login Successfull", "Alert Message");
+//		jAlert("Login Successfull", "Alert Message");
 		
 		$("#myAcc").show();
 		$("#loginDialogLink").hide();

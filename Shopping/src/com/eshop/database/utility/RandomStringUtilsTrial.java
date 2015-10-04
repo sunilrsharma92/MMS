@@ -1,5 +1,7 @@
 package com.eshop.database.utility;
 
+import java.io.File;
+
 import org.apache.commons.lang.RandomStringUtils;
 
 public class RandomStringUtilsTrial 
@@ -11,9 +13,10 @@ public class RandomStringUtilsTrial
 	    System.out.println("OTP : "+OTP);
 		return OTP;
 	}
-	
+	/*
 	public static void main(String[] args) 
 	  {
-			
+		System.out.println("JVM Start Path : "+new File(".").getAbsolutePath());
 	  }
+	  */
 	}

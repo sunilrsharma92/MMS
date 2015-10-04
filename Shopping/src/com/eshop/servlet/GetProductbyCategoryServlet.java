@@ -11,9 +11,11 @@ import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
+import org.json.simple.parser.JSONParser;
 
 import com.eshop.dao.ProductInterface;
 import com.eshop.dao.ProductInterfaceImpl;
+import com.eshop.database.utility.IPAddressUtility;
 import com.eshop.logger.MakemyshopyLogger;
 
 /**
@@ -47,24 +49,48 @@ public class GetProductbyCategoryServlet extends HttpServlet
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
-
 		PrintWriter out = response.getWriter();
 		ProductInterface getResponse = new ProductInterfaceImpl();
 		MakemyshopyLogger mms = new MakemyshopyLogger();
 		HttpSession session = request.getSession();
-
-		String jsonMsg = request.getParameter("jsonMsg");
-		int command = Integer.parseInt(request.getParameter("command"));
 		
-//		mms.writeLogs("Command : "+command+" JSON Request TO SERVLET : "+jsonMsg, 1);
-		
-		// System.out.println("jsonMsg  :::::::::::: "+jsonMsg+"  Command :::::::::::: "+command);
+		try
+		{
 
-		String strjsonMsgResponse = getResponse.handleRequestResponse(jsonMsg, command);
-		
-//		mms.writeLogs("JSON Response FROM SERVLET : "+strjsonMsgResponse, 1);
-		out.println(strjsonMsgResponse);
-
+			String jsonMsg = request.getParameter("jsonMsg");
+			int command = Integer.parseInt(request.getParameter("command"));
+			
+			if(command == 1051)
+			{
+				String newjsonMsg =jsonMsg;
+				IPAddressUtility ipadd = new IPAddressUtility();
+				
+				String IPAddress = ipadd.getIpAddress();
+				
+				JSONObject objjson = new JSONObject();
+				JSONParser objjsonparser = new JSONParser();
+				Object obj = objjsonparser.parse(newjsonMsg);
+				objjson = (JSONObject)obj;
+				objjson.put("ipaddress", IPAddress);
+				
+				jsonMsg = objjson.toJSONString();
+				mms.writeLogs("Command : "+command+" JSON Request with IPAddress : "+jsonMsg, 1);
+			}
+			
+	//		mms.writeLogs("Command : "+command+" JSON Request TO SERVLET : "+jsonMsg, 1);
+			
+			// System.out.println("jsonMsg  :::::::::::: "+jsonMsg+"  Command :::::::::::: "+command);
+	
+			String strjsonMsgResponse = getResponse.handleRequestResponse(jsonMsg, command);
+			
+	//		mms.writeLogs("JSON Response FROM SERVLET : "+strjsonMsgResponse, 1);
+			out.println(strjsonMsgResponse);
+			
+		}
+		catch(Exception e)
+		{
+			mms.writeLogs("GetProductbyCategoryServlet doPost Exception : "+e, 0);
+		}
 	}
 
 }
