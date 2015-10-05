@@ -28,7 +28,7 @@ $(document).ready(function(){
 	}
 //*******************************************************************************************************************
 	 $("#mobcat").click(function(){
-			alert("mobile category clicked")
+//			alert("mobile category clicked")
 			$(".col-cat").removeClass("hidden-xs");
 			
 		});
