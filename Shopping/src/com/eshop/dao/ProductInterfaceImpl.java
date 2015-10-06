@@ -341,6 +341,14 @@ public class ProductInterfaceImpl implements ProductInterface
 					}
 					break;
 
+				case 1008:
+
+					break;
+
+				case 1009:
+
+					break;
+
 				case 1010: // -- Supplier/ Shop Profile info on load of page //
 					try
 					{
@@ -362,6 +370,49 @@ public class ProductInterfaceImpl implements ProductInterface
 						return output;
 					}
 
+					catch (Exception e)
+					{
+						e.printStackTrace();
+						mms.writeLogs("ProductInterfaceImpl handleRequestResponse() "+command+" Exception : "+e,0);
+					}
+					break;
+				case 1011: //Add product to cart to database //
+					try
+					{
+						JSONObject object = (JSONObject) JSONValue.parse(jsonMsg);
+
+						Long userid = (Long) object.get("userid");
+						String userType = (String) object.get("userType");
+						Long productid = (Long) object.get("productid");
+						String ipaddress = (String) object.get("ipaddress");
+						String authorisedUser = (String) object.get("authorisedUser");
+						String sql = "";
+						String usertypecolumnname = "";
+
+						if (userType != null && userType.trim().equalsIgnoreCase("customer"))
+						{
+							sql = "";
+							usertypecolumnname = "customer_key"; 
+						}
+						else if (userType != null && userType.trim().equalsIgnoreCase("supplier"))
+						{
+							usertypecolumnname = "supplier_key";
+						}
+						
+						ps2 = conn.prepareStatement("");
+						ps2.setLong(1, (Long) parentjson.get("key"));
+						ps2.setString(2, ipaddress);
+						result1 = ps2.executeUpdate();
+						if (result1 > 0)
+						{
+							parentjson.put("loginlog", "Login log successfull");
+						}
+						
+						
+						// System.out.println("output ::::::::: "+output);
+						return output;
+					}
+					
 					catch (Exception e)
 					{
 						e.printStackTrace();

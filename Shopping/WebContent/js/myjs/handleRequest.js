@@ -15,6 +15,7 @@ function handleRequest()
 	this.searchProduct = searchProduct;
 	this.getUserAddressfromShippingaddress = getUserAddressfromShippingaddress;
 	this.handleUpdateProfilePic = handleUpdateProfilePic;
+	this.aadToCartForLoggedUser = aadToCartForLoggedUser;
 
 	// ****** This function is used to get all main product category ******//
 	function handleCategoryRequest()
@@ -298,6 +299,29 @@ function handleRequest()
 		catch (e)
 		{
 			console.log("handleRequest     handleUpdateProfilePic     Exception :: " + e);
+		}
+	}
+	
+	function aadToCartForLoggedUser(userid, userType, productid, ipaddress, authorisedUser)
+	{
+		try
+		{
+			var straadToCart = {};
+			straadToCart.userid = +userid;
+			straadToCart.userType = userType;
+			straadToCart.productid = +productid;
+			straadToCart.ipaddress = ipaddress;
+			straadToCart.authoriseduser = authorisedUser;
+			straadToCart.command = 1011;
+			
+			var strjsonMsgForaadToCart = JSON.stringify(straadToCart);
+			console.log("handleRequest     aadToCartForLoggedUser  : " + strjsonMsgForaadToCart);
+			handleAllListResponse(strjsonMsgForaadToCart);
+			
+		}
+		catch (e)
+		{
+			console.log("handleRequest     aadToCartForLoggedUser     Exception :: " + e);
 		}
 	}
 
