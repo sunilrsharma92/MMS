@@ -229,8 +229,8 @@ function handleProductDisplayinCartResponse(response)
 			var prodName = product[i].prodName;
 			var images = product[i].images;
 			total = total + price;
-			var quantityfunctionAdd = "quantity('demo" + productid + "','add','"+price+"');"
-			var quantityfunctionMinus = "quantity('demo" + productid + "','minus','"+price+"');"
+			var quantityfunctionAdd = "quantity('demo" + productid + "','add','"+price+"','"+productid+"');"
+			var quantityfunctionMinus = "quantity('demo" + productid + "','minus','"+price+"','"+productid+"');"
 			
 			productList = productList + '<tr>' + '<td class="cimg"><img class="cartimgsize" id="' + productid + '" src="' + images + '"></td>' + '<td class="cname">' + prodName + '</td>' + '<td class="csize">' + stock + ' kg</td>' + '<td class="cqty">'
 

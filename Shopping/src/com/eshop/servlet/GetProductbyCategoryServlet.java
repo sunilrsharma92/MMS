@@ -60,7 +60,7 @@ public class GetProductbyCategoryServlet extends HttpServlet
 			String jsonMsg = request.getParameter("jsonMsg");
 			int command = Integer.parseInt(request.getParameter("command"));
 			
-			if(command == 1051)
+			if(command == 1051 || command == 1011)
 			{
 				String newjsonMsg =jsonMsg;
 				IPAddressUtility ipadd = new IPAddressUtility();

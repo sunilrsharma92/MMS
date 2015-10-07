@@ -693,11 +693,11 @@ function addproducttoCArt(productid)
 			var userid = sessionData.key;
 			var userType = sessionData.userType;
 			
-			objhandleRequest.aadToCartForLoggedUser(userid, userType, productid, ipaddress, authoriseduser);
+			objhandleRequest.aadToCartForLoggedUser(userid, userType, productid, "authoriseduser", 1, "add");
 		}
 		else
 	    {
-			objhandleRequest.aadToCartForLoggedUser(0, "", productid, ipaddress, unauthorised);
+			objhandleRequest.aadToCartForLoggedUser(0, "", productid, "unauthorised", 1, "add");
 		}
 					
 	
@@ -850,40 +850,101 @@ function callAlerts(msg)
 //	$("#"+id).css('border-color','red');
 //}
 
-function quantity(txtboxid,action,price)
+function quantity(txtboxid, action, price, productid)
 {
-//	var btnid = $(id).attr("id");
 	var totalcartAmmount = $("#totalcartAmmounthidden").val();
-	if(action == "add")
-		{
-			var val = parseInt($("#"+txtboxid).val());
-			var total = val+1;
-		    $("#"+txtboxid).val(total);
-		    var pricePerProduct = price*total;
-		    var oldpricePerProduct = price*val;
-		    var totalPrice = parseInt(totalcartAmmount) - parseInt(oldpricePerProduct);
-		    var totalPurchaseprice = totalPrice+pricePerProduct;
-		    $("#totalcartAmmounthidden").val(totalPurchaseprice);
-		    console.log("quantity : "+total+" oldpricePerProduct :"+oldpricePerProduct+" quantity * pricePerProduct : "+pricePerProduct+" totalPrice after - price : "+totalPrice+" totalPurchaseprice : "+totalPurchaseprice);
-		    writeLogAjax("quantity : "+total+" oldpricePerProduct :"+oldpricePerProduct+" quantity * pricePerProduct : "+pricePerProduct+" totalPrice after - price : "+totalPrice+" totalPurchaseprice : "+totalPurchaseprice,1);
-		}
-	else if(action == "minus")
-		{
-			var val = parseInt($("#"+txtboxid).val());
-			if(val>1)
+	var val = parseInt($("#"+txtboxid).val());
+
+			var total = 0;
+			if(action == "add")
 			{
-				var total = val-1;
+				total = val + 1;
+				
 				$("#"+txtboxid).val(total);
-				var pricePerProduct = price*total;
+				
+				updateQuantity(productid, total);
+			    
 				var oldpricePerProduct = price*val;
-			    var totalPrice = parseInt(totalcartAmmount) - parseInt(oldpricePerProduct);
-			    var totalPurchaseprice = totalPrice+pricePerProduct;
-			    console.log("quantity : "+total+" oldpricePerProduct :"+oldpricePerProduct+" quantity * pricePerProduct : "+pricePerProduct+" totalPrice after - price : "+totalPrice+" totalPurchaseprice : "+totalPurchaseprice);
-			    writeLogAjax("quantity : "+total+" oldpricePerProduct :"+oldpricePerProduct+" quantity * pricePerProduct : "+pricePerProduct+" totalPrice after - price : "+totalPrice+" totalPurchaseprice : "+totalPurchaseprice,1);
+			    var newpricePerProduct = price*total;
+			    var cartAmmount = 0;
+			    var NewcartAmmount = 0; 
+			    
+				cartAmmount = parseInt(totalcartAmmount) - parseInt(oldpricePerProduct);
+				NewcartAmmount = parseInt(cartAmmount) + parseInt(newpricePerProduct);
+
+				$("#totalpurchase").empty();
+				$("#totalpurchase").append("Total Price : Rs "+NewcartAmmount);
+			    $("#totalcartAmmounthidden").val(NewcartAmmount);
+			    
+			    console.log("old cart ammount : "+totalcartAmmount+" Old quantity : "+val+" New quantity : "+total+" oldpricePerProduct : "+price*val+" newpricePerProduct : "+price*total+" cartAmmount : "+cartAmmount+" NewcartAmmount : "+NewcartAmmount);
+			    writeLogAjax("old cart ammount : "+totalcartAmmount+" Old quantity : "+val+" New quantity : "+total+" oldpricePerProduct : "+price*val+" newpricePerProduct : "+price*total+" cartAmmount : "+cartAmmount+" NewcartAmmount : "+NewcartAmmount, 1);
+			    
 			}
-		}
+		    else if(action == "minus")
+		    {
+		    	if(val>1)
+					{
+		    			total = val - 1;
+		    			$("#"+txtboxid).val(total);
+		    			
+		    			updateQuantity(productid, total);
+		    			
+		    			var oldpricePerProduct = price*val;
+		    		    var newpricePerProduct = price*total;
+		    		    var cartAmmount = 0;
+		    		    var NewcartAmmount = 0; 
+		    		    
+		    			cartAmmount = parseInt(totalcartAmmount) - parseInt(oldpricePerProduct);
+		    			NewcartAmmount = parseInt(cartAmmount) + parseInt(newpricePerProduct);
+
+		    			$("#totalpurchase").empty();
+		    			$("#totalpurchase").append("Total Price : Rs "+NewcartAmmount);
+		    		    $("#totalcartAmmounthidden").val(NewcartAmmount);
+		    		    
+		    		    console.log("old cart ammount : "+totalcartAmmount+" Old quantity : "+val+" New quantity : "+total+" oldpricePerProduct : "+price*val+" newpricePerProduct : "+price*total+" cartAmmount : "+cartAmmount+" NewcartAmmount : "+NewcartAmmount);
+		    		    writeLogAjax("old cart ammount : "+totalcartAmmount+" Old quantity : "+val+" New quantity : "+total+" oldpricePerProduct : "+price*val+" newpricePerProduct : "+price*total+" cartAmmount : "+cartAmmount+" NewcartAmmount : "+NewcartAmmount, 1);
+		    		    
+					}
+			}
+			
+			
+		    
+
+//		}
+//	else if(action == "minus")
+//		{
+//			var val = parseInt($("#"+txtboxid).val());
+//			if(val>1)
+//			{
+//				var total = val-1;
+//				$("#"+txtboxid).val(total);
+//				var pricePerProduct = price*total;
+//				var oldpricePerProduct = price*val;
+//			    var totalPrice = parseInt(totalcartAmmount) - parseInt(oldpricePerProduct);
+//			    var totalPurchaseprice = totalPrice+pricePerProduct;
+//			    console.log("quantity : "+total+" oldpricePerProduct :"+oldpricePerProduct+" quantity * pricePerProduct : "+pricePerProduct+" totalPrice after - price : "+totalPrice+" totalPurchaseprice : "+totalPurchaseprice);
+//			    writeLogAjax("quantity : "+total+" oldpricePerProduct :"+oldpricePerProduct+" quantity * pricePerProduct : "+pricePerProduct+" totalPrice after - price : "+totalPrice+" totalPurchaseprice : "+totalPurchaseprice,1);
+//			}
+//		}
 }
 
+
+function updateQuantity(productid, quantity)
+{
+	var loginData = $.session.get('loginData');
+	if (loginData != null)
+	{
+		var sessionData = JSON.parse(loginData);
+		var userid = sessionData.key;
+		var userType = sessionData.userType;
+		
+		objhandleRequest.aadToCartForLoggedUser(userid, userType, productid, "authoriseduser", quantity, "update");
+	}
+	else
+    {
+		objhandleRequest.aadToCartForLoggedUser(0, "", productid, "unauthorised", quantity, "update");
+	}
+}
 
 
 

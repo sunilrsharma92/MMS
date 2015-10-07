@@ -302,7 +302,7 @@ function handleRequest()
 		}
 	}
 	
-	function aadToCartForLoggedUser(userid, userType, productid, ipaddress, authorisedUser)
+	function aadToCartForLoggedUser(userid, userType, productid, authorisedUser, quantity, action)
 	{
 		try
 		{
@@ -310,7 +310,8 @@ function handleRequest()
 			straadToCart.userid = +userid;
 			straadToCart.userType = userType;
 			straadToCart.productid = +productid;
-			straadToCart.ipaddress = ipaddress;
+			straadToCart.quantity = parseInt(quantity);
+			straadToCart.action = action;
 			straadToCart.authoriseduser = authorisedUser;
 			straadToCart.command = 1011;
 			
@@ -324,5 +325,29 @@ function handleRequest()
 			console.log("handleRequest     aadToCartForLoggedUser     Exception :: " + e);
 		}
 	}
+	
+//	function updateProductQuantity(productid, total)
+//	{
+//		try
+//		{
+//			var straadToCart = {};
+//			straadToCart.userid = +userid;
+//			straadToCart.userType = userType;
+//			straadToCart.productid = +productid;
+//			straadToCart.total = +total;
+////			straadToCart.ipaddress = ipaddress;
+//			straadToCart.authoriseduser = authorisedUser;
+//			straadToCart.command = 1012;
+//			
+//			var strjsonMsgForaadToCart = JSON.stringify(straadToCart);
+//			console.log("handleRequest     aadToCartForLoggedUser  : " + strjsonMsgForaadToCart);
+//			handleAllListResponse(strjsonMsgForaadToCart);
+//			
+//		}
+//		catch (e)
+//		{
+//			console.log("handleRequest     aadToCartForLoggedUser     Exception :: " + e);
+//		}
+//	}
 
 }

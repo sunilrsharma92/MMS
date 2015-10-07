@@ -385,13 +385,16 @@ public class ProductInterfaceImpl implements ProductInterface
 						String userType = (String) object.get("userType");
 						Long productid = (Long) object.get("productid");
 						String ipaddress = (String) object.get("ipaddress");
-						String authorisedUser = (String) object.get("authorisedUser");
+						String authorisedUser = (String) object.get("authoriseduser");
+						
+						Long quantity =  (Long) object.get("quantity");
+						String action = (String) object.get("action");
+						
 						String sql = "";
 						String usertypecolumnname = "";
-
+						
 						if (userType != null && userType.trim().equalsIgnoreCase("customer"))
 						{
-							sql = "";
 							usertypecolumnname = "customer_key"; 
 						}
 						else if (userType != null && userType.trim().equalsIgnoreCase("supplier"))
@@ -399,16 +402,36 @@ public class ProductInterfaceImpl implements ProductInterface
 							usertypecolumnname = "supplier_key";
 						}
 						
-						ps2 = conn.prepareStatement("");
-						ps2.setLong(1, (Long) parentjson.get("key"));
-						ps2.setString(2, ipaddress);
-						result1 = ps2.executeUpdate();
-						if (result1 > 0)
+						if (action.trim().equalsIgnoreCase("add"))
 						{
-							parentjson.put("loginlog", "Login log successfull");
+							sql = "insert into cart("+usertypecolumnname+", productid, quantity, ipaddress, datetime) values(?, ?, ?, ?, now())";
+							ps2 = conn.prepareStatement(sql);
+							
+							ps2.setLong(1, userid);
+							ps2.setLong(2, productid);
+							ps2.setLong(3, quantity);
+							ps2.setString(4, ipaddress);
+						}
+						else if (action.trim().equalsIgnoreCase("update"))
+						{
+							sql = "update cart set quantity = ? where productid = ? and "+usertypecolumnname+" = ? and orderid IS NULL";
+							ps2 = conn.prepareStatement(sql);
+							
+							ps2.setLong(1, quantity);
+							ps2.setLong(2, productid);
+							ps2.setLong(3, userid);
 						}
 						
 						
+						
+						
+						result1 = ps2.executeUpdate();
+						if (result1 > 0)
+						{
+							parentjson = CommonMethodImpl.putSuccessJson(parentjson, 2011);
+						}
+						
+						output = parentjson.toString();
 						// System.out.println("output ::::::::: "+output);
 						return output;
 					}
