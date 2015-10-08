@@ -28,7 +28,7 @@ $(document).ready(function(){
 	}
 //*******************************************************************************************************************
 	 $("#mobcat").click(function(){
-			alert("mobile category clicked")
+//			alert("mobile category clicked")
 			$(".col-cat").removeClass("hidden-xs");
 			
 		});
@@ -84,6 +84,7 @@ $(document).ready(function(){
 		$.session.remove('zoominage');
 		$.session.remove('prodDisc');
 		$.session.remove('checkoutlogin');
+		$.session.remove('itemsinCart');
 
 		window.location.replace("indexTemplate.jsp");
 	});
@@ -141,7 +142,21 @@ $(document).ready(function(){
 //*******************************************************************************************************************
 	
 	action = "length";
-	getProductfromCookie(action);
+	var loginData = $.session.get('loginData');
+
+	if(loginData != null)
+	{
+		var itemsinCart = $.session.get("itemsinCart");
+//		alert("itemsinCart : "+itemsinCart);
+		$(".productCountOnCart").empty();
+		document.getElementById("productCountOnCart").innerHTML = parseInt(itemsinCart);
+		document.getElementById("productCountOnCart1").innerHTML = parseInt(itemsinCart);
+	}
+	else
+	{
+		getProductfromCookie(action);
+	}
+	
 	
 //***********Request for all product category ************************************************************************
 
@@ -196,7 +211,19 @@ $(document).ready(function(){
 
 $(".getCartProduct").click(function(){
 	
-	getProductfromCookie("prod");
+	var loginData = $.session.get('loginData');
+
+	if(loginData != null)
+	{
+		var sessionData = JSON.parse(loginData);
+		var userid = sessionData.key;
+		var userType = sessionData.userType;
+		objhandleRequest.handledisplayProductinCart("", "withlogin", userid, userType);
+	}
+	else
+	{
+		getProductfromCookie("prod");
+	}
 	
 });
 
@@ -552,8 +579,21 @@ function getSelectedProduct(subid,strmainCategoryid)
 //	$(".col-cat").addClass("hidden-xs");
 	$("#mobcat").click();
 //	alert("strsubCategoryid : "+strsubCategoryid+" strmainCategoryid : "+strmainCategoryid);
+	var loginData = $.session.get('loginData');
+
+	if(loginData != null)
+	{
+		var sessionData = JSON.parse(loginData);
+		var userid = sessionData.key;
+		var userType = sessionData.userType;
 	
-	objhandleRequest.handledisplaySelectedProduct(strmainCategoryid , strsubCategoryid);
+		objhandleRequest.handledisplaySelectedProduct(strmainCategoryid , strsubCategoryid, userid, userType, "withlogin");
+	}
+	else
+	{
+		objhandleRequest.handledisplaySelectedProduct(strmainCategoryid , strsubCategoryid, 0, "", "withoutlogin");	
+	}
+	
 }
 
 
@@ -621,7 +661,7 @@ function getProductfromCookie(condition)
 		console.log("prodjoin : "+prodjoin);
 		writeLogAjax("prodjoin : "+prodjoin,1);
 		
-		objhandleRequest.handledisplayProductinCart(prodjoin);
+		objhandleRequest.handledisplayProductinCart(prodjoin, "withoutlogin", 0, "");
 	}
 	}
 	catch (e)
@@ -659,50 +699,52 @@ function getcookies()
 //*********************Add product count to cart after click on Add to cart button*********************//
 
 function addproducttoCArt(productid)
-	{
-	getcookies();
-	for(var i in arrayofProduct)
-		{
-			arrayofProduct[i] == productid;
-			
-		}
-    arrayofProduct.push([ productid ]);
-	
-	var len = arrayofProduct.length;
-	
-	$(".productCountOnCart").empty();
-	document.getElementById("productCountOnCart").innerHTML=len;
-	document.getElementById("productCountOnCart1").innerHTML=len;
-	
-	$.cookie('key',JSON.stringify(arrayofProduct));
-	
-	document.getElementById("ok"+productid).style.display = "block";
-//	$("#getCartProduct").focus();
-	
-	var checkAllCookies_AddedorNot = $.cookie("key");
-	var checkCookiesArray = JSON.parse(checkAllCookies_AddedorNot);
-	console.log("getcookies()   JSON.parse(checkAllCookies_AddedorNot)   : "+checkCookiesArray);
-	writeLogAjax("getcookies()   JSON.parse(checkAllCookies_AddedorNot)   : "+checkCookiesArray,1);
-	
-	document.getElementById("btn"+productid).disabled = true;
-	
+{
 	var loginData = $.session.get('loginData');
-		if (loginData != null)
-		{
-			var sessionData = JSON.parse(loginData);
-			var userid = sessionData.key;
-			var userType = sessionData.userType;
+	if (loginData != null)
+	{
+		var sessionData = JSON.parse(loginData);
+		var userid = sessionData.key;
+		var userType = sessionData.userType;
+		
+		document.getElementById("ok"+productid).style.display = "block";
+		document.getElementById("btn"+productid).disabled = true;
+		
+		objhandleRequest.aadToCartForLoggedUser(userid, userType, productid, "authoriseduser", 1, "add");
+	}
+	else
+    {
+		getcookies();
+		for(var i in arrayofProduct)
+			{
+				arrayofProduct[i] == productid;
+				
+			}
+	    arrayofProduct.push([ productid ]);
+		
+		var len = arrayofProduct.length;
+		
+		$(".productCountOnCart").empty();
+		document.getElementById("productCountOnCart").innerHTML=len;
+		document.getElementById("productCountOnCart1").innerHTML=len;
+		
+		$.cookie('key',JSON.stringify(arrayofProduct));
+		
+		document.getElementById("ok"+productid).style.display = "block";
+	//	$("#getCartProduct").focus();
+		
+		var checkAllCookies_AddedorNot = $.cookie("key");
+		var checkCookiesArray = JSON.parse(checkAllCookies_AddedorNot);
+		console.log("getcookies()   JSON.parse(checkAllCookies_AddedorNot)   : "+checkCookiesArray);
+		writeLogAjax("getcookies()   JSON.parse(checkAllCookies_AddedorNot)   : "+checkCookiesArray,1);
+		
+		document.getElementById("btn"+productid).disabled = true;
+		
+		
+		objhandleRequest.aadToCartForLoggedUser(0, "", productid, "unauthorised", 1, "add");
+		
+	}
 			
-			objhandleRequest.aadToCartForLoggedUser(userid, userType, productid, "authoriseduser", 1, "add");
-		}
-		else
-	    {
-			objhandleRequest.aadToCartForLoggedUser(0, "", productid, "unauthorised", 1, "add");
-		}
-					
-	
-	
-
 }
 //************************************************************************************//
 

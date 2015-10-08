@@ -50,7 +50,7 @@ function listResponseHandler(response, command, status)
 
 						// -- not in use
 					case 2001:
-						handleShopProfileDetailResponse(response);
+//						handleShopProfileDetailResponse(response);
 						break;
 
 					case 2010:
@@ -58,7 +58,7 @@ function listResponseHandler(response, command, status)
 						break;
 						
 					case 2011:
-						
+						handleAddtoCartWithLoginResponse(response);
 						break;
 
 					case 2003:
@@ -210,7 +210,7 @@ function listResponseHandler(response, command, status)
 	}
 	catch (e)
 	{
-
+		console.log("handleResponse Exception : "+e);
 	}
 
 }

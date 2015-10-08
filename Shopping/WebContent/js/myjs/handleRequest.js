@@ -203,13 +203,16 @@ function handleRequest()
 		}
 	}
 	
-	function handledisplaySelectedProduct(mainCategoryID, subCategoryID)
+	function handledisplaySelectedProduct(mainCategoryID, subCategoryID, userid, userType, action)
 	{
 		try
 		{
 			var strSelectedProduct = {};
 			strSelectedProduct.mainCategoryID = parseInt(mainCategoryID);
 			strSelectedProduct.subCategoryID = parseInt(subCategoryID);
+			strSelectedProduct.userid = parseInt(userid);
+			strSelectedProduct.userType = userType;
+			strSelectedProduct.action = action;
 			strSelectedProduct.command = 1003;
 
 			var strjsonMsgForSelectedProduct = JSON.stringify(strSelectedProduct);
@@ -223,12 +226,15 @@ function handleRequest()
 		}
 	}
 
-	function handledisplayProductinCart(productArray)
+	function handledisplayProductinCart(productArray, action, userid, userType)
 	{
 		try
 		{
 			var strProductinCart = {};
 			strProductinCart.productArray = productArray;
+			strProductinCart.action = action;
+			strProductinCart.userid = +userid;
+			strProductinCart.userType = userType;
 			strProductinCart.command = 1005;
 
 			var strjsonMsgForstrProductinCart = JSON.stringify(strProductinCart);

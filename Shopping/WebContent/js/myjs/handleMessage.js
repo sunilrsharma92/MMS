@@ -141,7 +141,7 @@ function handleProductDisplayResponse(response)
 {
 	try
 	{
-
+//		alert("response : "+JSON.stringify(response));
 		// writeLogAjax('handleProductDisplayResponse :::::: '+JSON.stringify(response),1);
 		var productList = "";
 		// var total = 0;
@@ -193,7 +193,41 @@ function handleProductDisplayResponse(response)
 		$("#productList").append(productList);
 
 		var condition = "okenable";
-		getProductfromCookie(condition);
+		var loginData = $.session.get('loginData');
+
+			if(loginData != null)
+			{
+				var productidArray = response.productid;
+				var count = productidArray.length;
+				
+//				alert("productidArray : "+JSON.stringify(productidArray));
+				for ( var i in productidArray)
+				{
+					var gettingProductId = productidArray[i].productid;
+					
+					try
+					{
+						document.getElementById("ok"+gettingProductId).style.display = "block";
+						document.getElementById("btn"+gettingProductId).disabled = true;
+					}
+					catch (e) 
+					{
+						console.log("handleProductDisplayResponse disable button Exception : "+e);
+					}
+					
+				}
+				
+				$(".productCountOnCart").empty();
+				document.getElementById("productCountOnCart").innerHTML = count;
+				document.getElementById("productCountOnCart1").innerHTML = count;
+				$.session.set("itemsinCart",count);
+				alert(count);
+			}
+		else
+			{
+				getProductfromCookie(condition);
+			}
+		
 
 		// product":[{"prodName":"Vaseline - Aloe
 		// Lotion","stock":100,"price":80,"productid":1,"images":"Images\\Personal
@@ -204,6 +238,17 @@ function handleProductDisplayResponse(response)
 	{
 		writeLogAjax("handleProductDisplayResponse :::::: Exception" + e,0);
 	}
+}
+
+function handleAddtoCartWithLoginResponse(response)
+{
+//	alert("Response : "+JSON.stringify(response));
+	
+	var itemsinCart = response.itemsinCart;
+	$(".productCountOnCart").empty();
+	document.getElementById("productCountOnCart").innerHTML=itemsinCart;
+	document.getElementById("productCountOnCart1").innerHTML=itemsinCart;
+	$.session.set("itemsinCart",itemsinCart);
 }
 
 function handleProductDisplayinCartResponse(response)
@@ -458,10 +503,14 @@ function handleLoginResponse(response)
 	$(".overlay").show().delay(100).fadeOut();
 	var action = response.status;
 	var statusdesc = response.statusdesc;
+	
+	var itemsinCart = response.itemsinCart;
+	$.session.set('itemsinCart', itemsinCart);
+	
 	var msg = "Your account is not yet verified. Please enter your verification code(OTP)";
 	var invalidOTP = "Invalid OTP. Please check your mail for the valid OTP";
 	var userType = response.userType;
-//	alert(response.userType);
+//	alert(JSON.stringify(response));
 
 	 if (userType != null) 
 	{
@@ -471,6 +520,7 @@ function handleLoginResponse(response)
 	if(action != 3)
 	{
 		jAlert(statusdesc, "Alert Message");
+		/*
 		if(statusdesc == msg || statusdesc == invalidOTP)
 			{
 				document.getElementById("otpLogin").style.display = "inline-flex";
@@ -487,6 +537,7 @@ function handleLoginResponse(response)
 				}
 				
 			}
+			*/
 	}
 	else
 	{
