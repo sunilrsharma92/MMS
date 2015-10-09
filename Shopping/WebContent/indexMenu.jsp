@@ -314,8 +314,8 @@
 		<div class="container">
 			<div id="searching" style="display: none;">
 
-				<input type="text" id="search" onkeyup="searchProduct()" class="whiteLabel" style="text-align: center; outline: 0;" name="search" placeholder="Search the item here">
-					<button class="insearch" type="submit">
+				<input type="text" id="search"  onkeypress="checkEnter();" class="whiteLabel" style="text-align: center; outline: 0;" name="search" placeholder="Search the item here">
+					<button class="insearch" onclick="searchProduct();" type="submit">
 						<span class="glyphicon glyphicon-search"></span>
 					</button>
 				</input>

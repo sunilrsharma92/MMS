@@ -136,16 +136,15 @@ public class SearchUtility {
 
 	jsonarray.add(childjson);
 	// //System.out.println("jsonarray : :  : :"+jsonarray);
-
-	parentjson.put("product", jsonarray);
-	parentjson = CommonMethodImpl.putSuccessJson(parentjson, 2003);
-
-	output = parentjson.toString();
-	// //System.out.println("output ::::::::: "+output);
-	return output;
-
    }
+
+   parentjson.put("product", jsonarray);
+   parentjson = CommonMethodImpl.putSuccessJson(parentjson, 2003);
+
+   output = parentjson.toString();
+	// //System.out.println("output ::::::::: "+output);
    return output;
+	
   } catch (Exception e) 
   {
 	  e.printStackTrace();

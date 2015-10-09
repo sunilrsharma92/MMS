@@ -238,6 +238,15 @@ $('#checkout').click(function(){
 });
 
 
+$("#search").keypress(function(e) 
+{
+    if(e.which == 13) 
+    {
+//        alert('You pressed enter!');
+        searchProduct();
+    }
+});
+
 
 });
 
@@ -858,7 +867,6 @@ function removeproductfromCArt(id)
 	}
 	
 }
-
 
 function searchProduct()
 {
