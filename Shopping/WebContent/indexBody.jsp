@@ -92,7 +92,7 @@
 				<!-- Row for items -->
 				<div class="row">
 					<hr class="small">
-					<h3 align="center">Featured Items</h3>
+					<h3 align="center">High Rated</h3>
 					<hr class="small">
 
 					<%
@@ -125,7 +125,7 @@
 
 				<div class="row">
 					<hr class="small">
-					<h3 align="center">Top Selling Items</h3>
+					<h3 align="center">Newly Joined</h3>
 					<hr class="small">
 
 					<%
