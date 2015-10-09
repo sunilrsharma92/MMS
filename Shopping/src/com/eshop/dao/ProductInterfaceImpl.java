@@ -12,6 +12,7 @@ import com.eshop.database.utility.EmailUtility;
 import com.eshop.database.utility.EncryptionUtility;
 import com.eshop.database.utility.MyConnection;
 import com.eshop.database.utility.RandomStringUtilsTrial;
+import com.makemyshopy.searchingutility.SearchUtility;
 import com.shopping.common.CommonMethodImpl;
 
 public class ProductInterfaceImpl implements ProductInterface
@@ -260,10 +261,13 @@ public class ProductInterfaceImpl implements ProductInterface
 					try
 					{
 						JSONObject object = (JSONObject) JSONValue.parse(jsonMsg);
-						//
+						SearchUtility searchKeyword = new SearchUtility();
+						
 						String product = (String) object.get("txt");
-						// System.out.println("txt : "+product);
-
+						
+						String output = searchKeyword.searchProduct(product);
+						
+						/*
 						ps = conn.prepareStatement("select * from products where product_name LIKE '" + product + "%'");
 						// ps.setString(1, jsonMsg );
 						rs = ps.executeQuery();
@@ -285,7 +289,11 @@ public class ProductInterfaceImpl implements ProductInterface
 
 						output = parentjson.toString();
 						// //System.out.println("output ::::::::: "+output);
+						
+						*/
+						
 						return output;
+						
 					}
 					catch (Exception e)
 					{
