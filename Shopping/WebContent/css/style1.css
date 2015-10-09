@@ -816,3 +816,25 @@ tbody{
 {
 	width: 66%;
 }		 
+/* Profile Sunil */
+.fade-in {
+    opacity: 0.1;
+    transition: opacity 600ms;
+ }
+#profilePic:hover .fade-in {
+     opacity: 0.7;
+ }
+.bbtn1{
+  background: none;
+  border:0px;
+  margin-top: -50px;
+  /*margin-left: -100px;*/
+}
+.upload{
+	color: #FFF;
+	font-size: 40px;
+}
+.remove{
+	color: #FFF;
+	font-size: 40px
+}

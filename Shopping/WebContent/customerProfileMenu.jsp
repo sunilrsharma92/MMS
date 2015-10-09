@@ -19,9 +19,23 @@
 					<div id="custOrderPanel" style="display: none;">
 						<h3><span class="label label-default"> MY ACCOUNT</span></h3>
 						<hr class="large">
+						<!-- <form action="UploadServlet" method="post" enctype="multipart/form-data">
 						<div class=""  style="margin-bottom:10px"; >
-						<img src="Images/default_profile_pic.png" class="img-circle" style="width:50%; background-color:whitesmoke;"> 
+						<img src="Images/default_profile_pic.png" class="img-circle" style="width:50%; background-color:whitesmoke;">
+						<input type="file" value="Upload" id="upload"> 
+						<input type="file" value="Upload" id="remove"> 
+						<input type="submit">
 						</div>
+						</form> -->
+						<form enctype="multipart/form-data" action="UploadServlet" method="post">
+							<img src="Images/default_profile_pic.png" class="img-circle" style="width:50%; background-color:whitesmoke;">
+					     	 <input type="file" name="fileName" id="fileName" class="roleType" class="border"/>  
+					     	 <input id="sampleText" name="sampleText" type="text" value="haha"/>                                                    
+					     	 <input type="submit" value="Save File" id="upldBtn" style="display:none;"/> &nbsp;&nbsp;
+						</form>
+
+
+
 						<div class="strong"><span class="glyphicon glyphicon-list-alt"></span> Orders</div>
 	
 						<div class="list-group side-bar">
