@@ -945,7 +945,7 @@ public class ProductInterfaceImpl implements ProductInterface
 									{
 										sql1 = "update " + user + " set password = ? where email = ?";
 										ps1 = conn.prepareStatement(sql1);
-										ps1.setString(1, tempOtp); // -- set otp as password
+										ps1.setString(1, encryptedPwd); // -- set otp as password
 										ps1.setString(2, email);
 										resultTemp = ps1.executeUpdate();
 										

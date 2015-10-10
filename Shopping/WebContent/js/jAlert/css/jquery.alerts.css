@@ -5,7 +5,8 @@
 	max-width: 600px; /* Dialog will wrap after this width */
 	background: #FFF;
 /* 	border: solid 5px #999; */
-    border: solid 5px black;
+/*     border: solid 5px black; */
+    border: solid 5px #037DBB;
 	color: #000;
 	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px;
@@ -18,7 +19,7 @@
     text-align: center;
     line-height: 1.75em;
     color: white;
-    background: black url(images/title.gif) top repeat-x;
+    background: #028FD6 url(images/title.gif) top repeat-x;
     border: solid 1px #FFF;
     border-bottom: solid 1px black;
     cursor: default;

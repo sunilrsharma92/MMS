@@ -250,6 +250,7 @@ $("#search").keypress(function(e)
 
 });
 
+
 //*************************** Document ready function ends here ***********************************
 
 /*function getDataFromSession(requestedValue)
@@ -309,7 +310,7 @@ function loadPage(id)
 	else if(vid == "checkout")
 	{
 		var ammount = $("#totalpurchase").text();
-		if(ammount == "Total Price : Rs 0.00 ")
+		if(ammount == "Total Price : Rs 0.00 " || ammount == "Total Price : Rs 0 ")
 			{
 				jAlert('Add product in cart to proceed further', 'Message');
 				vid = "";
