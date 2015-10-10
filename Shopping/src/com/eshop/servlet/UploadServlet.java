@@ -144,17 +144,12 @@ public class UploadServlet extends HttpServlet {
             
         } 
         
-        catch (FileUploadException e) 
-        {
-//            out.write("Exception in uploading file.");
-        	System.out.println("Exception in uploading file.");
-        } 
-        
         catch (Exception e) 
         {
+//            out.write("Exception in uploading file.");
         	e.printStackTrace();
         	System.out.println("Exception in uploading file.");
-        }
+        } 
         
 //        out.write("</body></html>");
     }
