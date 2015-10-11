@@ -499,7 +499,7 @@ function handleResetPasswordResponse(response)
 
 function handleLoginResponse(response)
 {
-	
+	alert("response : "+JSON.stringify(response));
 	$(".overlay").show().delay(100).fadeOut();
 	var action = response.status;
 	var statusdesc = response.statusdesc;

@@ -155,6 +155,7 @@
 												 <input	class="textbox font" type="password" id="passLoginTemp"	name="password" placeholder="Enter Password"></br> 
 												<input class="textbox font" type="text" id="otpLogin" placeholder="OTP" style="display: none"></br>
 												 <input	type="button" onclick="login()" class="btn btn-primary btn_width_93_perc" id="userlogin" value="Login" />
+												 <div style="margin-top: 10px; color:red; font-size: 12px;" id="loginalerts"></div>
 												 
 <!-- 												<button onsubmit="login()" class="btn btn-primary btn_width_93_perc" type="button">Login</button> -->
 											</form>
@@ -176,6 +177,7 @@
 												<input type="button" onclick="signUp()" class="btn btn-primary btn_width_93_perc" id="signup" value="Sign Up" />
 <!-- 												<input type="button" class="btn btn-primary btn_width_93_perc" id="signup" value="Sign Up" /> -->
 <!-- 													<button onsubmit="signUp()" class="btn btn-primary btn_width_93_perc" type="submit">Sign Up</button> -->
+											     <div style="margin-top: 10px; color:red; font-size: 12px;" id="signupalerts"></div>
 											</form>
 										</div>
 										<div id="menu2" class="tab-pane fade">
@@ -184,6 +186,7 @@
 												<input class="textbox font" type="text" name="email" id="emailForgotPwd" placeholder="Enter Email id"></br>
 <!-- 												<button  class="btn btn-primary btn_width_93_perc" type="submit">Submit</button> -->
 												<button onclick="forgotPwd()" class="btn btn-primary btn_width_93_perc" type="button">Submit</button>
+												<div style="margin-top: 10px; color:red; font-size: 12px;" id="forgetpassalerts"></div>
 											</form>
 										</div>
 									</div>

@@ -27,7 +27,7 @@
 						<input type="submit">
 						</div>
 						</form> -->
-						<form enctype="multipart/form-data" action="UploadServlet" method="post">
+						<form enctype="multipart/form-data" id="uploadFile" action="UploadServlet" method="post">
 							<img src="Images/default_profile_pic.png" class="img-circle" style="width:50%; background-color:whitesmoke;">
 					     	 <input type="file" name="fileName" id="fileName" class="roleType" class="border"/>  
 					     	 <input id="sampleText" name="sampleText" type="text" value="haha"/>                                                    

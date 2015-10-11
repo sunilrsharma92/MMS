@@ -73,20 +73,26 @@ $(document).ready(function(){
 	// -- logout
 	$("#logoutLink").click(function() {
 
-		$.session.remove('loginData');
-		$.session.remove('usertype');
-		$.session.remove('pageState');
-		$.session.remove('checkout');
-		$.session.remove('contentState');
-		$.session.remove('addressList');
-		$.session.remove('count');
-		$.session.remove('viewprod');
-		$.session.remove('zoominage');
-		$.session.remove('prodDisc');
-		$.session.remove('checkoutlogin');
-		$.session.remove('itemsinCart');
-
-		window.location.replace("indexTemplate.jsp");
+		jConfirm("Are you sure you want to logout", "Alert Message", function(e){
+			if(e == true)
+				{
+					$.session.remove('loginData');
+					$.session.remove('usertype');
+					$.session.remove('pageState');
+					$.session.remove('checkout');
+					$.session.remove('contentState');
+					$.session.remove('addressList');
+					$.session.remove('count');
+					$.session.remove('viewprod');
+					$.session.remove('zoominage');
+					$.session.remove('prodDisc');
+					$.session.remove('checkoutlogin');
+					$.session.remove('itemsinCart');
+	
+					window.location.replace("indexTemplate.jsp");
+				}
+		});
+		
 	});
 	
 	
@@ -245,6 +251,22 @@ $("#search").keypress(function(e)
 //        alert('You pressed enter!');
         searchProduct();
     }
+});
+
+$("#passLoginTemp").keypress(function(e) 
+{
+	if(e.which == 13) 
+	{
+		login();
+	}
+});
+
+$("#emailLogin").keypress(function(e) 
+{
+	if(e.which == 13) 
+	{
+		login();
+	}
 });
 
 
@@ -455,9 +477,21 @@ function login()
 	var passLogin = $("#passLoginTemp").val();
 	var otpLogin = $("#otpLogin").val();
 	var userType = $("#userType").val();
+	$("#loginalerts").empty();
 	
-
-	if(userType)
+	if(emailLogin == "")
+	{
+		document.getElementById("loginalerts").innerHTML = 'Please enter your login email';
+		return false;
+	}
+	else if(passLogin == "")
+	{
+		document.getElementById("loginalerts").innerHTML = 'Please enter your login password';
+		return false;
+	}
+	else
+	{
+		if(userType)
 	{
 		userType = "customer";
 	}
@@ -472,7 +506,7 @@ function login()
 	objhandleRequest.handleLogin(emailLogin, passLogin, userType, otpLogin);
 	
 //	if(emailLogin != "" && passLogin != "")
-//		{
+//		{forgetpassalerts
 //			if(document.getElementById('otpLogin').style.display == 'block' && otpLogin == "")
 //			{
 //					validationMsg("otpLogin","OTP is required..!! Check it in your mail");
@@ -508,17 +542,49 @@ function login()
 //			}
 //			return false;
 //		}
+	return true;
+	}
 	
 }
 
 function signUp()
 {
 	var passSignUp = $('#passSignUp').val();
+	var repass = $('#repass').val();
 //	var firstNameSignUp = $('#firstNameSignUp').val();
 	var mobileKey = $('#mobile').val();
 	var emailKey = $('#emailSignUp').val();
 	var userType = $("#userType").val();
-
+	$("#signupalerts").empty();
+	
+	if(emailKey == "")
+	{
+		document.getElementById("signupalerts").innerHTML = 'Please enter your email';
+		return false;
+	}
+	else if(mobileKey == "")
+	{
+		document.getElementById("signupalerts").innerHTML = 'Please enter your mobile number';
+		return false;
+	}
+	else if(passSignUp == "")
+	{
+		document.getElementById("signupalerts").innerHTML = 'Please enter your password';
+		return false;
+	}
+	else if(repass == "")
+	{
+		document.getElementById("signupalerts").innerHTML = 'Please re-enter your password';
+		return false;
+	}
+	else if(passSignUp != repass)
+	{
+		document.getElementById("signupalerts").innerHTML = 'Conform password should be same as new password';
+		return false;
+	}
+	
+	else
+	{
 	if(userType)
 	{
 		userType = "customer";
@@ -545,7 +611,7 @@ function signUp()
 			return false;
 		}
 	});
-		
+	}
 }
 
 function forgotPwd()
@@ -556,6 +622,15 @@ function forgotPwd()
 	var emailForgotPwd = $("#emailForgotPwd").val();
 	var userType = $("#userType").val();
 	
+	$("#forgetpassalerts").empty();
+	
+	if(emailForgotPwd == "")
+	{
+		document.getElementById("forgetpassalerts").innerHTML = 'Please enter your email to get your new password';
+		return false;
+	}
+	else
+	{
 	if(userType)
 	{
 		userType = "customer";
@@ -569,7 +644,7 @@ function forgotPwd()
 	writeLogAjax("emailForgotPwd : "+ emailForgotPwd+"   userType"+ userType,1);
 	$(".overlay").show();
 	objhandleRequest.handleForgotPwd(emailForgotPwd, userType);
-
+	}
 }
 	
 $("#getCartProduct").click(function()
@@ -818,7 +893,7 @@ function removeproductfromCArt(id)
 		{
 	var gotCookiesArray = JSON.parse(gotCookies);
 	
-	if(gotCookiesArray == "")
+	if(gotCookiesArray == "" || gotCookiesArray == null)
 		{
 			$(".productCountOnCart").empty();
 			document.getElementById("productCountOnCart").innerHTML="0";
@@ -858,8 +933,11 @@ function removeproductfromCArt(id)
 		enablebtn(id);
 	}
 	
-	document.getElementById("ok"+id).style.display = "none";
-	document.getElementById("btn"+id).disabled = false;
+		document.getElementById("ok"+id).style.display = "none";
+		document.getElementById("btn"+id).disabled = false;
+		
+		
+		
 		}
 	catch (e)
 	{
