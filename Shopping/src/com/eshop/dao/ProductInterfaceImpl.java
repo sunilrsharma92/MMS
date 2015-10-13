@@ -276,6 +276,7 @@ public class ProductInterfaceImpl implements ProductInterface
 							while (rs1.next())
 							{
 								Long productkey = rs1.getLong("productid");
+								Long quantity = rs1.getLong("quantity");
 
 								ps = conn.prepareStatement("select * from products where product_key=?");
 								ps.setLong(1, productkey);
@@ -289,6 +290,7 @@ public class ProductInterfaceImpl implements ProductInterface
 									childjson.put("stock", rs.getFloat("units_in_stock"));
 									childjson.put("prodName", rs.getString("product_name"));
 									childjson.put("images", rs.getString("picture"));
+									childjson.put("quantity", quantity);
 
 									jsonarray.add(childjson);
 									// System.out.println("jsonarray : :  : :"+jsonarray);

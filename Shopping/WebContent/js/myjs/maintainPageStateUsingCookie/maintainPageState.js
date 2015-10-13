@@ -17,5 +17,9 @@ $(document).ready(function(){
 		$.session.set('checkout','checkout');
 		getProductfromCookie("prod");
 	}
+	else
+		{
+			$.session.remove('checkout');
+		}
 	
 });

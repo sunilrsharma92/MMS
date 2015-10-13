@@ -357,7 +357,22 @@ function loadPage(id)
 	if(vid == "checkout")
 		{
 			$.session.set('checkout','checkout');
-			getProductfromCookie("prod");
+			
+			var loginData = $.session.get('loginData');
+
+			if(loginData != null)
+			{
+				var sessionData = JSON.parse(loginData);
+				var userid = sessionData.key;
+				var userType = sessionData.userType;
+				$.session.set('checkout','checkout');
+				objhandleRequest.handledisplayProductinCart("", "withlogin", userid, userType);
+			}
+			else
+			{
+				getProductfromCookie("prod");
+			}
+			
 		}
 	
 //	var pageState = $.cookie("pageState");
@@ -826,7 +841,7 @@ function addproducttoCArt(productid)
 		document.getElementById("btn"+productid).disabled = true;
 		
 		
-		objhandleRequest.aadToCartForLoggedUser(0, "", productid, "unauthorised", 1, "add");
+//		objhandleRequest.aadToCartForLoggedUser(0, "", productid, "unauthorised", 1, "add");
 		
 	}
 			
@@ -1004,7 +1019,7 @@ function quantity(txtboxid, action, price, productid)
 				$("#totalpurchase").empty();
 				$("#totalpurchase").append("Total Price : Rs "+NewcartAmmount);
 			    $("#totalcartAmmounthidden").val(NewcartAmmount);
-			    
+			    managetotalprice(NewcartAmmount);
 			    console.log("old cart ammount : "+totalcartAmmount+" Old quantity : "+val+" New quantity : "+total+" oldpricePerProduct : "+price*val+" newpricePerProduct : "+price*total+" cartAmmount : "+cartAmmount+" NewcartAmmount : "+NewcartAmmount);
 			    writeLogAjax("old cart ammount : "+totalcartAmmount+" Old quantity : "+val+" New quantity : "+total+" oldpricePerProduct : "+price*val+" newpricePerProduct : "+price*total+" cartAmmount : "+cartAmmount+" NewcartAmmount : "+NewcartAmmount, 1);
 			    
@@ -1029,7 +1044,7 @@ function quantity(txtboxid, action, price, productid)
 		    			$("#totalpurchase").empty();
 		    			$("#totalpurchase").append("Total Price : Rs "+NewcartAmmount);
 		    		    $("#totalcartAmmounthidden").val(NewcartAmmount);
-		    		    
+		    		    managetotalprice(NewcartAmmount);
 		    		    console.log("old cart ammount : "+totalcartAmmount+" Old quantity : "+val+" New quantity : "+total+" oldpricePerProduct : "+price*val+" newpricePerProduct : "+price*total+" cartAmmount : "+cartAmmount+" NewcartAmmount : "+NewcartAmmount);
 		    		    writeLogAjax("old cart ammount : "+totalcartAmmount+" Old quantity : "+val+" New quantity : "+total+" oldpricePerProduct : "+price*val+" newpricePerProduct : "+price*total+" cartAmmount : "+cartAmmount+" NewcartAmmount : "+NewcartAmmount, 1);
 		    		    
@@ -1057,6 +1072,33 @@ function quantity(txtboxid, action, price, productid)
 //		}
 }
 
+function managetotalprice(NewcartAmmount)
+{
+	var checkout = $.session.get('checkout');
+	if(checkout !=null && checkout !=="" && checkout == "checkout")
+		{
+			var loginData = $.session.get('loginData');
+			if(loginData != null)
+			{
+				var sessionData = JSON.parse(loginData);
+				var userid = sessionData.key;
+				var userType = sessionData.userType;
+				$.session.set('checkout','checkout');
+				objhandleRequest.handledisplayProductinCart("", "withlogin", userid, userType);
+			}
+			else
+			{
+				getProductfromCookie("prod");
+			}
+//			
+//		
+//			$("#totalpurchaseOnCheckout").empty();
+//			$("#totalpurchaseOnCheckout").append("Total Price : Rs "+NewcartAmmount);
+//		    $("#totalpurchaseOnCheckoutHidden").val(NewcartAmmount);
+//		
+//		
+		}	
+}
 
 function updateQuantity(productid, quantity)
 {

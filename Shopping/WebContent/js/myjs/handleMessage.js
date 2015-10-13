@@ -273,7 +273,8 @@ function handleProductDisplayinCartResponse(response)
 			var stock = product[i].stock;
 			var prodName = product[i].prodName;
 			var images = product[i].images;
-			total = total + price;
+			var quantity = product[i].quantity;
+			total = total + (price*quantity);
 			var quantityfunctionAdd = "quantity('demo" + productid + "','add','"+price+"','"+productid+"');"
 			var quantityfunctionMinus = "quantity('demo" + productid + "','minus','"+price+"','"+productid+"');"
 			
@@ -281,7 +282,7 @@ function handleProductDisplayinCartResponse(response)
 
 			+ '<div class="input-group bootstrap-touchspin quantitybtn">' 
 			+ '<span class="input-group-btn">' 
-			+ '<button class="btn btn-default bootstrap-touchspin-down" id="minus' + productid + '" onclick="' + quantityfunctionMinus + '" type="button">-</button></span>' + '<input id="demo' + productid + '" type="text" value="1" name="demo1" class="form-control cartquantity">' + '<span class="input-group-btn">' 
+			+ '<button class="btn btn-default bootstrap-touchspin-down" id="minus' + productid + '" onclick="' + quantityfunctionMinus + '" type="button">-</button></span>' + '<input id="demo' + productid + '" type="text" value="'+quantity+'" name="demo1" class="form-control cartquantity">' + '<span class="input-group-btn">' 
 			+ '<button class="btn btn-default bootstrap-touchspin-up" id="add' + productid + '" onclick="' + quantityfunctionAdd + '" type="button">+</button>'
 			+'</span>' 
 			+ '</div>'
@@ -305,11 +306,12 @@ function handleProductDisplayinCartResponse(response)
 		$("#totalcartAmmounthidden").val(total);
 		
 		var checkout = $.session.get('checkout');
+//		alert(checkout);
 		if(checkout !=null && checkout !=="" && checkout == "checkout")
 			{
 			
 				appendProducttoCheckoutTable(productList, totalpurchase, total, count);
-				$.session.remove('checkout');
+//				$.session.remove('checkout');
 			}
 		
 	}
@@ -499,7 +501,7 @@ function handleResetPasswordResponse(response)
 
 function handleLoginResponse(response)
 {
-	alert("response : "+JSON.stringify(response));
+//	alert("response : "+JSON.stringify(response));
 	$(".overlay").show().delay(100).fadeOut();
 	var action = response.status;
 	var statusdesc = response.statusdesc;
