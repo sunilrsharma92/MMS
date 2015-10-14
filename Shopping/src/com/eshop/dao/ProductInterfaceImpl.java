@@ -159,7 +159,35 @@ public class ProductInterfaceImpl implements ProductInterface
 					break;
 */
 				case 1002:
-
+						try
+						{
+							ps = conn.prepareStatement("select product_name, picture from products");
+							rs = ps.executeQuery();
+							while (rs.next())
+							{
+								JSONObject childjson = new JSONObject();
+								
+//								String productList = "<table><tr><td class='cimg'><img class='cartimgsize' src='" + rs.getString("picture") + "'></td>" 
+//																 + "<td class='cname'>" + rs.getString("product_name") + "</td></tr></table>";
+								
+//								childjson.put("value", rs.getString("product_name"));
+//								childjson.put("label", rs.getString("product_name"));
+								
+								jsonarray.add(rs.getString("product_name"));
+							}
+							
+							parentjson.put("autoCompleteLabel", jsonarray);
+							
+							parentjson = CommonMethodImpl.putSuccessJson(parentjson, 2002);
+							
+							output = parentjson.toString();
+							return output;
+						}
+						catch (Exception e)
+						{
+							e.printStackTrace();
+							mms.writeLogs("ProductInterfaceImpl handleRequestResponse() "+command+" Exception : "+e,0);
+						}
 					break;
 
 				case 1003:

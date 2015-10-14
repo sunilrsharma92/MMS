@@ -1,6 +1,7 @@
 function handleRequest()
 {
 	this.handleCategoryRequest = handleCategoryRequest;
+	this.handleAllProductForAutoCompleteRequest = handleAllProductForAutoCompleteRequest;
 	// this.handleSubCategoryRequest = handleSubCategoryRequest;
 //	this.handleShopProfileDetails = handleShopProfileDetails;
 	this.handleUserDetailsSave = handleUserDetailsSave;
@@ -31,6 +32,24 @@ function handleRequest()
 			console.log("handleRequest     handleCategoryRequest     strjsonMsgForstrmainCategory : " + strjsonMsgForstrmainCategory);
 			handleAllListResponse(strjsonMsgForstrmainCategory);
 
+		}
+		catch (e)
+		{
+			console.log("handleRequest     handleCategoryRequest     Exception :: " + e);
+		}
+	}
+	
+	function handleAllProductForAutoCompleteRequest()
+	{
+		try
+		{
+			var strProduct = {};
+			strProduct.command = 1002;
+			
+			var strjsonMsgForstrstrProduct = JSON.stringify(strProduct);
+			console.log("handleRequest     handleCategoryRequest     strjsonMsgForstrstrProduct : " + strjsonMsgForstrstrProduct);
+			handleAllListResponse(strjsonMsgForstrstrProduct);
+			
 		}
 		catch (e)
 		{

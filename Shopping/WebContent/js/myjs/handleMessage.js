@@ -67,6 +67,17 @@ function handleMainCategoryResponse(response)
 		writeLogAjax("handleMainCategoryResponse :::::: Exception" + e,0);
 	}
 }
+
+function handleProductArrayForAutoCompleteResponse(response)
+{
+	var autoCompleteLabel = response.autoCompleteLabel;
+	alert("response : "+JSON.stringify(response));
+//	localStorage.setItem("response",response)
+	
+	$.session.set("response",response);
+	autocompleteLabel(response);
+}
+
 /*
 function handleShopProfileDetailResponse(response)
 {
@@ -282,7 +293,7 @@ function handleProductDisplayinCartResponse(response)
 
 			+ '<div class="input-group bootstrap-touchspin quantitybtn">' 
 			+ '<span class="input-group-btn">' 
-			+ '<button class="btn btn-default bootstrap-touchspin-down" id="minus' + productid + '" onclick="' + quantityfunctionMinus + '" type="button">-</button></span>' + '<input id="demo' + productid + '" type="text" value="'+quantity+'" name="demo1" class="form-control cartquantity">' + '<span class="input-group-btn">' 
+			+ '<button class="btn btn-default bootstrap-touchspin-down" id="minus' + productid + '" onclick="' + quantityfunctionMinus + '" type="button">-</button></span>' + '<input id="demo' + productid + '" disabled="disabled" type="text" value="'+quantity+'" name="demo1" class="form-control cartquantity">' + '<span class="input-group-btn">' 
 			+ '<button class="btn btn-default bootstrap-touchspin-up" id="add' + productid + '" onclick="' + quantityfunctionAdd + '" type="button">+</button>'
 			+'</span>' 
 			+ '</div>'

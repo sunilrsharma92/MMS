@@ -39,7 +39,7 @@ public class SearchUtility {
  
  public void createIndex() {
   
-  System.out.println("-- Indexing --");
+//  System.out.println("-- Indexing --");
   
   try {
    //JDBC Section
@@ -71,7 +71,7 @@ public class SearchUtility {
     count++;
    }
    
-   System.out.println(count+" record indexed");
+//   System.out.println(count+" record indexed");
    
    //Closing iWriter
    iWriter.optimize(); 
@@ -95,7 +95,7 @@ public class SearchUtility {
 	 JSONArray jsonarray = new JSONArray();
 	 JSONObject parentjson = new JSONObject();
 	 
-  System.out.println("-- Seaching --");
+//  System.out.println("-- Seaching --");
   
   try {
    
@@ -109,17 +109,17 @@ public class SearchUtility {
    
    Query query = mqp.parse(keyword);//search the given keyword
    
-   System.out.println("query >> " + query);
+//   System.out.println("query >> " + query);
    
    TopDocs hits = searcher.search(query, 100); // run the query
    
-   System.out.println("Results found >> " + hits.totalHits);
+//   System.out.println("Results found >> " + hits.totalHits);
    
    for (int i = 0; i < hits.totalHits; i++) 
    {
     Document doc = searcher.doc(hits.scoreDocs[i].doc);//get the next  document
     
-    System.out.println(doc.get("productid")+" "+doc.get("price")+" "+doc.get("stock")+" "+doc.get("prodName")+" "+doc.get("images"));
+//    System.out.println(doc.get("productid")+" "+doc.get("price")+" "+doc.get("stock")+" "+doc.get("prodName")+" "+doc.get("images"));
     
     Long productid = Long.parseLong(doc.get("productid"));
     float price = Float.parseFloat(doc.get("price"));

@@ -7,6 +7,10 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <link rel="stylesheet" href="css/bootstrap.css">
 <link rel="stylesheet" href="css/style1.css">
+
+<!-- <link rel="stylesheet" href="js/autoComplete/css/autoCompleteStyle.css"> -->
+<link rel="stylesheet" href="js/autoComplete/css/jquery-ui.css">
+
 <link rel="stylesheet" href="css/jqx/jqx.base.css">
 <link rel="stylesheet" href="js/jAlert/css/jquery.alerts.css">
 
@@ -21,6 +25,8 @@
 
 <script type="text/javascript" src="js/jquery.validate.min.js"></script>
 <script type="text/javascript" src="js/myjs/validation.js"></script>
+
+<script type="text/javascript" src="js/autoComplete/js/jquery-ui.js"></script><!-- //autocomplete -->
 
 <script type="text/javascript" src="js/myjs/maintainPageStateUsingCookie/maintainPageState.js"></script>
 <script type="text/javascript" src="js/jquery.cookie.js"></script>
