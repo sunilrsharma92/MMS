@@ -64,12 +64,12 @@ button#removesearchbtn {
 	border-top:none;
 	border-left:none;
 	border-right:none;
-	border-bottom:2px solid red;
+	border-bottom:2px solid #AAA;
 }
 .insearch{
 	border:none;
 	background-color:transparent;
-	border-bottom: 2px solid red;
+	border-bottom: 2px solid #AAA;
     padding-bottom: 14px;
     margin-left: -4px;
 }
@@ -245,8 +245,14 @@ tbody{
 	width : 66%;
 	height : 40px;
 	border  : 1px solid gray;
-	border-radius : 4px;
+/* 	border-radius : 4px; */
 	padding-left: 5px;
+/* 	Devendra */
+
+	border-top: none;
+	border-left: none;
+	border-right: none;
+
 }
 
 .mid-cont {
@@ -838,4 +844,37 @@ tbody{
 .remove{
 	color: #FFF;
 	font-size: 40px
+}
+
+.blink_me
+{
+    -webkit-animation-name: blinker;
+    -webkit-animation-duration: 1s;
+    -webkit-animation-timing-function: linear;
+    -webkit-animation-iteration-count: infinite;
+
+    -moz-animation-name: blinker;
+    -moz-animation-duration: 1s;
+    -moz-animation-timing-function: linear;
+    -moz-animation-iteration-count: infinite;
+
+    animation-name: blinker;
+    animation-duration: 1s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;   
+}
+@-moz-keyframes blinker {
+    0% { opacity: 1.0; }
+    50% { opacity: 0.0; }
+    100% { opacity: 1.0; }
+}
+@-webkit-keyframes blinker {
+    0% { opacity: 1.0; }
+    50% { opacity: 0.0; }
+    100% { opacity: 1.0; }
+}
+@keyframes blinker {
+    0% { opacity: 1.0; }
+    50% { opacity: 0.0; }
+    100% { opacity: 1.0; }
 }

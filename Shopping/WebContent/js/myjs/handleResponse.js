@@ -64,6 +64,10 @@ function listResponseHandler(response, command, status)
 					case 2011:
 						handleAddtoCartWithLoginResponse(response);
 						break;
+						
+					case 2012:
+						handleRemoveProductFromCartResponse(response);
+						break;
 
 					case 2003:
 						handleProductDisplayResponse(response);
