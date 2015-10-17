@@ -799,7 +799,8 @@ tbody{
 /*Loading Inage*/
 
 #loading-img {
-    background: url(../loader_img/load.gif) center center no-repeat;
+    background: url(../loader_img/LoadingNew.gif) center center no-repeat;
+/*     background: url(../loader_img/load.gif) center center no-repeat; */
 /*     background: url(https://goo.gl/photos/D1uwSqvhgVwdeAQXA) center center no-repeat; */
     height: 100%;
 /*     z-index: 20; */

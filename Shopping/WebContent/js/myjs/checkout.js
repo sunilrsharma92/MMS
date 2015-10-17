@@ -177,7 +177,7 @@ catch (e) {
 		var address = "";
 		
 		var ammount = $("#totalpurchaseOnCheckout").text();
-		if(ammount == "Total Price : Rs 0.00 ")
+		if(ammount == "Total Price : Rs 0.00 " || ammount == "Total Price : Rs 0 " || ammount == "Total Price : Rs 0.0 ")
 			{
 				jAlert('Your cart is empty, Add product in cart to proceed further', 'Message');
 				$("#conformOrder").attr('data-toggle','');
@@ -197,8 +197,8 @@ catch (e) {
 						}
 					
 				}
-//				alert("totalammount : "+totalammount+" address : "+address);
-				jAlert("Order Successful");
+				alert("totalammount : "+totalammount+" address : "+address);
+//				jAlert("Order Successful");
 				
 				$.cookie('key', null);
 			}
