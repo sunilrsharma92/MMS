@@ -71,8 +71,13 @@ try
 									}
 								else
 									{
-										$("#addresstable1").show();
-										document.getElementById("addresstable1").style.display = 'block';
+										document.getElementById("newadd").checked = true;
+										$("#displayExistAddress").empty();
+										document.getElementById("displayExistAddress").innerHTML = 'No address found.';
+										
+										$("#newadd").trigger('click');
+//										$("#addresstable1").show();
+//										document.getElementById("addresstable1").style.display = 'block';
 									}
 							}
 					}, 500);
@@ -113,14 +118,16 @@ try
 			}
 		else
 			{
-				$("#addresstable1").show();
+//				$("#addresstable1").show();
+				$("#displayExistAddress").show();
+//				$("#newadd").trigger('click');
 			}
 	});
 	
 	$(".2nd_next").click(function(){
 		
 		$.session.set('checkout','checkout');
-		getProductfromCookie("prod");
+		checklogin();
 		
 	});
 
@@ -170,7 +177,7 @@ catch (e) {
 		var address = "";
 		
 		var ammount = $("#totalpurchaseOnCheckout").text();
-		if(ammount == "Total Price : Rs 0.00 ")
+		if(ammount == "Total Price : Rs 0.00 " || ammount == "Total Price : Rs 0 " || ammount == "Total Price : Rs 0.0 ")
 			{
 				jAlert('Your cart is empty, Add product in cart to proceed further', 'Message');
 				$("#conformOrder").attr('data-toggle','');
@@ -190,8 +197,8 @@ catch (e) {
 						}
 					
 				}
-//				alert("totalammount : "+totalammount+" address : "+address);
-				jAlert("Order Successful");
+				alert("totalammount : "+totalammount+" address : "+address);
+//				jAlert("Order Successful");
 				
 				$.cookie('key', null);
 			}
@@ -236,6 +243,7 @@ catch (e) {
 					if(txtareaAddress != "" && txtareaAddress != null && txtareaAddress.length != 0)
 						{
 						$(".2nd_next").attr('data-toggle','collapse');
+						
 						/*jConfirm('Address : '+txtareaAddress, 'Message',function(e){
 							if(e == true)
 								{
@@ -253,6 +261,7 @@ catch (e) {
 						{
 							jAlert('Please select atleast one address or add a new address','Message');
 							$("#nextAccordion1").attr('data-toggle','');
+
 							return false;
 						}
 				
@@ -268,6 +277,7 @@ catch (e) {
 					if(newAddress != "" && newAddress != null && newAddress.length != 0)
 					{
 						$("#newaddressnbtn").attr('data-toggle','collapse');
+						checklogin();
 						return true;
 					}
 					else
@@ -280,4 +290,22 @@ catch (e) {
 			
 			}
 		
+	}
+	
+	function checklogin()
+	{
+		var loginData = $.session.get('loginData');
+
+		if(loginData != null)
+		{
+			var sessionData = JSON.parse(loginData);
+			var userid = sessionData.key;
+			var userType = sessionData.userType;
+			$.session.set('checkout','checkout');
+			objhandleRequest.handledisplayProductinCart("", "withlogin", userid, userType);
+		}
+		else
+		{
+			getProductfromCookie("prod");
+		}
 	}

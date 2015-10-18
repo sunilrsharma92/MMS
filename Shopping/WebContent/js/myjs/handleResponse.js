@@ -52,6 +52,10 @@ function listResponseHandler(response, command, status)
 					case 2001:
 //						handleShopProfileDetailResponse(response);
 						break;
+						
+					case 2002:
+						handleProductArrayForAutoCompleteResponse(response);
+						break;
 
 					case 2010:
 						handleShopProfDispResponse(response);
@@ -59,6 +63,10 @@ function listResponseHandler(response, command, status)
 						
 					case 2011:
 						handleAddtoCartWithLoginResponse(response);
+						break;
+						
+					case 2012:
+						handleRemoveProductFromCartResponse(response);
 						break;
 
 					case 2003:

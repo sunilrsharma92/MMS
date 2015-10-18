@@ -79,14 +79,14 @@
 								</div>
 								</div>
 								
-								<div id="addresstable1" style="display: none;">
+								<!-- <div id="addresstable1" style="display: none;">
 								<table>
 									<tr><td>Address 1:</td><td><input type="text" id="address1Save" class="textbox" name="name"></td></tr>
 									<tr><td>Address 2:</td><td><input type="text" id="address2Save" class="textbox" name="name"></td></tr>
 									<tr><td>Street name:</td><td><input type="text" id="streetSave" class="textbox" name="name"></td></tr>
 									<tr><td>State:</td>
 										<td>
-											<!-- <input type="text" class="textbox" name="name"></td></tr> -->
+											<input type="text" class="textbox" name="name"></td></tr>
 											<select class="form-control textbox" id="stateSave" placeholder="select state">
 												<option value="one">Select State</option>
 												<option value="one">Andhra Pradesh</option>
@@ -124,17 +124,17 @@
 									</tr>
 									<tr><td>City:</td><td><input type="text" id="citySave" class="textbox" name="name"></td></tr>
 									<tr><td>Pincode:</td><td><input type="text" id="pincodeSave" class="textbox" name="name"></td></tr>
-									<!-- <tr><td>Email Address:</td><td><input type="text" class="textbox" name="name"></td></tr> -->
+									<tr><td>Email Address:</td><td><input type="text" class="textbox" name="name"></td></tr>
 									<tr><td></td><td><button type="button" class="btn btn-primary" onclick="saveUserDetails()">Save Changes</button></td></tr>
 								</table>
-								</div>
+								</div> -->
 								
 							</div>
 							
 <!-- 							<div class="space"></div> -->
 							
 							<div class="alignleft">
-								<label><input type="radio" id="newadd" value="two" name="optradio"> New Address</label>
+								<label id="newaddlabel"><input type="radio" id="newadd" value="two" name="optradio"> New Address</label>
 								<div class="pull-right data" style="display: none;">
 <!-- 									<a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" class="btn btn-primary " id="ckaddcont">Pre</a> -->
 									<a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" onclick="proceed('newaddress');" class="btn btn-primary" id="newaddressnbtn">Next</a>

@@ -1,6 +1,7 @@
 function handleRequest()
 {
 	this.handleCategoryRequest = handleCategoryRequest;
+	this.handleAllProductForAutoCompleteRequest = handleAllProductForAutoCompleteRequest;
 	// this.handleSubCategoryRequest = handleSubCategoryRequest;
 //	this.handleShopProfileDetails = handleShopProfileDetails;
 	this.handleUserDetailsSave = handleUserDetailsSave;
@@ -16,6 +17,7 @@ function handleRequest()
 	this.getUserAddressfromShippingaddress = getUserAddressfromShippingaddress;
 	this.handleUpdateProfilePic = handleUpdateProfilePic;
 	this.aadToCartForLoggedUser = aadToCartForLoggedUser;
+	this.removeFromCart = removeFromCart;
 
 	// ****** This function is used to get all main product category ******//
 	function handleCategoryRequest()
@@ -31,6 +33,24 @@ function handleRequest()
 			console.log("handleRequest     handleCategoryRequest     strjsonMsgForstrmainCategory : " + strjsonMsgForstrmainCategory);
 			handleAllListResponse(strjsonMsgForstrmainCategory);
 
+		}
+		catch (e)
+		{
+			console.log("handleRequest     handleCategoryRequest     Exception :: " + e);
+		}
+	}
+	
+	function handleAllProductForAutoCompleteRequest()
+	{
+		try
+		{
+			var strProduct = {};
+			strProduct.command = 1002;
+			
+			var strjsonMsgForstrstrProduct = JSON.stringify(strProduct);
+			console.log("handleRequest     handleCategoryRequest     strjsonMsgForstrstrProduct : " + strjsonMsgForstrstrProduct);
+			handleAllListResponse(strjsonMsgForstrstrProduct);
+			
 		}
 		catch (e)
 		{
@@ -329,6 +349,28 @@ function handleRequest()
 		catch (e)
 		{
 			console.log("handleRequest     aadToCartForLoggedUser     Exception :: " + e);
+		}
+	}
+	
+	function removeFromCart(userid, userType, productid, authorisedUser)
+	{
+		try
+		{
+			var strremoveFromCart = {};
+			strremoveFromCart.userid = +userid;
+			strremoveFromCart.userType = userType;
+			strremoveFromCart.productid = +productid;
+			strremoveFromCart.authoriseduser = authorisedUser;
+			strremoveFromCart.command = 1012;
+			
+			var strjsonMsgForremoveFromCart = JSON.stringify(strremoveFromCart);
+			console.log("handleRequest     removeFromCartForLoggedUser  : " + strjsonMsgForremoveFromCart);
+			handleAllListResponse(strjsonMsgForremoveFromCart);
+			
+		}
+		catch (e)
+		{
+			console.log("handleRequest     removeFromCartForLoggedUser     Exception :: " + e);
 		}
 	}
 	

@@ -67,6 +67,17 @@ function handleMainCategoryResponse(response)
 		writeLogAjax("handleMainCategoryResponse :::::: Exception" + e,0);
 	}
 }
+
+function handleProductArrayForAutoCompleteResponse(response)
+{
+	var autoCompleteLabel = response.autoCompleteLabel;
+//	alert("response : "+JSON.stringify(response));
+//	localStorage.setItem("response",response)
+	
+	$.session.set("response",response);
+	autocompleteLabel(response);
+}
+
 /*
 function handleShopProfileDetailResponse(response)
 {
@@ -221,7 +232,7 @@ function handleProductDisplayResponse(response)
 				document.getElementById("productCountOnCart").innerHTML = count;
 				document.getElementById("productCountOnCart1").innerHTML = count;
 				$.session.set("itemsinCart",count);
-				alert(count);
+//				alert(count);
 			}
 		else
 			{
@@ -251,6 +262,25 @@ function handleAddtoCartWithLoginResponse(response)
 	$.session.set("itemsinCart",itemsinCart);
 }
 
+function handleRemoveProductFromCartResponse(response)
+{
+	console.log("handleRemoveProductFromCartResponse : "+JSON.stringify(response));
+	var loginData = $.session.get('loginData');
+
+	if(loginData != null)
+	{
+		var sessionData = JSON.parse(loginData);
+		var userid = sessionData.key;
+		var userType = sessionData.userType;
+		$.session.set('removeProduct',"removeProduct");
+		objhandleRequest.handledisplayProductinCart("", "withlogin", userid, userType);
+	}
+	else
+	{
+		getProductfromCookie("prod");
+	}
+}
+
 function handleProductDisplayinCartResponse(response)
 {
 	try
@@ -273,7 +303,13 @@ function handleProductDisplayinCartResponse(response)
 			var stock = product[i].stock;
 			var prodName = product[i].prodName;
 			var images = product[i].images;
-			total = total + price;
+			var quantity = product[i].quantity;
+			total = total + (price*quantity);
+			
+//			if(total == 0)
+//				{
+//				 total = "0.00";
+//				}
 			var quantityfunctionAdd = "quantity('demo" + productid + "','add','"+price+"','"+productid+"');"
 			var quantityfunctionMinus = "quantity('demo" + productid + "','minus','"+price+"','"+productid+"');"
 			
@@ -281,7 +317,8 @@ function handleProductDisplayinCartResponse(response)
 
 			+ '<div class="input-group bootstrap-touchspin quantitybtn">' 
 			+ '<span class="input-group-btn">' 
-			+ '<button class="btn btn-default bootstrap-touchspin-down" id="minus' + productid + '" onclick="' + quantityfunctionMinus + '" type="button">-</button></span>' + '<input id="demo' + productid + '" type="text" value="1" name="demo1" class="form-control cartquantity">' + '<span class="input-group-btn">' 
+//			+ '<button class="btn btn-default bootstrap-touchspin-down" id="minus' + productid + '" onclick="' + quantityfunctionMinus + '" type="button">-</button></span>' + '<input id="demo' + productid + '" onkeyup="' + quantityfunctionMinus + '" onfocus="storeoldvalue(this);" type="text" value="'+quantity+'" name="demo1" class="form-control cartquantity">' + '<span class="input-group-btn">' 
+			+ '<button class="btn btn-default bootstrap-touchspin-down" id="minus' + productid + '" onclick="' + quantityfunctionMinus + '" type="button">-</button></span>' + '<input id="demo' + productid + '" type="text" disabled="disabled" value="'+quantity+'" name="demo1" class="form-control cartquantity">' + '<span class="input-group-btn">' 
 			+ '<button class="btn btn-default bootstrap-touchspin-up" id="add' + productid + '" onclick="' + quantityfunctionAdd + '" type="button">+</button>'
 			+'</span>' 
 			+ '</div>'
@@ -304,12 +341,23 @@ function handleProductDisplayinCartResponse(response)
 		
 		$("#totalcartAmmounthidden").val(total);
 		
+		var removeProduct = $.session.get('removeProduct');
+		if(removeProduct == "removeProduct")
+			{
+				$(".productCountOnCart").empty();
+				document.getElementById("productCountOnCart").innerHTML = count;
+				document.getElementById("productCountOnCart1").innerHTML = count;
+				$.session.set('removeProduct',"");
+			}
+		
+		
 		var checkout = $.session.get('checkout');
+//		alert(checkout);
 		if(checkout !=null && checkout !=="" && checkout == "checkout")
 			{
 			
 				appendProducttoCheckoutTable(productList, totalpurchase, total, count);
-				$.session.remove('checkout');
+//				$.session.remove('checkout');
 			}
 		
 	}
@@ -499,7 +547,7 @@ function handleResetPasswordResponse(response)
 
 function handleLoginResponse(response)
 {
-	alert("response : "+JSON.stringify(response));
+//	alert("response : "+JSON.stringify(response));
 	$(".overlay").show().delay(100).fadeOut();
 	var action = response.status;
 	var statusdesc = response.statusdesc;

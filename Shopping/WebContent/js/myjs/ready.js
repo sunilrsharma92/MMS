@@ -4,7 +4,7 @@
 //*************************** Document ready function starts from here ***********************************
 var action = "";
 var arrayofProduct = [];
-
+var datalabel = "";
 $(document).ready(function(){
 //*******************************************************************************************************************
 	$.session.set('viewprod','');
@@ -37,8 +37,7 @@ $(document).ready(function(){
 	
 	$('#userType').jqxSwitchButton({ height: 27, width: 81, checked: true });
 
-//*******************************************************************************************************************	
-
+//*****************************************************AutoComplete**************************************************************	
 //	 -- check session to put login drop down
 	var loginData = $.session.get('loginData');
 //	var userType = $.session.get('userType');
@@ -168,6 +167,7 @@ $(document).ready(function(){
 //***********Request for all product category ************************************************************************
 
 	objhandleRequest.handleCategoryRequest();
+	objhandleRequest.handleAllProductForAutoCompleteRequest();
 
 //*********************** END ************************************************************************************
 		
@@ -244,15 +244,46 @@ $('#checkout').click(function(){
 //	getCustOfflineDetails();
 });
 
+//*****************************************************AutoComplete**************************************************************	
 
-$("#search").keypress(function(e) 
+
+//var data =  ["Vaseline - Aloe Lotion","Vaseline - Total Moisturizing Lotion","Vaseline - Cocoa Glow Lotion","Vaseline - Total Moisturizing Lotion","Vaseline - Healthy White Triple Lightening Sp...","Emami - Fair & Handsome","Vaseline - Healthy White Lotion","Fair & Lovely - Ayurvedic Cream","Fair & Lovely - Max Fairness For Men","Vicco - Turmeric Skin Cream","Vicco - Narayani Cream","Vlcc - Matte Look Sun Screen Lotion Spf 30","Vlcc - Silver Single Facial Kit","Vlcc - Sweat Free Sun Block Lotion Spf 40","Vaseline - Aloevera Fresh Body Lotion","Vaseline - Healthy White Complete 10","Santoor - Body Lotion Intensive Moisturizer","Biotique - Skincare Oil","Biotique - Clove Anti Blemish Face Pack","Garnier - Wrinkle Lift Cream","Garnier - Fair Miracle Cream","Olay - 3in1 Natural White Fairness Cream","Veet - Natural Normal Skin","Vlcc - Skin White Day Cream Spf 25","Lakme - Radiance Fairness Day Cream","Fair & Lovely - Multi Vitamin Pum Spf 15","Joy - Skin Fruits Active Fruit Moisturizing M...","L'Oreal Paris - Perfect Skin 30+ Day Cream","L'Oreal Paris - Perfect Skin 20+ Day Cream","Neutrogena - Ultra Sheer Body Mist","Olay Regenerist - Wrinkle Revolution Complex","Vlcc - Anti Tan Facial Kit","Vlcc - Papaya Fruit Facial Kit","Garnier - Men Acno Whitening Cream","Nivea - Argan Nourish Body Lotion","Nivea - Cocoa Nourish Body Lotion","Nivea - Q10 Firming Lotion","Lakme - Complexion Care Cream Bronze","Lakme - Youth Infinity Day Creme","Veet - Hair Removal Cream For Dry Skin","Fem - Gold Bleach","Bigen - Speedy Brownish Black","Veet - Hibiscus Sensitive Skin","Veet - Hibiscus Supreme Essence","Vlcc - Instant Glow Facial Kit","Vlcc - Gold Bleach","Vlcc - Shape Up Slimming Oil","Vlcc - Pearl Fairness Facial Kit","Vlcc - Diamond Facial Kit Single","Vlcc - Gold Facial Kit Single","Godrej - Hair Colour Original Black Sachet","Bigen - Natural Hair Color N4 Brown","Vlcc - Daily Protect Lip Balm Strawberry","Vlcc - Pedicure & Manicure Kit","Garnier - Color Natural No 5 Light Brown","L'Oreal Paris - Casting Cream Gloss Black Che...","Garnier Men - Colour Naturals Hair Colour Bur...","Bigen Mens - Beard Colour Brown Black No.10","Revlon - Colorsilk Deep Burgundy 3db","Revlon - Colorsilk Dark Brown 3n","Revlon - Color & Cream Natural Black 1n","Revlon - Color & Cream Darkest Brown 3n","Revlon - Color & Cream Black Brown 2n","Revlon - Top Speed - Natural Black 1","Revlon - Top Speed - Brown Black 2","Bigen Mens - Speedy Natural Black N101","Bigen Easy Natural - Black Hair Color N1","Bigen Easy Natural - Brown Hair Color N3","Bigen - Black Brown N20 Hair Color Powder","Bigen - Oriental Black N10 Hair Color Powder","Nupur - Mehendi","Fem - Oxy Life Bleach","Garnier - Colour Naturals Hair Colour Black N...","Garnier - Colour Naturals Hair Colour Darkest...","Garnier - Colour Naturals Hair Colour Burgund...","Garnier - Colour Naturals Hair Colour Brown N...","Maybelline - Colossal Kajal","L'Oreal Paris - Casting Cream Gloss Ebony Bla...","L'Oreal Paris - Casting Cream Gloss Dark Brow...","Adidas - Team Force Deo","Nycil - Talcum Cool Herbal Powder","Yardley - English Lavender Deo","Yardley - English Rose Deo","Yardley - English Rose Talc","Yardley - Gentleman Deo Spray","Yardley - Gentleman Talc","Yardley - Deo Lace","Wildstone - Forest Spice Deo","Wildstone - Hydra Energy Talc","Wildstone - Ultra Sensual Talcum Powder","Spinz - Exotic Talcum Powder","Yardley - English Lavender Talcum Powder","Yardley - Gold Legend Men Deo","Yardley - Gold Men Deo","Yardley - Gold Elegance Men Deo","Yardley - Gold Talcum Powder","Yardley - Lace Satin Deo","Yardley - Morning Dew Deo","Yardley - Red Rose Talcum Powder","Dermi Cool - Prickly Powder Lavender","He - Recharge Deo","He - Ruler Deo","Provogue - Dark Affairs Deo","Provogue - Power Play Deo","Provogue - Swagger Deo","Provogue - Devour Deo","Provogue - Wild Desire Deo","Yardley - London Mist Doe","He - Confident Deo","Yardley - Women London Mist Deo","He - Extrovert Deo","He - Magician Deo","He - Smart Deo","Engage Man - Intensity Deo","Engage Man - Fuzz Deo","Engage Man - Jump Deo","Engage Man - Frost Deo","Engage Women - O'Whiff Deo","Engage Women - Tempt Deo","Dabur - Gulabari (Rose Water)","Lakme - Strawberry Silk Face Wash","Neutrogena - Deep Clean Facial Cleanser","Himalaya - Fairness Kesar Face Wash","Himalaya - Oil Clear Lemon Face Wash","Himalaya - Purifying Neem Facewash","Clean & Clear - Morning Energy Face Wash - Le...","Lotus Herbals - Berry Scrub Face Wash","Vlcc - Barberry Scrub","Himalaya - Gentle Exfoliating Walnut Scrub","Nivea - All In 1 Face Wash","Olay - Natural White Cleanser","Biotique - Neem Face Wash","Garnier - Pure Active Scrub","Nivea For Men - Oil Control Moisturizer","Biotique - Walnut Purify & Polish Scrub","Vlcc - Anti Tan Single Facial Kit","Biotique - Neem Face Wash","Garnier - Pure Active Scrub","Nivea For Men - Oil Control Moisturizer","Biotique - Walnut Purify & Polish Scrub","Vlcc - Anti Tan Single Facial Kit","Vlcc - Fruit Facial Kit Single","Vlcc - Diamond Polish Face Scrub","Emami - Fair And Handsome Face Wash","Fair & Lovely - Pimple Off Fairness Face Wash","Joy - Pure Neem Face Wash","Joy - Skin Fruits Face Wash Lemon","Joy - Skin Fruits Face Wash Apple","Olay - Total Effect Normal Uv","Pond's - Complete Solution Pimple Clear Face ...","Fair & Lovely - Advance Multi Vitamin Cream","Biotique - Whitening Facewash","Clean & Clear - Pimple Clearing Facewash","Godrej No .1 - Nature White Facewash","L'Oreal Paris - Perfect Skin 20+ Face Wash","L'Oreal Paris - Perfect Skin 30+ Face Wash","Clean & Clear - Moisturer","Dabur - Gulabari Lotion","Parachute - Advanced Hair Oil","Parachute - Coconut Hair Oil","Tresemme - Hair Spa Shampoo","Himalaya - Anti Dandruff Shampoo","Himalaya - Anti Hairfall Shampoo","Himalaya - Protein Shampoo Gentle Daily Care","Tresemme - Climate Protection Conditioner","Tresemme - Climate Protection Shampoo","Tresemme - Hair Fall Defense Shampoo","Tresemme - Smooth & Shiney Shampoo","Tresemme - Hair Fall Control Conditioner","Mediker - Plus Anti Lice Coconut Oil","Colgate Plax - Peppermint Mouthwash","Oral-B - Pro Health Gum Care Medium","Colgate - Active Salt Tooth Paste","Close Up - Fire Freeze Toothpaste","Colgate - 360 Degree Surround Toothbrush","Colgate - Sensitive Toothpaste","Himalaya - Complete Care Tothpaste","Gillette - Gel Sensitive Skin","Gillette - Pressto Razor","Yardley - Gold Original Shaving Cream","Yardley - Gold Elegance After Shave Lotion","MACH3 RAZOR + REGULAR FOAM 196GM + TRAVEL PACK (TRAVEL POUCH) ","Gillette - Venus Gift Pack","Supermax - Swift Rc Razor","7'O Clock - P-Ii Cartridge","Premium - Eau De Cologne Regular","Gillette - Fusion Hydra Gel Sensitive Skin","Gillette - Fusion Power Razor","Gillette - Mach3 Turbo Razor","Kamasutra - Shaving Foam Spark + On Combo","Kamasutra - Shaving Foam Spark + Urge Combo","Supermax - Swift Cartridge","Supermax - Swift Razor","Supermax - Vidyut Blade","Gillette - Series Pure & Sensitive Foam","Gillette - Mach 3 Irritation Defence Foam","Gillette - Mach 3 Irritation Defence Gel","Gillette - Satin Care Shaving Gel","Old Spice - After Shave Automiser Original","Park Avenue - Shave Gel","Nivea For Men - After Shave Balm Fresh Active","Nivea - Mens Grooming Kit","Camay - Soap Natural White","Dettol - Cool Soap","Dettol - Original Soap","Dettol - Skin Care Soap","Fiama Di Wills - Aqua Pulse Shower Gel","Lifebuoy - Care Soap","Lifebuoy - Nature Soap","Lux - Fresh Splash Soap","Lux - Soft Touch Soap","Pears - Germ Shield Soap","Pears - Oil Control Soap","Pears - Pure & Gentle Soap","Lifebuoy - Total 10 Hand Wash","Dettol - Sensitive Handwash","Fiama Di Wills - Exoctic Dream Shower Gel","Fem - Blossom Liquid Hand Wash","Dettol - Skincare Handwash Refill Pouch","Santoor - Soap","Himalaya - Neem & Turmeric Soap","Medimix - Sandal Soap","Godrej No .1 - Sandal & Turmeric Soap","Cinthol - Strong Germ Protection Soap","Santoor - Hand Wash Essential Oil","Tetmosol - Medicated Soap","Moti - Gulabari Soap","Fiama Di Wills - Clear Springs Shower Gel","Liril 2000 - Soap","Vivel - Aloevera Soap","Yardley - English Lavender Soap","Yardley - Sandalwood Soap","Vivel - Mixed Fruit + Cream Soap","Godrej - Fairglow Regular Soap","Godrej No .1 - Saffron & Milk Soap","Camay - Chic Soap","Lifebuoy - Handwash Nature Pump","Fiama Di Wills - La Fantasia Gel Soap","Fiama Di Wills - Reo Splash Gel Bathing Bar S...","Vivel - Green Tea Soap","Chandrika - Soap","Fiama Di Wills - Exotic Dream Soap","Lifebuoy - Care Fresh Soap","Mysore Sandal - Gold Soap","Khadi Herbal - Lemon Soap","Khadi Herbal - Honey & Mix Fruit Soap","Khadi Herbal - Sandal Soap","Khadi Herbal - Neem Tulsi Soap","Pears - Soft & Fresh Soap","Vivel - Mixed Fruit Soap","Soulflower - Heart Bath Set With Lavender","Soulflower - Heart Bath Set With Rose","Soulflower - Heart Bath Set With Jasmine","Dermi Cool - Soap","Dettol - Re-Energize Handwash","Dettol - Cool Handwash","Fiama Di Wills - Patchouli & Macadamia Gel Ba...","Moti - Luxury Bath Sandal Soap","Palmolive - Ayurituel Joyous Shower Gel","Liril 2000 - Tea Tree Oil Soap","Cinthol - Confidence+","Diversey - Soft Care Enhance Handwash","Loading more products..."];
+
+try
 {
-    if(e.which == 13) 
-    {
-//        alert('You pressed enter!');
-        searchProduct();
-    }
+$("#search").keyup(function(e){
+//	alert("Data Label : "+JSON.stringify(datalabel));
+	var label = datalabel.autoCompleteLabel;
+//	alert("Label : "+JSON.stringify(label));
+	$("#search").autocomplete({
+	source : label,
+
+	select : function(event, ui)
+	{
+		var text = ui.item.label;
+//		alert("Text : " + text);
+		searchProduct();
+	}
+
+	});
 });
+
+	$("#search").keypress(function(e)
+	{
+		if(e.which == 13)
+		{
+//			alert("Text : " + $("#search").val());
+			searchProduct();
+		}
+	});
+}
+catch(e)
+{
+console.log("Exception in auto complete : "+e);	
+}
+// ***************************************************AutoComplete****************************************************************
+
+
 
 $("#passLoginTemp").keypress(function(e) 
 {
@@ -300,6 +331,11 @@ function getIntDataFromSession(requestedValue)
 	console.log("getIntDataFromSession responseVal : " + responseVal + "  email : " + email);
 	return responseVal;
 }*/
+
+function autocompleteLabel(data)
+{
+	datalabel = data;
+}
 
 function loadProductViewPage(id)
 {
@@ -358,7 +394,22 @@ function loadPage(id)
 	if(vid == "checkout")
 		{
 			$.session.set('checkout','checkout');
-			getProductfromCookie("prod");
+			
+			var loginData = $.session.get('loginData');
+
+			if(loginData != null)
+			{
+				var sessionData = JSON.parse(loginData);
+				var userid = sessionData.key;
+				var userType = sessionData.userType;
+				$.session.set('checkout','checkout');
+				objhandleRequest.handledisplayProductinCart("", "withlogin", userid, userType);
+			}
+			else
+			{
+				getProductfromCookie("prod");
+			}
+			
 		}
 	
 //	var pageState = $.cookie("pageState");
@@ -599,16 +650,19 @@ function signUp()
 	writeLogAjax("passSignUp" + passSignUp +"mobileKey" + mobileKey	+ "emailKey" + emailKey + "userType" + userType,1);
 	
 //	return false;
+	$("#userType").addClass('blink_me');
 	var result = jConfirm("Are you sure you want to register as "+userType,"Make My Shopy",function(e)
 	{
 		if(e)
 		{
+			$("#userType").removeClass('blink_me');
 			$(".overlay").show();
 			objhandleRequest.handleRegisteration(passSignUp, mobileKey, emailKey, userType);
 			return true;
 		}
 		else
 		{
+			$("#userType").removeClass('blink_me');
 			return false;
 		}
 	});
@@ -827,7 +881,7 @@ function addproducttoCArt(productid)
 		document.getElementById("btn"+productid).disabled = true;
 		
 		
-		objhandleRequest.aadToCartForLoggedUser(0, "", productid, "unauthorised", 1, "add");
+//		objhandleRequest.aadToCartForLoggedUser(0, "", productid, "unauthorised", 1, "add");
 		
 	}
 			
@@ -889,56 +943,72 @@ function viewProduct(images, prodName, price, stockvalue,productid ,stockcrtbtn)
 
 function removeproductfromCArt(id)
 {
-	var gotCookies = $.cookie("key");
-	try
-		{
-	var gotCookiesArray = JSON.parse(gotCookies);
-	
-	if(gotCookiesArray == "" || gotCookiesArray == null)
-		{
-			$(".productCountOnCart").empty();
-			document.getElementById("productCountOnCart").innerHTML="0";
-			document.getElementById("productCountOnCart1").innerHTML="0";
-		}
-//	console.log("getcookies()   JSON.parse(a)   : "+gotCookiesArray);
-	arrayofProduct = [];
-	for(var i in gotCookiesArray)
-		{
-			var productIdfromCookie = gotCookiesArray[i];
-			if(id!=productIdfromCookie)
-				{
-					arrayofProduct.push([ productIdfromCookie ]);
-				}
-			else
-				{
-//					alert("Delete : "+id);
-				}
-			
-		}
-	$.cookie('key',JSON.stringify(arrayofProduct));
-	
-	
-	var pageState = $.session.get('pageState');
-	if(pageState == "checkout")
+try
+  {
+	var loginData = $.session.get('loginData');
+	if (loginData != null)
 	{
-		$.session.set('checkout','checkout');
-		getProductfromCookie("prod");
-	}
-	
-	
-	getProductfromCookie("prod");
-	
-	var viewprod = $.session.get('viewprod');
-	if(viewprod == "viewprod")
-	{
-		enablebtn(id);
-	}
-	
+		var sessionData = JSON.parse(loginData);
+		var userid = sessionData.key;
+		var userType = sessionData.userType;
+		
+		objhandleRequest.removeFromCart(userid, userType, id, "authoriseduser");
+		
 		document.getElementById("ok"+id).style.display = "none";
 		document.getElementById("btn"+id).disabled = false;
+	}
+	else
+    {
+		var gotCookies = $.cookie("key");
+		
+		var gotCookiesArray = JSON.parse(gotCookies);
+		
+		if(gotCookiesArray == "" || gotCookiesArray == null)
+			{
+				$(".productCountOnCart").empty();
+				document.getElementById("productCountOnCart").innerHTML="0";
+				document.getElementById("productCountOnCart1").innerHTML="0";
+			}
+	//	console.log("getcookies()   JSON.parse(a)   : "+gotCookiesArray);
+		arrayofProduct = [];
+		for(var i in gotCookiesArray)
+			{
+				var productIdfromCookie = gotCookiesArray[i];
+				if(id!=productIdfromCookie)
+					{
+						arrayofProduct.push([ productIdfromCookie ]);
+					}
+				else
+					{
+	//					alert("Delete : "+id);
+					}
+				
+			}
+		$.cookie('key',JSON.stringify(arrayofProduct));
 		
 		
+		var pageState = $.session.get('pageState');
+		if(pageState == "checkout")
+		{
+			$.session.set('checkout','checkout');
+			getProductfromCookie("prod");
+		}
 		
+		
+		getProductfromCookie("prod");
+		
+		var viewprod = $.session.get('viewprod');
+		if(viewprod == "viewprod")
+		{
+			enablebtn(id);
+		}
+		
+			document.getElementById("ok"+id).style.display = "none";
+			document.getElementById("btn"+id).disabled = false;
+			
+			
+			
+   }
 		}
 	catch (e)
 	{
@@ -980,11 +1050,37 @@ function callAlerts(msg)
 //	$("#"+id).css('border-color','red');
 //}
 
+//var no = 0;
+//function storeoldvalue(txtboxid)
+//{
+//	no = $(txtboxid).val();
+//	console.log("Number : "+no);
+//}
+
 function quantity(txtboxid, action, price, productid)
 {
 	var totalcartAmmount = $("#totalcartAmmounthidden").val();
 	var val = parseInt($("#"+txtboxid).val());
-
+////	alert("1 : "+val);
+//	if(no == "" || no == "0" || no == "NaN")
+//		{
+////			alert("hii");
+//			return false;
+//		}
+//	if(parseInt(no) < val)
+//	{
+//		console.log("no less");
+////		action = "add"
+//		action = "add";
+//	}
+//	
+//	if(parseInt(no) > val)
+//	{
+//		console.log("no greater");
+////		action = "minus"
+//		action = "minus";
+//	}
+	
 			var total = 0;
 			if(action == "add")
 			{
@@ -1005,7 +1101,7 @@ function quantity(txtboxid, action, price, productid)
 				$("#totalpurchase").empty();
 				$("#totalpurchase").append("Total Price : Rs "+NewcartAmmount);
 			    $("#totalcartAmmounthidden").val(NewcartAmmount);
-			    
+			    managetotalprice(NewcartAmmount);
 			    console.log("old cart ammount : "+totalcartAmmount+" Old quantity : "+val+" New quantity : "+total+" oldpricePerProduct : "+price*val+" newpricePerProduct : "+price*total+" cartAmmount : "+cartAmmount+" NewcartAmmount : "+NewcartAmmount);
 			    writeLogAjax("old cart ammount : "+totalcartAmmount+" Old quantity : "+val+" New quantity : "+total+" oldpricePerProduct : "+price*val+" newpricePerProduct : "+price*total+" cartAmmount : "+cartAmmount+" NewcartAmmount : "+NewcartAmmount, 1);
 			    
@@ -1030,7 +1126,7 @@ function quantity(txtboxid, action, price, productid)
 		    			$("#totalpurchase").empty();
 		    			$("#totalpurchase").append("Total Price : Rs "+NewcartAmmount);
 		    		    $("#totalcartAmmounthidden").val(NewcartAmmount);
-		    		    
+		    		    managetotalprice(NewcartAmmount);
 		    		    console.log("old cart ammount : "+totalcartAmmount+" Old quantity : "+val+" New quantity : "+total+" oldpricePerProduct : "+price*val+" newpricePerProduct : "+price*total+" cartAmmount : "+cartAmmount+" NewcartAmmount : "+NewcartAmmount);
 		    		    writeLogAjax("old cart ammount : "+totalcartAmmount+" Old quantity : "+val+" New quantity : "+total+" oldpricePerProduct : "+price*val+" newpricePerProduct : "+price*total+" cartAmmount : "+cartAmmount+" NewcartAmmount : "+NewcartAmmount, 1);
 		    		    
@@ -1058,6 +1154,33 @@ function quantity(txtboxid, action, price, productid)
 //		}
 }
 
+function managetotalprice(NewcartAmmount)
+{
+	var checkout = $.session.get('checkout');
+	if(checkout !=null && checkout !=="" && checkout == "checkout")
+		{
+			var loginData = $.session.get('loginData');
+			if(loginData != null)
+			{
+				var sessionData = JSON.parse(loginData);
+				var userid = sessionData.key;
+				var userType = sessionData.userType;
+				$.session.set('checkout','checkout');
+				objhandleRequest.handledisplayProductinCart("", "withlogin", userid, userType);
+			}
+			else
+			{
+				getProductfromCookie("prod");
+			}
+//			
+//		
+//			$("#totalpurchaseOnCheckout").empty();
+//			$("#totalpurchaseOnCheckout").append("Total Price : Rs "+NewcartAmmount);
+//		    $("#totalpurchaseOnCheckoutHidden").val(NewcartAmmount);
+//		
+//		
+		}	
+}
 
 function updateQuantity(productid, quantity)
 {

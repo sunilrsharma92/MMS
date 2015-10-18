@@ -7,20 +7,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <title>My Now Amazing Webpage</title>
-  
 <!--   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"> -->
 <!--   <link rel="stylesheet" href="css/style1.css"> -->
 <!--   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css"> -->
   <!-- <link rel="stylesheet" type="text/css" href="css/bootstrap.css"> -->
-<!--   <link rel="stylesheet" type="text/css" href="style1.css"> -->
+  <link rel="stylesheet" type="text/css" href="style1.css">
 <link href="http://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
   <link rel="stylesheet" type="text/css" href="slick/slick.css"/>
   <link rel="stylesheet" type="text/css" href="slick/slick-theme.css"/>
   
   <style type="text/css">
-  hr{
-  margin: 0px;
-  }
   	.controllers{
 	text-align: right;
 }
@@ -70,7 +66,7 @@ img{
 }
 .add{
 border: 1px solid #D8D5D5;
-/*     margin: 1px; */
+    margin: 1px;
         background-color: #FFF;
 }
   /*.col-md-10{
@@ -214,7 +210,63 @@ h3{
 
 			</div>
 			<!--/col-md-3-->
+			<!-- <div class="row">
+			<div class="col-md-9">
+				Slider
+				<div id="myCarousel" class="carousel slide" data-ride="carousel">
+					Indicators
+					<ol class="carousel-indicators">
+						<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+						<li data-target="#myCarousel" data-slide-to="1"></li>
+						<li data-target="#myCarousel" data-slide-to="2"></li>
+					</ol>
+
+					Wrapper for slides
+					<div class="carousel-inner" role="listbox">
+						<div class="item active">
+							<img src="Images/slide11.jpg">
+							<h4 align="center">This is header</h4>
+							<p align="center">This is paragraph with description</p>
+						</div>
+
+						<div class="item">
+							<img src="Images/slide2.png">
+							<h4 align="center">This is header</h4>
+							<p align="center">This is paragraph with description</p>
+						</div>
+
+						<div class="item">
+							<img src="Images/33.jpg">
+							<h4 align="center">This is header</h4>
+							<p align="center">This is paragraph with description</p>
+						</div>
+
+
+					</div>
+
+					Left and right controls
+					<a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev"> 
+						<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+						<span class="sr-only">Previous</span>
+					</a> 
+					<a class="right carousel-control" href="#myCarousel" role="button" data-slide="next"> 
+						<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+						<span class="sr-only">Next</span>
+					</a>
+				</div>
+
+				End of slider 
+				
+			</div>end of col-md-9 
 			
+			<div class="col-md-3">
+				<div class="row">
+				<img src="http://placehold.it/250x150">
+				</div>
+				<div class="row">
+				<img src="http://placehold.it/250x150"></div>
+			</div>end of col-md-3 
+		</div>row end  -->
 </div>
   
     <div class="slider-container">
@@ -401,46 +453,15 @@ h3{
     </div><!--/responsive-->
     </div><!--/slider-container-->
   </div><!--/col-md-12-->
-  
 
 <!--   <script type="text/javascript" src="slick/jquery-1.11.0.min.js"></script> -->
   <!-- // <script type="text/javascript" src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script> -->
 <!--   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script> -->
 <!--   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script> -->
-  <script type="text/javascript" src="slick/slick.min.js"></script	>
+  <script type="text/javascript" src="slick/slick.min.js"></script>
 
   <script type="text/javascript">
     $(document).ready(function(){
-    	
-    	$('#myCarousel').carousel({
-    		  interval: 3000
-    		});
-
-    		// handles the carousel thumbnails
-    		$('[id^=carousel-selector-]').hover(function() {
-    		  var id_selector = $(this).attr("id");
-    		  //console.log(id_selector);
-    		  var id = id_selector.substr(id_selector.length - 1);
-    		  //console.log(id);
-    		  id = parseInt(id);
-    		  $('#myCarousel').carousel(id - 1);
-    		  $('[id^=carousel-selector-]').removeClass('selected');
-    		  $(this).addClass('selected');
-    		  //console.log(this);
-    		});
-
-    		// when the carousel slides, auto update
-    		$('#myCarousel').on('slid.bs.carousel', function(e) {
-    		  var id = $('.item.active').data('slide-number');
-    		  id = parseInt(id);
-    		  $('[id^=carousel-selector-]').removeClass('selected');
-    		  $('[id=carousel-selector-' + id + ']').addClass('selected');
-    		});
-    	
-    	
-    	
-    	
-    	
       $('.responsive').slick({
          prevArrow:'.slider-container .prev',
           nextArrow:'.slider-container .next',
