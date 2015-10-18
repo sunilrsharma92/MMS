@@ -98,12 +98,14 @@ button.changeview:hover {
 }
 .nav-cust{
 	background-color: #008ed6;
+	
 	border: 0px;
 /* 	height: 50px; */
 	border-radius: 0px;
 }
 .navbar-default{
-	background-image: none;
+/* 	background-image: none; */
+	background-image: linear-gradient(to bottom,#4EABF0 0,#037DBB 100%);
 }
 
 .navbar-default .navbar-nav > li > a {
