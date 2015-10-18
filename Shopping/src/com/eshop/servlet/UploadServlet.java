@@ -15,6 +15,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileItemFactory;
@@ -36,6 +37,7 @@ public class UploadServlet extends HttpServlet {
     private String relativePath = "D:\\Git\\Code\\Local Code\\Shopping\\WebContent\\Images\\ProfileImg";
     private String foldername;
     private String PathofFile;
+    private String foldernamejsp = "";
     private int Categoryid;
     MakemyshopyLogger log = new MakemyshopyLogger();
     
@@ -45,6 +47,7 @@ public class UploadServlet extends HttpServlet {
     	File file = new File(relativePath);
     	System.out.println(relativePath.length());
         foldername = "Images\\ProfileImg";
+        foldernamejsp = "Images/ProfileImg/";
         System.out.println("FolderName "+foldername);
         DiskFileItemFactory fileFactory = new DiskFileItemFactory();
         File filesDir = (File) file;
@@ -95,7 +98,10 @@ public class UploadServlet extends HttpServlet {
  
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
     {
-       
+    	HttpSession session = request.getSession();
+    	String key = String.valueOf( session.getAttribute("key"));
+    	String userType = (String) session.getAttribute("userType");
+    	
     	if(!ServletFileUpload.isMultipartContent(request))
         {
             throw new ServletException("Content type is not multipart/form-data");
@@ -120,6 +126,10 @@ public class UploadServlet extends HttpServlet {
 
                     ajaxUpdateResult += "Field " + fileItem.getFieldName() + " with value: " + fileItem.getString() + " is successfully read\n\r";
                     log.writeLogs(ajaxUpdateResult, 1);
+                    
+                    if(fileItem.getFieldName() != null && fileItem.getFieldName().equalsIgnoreCase("key"))
+                    key = "# " + fileItem.getString();
+                   
                 }
                 else 
                 {
@@ -129,15 +139,25 @@ public class UploadServlet extends HttpServlet {
 	                File file = null;
 	                
 	                file = new File(relativePath+File.separator+filename);
+	                
 	                PathofFile=foldername+"\\"+filename;
 	                fileItem.write(file);
 	//                InsertRecordInDBInterface in=new InsertRecordInDBInterfaceImpl();
 	                
 	//                    in.insertRecordInDBOfFile(filename,PathofFile);
-	                ProductInterface dao = new ProductInterfaceImpl();
 	//                dao.handleRequestResponse(jsonMsg, command);
 	//                out.write("File "+fileItem.getName()+ " uploaded successfully.");
-	//                out.write("<br>");
+	                PrintWriter out = response.getWriter();
+//	                Images/ProfileImg/153243.jpg
+	                String img = foldernamejsp+filename;
+	                out.write(img.toString());
+	                key = "#"+key + " # "+img + " #" +userType+"#"; // -- # 1 d:/Img # ---> [0]1 , [1] d:/Img
+	                
+	                if(img != null && !img.trim().isEmpty())
+	                {
+	                	ProductInterface dao = new ProductInterfaceImpl();
+	                	dao.handleRequestResponse(key, 1058);
+	                }
                 
                 }
             }

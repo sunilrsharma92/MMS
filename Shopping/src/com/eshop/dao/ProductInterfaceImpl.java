@@ -1295,6 +1295,62 @@ public class ProductInterfaceImpl implements ProductInterface
 					}
 
 					break;
+					
+					
+				  case 1058: // -- Update image in db // 
+					try
+					{
+					 mms.writeLogs("json Msg : "+jsonMsg+" command : "+command+" Exception : ",1);
+						 
+					  String profileImg = "";
+					 
+					  String[] parts = jsonMsg.split("#");
+					  int key = Integer.parseInt(parts[1].trim());
+					  profileImg = parts[2].trim();
+					  String userType = parts[3].trim();
+					  
+					  String userTypeColumnName = "";
+					  String tableName = "";
+						
+					if (userType != null && userType.trim().equalsIgnoreCase("customer"))
+					{
+						userTypeColumnName = "customer_key"; 
+						tableName = "customers"; 
+					}
+					else if (userType != null && userType.trim().equalsIgnoreCase("supplier"))
+					{
+						userTypeColumnName = "supplier_key";
+						tableName = "suppliers";
+					}
+					  
+					  String sql = "update "+tableName+ " set profile_img = ? where "+userTypeColumnName+" = ?";
+					  
+					  ps = conn.prepareStatement(sql);
+					  ps.setString(1, profileImg);
+					  ps.setInt(2, key);
+					  
+					result = ps.executeUpdate();
+					
+					if (result > 0)
+					{
+						 parentjson =  CommonMethodImpl.putSuccessJson(parentjson, 2000);
+						 parentjson.put("command", 2058); 
+					} else
+					{ 
+						parentjson =  CommonMethodImpl.putFailedJson(parentjson, command);
+					}
+				  
+				  output = parentjson.toString();
+				  //System.out.println("output ::::::::: "+output); 
+				  return output;
+				  }
+				  
+				 catch (Exception e) 
+				  { 
+				  		e.printStackTrace();
+				  		mms.writeLogs("ProductInterfaceImpl handleRequestResponse() "+command+" Exception : "+e,0); 
+				  } break;
+					 
 
 				default:
 

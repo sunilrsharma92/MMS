@@ -16,11 +16,9 @@
 <script type="text/javascript" src="js/jAlert/js/jquery.alerts.js"></script>
 
 <script type="text/javascript" src="js/jquery-2.1.4.js"></script>
+<script type="text/javascript" src="js/jquery.form.js"></script>
 
 <script type="text/javascript" src='js/jquery.elevatezoom.js'></script>
-
-<script type="text/javascript" src="js/jquery.validate.min.js"></script>
-<script type="text/javascript" src="js/myjs/validation.js"></script>
 
 <script type="text/javascript" src="js/myjs/maintainPageStateUsingCookie/maintainPageState.js"></script>
 <script type="text/javascript" src="js/jquery.cookie.js"></script>

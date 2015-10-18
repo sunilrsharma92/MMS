@@ -520,6 +520,21 @@ function handleLoginResponse(response)
 	if(action != 3)
 	{
 		jAlert(statusdesc, "Alert Message");
+		
+		$.session.remove('loginData');
+		$.session.remove('usertype');
+		$.session.remove('pageState');
+		$.session.remove('checkout');
+		$.session.remove('contentState');
+		$.session.remove('addressList');
+		$.session.remove('count');
+		$.session.remove('viewprod');
+		$.session.remove('zoominage');
+		$.session.remove('prodDisc');
+		$.session.remove('checkoutlogin');
+		$.session.remove('itemsinCart');
+		$.session.remove("profileimg");
+
 		/*
 		if(statusdesc == msg || statusdesc == invalidOTP)
 			{

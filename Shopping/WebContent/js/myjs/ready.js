@@ -88,6 +88,7 @@ $(document).ready(function(){
 					$.session.remove('prodDisc');
 					$.session.remove('checkoutlogin');
 					$.session.remove('itemsinCart');
+					$.session.remove("profileimg");
 	
 					window.location.replace("indexTemplate.jsp");
 				}

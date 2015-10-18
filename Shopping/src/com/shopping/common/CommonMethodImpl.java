@@ -45,6 +45,7 @@ public class CommonMethodImpl {
 				parentjson.put("phone", rs.getString("phone"));
 				parentjson.put("active", rs.getInt("active"));
 				parentjson.put("otp", rs.getString("otp"));
+				parentjson.put("profileImg", rs.getString("profile_img"));
 				parentjson.put("userType", "customer");
 				
 			}
@@ -91,6 +92,7 @@ public class CommonMethodImpl {
 				parentjson.put("phone", rs.getString("phone"));
 				parentjson.put("active", rs.getInt("active"));
 				parentjson.put("otp", rs.getString("otp"));
+				parentjson.put("profileImg", rs.getString("profile_img"));
 				parentjson.put("userType", "supplier");
 				
 			}

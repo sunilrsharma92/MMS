@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 
 <!-- <script type="text/javascript" src="js/jquery-2.1.3.min.js"></script> -->
+<% %>
 </head>
 <body>
 
@@ -28,12 +29,62 @@
 						</div>
 						</form> -->
 						<form enctype="multipart/form-data" id="uploadFile" action="UploadServlet" method="post">
-							<img src="Images/default_profile_pic.png" class="img-circle" style="width:50%; background-color:whitesmoke;">
-					     	 <input type="file" name="fileName" id="fileName" class="roleType" class="border"/>  
-					     	 <input id="sampleText" name="sampleText" type="text" value="haha"/>                                                    
+							
+							<div class="overlay">
+										<div id="loading-img"></div>
+									</div>
+							
+							<div style="width: 150px;height: 150px;">
+							<img id="profileImg" src="Images/default_profile_pic.png" class="img-circle" style="width:100%; height:100%; background-color:whitesmoke;">
+							</div>
+					     	 <input type="file" name="fileName" id="fileName" style="display:none;" class="roleType" class="border"/>  
 					     	 <input type="submit" value="Save File" id="upldBtn" style="display:none;"/> &nbsp;&nbsp;
+						<script type="text/javascript" src="js/jquery.form.js"></script>
+						<script type="text/javascript">
+						$(document).ready(function (){
+							try
+							{
+						$('#uploadFile').ajaxForm({
+							success : function (msg)
+							{
+								$(".overlay").show();
+								var count = 0;
+								
+								var clear = setInterval(function()
+									{
+									count++;
+									console.log("count : "+count+"msg : "+msg);
+									
+									if(count == 7)
+										{
+										$("#profileImg").attr("src",msg);
+										$(".overlay").show().delay(100).fadeOut();
+										clearInterval(clear);
+										}
+								}, 500);
+								
+								
+								$.session.remove("profileimg");
+								$.session.set("profileimg", msg);
+							}
+						});
+							}
+							catch (e) 
+							{
+								console.log("Exception in uploading file on jsp : "+e);
+							}
+							
+							var profileImg = $.session.get("profileimg");
+							if(profileImg != "" || profileImg !=null)
+								{
+									$("#profileImg").attr("src",profileImg);
+								}
+							
+						});
+						</script>
+						
 						</form>
-
+						
 
 
 						<div class="strong"><span class="glyphicon glyphicon-list-alt"></span> Orders</div>

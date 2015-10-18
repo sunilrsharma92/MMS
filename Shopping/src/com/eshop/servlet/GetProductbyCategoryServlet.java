@@ -83,6 +83,20 @@ public class GetProductbyCategoryServlet extends HttpServlet
 	
 			String strjsonMsgResponse = getResponse.handleRequestResponse(jsonMsg, command);
 			
+			if(command == 1051)
+			{
+				JSONObject object = (JSONObject) JSONValue.parse(strjsonMsgResponse);
+
+				int key = ((Long) object.get("key")).intValue();
+				String userType = (String) object.get("userType");
+				
+				session.removeAttribute("key");
+				session.removeAttribute("userType");
+				session.setAttribute("key", key);
+				session.setAttribute("userType", userType);
+				mms.writeLogs("Command : "+command+" JSON Msg for Login to store in session :  "+jsonMsg, 1);
+			}
+			
 	//		mms.writeLogs("JSON Response FROM SERVLET : "+strjsonMsgResponse, 1);
 			out.println(strjsonMsgResponse);
 			
@@ -90,6 +104,7 @@ public class GetProductbyCategoryServlet extends HttpServlet
 		catch(Exception e)
 		{
 			mms.writeLogs("GetProductbyCategoryServlet doPost Exception : "+e, 0);
+			e.printStackTrace();
 		}
 	}
 

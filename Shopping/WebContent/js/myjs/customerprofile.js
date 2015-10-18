@@ -18,6 +18,25 @@ $(document).ready(function(){
 	if(userType == "customer")
 		{
 			$("#custOrderPanel").show(); // -- not needed for shopkeeper
+			
+//			console.log("SunkjkjaJ : ", JSON.parse(loginData));
+			 
+			
+			var loginData = $.session.get('loginData');
+			var sessionData = JSON.parse(loginData);
+//			console.log(" loginData.key : ", loginData.key);
+			var profileImg = sessionData.profileImg;
+			$("#profileImg").attr("src",profileImg);
+			console.log("profileImg : ", profileImg);
+			$("#Sunilkey").attr("src",sessionData.key);
+			console.log("Sunilkey : ", sessionData.key);
+			
+			console.log("Sunil : key : ", sessionData.key);
+			
+			if(profileImg != null)
+			{
+				$.session.set('profileImage', profileImg);
+			}
 		}
 	
 	if(userType == "supplier")
@@ -31,19 +50,64 @@ $(document).ready(function(){
 			
 			shopProfileDisplay(supplierKey);
 		}
-	alert("232");
-	$("#fileName").change(function(){
-        //submit the form here
+	
+	
+	$("#profileImg").click(function(){
+		
+		$( "#fileName").trigger( "click" );
+		
+	});
+		$("#fileName").change(function(){
+		/* //submit the form here
 		sampleFile = document.getElementById("fileName").files[0];
-		alert("sampleFile : " +sampleFile);
+		alert("sampleFile : " +sampleFile);*/
+//		var img = deva
 		$( "#upldBtn" ).trigger( "click" );
-		$( "#upldBtn" ).submit();
+		/*$( "#upldBtn" ).submit();*/
+		
+		try
+		{
+	$('#uploadFile').ajaxForm({
+		success : function (msg)
+		{
+			$(".overlay").show();
+			var count = 0;
+			
+			var clear = setInterval(function()
+				{
+				count++;
+				console.log("count : "+count+"msg : "+msg);
+				
+				if(count == 7)
+					{
+					$("#profileImg").attr("src",msg);
+					$(".overlay").show().delay(100).fadeOut();
+					clearInterval(clear);
+					}
+			}, 500);
+			
+			
+			$.session.remove("profileimg");
+			$.session.set("profileimg", msg);
+		}
+	});
+		}
+		catch (e) 
+		{
+			console.log("Exception in uploading file on jsp : "+e);
+		}
+		
+		var profileImg = $.session.get("profileimg");
+		if(profileImg != "" || profileImg !=null)
+			{
+				$("#profileImg").attr("src",profileImg);
+			}
 		
 });
 	
 	
 	
-	$('#upldBtn').click(function() {
+	/*$('#upldBtn').click(function() {
 		alert("Sunil");
 
 	    formdata = new FormData();
@@ -92,7 +156,7 @@ $(document).ready(function(){
 		    });
 	    }
 
-	   /* xhr.onload = function(e) {
+	    xhr.onload = function(e) {
 
 	        if (this.status == 200) {
 
@@ -100,7 +164,7 @@ $(document).ready(function(){
 
 	        }
 
-	    };  */                  /*
+	    };                    
 
          $("form#yourform").attr('action', contextPath+servletName);
          $("form#yourform").attr('enctype', "multipart/form-data");
@@ -122,8 +186,8 @@ $(document).ready(function(){
                                     }
                                 });
                  });
-            });*/
-	});
+            });
+	});*/
 	
 	
 
@@ -156,7 +220,7 @@ function loadProfileMenu(id)
 		if (loginData != null)
 		{
 			var sessionData = JSON.parse(loginData);
-	
+			
 //			if (userType == "customer")
 //			{
 				if (idofpage == "0")

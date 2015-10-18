@@ -28,7 +28,7 @@ public class MyConnection {
 				try
 				{
 					String readvalue = "";
-					FileReader fileReader = new FileReader("F:\\D Drive\\My Career\\MMS Local Code\\Shopping\\db.properties");
+					FileReader fileReader = new FileReader("D:\\Git\\Code\\Local Code\\Shopping\\db.properties");
 					properties.load(fileReader);
 
 					drivername = properties.getProperty("drivername");

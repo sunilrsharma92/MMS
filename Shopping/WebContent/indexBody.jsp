@@ -96,7 +96,7 @@
 					<hr class="small">
 
 					<%
-						for (int i = 1; i <= 6; i++) {
+						for (int i = 1; i <= 0; i++) {
 							String img = "Images/chadders/"+i+".jpg";
 					%>
 
@@ -129,7 +129,7 @@
 					<hr class="small">
 
 					<%
-						for (int i = 7; i <=12; i++) {
+						for (int i = 7; i <=6; i++) {
 							String img1 = "Images/chadders/"+i+".jpg";
 					%>
 					<div class="col-md-2 col-sm-3  col-xs-4 wrap">
