@@ -165,7 +165,7 @@ $(document).ready(function(){
 	
 //***********Request for all product category ************************************************************************
 
-	objhandleRequest.handleCategoryRequest();
+//	objhandleRequest.handleCategoryRequest();
 	objhandleRequest.handleAllProductForAutoCompleteRequest();
 
 //*********************** END ************************************************************************************
@@ -261,7 +261,8 @@ $("#search").keyup(function(e){
 	{
 		var text = ui.item.label;
 //		alert("Text : " + text);
-		searchProduct();
+//		searchProduct();
+		searchShop();
 	}
 
 	});
@@ -272,7 +273,7 @@ $("#search").keyup(function(e){
 		if(e.which == 13)
 		{
 //			alert("Text : " + $("#search").val());
-			searchProduct();
+			searchShop();
 		}
 	});
 }
@@ -284,7 +285,7 @@ console.log("Exception in auto complete : "+e);
 
 
 
-$("#passLoginTemp").keypress(function(e) 
+$("#passLoginTemp, #emailLogin").keypress(function(e) 
 {
 	if(e.which == 13) 
 	{
@@ -292,13 +293,22 @@ $("#passLoginTemp").keypress(function(e)
 	}
 });
 
-$("#emailLogin").keypress(function(e) 
-{
+$("#emailSignUp, #mobile, #passSignUp, #repass").keypress(function(e) 
+		{
 	if(e.which == 13) 
 	{
-		login();
+		signUp();
 	}
-});
+		});
+
+//
+//$("#emailForgotPwd").keypress(function(e) 
+//		{
+//	if(e.which == 13) 
+//	{
+//		forgotPwd();
+//	}
+//		});
 
 
 });
@@ -698,6 +708,7 @@ function forgotPwd()
 	writeLogAjax("emailForgotPwd : "+ emailForgotPwd+"   userType"+ userType,1);
 	$(".overlay").show();
 	objhandleRequest.handleForgotPwd(emailForgotPwd, userType);
+	return true;
 	}
 }
 	
@@ -1023,14 +1034,46 @@ function searchProduct()
 	var txt = $("#search").val();
 	if(txt != "")
 		{
-			$("#myCarousel").hide();
+			$(".hideslider").hide();
+			$("#searchtitle").show();
+			$("#productList").show();
 		}
 	else if(txt == "")
 		{
-			$("#myCarousel").show();
+			$(".hideslider").show();
+			$("#productList").hide();
+			$("#searchtitle").hide();
 		}
 //	alert("txt 1 : "+txt);
-	objhandleRequest.searchProduct(txt);
+	if(txt != "")
+	{
+		objhandleRequest.searchProduct(txt, "product");
+	}
+}
+
+
+function searchShop()
+{
+//	alert("shop");
+	var txt = $("#search").val();
+	if(txt != "")
+	{
+		$(".hideslider").hide();
+		$("#searchtitle").show();
+		$("#shopList").show();
+	}
+	else if(txt == "")
+	{
+		$(".hideslider").show();
+		$("#shopList").hide();
+		$("#searchtitle").hide();
+	}
+//	alert("txt 1 : "+txt);
+	if(txt != "")
+		{
+			objhandleRequest.searchProduct(txt, "shop");
+		}
+	
 }
 
 function callAlerts(msg)

@@ -161,7 +161,8 @@ public class ProductInterfaceImpl implements ProductInterface
 				case 1002:
 						try
 						{
-							ps = conn.prepareStatement("select product_name, picture from products");
+							ps = conn.prepareStatement("select company_name, profile_img from suppliers");
+//							ps = conn.prepareStatement("select product_name, picture from products");
 							rs = ps.executeQuery();
 							while (rs.next())
 							{
@@ -173,7 +174,7 @@ public class ProductInterfaceImpl implements ProductInterface
 //								childjson.put("name", rs.getString("product_name"));
 //								childjson.put("icon", rs.getString("picture"));
 								
-								jsonarray.add(rs.getString("product_name"));
+								jsonarray.add(rs.getString("company_name"));
 							}
 							
 							parentjson.put("autoCompleteLabel", jsonarray);
@@ -380,8 +381,9 @@ public class ProductInterfaceImpl implements ProductInterface
 						SearchUtility searchKeyword = new SearchUtility();
 						
 						String product = (String) object.get("txt");
-						
-						String output = searchKeyword.searchProduct(product);
+						String action = (String) object.get("action");
+						System.out.println("action : "+action);
+						String output = searchKeyword.searchProduct(product, action);
 						
 						/*
 						ps = conn.prepareStatement("select * from products where product_name LIKE '" + product + "%'");
