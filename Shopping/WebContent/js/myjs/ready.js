@@ -649,16 +649,19 @@ function signUp()
 	writeLogAjax("passSignUp" + passSignUp +"mobileKey" + mobileKey	+ "emailKey" + emailKey + "userType" + userType,1);
 	
 //	return false;
+	$("#userType").addClass('blink_me');
 	var result = jConfirm("Are you sure you want to register as "+userType,"Make My Shopy",function(e)
 	{
 		if(e)
 		{
+			$("#userType").removeClass('blink_me');
 			$(".overlay").show();
 			objhandleRequest.handleRegisteration(passSignUp, mobileKey, emailKey, userType);
 			return true;
 		}
 		else
 		{
+			$("#userType").removeClass('blink_me');
 			return false;
 		}
 	});
@@ -939,56 +942,72 @@ function viewProduct(images, prodName, price, stockvalue,productid ,stockcrtbtn)
 
 function removeproductfromCArt(id)
 {
-	var gotCookies = $.cookie("key");
-	try
-		{
-	var gotCookiesArray = JSON.parse(gotCookies);
-	
-	if(gotCookiesArray == "" || gotCookiesArray == null)
-		{
-			$(".productCountOnCart").empty();
-			document.getElementById("productCountOnCart").innerHTML="0";
-			document.getElementById("productCountOnCart1").innerHTML="0";
-		}
-//	console.log("getcookies()   JSON.parse(a)   : "+gotCookiesArray);
-	arrayofProduct = [];
-	for(var i in gotCookiesArray)
-		{
-			var productIdfromCookie = gotCookiesArray[i];
-			if(id!=productIdfromCookie)
-				{
-					arrayofProduct.push([ productIdfromCookie ]);
-				}
-			else
-				{
-//					alert("Delete : "+id);
-				}
-			
-		}
-	$.cookie('key',JSON.stringify(arrayofProduct));
-	
-	
-	var pageState = $.session.get('pageState');
-	if(pageState == "checkout")
+try
+  {
+	var loginData = $.session.get('loginData');
+	if (loginData != null)
 	{
-		$.session.set('checkout','checkout');
-		getProductfromCookie("prod");
-	}
-	
-	
-	getProductfromCookie("prod");
-	
-	var viewprod = $.session.get('viewprod');
-	if(viewprod == "viewprod")
-	{
-		enablebtn(id);
-	}
-	
+		var sessionData = JSON.parse(loginData);
+		var userid = sessionData.key;
+		var userType = sessionData.userType;
+		
+		objhandleRequest.removeFromCart(userid, userType, id, "authoriseduser");
+		
 		document.getElementById("ok"+id).style.display = "none";
 		document.getElementById("btn"+id).disabled = false;
+	}
+	else
+    {
+		var gotCookies = $.cookie("key");
+		
+		var gotCookiesArray = JSON.parse(gotCookies);
+		
+		if(gotCookiesArray == "" || gotCookiesArray == null)
+			{
+				$(".productCountOnCart").empty();
+				document.getElementById("productCountOnCart").innerHTML="0";
+				document.getElementById("productCountOnCart1").innerHTML="0";
+			}
+	//	console.log("getcookies()   JSON.parse(a)   : "+gotCookiesArray);
+		arrayofProduct = [];
+		for(var i in gotCookiesArray)
+			{
+				var productIdfromCookie = gotCookiesArray[i];
+				if(id!=productIdfromCookie)
+					{
+						arrayofProduct.push([ productIdfromCookie ]);
+					}
+				else
+					{
+	//					alert("Delete : "+id);
+					}
+				
+			}
+		$.cookie('key',JSON.stringify(arrayofProduct));
 		
 		
+		var pageState = $.session.get('pageState');
+		if(pageState == "checkout")
+		{
+			$.session.set('checkout','checkout');
+			getProductfromCookie("prod");
+		}
 		
+		
+		getProductfromCookie("prod");
+		
+		var viewprod = $.session.get('viewprod');
+		if(viewprod == "viewprod")
+		{
+			enablebtn(id);
+		}
+		
+			document.getElementById("ok"+id).style.display = "none";
+			document.getElementById("btn"+id).disabled = false;
+			
+			
+			
+   }
 		}
 	catch (e)
 	{
@@ -1030,11 +1049,37 @@ function callAlerts(msg)
 //	$("#"+id).css('border-color','red');
 //}
 
+//var no = 0;
+//function storeoldvalue(txtboxid)
+//{
+//	no = $(txtboxid).val();
+//	console.log("Number : "+no);
+//}
+
 function quantity(txtboxid, action, price, productid)
 {
 	var totalcartAmmount = $("#totalcartAmmounthidden").val();
 	var val = parseInt($("#"+txtboxid).val());
-
+////	alert("1 : "+val);
+//	if(no == "" || no == "0" || no == "NaN")
+//		{
+////			alert("hii");
+//			return false;
+//		}
+//	if(parseInt(no) < val)
+//	{
+//		console.log("no less");
+////		action = "add"
+//		action = "add";
+//	}
+//	
+//	if(parseInt(no) > val)
+//	{
+//		console.log("no greater");
+////		action = "minus"
+//		action = "minus";
+//	}
+	
 			var total = 0;
 			if(action == "add")
 			{

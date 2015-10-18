@@ -141,17 +141,18 @@
 									<!-- Loading img -->
 
 									<ul class="nav nav-tabs">
-										<li class="active"><a id="logintab" class="font" data-toggle="tab" href="#home">Login</a></li>
+										<li class="active"><a id="logintab" class="font" data-toggle="tab" href="#home">Sign in</a></li>
 										<li><a class="font" id="signuptab" data-toggle="tab" href="#menu1">Sign up</a></li>
 										
-										<li><a class="font" data-toggle="tab" href="#menu2">Forgot</a></li>
+										<li><a class="font" data-toggle="tab" href="#menu2">Forgot Password</a></li>
 <!-- 										<div id="userType" class="whiteLabelLink" style="float: left;"></div> -->
 									</ul>
 
 									<div class="tab-content">
 										<div id="home" class="tab-pane fade in active">
-											<h3 class="font">Login:</h3>
+<!-- 											<h3 class="font">Login:</h3> -->
 											<form class="login-val" style="text-align: center;">
+												<div style="margin-bottom: 10px;"></div>
 												<input class="textbox font" type="text" id="emailLogin"	name="email" placeholder="Enter Email Id"></br>
 												 <input	class="textbox font" type="password" id="passLoginTemp"	name="password" placeholder="Enter Password"></br> 
 												<input class="textbox font" type="text" id="otpLogin" placeholder="OTP" style="display: none"></br>
@@ -162,19 +163,19 @@
 											</form>
 										</div>
 										<div id="menu1" class="tab-pane fade">
-											<h3 class="font">Sign Up:</h3>
+<!-- 											<h3 class="font">Sign Up:</h3> -->
 											<!--                         <label class="pull-left font"><h4>Customer</h4></label>  -->
 
 											<!-- 						<label for="cmn-toggle-1"></label> <label class="font" style="float: left;"><h4>Shoper</h4></label> -->
 											<!-- 						</br> -->
 											<form class="signup-val" style="text-align: center;">
-												
+													<div style="margin-bottom: 10px;"></div>
 													<input class="textbox font" type="text" name="email" id="emailSignUp" placeholder="Enter Email id"></br> 
 													<input class="textbox font" type="text" name="mobile" id="mobile" placeholder="Enter Mobile No"></br> 
 													<input class="textbox font" type="password" name="password" id="passSignUp" placeholder="Enter Password"></br> 
-													<input class="textbox font" type="password" name="password2" id="repass" placeholder="ReEnter Password"></br>
-												<div class="g-recaptcha" name="captcha" data-sitekey="6LfaxwsTAAAAAEB5RYVVeSFM3AyHzAHb3YvgtGvx"></div>
-												<div id="warnings"></div>
+													<input class="textbox font" type="password" name="password2" id="repass" placeholder="ReEnter Password"></br></br>
+<!-- 												<div class="g-recaptcha" name="captcha" data-sitekey="6LfaxwsTAAAAAEB5RYVVeSFM3AyHzAHb3YvgtGvx"></div></br> -->
+												<div id="warnings" style="display:none;"></div>
 												<input type="button" onclick="signUp()" class="btn btn-primary btn_width_93_perc" id="signup" value="Sign Up" />
 <!-- 												<input type="button" class="btn btn-primary btn_width_93_perc" id="signup" value="Sign Up" /> -->
 <!-- 													<button onsubmit="signUp()" class="btn btn-primary btn_width_93_perc" type="submit">Sign Up</button> -->
@@ -182,9 +183,10 @@
 											</form>
 										</div>
 										<div id="menu2" class="tab-pane fade">
-											<h3 class="font">Forgot Password:</h3>
+<!-- 											<h3 class="font">Forgot Password:</h3> -->
 											<form class="forgot-val"style="text-align: center;">
-												<input class="textbox font" type="text" name="email" id="emailForgotPwd" placeholder="Enter Email id"></br>
+												<div style="margin-bottom: 10px;"></div>
+												<input class="textbox font" type="text" name="email" id="emailForgotPwd" placeholder="Enter Email id"></br></br>
 <!-- 												<button  class="btn btn-primary btn_width_93_perc" type="submit">Submit</button> -->
 												<button onclick="forgotPwd()" class="btn btn-primary btn_width_93_perc" type="button">Submit</button>
 												<div style="margin-top: 10px; color:red; font-size: 12px;" id="forgetpassalerts"></div>

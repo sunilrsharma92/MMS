@@ -170,8 +170,8 @@ public class ProductInterfaceImpl implements ProductInterface
 //								String productList = "<table><tr><td class='cimg'><img class='cartimgsize' src='" + rs.getString("picture") + "'></td>" 
 //																 + "<td class='cname'>" + rs.getString("product_name") + "</td></tr></table>";
 								
-//								childjson.put("value", rs.getString("product_name"));
-//								childjson.put("label", rs.getString("product_name"));
+//								childjson.put("name", rs.getString("product_name"));
+//								childjson.put("icon", rs.getString("picture"));
 								
 								jsonarray.add(rs.getString("product_name"));
 							}
@@ -560,6 +560,65 @@ public class ProductInterfaceImpl implements ProductInterface
 						}
 						
 						output = parentjson.toString();
+						// System.out.println("output ::::::::: "+output);
+						return output;
+					}
+					
+					catch (Exception e)
+					{
+						e.printStackTrace();
+						mms.writeLogs("ProductInterfaceImpl handleRequestResponse() "+command+" Exception : "+e,0);
+					}
+					break;
+					
+				case 1012:
+					try
+					{
+						JSONObject object = (JSONObject) JSONValue.parse(jsonMsg);
+						
+						Long userid = (Long) object.get("userid");
+						String userType = (String) object.get("userType");
+						Long productid = (Long) object.get("productid");
+						String ipaddress = (String) object.get("ipaddress");
+						String authorisedUser = (String) object.get("authoriseduser");
+						
+						String sql = "";
+						String usertypecolumnname = "";
+						
+						if (userType != null && userType.trim().equalsIgnoreCase("customer"))
+						{
+							usertypecolumnname = "customer_key"; 
+						}
+						else if (userType != null && userType.trim().equalsIgnoreCase("supplier"))
+						{
+							usertypecolumnname = "supplier_key";
+						}
+						else if (userType != null && authorisedUser.trim().equalsIgnoreCase("unauthorisedUser"))
+						{
+							usertypecolumnname = "ipaddress";
+						}
+						
+							sql = "delete from cart where "+usertypecolumnname+" = ? and productid = ? and orderid is null";
+							ps2 = conn.prepareStatement(sql);
+							
+							if(authorisedUser.trim().equalsIgnoreCase("authorisedUser"))
+							{
+								ps2.setLong(1, userid);
+							}
+							else if(authorisedUser.trim().equalsIgnoreCase("unauthorisedUser"))
+							{
+								ps2.setString(1, ipaddress);
+							}
+							
+							ps2.setLong(2, productid);
+						
+							result1 = ps2.executeUpdate();
+							if (result1 > 0)
+							{
+								parentjson = CommonMethodImpl.putSuccessJson(parentjson, 2012);
+							}
+							
+							output = parentjson.toString();
 						// System.out.println("output ::::::::: "+output);
 						return output;
 					}

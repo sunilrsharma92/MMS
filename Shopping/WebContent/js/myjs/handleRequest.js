@@ -17,6 +17,7 @@ function handleRequest()
 	this.getUserAddressfromShippingaddress = getUserAddressfromShippingaddress;
 	this.handleUpdateProfilePic = handleUpdateProfilePic;
 	this.aadToCartForLoggedUser = aadToCartForLoggedUser;
+	this.removeFromCart = removeFromCart;
 
 	// ****** This function is used to get all main product category ******//
 	function handleCategoryRequest()
@@ -348,6 +349,28 @@ function handleRequest()
 		catch (e)
 		{
 			console.log("handleRequest     aadToCartForLoggedUser     Exception :: " + e);
+		}
+	}
+	
+	function removeFromCart(userid, userType, productid, authorisedUser)
+	{
+		try
+		{
+			var strremoveFromCart = {};
+			strremoveFromCart.userid = +userid;
+			strremoveFromCart.userType = userType;
+			strremoveFromCart.productid = +productid;
+			strremoveFromCart.authoriseduser = authorisedUser;
+			strremoveFromCart.command = 1012;
+			
+			var strjsonMsgForremoveFromCart = JSON.stringify(strremoveFromCart);
+			console.log("handleRequest     removeFromCartForLoggedUser  : " + strjsonMsgForremoveFromCart);
+			handleAllListResponse(strjsonMsgForremoveFromCart);
+			
+		}
+		catch (e)
+		{
+			console.log("handleRequest     removeFromCartForLoggedUser     Exception :: " + e);
 		}
 	}
 	
