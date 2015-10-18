@@ -24,6 +24,8 @@
 
 <script type="text/javascript" src='js/jquery.elevatezoom.js'></script>
 
+<!-- <script type="text/javascript" src="js/jquery.validate.min.js"></script> -->
+<!-- <script type="text/javascript" src="js/myjs/validation.js"></script> -->
 
 <script type="text/javascript" src="js/autoComplete/js/jquery-ui.js"></script><!-- //autocomplete -->
 <script type="text/javascript" src="js/myjs/maintainPageStateUsingCookie/maintainPageState.js"></script>

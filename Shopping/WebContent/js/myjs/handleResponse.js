@@ -72,7 +72,11 @@ function listResponseHandler(response, command, status)
 					case 2003:
 						handleProductDisplayResponse(response);
 						break;
-
+						
+					case 2006:
+						handleShopListResponse(response);
+						break;
+						
 					case 2004:
 						// (response);
 						break;

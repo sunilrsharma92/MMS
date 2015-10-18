@@ -251,6 +251,80 @@ function handleProductDisplayResponse(response)
 	}
 }
 
+
+function handleShopListResponse(response)
+{
+	try
+	{
+//		alert("response : "+JSON.stringify(response));
+		// writeLogAjax('handleProductDisplayResponse :::::: '+JSON.stringify(response),1);
+		
+		// var total = 0;
+		var shopdiv = "";
+		var shopList = response.product;
+		for ( var i in shopList)
+		{
+			
+			var shopid = shopList[i].shopid;
+			var companyname = shopList[i].companyname;
+			var address1 = shopList[i].address1;
+			var address2 = shopList[i].address2;
+			var state = shopList[i].state;
+			var city = shopList[i].city;
+			var street = shopList[i].street;
+//			var shoptype = shopList[i].shoptype;
+			var images = shopList[i].images;
+			
+			// total = total+price;
+			var address = "";
+			if(address1 != "")
+				{
+					address = address + '<p>Address 1: '+address1+'</p>';
+				}
+			
+			if(address2 != "")
+			{
+				address = address + '<p>Address 2: '+address2+'</p>';
+			}
+			
+			var loadProfilePage = "loadProfilePage('"+shopid+"');" 		
+				
+				
+
+
+
+			shopdiv = shopdiv + '<div class="col-md-4 back" onclick="'+loadProfilePage+'">'
+					+ '           <div class="main-wrap">'
+					+ '              <div class="shop-img">'
+					+ '                  <a href="#"> <img class="iim img-responsive" src="'+images+'"></a>'
+					+ '                  <div class="shop-details">'
+					+ '                    <p>Name: '+companyname+'</p>'
+					+ 					   address
+					+ '                    <p>City: '+city+'</p>'
+					+ '                    <p>State: '+state+'</p>'
+					+ '                    <p>Street: '+street+'</p>'
+//					+ '                    <p>Street: '+shoptype+'</p>'
+					+ '                  </div>'
+					+ '              </div>' + '              '
+					+ '        ' + '            </div>'
+					+ '            <div class="shop-now">'
+					+ '              <h2>Shop Now</h2>'
+					+ '            </div>'
+					+ '        </div>';
+					
+			
+		}
+		
+		$("#shopList").empty();
+		$("#shopList").append(shopdiv);
+				
+	}
+	catch (e)
+	{
+		writeLogAjax("handleShopDisplayResponse :::::: Exception" + e,0);
+	}
+}
+
 function handleAddtoCartWithLoginResponse(response)
 {
 //	alert("Response : "+JSON.stringify(response));

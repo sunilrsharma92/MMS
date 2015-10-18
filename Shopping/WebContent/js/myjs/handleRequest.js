@@ -268,16 +268,17 @@ function handleRequest()
 		}
 	}
 
-	function searchProduct(txt)
+	function searchProduct(txt, action)
 	{
 		try
 		{
 			var strSearchProduct = {};
 			strSearchProduct.txt = txt;
+			strSearchProduct.action = action;
 			strSearchProduct.command = 1006;
 
 			var strjsonMsgForstrSearchProduct = JSON.stringify(strSearchProduct);
-			console.log("handleRequest     searchProduct  : " + strjsonMsgForstrSearchProduct);
+			console.log("handleRequest     searchProduct/Shop  : " + strjsonMsgForstrSearchProduct);
 			handleAllListResponse(strjsonMsgForstrSearchProduct);
 
 		}

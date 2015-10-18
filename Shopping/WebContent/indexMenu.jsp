@@ -187,8 +187,7 @@
 											<form class="forgot-val"style="text-align: center;">
 												<div style="margin-bottom: 10px;"></div>
 												<input class="textbox font" type="text" name="email" id="emailForgotPwd" placeholder="Enter Email id"></br></br>
-<!-- 												<button  class="btn btn-primary btn_width_93_perc" type="submit">Submit</button> -->
-												<button onclick="forgotPwd()" class="btn btn-primary btn_width_93_perc" type="button">Submit</button>
+												<input type="button" onclick="forgotPwd()" value="Submit" class="btn btn-primary btn_width_93_perc"/>
 												<div style="margin-top: 10px; color:red; font-size: 12px;" id="forgetpassalerts"></div>
 											</form>
 										</div>
@@ -320,10 +319,14 @@
 		<div class="container">
 			<div id="searching" style="display: none;">
 
-				<input type="text" id="search"  onkeypress="checkEnter();" class="whiteLabel" style="text-align: center; outline: 0;" name="search" placeholder="Search the item here">
-					<button class="insearch" onclick="searchProduct();" type="submit">
+<!-- 				<input type="text" id="search"  onkeypress="checkEnter();" class="whiteLabel" style="text-align: center; outline: 0;" name="search" placeholder="Search the item here"> -->
+				<input type="text" id="search" class="whiteLabel" style="text-align: center; outline: 0;" name="search" placeholder="Search the item here">
+					<button class="insearch" onclick="searchShop();" type="submit">
 						<span class="glyphicon glyphicon-search"></span>
 					</button>
+<!-- 					<button class="insearch" onclick="searchProduct();" type="submit"> -->
+<!-- 						<span class="glyphicon glyphicon-search"></span> -->
+<!-- 					</button> -->
 				</input>
 				<button type="button" class="btn btn-circle btn-danger changeview" id="removesearchbtn">
 					<span class=" glyphicon glyphicon-remove"></span>

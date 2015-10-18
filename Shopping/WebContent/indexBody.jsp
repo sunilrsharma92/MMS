@@ -18,124 +18,124 @@
   <link rel="stylesheet" type="text/css" href="slick/slick-theme.css"/>
   
   <style type="text/css">
-  hr{
-  margin: 0px;
-  }
-  	.controllers{
-	text-align: right;
-}
-.controllers span{
-	display: inline-block;
-	font-size: 30px;
-	padding: 2px 8px;
-	cursor: pointer;
-}
-.slider-navigation {
-  background: #505050;
-  padding: 15px 15px;
-  text-align: center;
-}
+/*   hr{ */
+/*   margin: 0px; */
+/*   } */
+/*   	.controllers{ */
+/* 	text-align: right; */
+/* } */
+/* .controllers span{ */
+/* 	display: inline-block; */
+/* 	font-size: 30px; */
+/* 	padding: 2px 8px; */
+/* 	cursor: pointer; */
+/* } */
+/* .slider-navigation { */
+/*   background: #505050; */
+/*   padding: 15px 15px; */
+/*   text-align: center; */
+/* } */
 
-/*#slider-thumbs { margin-top: -100px; }*/
+/* /*#slider-thumbs { margin-top: -100px; }*/ */
 
-#slider-thumbs .list-inline li {
-  width: 25%;
-  padding: 0px;
-  margin-right: -4px;
-  cursor: pointer;
-}
+/* #slider-thumbs .list-inline li { */
+/*   width: 25%; */
+/*   padding: 0px; */
+/*   margin-right: -4px; */
+/*   cursor: pointer; */
+/* } */
 
-#slider-thumbs .list-inline li:first-child { padding-left: 5px; }
+/* #slider-thumbs .list-inline li:first-child { padding-left: 5px; } */
 
-.slider-nav-arrow {
-  text-align: center;
-  margin-bottom: 0px;
-  visibility: hidden;
-}
+/* .slider-nav-arrow { */
+/*   text-align: center; */
+/*   margin-bottom: 0px; */
+/*   visibility: hidden; */
+/* } */
 
-.selected .slider-nav-arrow { visibility: visible; }
+/* .selected .slider-nav-arrow { visibility: visible; } */
 
-.selected .slider-navigation { opacity: 0.8;
-  background-color: #FFF; 
-  color: #000;
+/* .selected .slider-navigation { opacity: 0.8; */
+/*   background-color: #FFF;  */
+/*   color: #000; */
 
- }
- a{
-  color: #FFF;
-  /*text-decoration: none;*/
- }
-img{
-  width: 100%;
+/*  } */
+/*  a{ */
+/*   color: #FFF; */
+/*   /*text-decoration: none;*/ */
+/*  } */
+/* img{ */
+/*   width: 100%; */
   
-}
-.add{
-border: 1px solid #D8D5D5;
-/*     margin: 1px; */
-        background-color: #FFF;
-}
-  /*.col-md-10{
-    background-color: royalblue;
-  }*/
+/* } */
+/* .add{ */
+/* border: 1px solid #D8D5D5; */
+/* /*     margin: 1px; */ */
+/*         background-color: #FFF; */
+/* } */
+/*   /*.col-md-10{ */
+/*     background-color: royalblue; */
+/*   }*/ */
 
-/*.slick-prev:before, .slick-next:before {
-    color: #3C2B2B;
-}*/
-body{
-  background-color: #f5f5f5;
+/* /*.slick-prev:before, .slick-next:before { */
+/*     color: #3C2B2B; */
+/* }*/ */
+/* body{ */
+/*   background-color: #f5f5f5; */
 
-}
-.main-wrap{
-  /*background-color: red;*/
-  width: 100%;
-  /*height: 230px;*/
-  /*margin: 5px;*/
-  margin-top: 10px;
-}
-.wrap{
-  /*margin: 5px;*/
-  border: 5px solid transparent;
-}
+/* } */
+/* .main-wrap{ */
+/*   /*background-color: red;*/ */
+/*   width: 100%; */
+/*   /*height: 230px;*/ */
+/*   /*margin: 5px;*/ */
+/*   margin-top: 10px; */
+/* } */
+/* .wrap{ */
+/*   /*margin: 5px;*/ */
+/*   border: 5px solid transparent; */
+/* } */
 
-.shop-now{
-  background-color: yellow;
-  text-align: center;
+/* .shop-now{ */
+/*   background-color: yellow; */
+/*   text-align: center; */
 
-}
-h3{
-  /*margin: 5px;*/
-  padding: 5px;
-}
-.shop-img{
-  width: 100%;
-/*   height: 100%; */
-  overflow: hidden;
-}
-.back{
-  background-color: #FFF;
-  margin: 6px;
-}
+/* } */
+/* h3{ */
+/*   /*margin: 5px;*/ */
+/*   padding: 5px; */
+/* } */
+/* .shop-img{ */
+/*   width: 100%; */
+/* /*   height: 100%; */ */
+/*   overflow: hidden; */
+/* } */
+/* .back{ */
+/*   background-color: #FFF; */
+/*   margin: 6px; */
+/* } */
 
-.shop-details{
-    position: absolute;
-/*     height: 100%; */
-    width: 100%;
-    background-color: rgba(0,0,0,0.7);
-    left:0; bottom: 0;
-    color:white;padding:10px;
-    display:none;
-}
+/* .shop-details{ */
+/*     position: absolute; */
+/* /*     height: 100%; */ */
+/*     width: 100%; */
+/*     background-color: rgba(0,0,0,0.7); */
+/*     left:0; bottom: 0; */
+/*     color:white;padding:10px; */
+/*     display:none; */
+/* } */
 
-.shop-img{
-    position:relative;
-    display:inline-block;
-}
-.col-md-4:hover .shop-details{display:block;}
-.col-md-4:hover {
-    border: 1px solid black;
-}
-.responsive{
-	height: 316px;
-}
+/* .shop-img{ */
+/*     position:relative; */
+/*     display:inline-block; */
+/* } */
+/* .back:hover .shop-details{display:block;} */
+/* .back:hover { */
+/*     border: 1px solid black; */
+/* } */
+/* .responsive{ */
+/* 	height: 316px; */
+/* } */
 
 	
 
@@ -143,7 +143,7 @@ h3{
   
   </head>
   <body>
-  <div class="container">
+  <div class="container hideslider">
   		<!-- main slider carousel -->
 		<div class="row">
 			<div class="col-md-9" id="slider">
@@ -309,8 +309,13 @@ h3{
     </div><!--/slider-container-->
   </div><!--/col-md-12-->
 
-  <div class="container">
-    <div class="slider1-container">
+  <div class="container" >
+  <h4 id="searchtitle" style="display: none;"	>List of shope's in your area...</h4>
+<!--  <div id="productList" style="display: none;"> -->
+ <div id="shopList" style="display: none;">
+	
+	</div>  	
+    <div class="slider1-container hideslider">
       
     
       <hr class="small">
