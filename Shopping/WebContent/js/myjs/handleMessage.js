@@ -261,6 +261,7 @@ function handleShopListResponse(response)
 		
 		// var total = 0;
 		var shopdiv = "";
+		$.session.set("loadShopPage", response);
 		var shopList = response.product;
 		for ( var i in shopList)
 		{
@@ -287,7 +288,7 @@ function handleShopListResponse(response)
 				address = address + '<p>Address 2: '+address2+'</p>';
 			}
 			
-			var loadProfilePage = "loadProfilePage('"+shopid+"');" 		
+			var loadProfilePage = "loadShopProfilePage('"+shopid+"');" 		
 				
 				
 

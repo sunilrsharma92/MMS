@@ -342,6 +342,21 @@ function getIntDataFromSession(requestedValue)
 	return responseVal;
 }*/
 
+function loadShopProfilePage(id)
+	{
+	try
+	{
+		$.session.set("viewshop","viewshop");
+		$("#loadpage").load("shopProfile.jsp");
+		
+	}
+	catch(e)
+	{
+		console.log("ready.js loadShopProfilePage Exception : "+e)
+	}
+	}
+
+
 function autocompleteLabel(data)
 {
 	datalabel = data;

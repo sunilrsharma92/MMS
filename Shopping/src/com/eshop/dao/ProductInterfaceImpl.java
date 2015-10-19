@@ -382,7 +382,6 @@ public class ProductInterfaceImpl implements ProductInterface
 						
 						String product = (String) object.get("txt");
 						String action = (String) object.get("action");
-						System.out.println("action : "+action);
 						String output = searchKeyword.searchProduct(product, action);
 						
 						/*

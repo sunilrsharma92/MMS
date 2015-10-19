@@ -6,6 +6,53 @@ var sampleFile = "";
 var formdata = "";
 $(document).ready(function(){
 	
+	
+	var viewshop = $.session.get("viewshop");
+	alert("viewshop : "+viewshop);
+	if(viewshop == "viewshop")
+		{
+		try
+		{
+		var response1 = $.session.get("loadShopPage");
+		var shopList = response1.product;
+		alert("shopList : "+response1);
+		$("#loadpage").load("shopProfile.jsp");
+		
+		for ( var i in shopList)
+		{
+			
+			var shopid = shopList[i].shopid;
+			if(shopid == id)
+			{
+				var companyname = shopList[i].companyname;
+				var address1 = shopList[i].address1;
+				var address2 = shopList[i].address2;
+				var state = shopList[i].state;
+				var city = shopList[i].city;
+				var street = shopList[i].street;
+				var postalcode = shopList[i].postalcode;
+				var images = shopList[i].images;
+				
+				$("label[for='firstNameDisplay']").html(companyname);
+				$("label[for='stateDisplay']").html(state);
+				$("label[for='addressDisplay']").html(address1);
+				$("label[for='cityDisplay']").html(city);
+				$("label[for='pincodeDisplay']").html(postalcode);
+			}
+		}
+		
+	}
+	catch(e)
+	{
+		console.log("ready.js loadShopProfilePage Exception : "+e)
+	}
+		}
+	
+	
+	
+	
+	
+	
 	var contentState = $.session.get('contentState');
 	if(contentState !=null && contentState !="")
 		{

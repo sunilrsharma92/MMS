@@ -83,9 +83,11 @@ public class GetProductbyCategoryServlet extends HttpServlet
 	
 			String strjsonMsgResponse = getResponse.handleRequestResponse(jsonMsg, command);
 			
-			if(command == 1051)
+			JSONObject object = (JSONObject) JSONValue.parse(strjsonMsgResponse);
+			int command1 = ((Long) object.get("command")).intValue();
+			if(command1 == 2051)
 			{
-				JSONObject object = (JSONObject) JSONValue.parse(strjsonMsgResponse);
+				
 
 				int key = ((Long) object.get("key")).intValue();
 				String userType = (String) object.get("userType");
