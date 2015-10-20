@@ -71,11 +71,12 @@ function handleMainCategoryResponse(response)
 function handleProductArrayForAutoCompleteResponse(response)
 {
 	var autoCompleteLabel = response.autoCompleteLabel;
-//	alert("response : "+JSON.stringify(response));
+	var action = response.action;
+//	alert("action : "+action);
 //	localStorage.setItem("response",response)
 	
 	$.session.set("response",response);
-	autocompleteLabel(response);
+	autocompleteLabel(response, action);
 }
 
 /*
@@ -120,6 +121,7 @@ function handleShopProfDispResponse(response)
 		var action = response.status;
 		if(action == 3)
 		{
+			var companyname = response.companyname;
 			var firstName = response.firstName;
 			var lastName = response.lastName;
 			var address1 = response.address1;
@@ -127,7 +129,20 @@ function handleShopProfDispResponse(response)
 			var state = response.state;
 			var pinCode = response.pinCode;
 			
-			$("label[for='firstNameDisplay']").html(firstName+" "+lastName);
+			var viewshop = $.session.get("viewshop");
+			if(viewshop == "viewshop")
+			{
+//				console.log("viewshop : "+viewshop+" companyname : "+companyname);
+				$("label[for='firstNameDisplay']").html(companyname);
+				$(".hidemenu").hide();
+				$.session.set("viewshop","");
+			}
+			else
+			{
+				$("label[for='firstNameDisplay']").html(firstName+" "+lastName);
+				$(".hidemenu").show();
+			}
+			
 			$("label[for='stateDisplay']").html(state);
 			$("label[for='addressDisplay']").html(address1);
 			$("label[for='cityDisplay']").html(city);
@@ -145,6 +160,7 @@ function handleShopProfDispResponse(response)
 	catch (e)
 	{
 		writeLogAjax("handleShopProfDispResponse :::::: Exception" + e,0);
+		console.log("handleShopProfDispResponse :::::: Exception" + e);
 	}
 }
 
@@ -268,8 +284,8 @@ function handleShopListResponse(response)
 			
 			var shopid = shopList[i].shopid;
 			var companyname = shopList[i].companyname;
-			var address1 = shopList[i].address1;
-			var address2 = shopList[i].address2;
+			var address1 = ""+shopList[i].address1;
+			var address2 = ""+shopList[i].address2;
 			var state = shopList[i].state;
 			var city = shopList[i].city;
 			var street = shopList[i].street;
@@ -278,12 +294,12 @@ function handleShopListResponse(response)
 			
 			// total = total+price;
 			var address = "";
-			if(address1 != "")
+			if(address1 != "" || address1 != "null" || address1.length > 4)
 				{
 					address = address + '<p>Address 1: '+address1+'</p>';
 				}
-			
-			if(address2 != "")
+//			alert("address2 : "+address2.length);
+			if(address2 != "" || address2 != null || address2.length > 4)
 			{
 				address = address + '<p>Address 2: '+address2+'</p>';
 			}

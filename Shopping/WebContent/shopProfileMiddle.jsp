@@ -12,7 +12,7 @@
 <div class = "container">
   <div class = "row">
    <div class = "col-md-2">
-    <div class = "list-group side-bar">
+    <div class = "list-group side-bar hidemenu">
      <a href = "profile1.html" class = "list-group-item active"><span class = "glyphicon glyphicon-home"></span> Dash</a>
      <a href = "#" class = "list-group-item"><span class = "glyphicon glyphicon-pencil"></span> Edit Slider</a>
      <a href = "#" class = "list-group-item"><span class = "glyphicon glyphicon-pencil"></span> Edit Featured</a>
@@ -74,7 +74,8 @@
 
   <!-- End of slider  -->
 
-
+<div id="productList" style="display: none;"></div>
+<div id="hideadddiv">
 				<div class="row">
 					<hr class="small">
 					<h3 class="font" align="center">Featured Items</h3>
@@ -152,6 +153,7 @@
 
 
 
+				</div>
 				</div>
 				<!-- End of inner row -->
 

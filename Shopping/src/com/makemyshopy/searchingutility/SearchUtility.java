@@ -63,19 +63,19 @@ public class SearchUtility {
     if(action.equals("shop"))
     {
     	doc.add(new Field("shopid", ""+rs.getLong("supplier_key"), Field.Store.YES, Field.Index.ANALYZED ));
-        doc.add(new Field("companyname", rs.getString("company_name"), Field.Store.YES, Field.Index.ANALYZED ));
-        doc.add(new Field("firstname", rs.getString("first_name"), Field.Store.YES, Field.Index.ANALYZED ));
-        doc.add(new Field("lastname", rs.getString("last_name"), Field.Store.YES, Field.Index.ANALYZED ));
-        doc.add(new Field("address1", rs.getString("address1"), Field.Store.YES, Field.Index.ANALYZED ));
-        doc.add(new Field("address2", rs.getString("address2"), Field.Store.YES, Field.Index.ANALYZED ));
-        doc.add(new Field("phone", rs.getString("phone"), Field.Store.YES, Field.Index.ANALYZED ));
-        doc.add(new Field("state", rs.getString("state"), Field.Store.YES, Field.Index.ANALYZED ));
-        doc.add(new Field("city", rs.getString("city"), Field.Store.YES, Field.Index.ANALYZED ));
-        doc.add(new Field("street", rs.getString("street"), Field.Store.YES, Field.Index.ANALYZED ));
+        doc.add(new Field("companyname", ""+rs.getString("company_name"), Field.Store.YES, Field.Index.ANALYZED ));
+        doc.add(new Field("firstname", ""+rs.getString("first_name"), Field.Store.YES, Field.Index.ANALYZED ));
+        doc.add(new Field("lastname", ""+rs.getString("last_name"), Field.Store.YES, Field.Index.ANALYZED ));
+        doc.add(new Field("address1", ""+rs.getString("address1"), Field.Store.YES, Field.Index.ANALYZED ));
+        doc.add(new Field("address2", ""+rs.getString("address2"), Field.Store.YES, Field.Index.ANALYZED ));
+        doc.add(new Field("phone", ""+rs.getString("phone"), Field.Store.YES, Field.Index.ANALYZED ));
+        doc.add(new Field("state", ""+rs.getString("state"), Field.Store.YES, Field.Index.ANALYZED ));
+        doc.add(new Field("city", ""+rs.getString("city"), Field.Store.YES, Field.Index.ANALYZED ));
+        doc.add(new Field("street", ""+rs.getString("street"), Field.Store.YES, Field.Index.ANALYZED ));
         doc.add(new Field("postalcode", ""+rs.getLong("postal_code"), Field.Store.YES, Field.Index.ANALYZED ));
-        doc.add(new Field("email", rs.getString("email"), Field.Store.YES, Field.Index.ANALYZED ));
+        doc.add(new Field("email", ""+rs.getString("email"), Field.Store.YES, Field.Index.ANALYZED ));
 //        doc.add(new Field("shoptype", rs.getString("type_goods"), Field.Store.YES, Field.Index.ANALYZED ));
-        doc.add(new Field("images", rs.getString("profile_img"), Field.Store.YES, Field.Index.ANALYZED ));
+        doc.add(new Field("images", ""+rs.getString("profile_img"), Field.Store.YES, Field.Index.ANALYZED ));
         
     }
     else if(action.equals("product"))
@@ -201,7 +201,7 @@ public class SearchUtility {
     
     
 	
-	// //System.out.println("jsonarray : :  : :"+jsonarray);
+//	 System.out.println("jsonarray : :  : :"+jsonarray);
    }
 
    parentjson.put("product", jsonarray);

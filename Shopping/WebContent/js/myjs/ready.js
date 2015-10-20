@@ -4,13 +4,17 @@
 //*************************** Document ready function starts from here ***********************************
 var action = "";
 var arrayofProduct = [];
-var datalabel = "";
+var datalabelShop = "";
+var datalabelProd = "";
+var shopAction = "";
+var prodAction = "";
+
 $(document).ready(function(){
 //*******************************************************************************************************************
 	$.session.set('viewprod','');
 	var path = window.location.pathname;
 	var page = path.split("/").pop();
-	console.log( page );
+//	console.log( page );
 	writeLogAjax( "Page : "+page ,1);
 	
 	if(page == "indexTemplate.jsp")
@@ -110,6 +114,7 @@ $(document).ready(function(){
 	$("#profileLink").click(function() {
 //		alert("profileLink");
 		var vid = "";
+		$.session.set("viewshop","");
 		var userType = $.session.get('userType');
 		if(userType == "customer")
 			{
@@ -167,7 +172,8 @@ $(document).ready(function(){
 //***********Request for all product category ************************************************************************
 
 //	objhandleRequest.handleCategoryRequest();
-	objhandleRequest.handleAllProductForAutoCompleteRequest();
+	objhandleRequest.handleAllProductForAutoCompleteRequest("shop");
+	objhandleRequest.handleAllProductForAutoCompleteRequest("prod");
 
 //*********************** END ************************************************************************************
 		
@@ -253,7 +259,20 @@ try
 {
 $("#search").keyup(function(e){
 //	alert("Data Label : "+JSON.stringify(datalabel));
-	var label = datalabel.autoCompleteLabel;
+	var label = "";
+	
+	if(shopAction == "shop")
+	{
+		label = datalabelShop.autoCompleteLabel;
+	}
+	else if(prodAction == "prod")
+	{
+		label = datalabelProd.autoCompleteLabel;
+	}
+	
+	
+	
+	
 //	alert("Label : "+JSON.stringify(label));
 	$("#search").autocomplete({
 	source : label,
@@ -263,7 +282,17 @@ $("#search").keyup(function(e){
 		var text = ui.item.label;
 //		alert("Text : " + text);
 //		searchProduct();
-		searchShop();
+		var pageState = $.session.get('pageState');
+		console.log("Autocomplete pageState : "+pageState);
+		if(pageState == "shopProfile.jsp")
+		{
+			searchProduct();
+		}
+		else
+		{
+			searchShop();
+		}
+		
 	}
 
 	});
@@ -274,7 +303,18 @@ $("#search").keyup(function(e){
 		if(e.which == 13)
 		{
 //			alert("Text : " + $("#search").val());
-			searchShop();
+			var pageState = $.session.get('pageState');
+			console.log("Keypress pageState : "+pageState);
+			if(pageState == "shopProfile.jsp")
+			{
+				searchProduct();
+			}
+			else
+			{
+				searchShop();
+			}
+//			searchShop();
+			
 		}
 	});
 }
@@ -312,6 +352,83 @@ $("#emailSignUp, #mobile, #passSignUp, #repass").keypress(function(e)
 //		});
 
 
+$('#myCarousel').carousel({
+	  interval: 3000
+	});
+
+	// handles the carousel thumbnails
+	$('[id^=carousel-selector-]').hover(function() {
+	  var id_selector = $(this).attr("id");
+	  //console.log(id_selector);
+	  var id = id_selector.substr(id_selector.length - 1);
+	  //console.log(id);
+	  id = parseInt(id);
+	  $('#myCarousel').carousel(id - 1);
+	  $('[id^=carousel-selector-]').removeClass('selected');
+	  $(this).addClass('selected');
+	  //console.log(this);
+	});
+
+	// when the carousel slides, auto update
+	$('#myCarousel').on('slid.bs.carousel', function(e) {
+	  var id = $('.item.active').data('slide-number');
+	  id = parseInt(id);
+	  $('[id^=carousel-selector-]').removeClass('selected');
+	  $('[id=carousel-selector-' + id + ']').addClass('selected');
+	});
+
+
+
+
+
+$('.responsive').slick({
+prevArrow:'.slider-container .prev',
+nextArrow:'.slider-container .next',
+
+dots: false,
+infinite: false,
+speed: 300,
+slidesToShow: 3,
+slidesToScroll: 1,
+responsive: [
+{
+breakpoint: 1200,
+settings: {
+slidesToShow: 3,
+slidesToScroll: 1,
+infinite: true,
+dots: false
+}
+},
+{
+breakpoint: 992,
+settings: {
+slidesToShow: 3,
+slidesToScroll: 1,
+infinite: true,
+dots: false
+}
+},
+{
+breakpoint: 768,
+settings: {
+slidesToShow: 2,
+slidesToScroll: 1
+}
+},
+{
+breakpoint: 480,
+settings: {
+slidesToShow: 1,
+slidesToScroll:1
+}
+}
+// You can unslick at a given breakpoint now by adding:
+// settings: "unslick"
+// instead of a settings object
+]
+});
+
 });
 
 
@@ -348,6 +465,50 @@ function loadShopProfilePage(id)
 	{
 		$.session.set("viewshop","viewshop");
 		$("#loadpage").load("shopProfile.jsp");
+		$.session.remove('pageState');
+		$.session.set('pageState', "shopProfile.jsp");
+		writeLogAjax("supplierKey : " + id,1);
+		
+		objhandleRequest.handleShopProfileDisplay(id);
+		
+//		var viewshop = $.session.get("viewshop");
+//		if(viewshop == "viewshop")
+//			{
+//			tr
+//			var response1 = $.session.get("loadShopPage");
+//			var shopList = response1.product;
+////			alert("shopList : "+response1);
+////			$("#loadpage").load("shopProfile.jsp");
+//			
+//			for ( var i in shopList)
+//			{
+//				
+//				var shopid = shopList[i].shopid;
+//				if(shopid == id)
+//				{
+//					var companyname = shopList[i].companyname;
+//					var address1 = shopList[i].address1;
+//					var address2 = shopList[i].address2;
+//					var state = shopList[i].state;
+//					var city = shopList[i].city;
+//					var street = shopList[i].street;
+//					var postalcode = shopList[i].postalcode;
+//					var images = shopList[i].images;
+//					
+//					$("label[for='firstNameDisplay']").html(companyname);
+//					$("label[for='stateDisplay']").html(state);
+//					$("label[for='addressDisplay']").html(address1);
+//					$("label[for='cityDisplay']").html(city);
+//					$("label[for='pincodeDisplay']").html(postalcode);
+					
+					
+					
+//				}
+//			}
+//			$.session.set('pageState', vid);
+//		
+//			}
+		
 		
 	}
 	catch(e)
@@ -357,9 +518,19 @@ function loadShopProfilePage(id)
 	}
 
 
-function autocompleteLabel(data)
+function autocompleteLabel(data, action)
 {
-	datalabel = data;
+	if(action == "shop")
+	{
+		datalabelShop = data;
+		shopAction = action;
+	}
+	else if(action == "prod")
+	{
+		datalabelProd = data;
+		prodAction  = action;
+	}
+	
 }
 
 function loadProductViewPage(id)
@@ -389,7 +560,7 @@ function loadPage(id)
 	else if(vid == "shopProfile")
 			{
 				$.session.set('pageState', vid);
-				ShopProfileDisplay();
+//				ShopProfileDisplay();
 			}
 	else if(vid == "checkout")
 	{
@@ -1050,15 +1221,13 @@ function searchProduct()
 	var txt = $("#search").val();
 	if(txt != "")
 		{
-			$(".hideslider").hide();
-			$("#searchtitle").show();
+			$(".hideadddiv").hide();
 			$("#productList").show();
 		}
 	else if(txt == "")
 		{
-			$(".hideslider").show();
+			$(".hideadddiv").show();
 			$("#productList").hide();
-			$("#searchtitle").hide();
 		}
 //	alert("txt 1 : "+txt);
 	if(txt != "")
@@ -1071,6 +1240,8 @@ function searchProduct()
 function searchShop()
 {
 //	alert("shop");
+	
+	
 	var txt = $("#search").val();
 	if(txt != "")
 	{

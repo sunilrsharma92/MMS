@@ -14,6 +14,7 @@ $(document).ready(function(){
 	if(pageState == "checkout")
 	{
 //		alert("state : "+pageState);
+		
 		$.session.set('checkout','checkout');
 		getProductfromCookie("prod");
 	}

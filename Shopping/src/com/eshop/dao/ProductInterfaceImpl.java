@@ -161,23 +161,42 @@ public class ProductInterfaceImpl implements ProductInterface
 				case 1002:
 						try
 						{
-							ps = conn.prepareStatement("select company_name, profile_img from suppliers");
-//							ps = conn.prepareStatement("select product_name, picture from products");
+							JSONObject object = (JSONObject) JSONValue.parse(jsonMsg);
+							String action = (String) object.get("action");
+							if(action.equals("shop"))
+							{
+								ps = conn.prepareStatement("select company_name, profile_img from suppliers");
+							}
+							else if(action.equals("prod"))
+							{
+								ps = conn.prepareStatement("select product_name, picture from products");
+							}
+							
+//							
 							rs = ps.executeQuery();
 							while (rs.next())
 							{
-								JSONObject childjson = new JSONObject();
+//								JSONObject childjson = new JSONObject();
 								
 //								String productList = "<table><tr><td class='cimg'><img class='cartimgsize' src='" + rs.getString("picture") + "'></td>" 
 //																 + "<td class='cname'>" + rs.getString("product_name") + "</td></tr></table>";
+								if(action.equals("shop"))
+								{
+									jsonarray.add(rs.getString("company_name"));
+								}
+								else if(action.equals("prod"))
+								{
+									jsonarray.add(rs.getString("product_name"));
+//									childjson.put("name", rs.getString("product_name"));
+//									childjson.put("icon", rs.getString("picture"));
+								}
+//								
 								
-//								childjson.put("name", rs.getString("product_name"));
-//								childjson.put("icon", rs.getString("picture"));
 								
-								jsonarray.add(rs.getString("company_name"));
 							}
 							
 							parentjson.put("autoCompleteLabel", jsonarray);
+							parentjson.put("action", action);
 							
 							parentjson = CommonMethodImpl.putSuccessJson(parentjson, 2002);
 							

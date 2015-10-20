@@ -40,11 +40,12 @@ function handleRequest()
 		}
 	}
 	
-	function handleAllProductForAutoCompleteRequest()
+	function handleAllProductForAutoCompleteRequest(action)
 	{
 		try
 		{
 			var strProduct = {};
+			strProduct.action = action;
 			strProduct.command = 1002;
 			
 			var strjsonMsgForstrstrProduct = JSON.stringify(strProduct);

@@ -30,6 +30,7 @@ public class CommonMethodImpl {
 			ResultSet rs = stmt.executeQuery();
 			if (rs.next())
 			{
+				
 				parentjson.put("firstName", rs.getString("first_name"));
 				parentjson.put("lastName", rs.getString("last_name"));
 				parentjson.put("password", rs.getString("password"));
@@ -77,6 +78,7 @@ public class CommonMethodImpl {
 			ResultSet rs = stmt.executeQuery();
 			if (rs.next())
 			{
+				parentjson.put("companyname", rs.getString("company_name"));
 				parentjson.put("firstName", rs.getString("first_name"));
 				parentjson.put("lastName", rs.getString("last_name"));
 				parentjson.put("password", rs.getString("password"));
