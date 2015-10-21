@@ -118,9 +118,16 @@ function handleShopProfDispResponse(response)
 {
 	try
 	{
+//		alert(JSON.stringify(response));
+		
+//		{"lastName":"Barai","address2":"Room No 56, Viruss society , viruss nagar,US(w), Mumbai 400568.","city":"Mumbai","address1":"Room No 7, Ramabhilakh yadav chawl, Farid nagar, Bhandup(w), Mumbai 400078.","active":1,"emailId":"devendrabarai141@gmail.com","otp":"DX4hqHgL","command":2010,"firstName":"Deva","password":"133e40872ad902a4ff33032dce740c2f","phone":"8976605993","companyname":"D Mart Shpping Center","street":"Bhandup","pinCode":"400078","state":"Maharashtra","userType":"supplier","profileImg":"Images/1.jpg","key":9,"status":3}
+		
 		var action = response.status;
+		$.session.set("shopprofileResponse",response)
 		if(action == 3)
 		{
+			var key = response.key;
+			$.session.set("shopProfileKey",key);
 			var companyname = response.companyname;
 			var firstName = response.firstName;
 			var lastName = response.lastName;
@@ -128,8 +135,12 @@ function handleShopProfDispResponse(response)
 			var city = response.city;
 			var state = response.state;
 			var pinCode = response.pinCode;
+			var profileImg = response.profileImg;
 			
 			var viewshop = $.session.get("viewshop");
+			
+			$("#shopprofileimg").attr("src",profileImg);
+			
 			if(viewshop == "viewshop")
 			{
 //				console.log("viewshop : "+viewshop+" companyname : "+companyname);
@@ -706,6 +717,24 @@ function handleLoginResponse(response)
 		if(checkoutlogin == 'checkoutlogin')
 		{
 			$("#loadpage").load("checkout.jsp");
+			
+			getcookies();
+//			if(arrayofProduct.length !=0)
+//				{
+//				
+//				}
+			console.log(arrayofProduct);
+			var userid = response.key;
+			for(var i in arrayofProduct)
+			{
+				var productid = arrayofProduct[i];
+				objhandleRequest.aadToCartForLoggedUser(userid, userType, productid, "authoriseduser", 1, "add");
+			}
+			arrayofProduct = 0;
+			
+			
+			
+			
 //			var num = 0;
 //			var stopInterval = setInterval(function(){
 //				num++;

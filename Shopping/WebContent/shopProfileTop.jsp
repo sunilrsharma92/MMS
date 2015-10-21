@@ -14,7 +14,7 @@
 	<div class = "container-fluid" style = "background-color: #037DBB; margin-top:-15px; margin-bottom:15px;">
 		<div class = "row row1">
 			<div class = "col-md-3 col-sm-6 col-xs-12 prof">
-				<img class = "img-responsive" src = "Images/profileImg.jpg">
+				<img class = "img-responsive" id="shopprofileimg" src="">
 			</div>
 			<!-- end of col-3 -->
 			<div class = "col-md-9 col-sm-6 col-xs-12">
@@ -48,6 +48,13 @@
 					<tr>
 						<td><span>Pin Code&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: </span></td>
 						<td><label class = "labelfont" for="pincodeDisplay"></label></td>
+					</tr>
+					<tr>
+						<!--searchProductTxtBox -->
+						<input type="text" id="searchProductTxtBox" class="whiteLabel" style="text-align: center; outline: 0; color:black;" name="searchProductTxtBox" placeholder="Search the item here">
+<!-- 						<button class="insearch" onclick="searchProduct();" type="submit"> -->
+<!-- 							<span class="glyphicon glyphicon-search"></span> -->
+<!-- 						</button> -->
 					</tr>
 				</table>
 				<!-- end of table -->

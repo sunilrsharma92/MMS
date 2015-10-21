@@ -92,6 +92,10 @@ $(document).ready(function(){
 					$.session.remove('checkoutlogin');
 					$.session.remove('itemsinCart');
 					$.session.remove("profileimg");
+					$.session.remove("shopprofileResponse");
+					$.session.remove("shopProfileKey");
+					$.session.remove("viewshop");
+//					$.cookie("key","");
 	
 					window.location.replace("indexTemplate.jsp");
 				}
@@ -261,14 +265,14 @@ $("#search").keyup(function(e){
 //	alert("Data Label : "+JSON.stringify(datalabel));
 	var label = "";
 	
-	if(shopAction == "shop")
-	{
+//	if(shopAction == "shop")
+//	{
 		label = datalabelShop.autoCompleteLabel;
-	}
-	else if(prodAction == "prod")
-	{
-		label = datalabelProd.autoCompleteLabel;
-	}
+//	}
+//	else if(prodAction == "prod")
+//	{
+//		label = datalabelProd.autoCompleteLabel;
+//	}
 	
 	
 	
@@ -282,41 +286,79 @@ $("#search").keyup(function(e){
 		var text = ui.item.label;
 //		alert("Text : " + text);
 //		searchProduct();
-		var pageState = $.session.get('pageState');
-		console.log("Autocomplete pageState : "+pageState);
-		if(pageState == "shopProfile.jsp")
-		{
-			searchProduct();
-		}
-		else
-		{
-			searchShop();
-		}
+//		var pageState = $.session.get('pageState');
+//		console.log("Autocomplete pageState : "+pageState);
+//		if(pageState == "shopProfile")
+//		{
+//			searchProduct();
+//		}
+//		else
+//		{
+			var pageSta = $.session.get('pageState');
+	//		alert("pageState : "+pageSta);
+			if(pageSta != "indexBody")
+			{
+				$.session.set('pageState','indexBody');
+				$("#loadpage").load("indexBody.jsp");
+			}
+			
+			var count = 0;
+			var clear = setInterval(function(){
+				count++;
+				if(count == 2)
+					{
+						searchShop();
+						clearInterval(clear);
+					}
+			}, 1000);
+//			searchShop();
+//		}
 		
 	}
 
 	});
 });
 
+
+
 	$("#search").keypress(function(e)
 	{
 		if(e.which == 13)
 		{
 //			alert("Text : " + $("#search").val());
-			var pageState = $.session.get('pageState');
-			console.log("Keypress pageState : "+pageState);
-			if(pageState == "shopProfile.jsp")
-			{
-				searchProduct();
-			}
-			else
-			{
-				searchShop();
-			}
+//			var pageState = $.session.get('pageState');
+//			console.log("Keypress pageState : "+pageState);
+//			if(pageState == "shopProfile")
+//			{
+//				searchProduct();
+//			}
+//			else
+//			{
+				var pageSta = $.session.get('pageState');
+				//		alert("pageState : "+pageSta);
+				if(pageSta != "indexBody")
+				{
+					$.session.set('pageState','indexBody');
+					$("#loadpage").load("indexBody.jsp");
+				}
+				
+				var count = 0;
+				var clear = setInterval(function(){
+					count++;
+					if(count == 2)
+						{
+							searchShop();
+							clearInterval(clear);
+						}
+				}, 1000);
+				
+//			}
 //			searchShop();
 			
 		}
 	});
+	
+	
 }
 catch(e)
 {
@@ -464,9 +506,10 @@ function loadShopProfilePage(id)
 	try
 	{
 		$.session.set("viewshop","viewshop");
+		$.session.set("shopid","viewshop");
 		$("#loadpage").load("shopProfile.jsp");
 		$.session.remove('pageState');
-		$.session.set('pageState', "shopProfile.jsp");
+		$.session.set('pageState', "shopProfile");
 		writeLogAjax("supplierKey : " + id,1);
 		
 		objhandleRequest.handleShopProfileDisplay(id);
@@ -1218,13 +1261,13 @@ try
 function searchProduct()
 {
 //	alert("txt : ");
-	var txt = $("#search").val();
-	if(txt != "")
+	var txt = $("#searchProductTxtBox").val();
+	if(txt != "" || txt != null)
 		{
 			$(".hideadddiv").hide();
 			$("#productList").show();
 		}
-	else if(txt == "")
+	else if(txt == "" || txt == null)
 		{
 			$(".hideadddiv").show();
 			$("#productList").hide();
@@ -1239,17 +1282,15 @@ function searchProduct()
 
 function searchShop()
 {
-//	alert("shop");
-	
-	
 	var txt = $("#search").val();
-	if(txt != "")
+	if(txt != "" || txt != null)
 	{
+//		alert("txt : "+txt);
 		$(".hideslider").hide();
 		$("#searchtitle").show();
 		$("#shopList").show();
 	}
-	else if(txt == "")
+	else if(txt == "" || txt == null)
 	{
 		$(".hideslider").show();
 		$("#shopList").hide();
