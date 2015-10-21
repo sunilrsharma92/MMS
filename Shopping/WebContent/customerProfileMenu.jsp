@@ -12,7 +12,7 @@
 <body>
 
 	<!-- Start of container -->
-	<div  style="margin-top: -21px; margin-bottom: 0px;">
+	<div  style="margin-top: 0px; margin-bottom: 0px;">
 		<div class="container" style="background-color: #FFF;">
 			<!-- Start of row -->
 			<div class="row">
