@@ -1,3 +1,7 @@
+html{
+	overflow-x:hidden;
+}
+
 body{
 	font-family  : "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size  : 14px;
@@ -542,6 +546,13 @@ tbody{
 	    
 }
 /*profile page*/
+.prof{
+	margin-top: 11px;
+}
+.prof > img.img-responsive{
+	border-radius:10px;
+}
+
 .list-group-item :hover {
 	font-size : 15px;
 	font-weight : bold;
@@ -632,8 +643,8 @@ line-height : 1.4em;
 
 .wrap :hover {
 	/*border : 1px solid #B8B8A6;*/
-	border-left : 1px solid #B8B8A6;
-	border-right : 1px solid #B8B8A6;
+/* 	border-left : 1px solid #B8B8A6; */
+/* 	border-right : 1px solid #B8B8A6; */
 	/*border-bottom : 1px solid #B8B8A6;*/
 }
 
@@ -687,6 +698,9 @@ line-height : 1.4em;
 	-webkit-border-radius : 0 6px 6px 6px;
 	-moz-border-radius : 0 6px 6px;
 	border-radius : 0 6px 6px 6px;
+}
+#productSearch{
+	height: 34px;
 }
 
 .dropdown-submenu :hover>.dropdown-menu {
