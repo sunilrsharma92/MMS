@@ -34,7 +34,7 @@ import com.eshop.logger.MakemyshopyLogger;
 public class UploadServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     private ServletFileUpload uploader = null;
-    private String relativePath = "D:\\Git\\Code\\Local Code\\Shopping\\WebContent\\Images\\ProfileImg";
+    private String relativePath = "F:\\D Drive\\My Career\\MMS Local Code\\Shopping\\WebContent\\Images\\ProfileImg";
     private String foldername;
     private String PathofFile;
     private String foldernamejsp = "";

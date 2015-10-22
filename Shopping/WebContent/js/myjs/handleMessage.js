@@ -362,6 +362,7 @@ function handleAddtoCartWithLoginResponse(response)
 	document.getElementById("productCountOnCart").innerHTML=itemsinCart;
 	document.getElementById("productCountOnCart1").innerHTML=itemsinCart;
 	$.session.set("itemsinCart",itemsinCart);
+	
 }
 
 function handleRemoveProductFromCartResponse(response)
@@ -383,12 +384,28 @@ function handleRemoveProductFromCartResponse(response)
 	}
 }
 
+function handleConformOrderResponse(response)
+{
+	console.log("handleConformOrderResponse : "+JSON.stringify(response));
+	var loginData = $.session.get('loginData');
+	
+	if(loginData != null)
+	{
+		var sessionData = JSON.parse(loginData);
+		var userid = sessionData.key;
+		var userType = sessionData.userType;
+		$("#profileLink").trigger("click");
+		objhandleRequest.handledisplayProductinCart("", "withlogin", userid, userType);
+	}
+}
+
 function handleProductDisplayinCartResponse(response)
 {
 	try
 	{
 		writeLogAjax('handleProductDisplayinCartResponse :::::: ' + JSON.stringify(response),1);
 		var productList = "";
+		var productList1 = "";
 		var totalpurchase = "";
 		var total = 0;
 		var count = 0;
@@ -415,6 +432,9 @@ function handleProductDisplayinCartResponse(response)
 			var quantityfunctionAdd = "quantity('demo" + productid + "','add','"+price+"','"+productid+"');"
 			var quantityfunctionMinus = "quantity('demo" + productid + "','minus','"+price+"','"+productid+"');"
 			
+			var quantityfunctionAdd1 = "quantity('demo1" + productid + "','add','"+price+"','"+productid+"');"
+			var quantityfunctionMinus1 = "quantity('demo1" + productid + "','minus','"+price+"','"+productid+"');"
+			
 			productList = productList + '<tr>' + '<td class="cimg"><img class="cartimgsize" id="' + productid + '" src="' + images + '"></td>' + '<td class="cname">' + prodName + '</td>' + '<td class="csize">' + stock + ' kg</td>' + '<td class="cqty">'
 
 			+ '<div class="input-group bootstrap-touchspin quantitybtn">' 
@@ -427,8 +447,25 @@ function handleProductDisplayinCartResponse(response)
 
 			+ '</td>' + '<td class="cprice">' + price + '</td>' + '<td align="center"><button type="button" onclick="removeproductfromCArt(' + productid + ')" class="btn btn-danger btn-xs cartdelbtn"><span id="cdel" class="glyphicon glyphicon-remove"></span></button></td>' + '</tr>';
 
-		}
+			//##############################################******************************************###################################
+		
+			productList1 = productList1 + '<tr>' + '<td class="cimg"><img class="cartimgsize" id="' + productid + '" src="' + images + '"></td>' + '<td class="cname">' + prodName + '</td>' + '<td class="csize">' + stock + ' kg</td>' + '<td class="cqty">'
 
+			+ '<div class="input-group bootstrap-touchspin quantitybtn">' 
+			+ '<span class="input-group-btn">' 
+//			+ '<button class="btn btn-default bootstrap-touchspin-down" id="minus' + productid + '" onclick="' + quantityfunctionMinus + '" type="button">-</button></span>' + '<input id="demo' + productid + '" onkeyup="' + quantityfunctionMinus + '" onfocus="storeoldvalue(this);" type="text" value="'+quantity+'" name="demo1" class="form-control cartquantity">' + '<span class="input-group-btn">' 
+			+ '<button class="btn btn-default bootstrap-touchspin-down" id="minus1' + productid + '" onclick="' + quantityfunctionMinus1 + '" type="button">-</button></span>' + '<input id="demo1' + productid + '" type="text" disabled="disabled" value="'+quantity+'" name="demo1" class="form-control cartquantity">' + '<span class="input-group-btn">' 
+			+ '<button class="btn btn-default bootstrap-touchspin-up" id="add1' + productid + '" onclick="' + quantityfunctionAdd1 + '" type="button">+</button>'
+			+'</span>' 
+			+ '</div>'
+
+			+ '</td>' + '<td class="cprice">' + price + '</td>' + '<td align="center"><button type="button" onclick="removeproductfromCArt(' + productid + ')" class="btn btn-danger btn-xs cartdelbtn"><span id="cdel" class="glyphicon glyphicon-remove"></span></button></td>' + '</tr>';
+
+		}
+		$.session.set("itemsinCart",count);
+		$(".productCountOnCart").empty();
+		document.getElementById("productCountOnCart").innerHTML = count;
+		document.getElementById("productCountOnCart1").innerHTML = count;
 		// writeLogAjax(total,1);
 
 		totalpurchase = totalpurchase + '<span class="tlbprce">Total Price :</span>' + '<span class="totalprize"><strong> Rs ' + total + '</strong> </span>';
@@ -457,8 +494,8 @@ function handleProductDisplayinCartResponse(response)
 //		alert(checkout);
 		if(checkout !=null && checkout !=="" && checkout == "checkout")
 			{
-			
-				appendProducttoCheckoutTable(productList, totalpurchase, total, count);
+				console.log("hii");
+				appendProducttoCheckoutTable(productList1, totalpurchase, total, count);
 //				$.session.remove('checkout');
 			}
 		
@@ -716,14 +753,12 @@ function handleLoginResponse(response)
 		var checkoutlogin = $.session.get('checkoutlogin');
 		if(checkoutlogin == 'checkoutlogin')
 		{
-			$("#loadpage").load("checkout.jsp");
-			
 			getcookies();
 //			if(arrayofProduct.length !=0)
 //				{
 //				
 //				}
-			console.log(arrayofProduct);
+//			console.log(arrayofProduct);
 			var userid = response.key;
 			for(var i in arrayofProduct)
 			{
@@ -732,8 +767,7 @@ function handleLoginResponse(response)
 			}
 			arrayofProduct = 0;
 			
-			
-			
+			$("#loadpage").load("checkout.jsp");
 			
 //			var num = 0;
 //			var stopInterval = setInterval(function(){

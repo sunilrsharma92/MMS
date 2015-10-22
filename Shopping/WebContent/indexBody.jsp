@@ -9,7 +9,7 @@
 	content="width=device-width, initial-scale=1, maximum-scale=1">
 <title>Make my shopy</title>
 
-<!-- <link href="http://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css"> -->
+<link href="slick/jquerysctipttop.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet" type="text/css" href="slick/slick.css" />
 <link rel="stylesheet" type="text/css" href="slick/slick-theme.css" />
 

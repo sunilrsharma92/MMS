@@ -177,7 +177,7 @@
 							<input type="hidden" name="txttotalpurchaseOnCheckoutHidden" id="totalpurchaseOnCheckoutHidden" value="">
 						<div class="pull-right">
 							<a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" class="btn btn-primary" id="ckaddcont">Pre</a>
-							<a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" class="btn btn-primary" onclick="conformOrder();" id="conformOrder">Conform Order</a>
+							<a data-toggle="" data-parent="#accordion" href="#collapseThree" class="btn btn-primary" onclick="conformOrder();" id="conformOrder">Conform Order</a>
 						</div>
 					</div>
 				</div>
