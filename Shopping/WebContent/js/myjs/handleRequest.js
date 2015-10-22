@@ -18,6 +18,7 @@ function handleRequest()
 	this.handleUpdateProfilePic = handleUpdateProfilePic;
 	this.aadToCartForLoggedUser = aadToCartForLoggedUser;
 	this.removeFromCart = removeFromCart;
+	this.conformOder = conformOder;
 
 	// ****** This function is used to get all main product category ******//
 	function handleCategoryRequest()
@@ -269,13 +270,14 @@ function handleRequest()
 		}
 	}
 
-	function searchProduct(txt, action)
+	function searchProduct(txt, action, shopid)
 	{
 		try
 		{
 			var strSearchProduct = {};
 			strSearchProduct.txt = txt;
 			strSearchProduct.action = action;
+			strSearchProduct.shopid = +shopid;
 			strSearchProduct.command = 1006;
 
 			var strjsonMsgForstrSearchProduct = JSON.stringify(strSearchProduct);
@@ -330,12 +332,13 @@ function handleRequest()
 		}
 	}
 	
-	function aadToCartForLoggedUser(userid, userType, productid, authorisedUser, quantity, action)
+	function aadToCartForLoggedUser(userid, userType, productid, authorisedUser, quantity, action, shopid)
 	{
 		try
 		{
 			var straadToCart = {};
 			straadToCart.userid = +userid;
+			straadToCart.shopid = +shopid;
 			straadToCart.userType = userType;
 			straadToCart.productid = +productid;
 			straadToCart.quantity = parseInt(quantity);
@@ -373,6 +376,26 @@ function handleRequest()
 		catch (e)
 		{
 			console.log("handleRequest     removeFromCartForLoggedUser     Exception :: " + e);
+		}
+	}
+		
+	function conformOder(userid, userType)
+	{
+		try
+		{
+			var strconform = {};
+			strconform.userid = +userid;
+			strconform.userType = userType;
+			strconform.command = 1013;
+			
+			var strjsonMsgForstrconform = JSON.stringify(strconform);
+			console.log("handleRequest     strjsonMsgForstrconform  : " + strjsonMsgForstrconform);
+			handleAllListResponse(strjsonMsgForstrconform);
+			
+		}
+		catch (e)
+		{
+			console.log("handleRequest     conformOder     Exception :: " + e);
 		}
 	}
 	

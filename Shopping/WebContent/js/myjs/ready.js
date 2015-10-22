@@ -95,6 +95,7 @@ $(document).ready(function(){
 					$.session.remove("shopprofileResponse");
 					$.session.remove("shopProfileKey");
 					$.session.remove("viewshop");
+					$.session.remove("userType");
 //					$.cookie("key","");
 	
 					window.location.replace("indexTemplate.jsp");
@@ -506,7 +507,7 @@ function loadShopProfilePage(id)
 	try
 	{
 		$.session.set("viewshop","viewshop");
-		$.session.set("shopid","viewshop");
+		$.session.set("shopid",id);
 		$("#loadpage").load("shopProfile.jsp");
 		$.session.remove('pageState');
 		$.session.set('pageState', "shopProfile");
@@ -1090,7 +1091,8 @@ function addproducttoCArt(productid)
 		document.getElementById("ok"+productid).style.display = "block";
 		document.getElementById("btn"+productid).disabled = true;
 		
-		objhandleRequest.aadToCartForLoggedUser(userid, userType, productid, "authoriseduser", 1, "add");
+		var shopid = $.session.get("shopid");
+		objhandleRequest.aadToCartForLoggedUser(userid, userType, productid, "authoriseduser", 1, "add", shopid);
 	}
 	else
     {
@@ -1275,7 +1277,8 @@ function searchProduct()
 //	alert("txt 1 : "+txt);
 	if(txt != "")
 	{
-		objhandleRequest.searchProduct(txt, "product");
+		var shopid = $.session.get("shopid");
+		objhandleRequest.searchProduct(txt, "product", shopid);
 	}
 }
 
@@ -1329,8 +1332,15 @@ function callAlerts(msg)
 
 function quantity(txtboxid, action, price, productid)
 {
-	var totalcartAmmount = $("#totalcartAmmounthidden").val();
-	var val = parseInt($("#"+txtboxid).val());
+	try
+	{
+//		alert("txtboxid : "+ txtboxid +" action : "+ action +" price : "+ price +" productid : "+ productid);
+		var totalcartAmmount = $("#totalcartAmmounthidden").val();
+		var val = parseInt($("#"+txtboxid).val());
+
+		console.log("Old : "+txtboxid+" ******************** New : "+txtboxid.split("mo").join("mo1"));
+		var newtxtID = txtboxid.split("mo").join("mo1");
+		
 ////	alert("1 : "+val);
 //	if(no == "" || no == "0" || no == "NaN")
 //		{
@@ -1369,9 +1379,28 @@ function quantity(txtboxid, action, price, productid)
 				NewcartAmmount = parseInt(cartAmmount) + parseInt(newpricePerProduct);
 
 				$("#totalpurchase").empty();
-				$("#totalpurchase").append("Total Price : Rs "+NewcartAmmount);
+				var ammt = '<span class="tlbprce">Total Price :</span>' + '<span class="totalprize"><strong> Rs ' + NewcartAmmount + '</strong> </span>'
+    			$("#totalpurchase").append(ammt);
 			    $("#totalcartAmmounthidden").val(NewcartAmmount);
-			    managetotalprice(NewcartAmmount);
+			    
+			    try
+    		    {
+	    		     var pageState = $.session.get('pageState');
+					 console.log("checkout.js pageState : "+pageState);
+					 if(pageState == "checkout")
+					 {
+						 $("#"+newtxtID).val(total);
+						 $("#totalpurchaseOnCheckout").empty();
+						 $("#totalpurchaseOnCheckout").append(ammt);
+						 $("#totalpurchaseOnCheckoutHidden").val(NewcartAmmount);
+					 }
+    		    }
+    		    catch(e)
+    		    {
+    		    	console.log("ready.js quantity (Checking user is on which page..? checkout.jsp or not Exception ADD: "+e);
+    		    }
+			    
+//			    managetotalprice(NewcartAmmount);
 			    console.log("old cart ammount : "+totalcartAmmount+" Old quantity : "+val+" New quantity : "+total+" oldpricePerProduct : "+price*val+" newpricePerProduct : "+price*total+" cartAmmount : "+cartAmmount+" NewcartAmmount : "+NewcartAmmount);
 			    writeLogAjax("old cart ammount : "+totalcartAmmount+" Old quantity : "+val+" New quantity : "+total+" oldpricePerProduct : "+price*val+" newpricePerProduct : "+price*total+" cartAmmount : "+cartAmmount+" NewcartAmmount : "+NewcartAmmount, 1);
 			    
@@ -1394,9 +1423,28 @@ function quantity(txtboxid, action, price, productid)
 		    			NewcartAmmount = parseInt(cartAmmount) + parseInt(newpricePerProduct);
 
 		    			$("#totalpurchase").empty();
-		    			$("#totalpurchase").append("Total Price : Rs "+NewcartAmmount);
+		    			var ammt = '<span class="tlbprce">Total Price :</span>' + '<span class="totalprize"><strong> Rs ' + NewcartAmmount + '</strong> </span>'
+		    			$("#totalpurchase").append(ammt);
 		    		    $("#totalcartAmmounthidden").val(NewcartAmmount);
-		    		    managetotalprice(NewcartAmmount);
+		    		    
+		    		    try
+		    		    {
+			    		     var pageState = $.session.get('pageState');
+							 console.log("checkout.js pageState : "+pageState);
+							 if(pageState == "checkout")
+							 {
+								 $("#"+newtxtID).val(total);
+								 $("#totalpurchaseOnCheckout").empty();
+								 $("#totalpurchaseOnCheckout").append(ammt);
+								 $("#totalpurchaseOnCheckoutHidden").val(NewcartAmmount);
+							 }
+		    		    }
+		    		    catch(e)
+		    		    {
+		    		    	console.log("ready.js quantity (Checking user is on which page..? checkout.jsp or not Exception MINUS: "+e);
+		    		    }
+		    		    
+//		    		    managetotalprice(NewcartAmmount);
 		    		    console.log("old cart ammount : "+totalcartAmmount+" Old quantity : "+val+" New quantity : "+total+" oldpricePerProduct : "+price*val+" newpricePerProduct : "+price*total+" cartAmmount : "+cartAmmount+" NewcartAmmount : "+NewcartAmmount);
 		    		    writeLogAjax("old cart ammount : "+totalcartAmmount+" Old quantity : "+val+" New quantity : "+total+" oldpricePerProduct : "+price*val+" newpricePerProduct : "+price*total+" cartAmmount : "+cartAmmount+" NewcartAmmount : "+NewcartAmmount, 1);
 		    		    
@@ -1422,51 +1470,71 @@ function quantity(txtboxid, action, price, productid)
 //			    writeLogAjax("quantity : "+total+" oldpricePerProduct :"+oldpricePerProduct+" quantity * pricePerProduct : "+pricePerProduct+" totalPrice after - price : "+totalPrice+" totalPurchaseprice : "+totalPurchaseprice,1);
 //			}
 //		}
+	}
+	catch(e)
+	{
+		console.log("ready.js quantity Exception : "+e);
+	}
 }
 
 function managetotalprice(NewcartAmmount)
 {
-	var checkout = $.session.get('checkout');
-	if(checkout !=null && checkout !=="" && checkout == "checkout")
-		{
-			var loginData = $.session.get('loginData');
-			if(loginData != null)
+	try
+	{
+		var checkout = $.session.get('checkout');
+		if(checkout !=null && checkout !=="" && checkout == "checkout")
 			{
-				var sessionData = JSON.parse(loginData);
-				var userid = sessionData.key;
-				var userType = sessionData.userType;
-				$.session.set('checkout','checkout');
-				objhandleRequest.handledisplayProductinCart("", "withlogin", userid, userType);
+				var loginData = $.session.get('loginData');
+				if(loginData != null)
+				{
+					var sessionData = JSON.parse(loginData);
+					var userid = sessionData.key;
+					var userType = sessionData.userType;
+					$.session.set('checkout','checkout');
+					objhandleRequest.handledisplayProductinCart("", "withlogin", userid, userType);
+				}
+				else
+				{
+					getProductfromCookie("prod");
+				}
+	//			
+	//		
+	//			$("#totalpurchaseOnCheckout").empty();
+	//			$("#totalpurchaseOnCheckout").append("Total Price : Rs "+NewcartAmmount);
+	//		    $("#totalpurchaseOnCheckoutHidden").val(NewcartAmmount);
+	//		
+	//		
 			}
-			else
-			{
-				getProductfromCookie("prod");
-			}
-//			
-//		
-//			$("#totalpurchaseOnCheckout").empty();
-//			$("#totalpurchaseOnCheckout").append("Total Price : Rs "+NewcartAmmount);
-//		    $("#totalpurchaseOnCheckoutHidden").val(NewcartAmmount);
-//		
-//		
-		}	
+}
+catch(e)
+{
+	console.log("ready.js managetotalprice Exception : "+e);
+}
 }
 
 function updateQuantity(productid, quantity)
 {
-	var loginData = $.session.get('loginData');
-	if (loginData != null)
+	try
 	{
-		var sessionData = JSON.parse(loginData);
-		var userid = sessionData.key;
-		var userType = sessionData.userType;
-		
-		objhandleRequest.aadToCartForLoggedUser(userid, userType, productid, "authoriseduser", quantity, "update");
+		var loginData = $.session.get('loginData');
+		if (loginData != null)
+		{
+			var sessionData = JSON.parse(loginData);
+			var userid = sessionData.key;
+			var userType = sessionData.userType;
+			
+			objhandleRequest.aadToCartForLoggedUser(userid, userType, productid, "authoriseduser", quantity, "update");
+		}
+		else
+	    {
+			objhandleRequest.aadToCartForLoggedUser(0, "", productid, "unauthorised", quantity, "update");
+		}
 	}
-	else
-    {
-		objhandleRequest.aadToCartForLoggedUser(0, "", productid, "unauthorised", quantity, "update");
+	catch(e)
+	{
+		console.log("ready.js updateQuantity Exception : "+e);
 	}
+	
 }
 
 

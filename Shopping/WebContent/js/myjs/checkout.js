@@ -1,6 +1,8 @@
 var objhandleRequest=new handleRequest();
 //*******************************************************************************************************************	
 var count = 0;
+var orderAddress = "";
+
 $(document).ready(function(){
 try
 {
@@ -155,23 +157,32 @@ catch (e) {
 }
 });
 	
-	function appendProducttoCheckoutTable(productList, totalpurchase, total, count)
+	function appendProducttoCheckoutTable(productList1, totalpurchase, total, count)
 	{
-		$("#monylabel").empty();
-		$("#monylabel").append(total);
-		
-		$("#prodCount").empty();
-		$("#prodCount").append(count);
-
-		$("#appendProducttoCheckoutCart").empty();
-		$("#appendProducttoCheckoutCart").append(productList);
+		try
+		{
+			$("#monylabel").empty();
+			$("#monylabel").append(total);
+			
+			$("#prodCount").empty();
+			$("#prodCount").append(count);
 	
-		$("#totalpurchaseOnCheckout").empty();
-		$("#totalpurchaseOnCheckout").append(totalpurchase);
-		$("#totalpurchaseOnCheckoutHidden").val(total);
+			$("#appendProducttoCheckoutCart").empty();
+			$("#appendProducttoCheckoutCart").append(productList1);
+		
+			$("#totalpurchaseOnCheckout").empty();
+			$("#totalpurchaseOnCheckout").append(totalpurchase);
+			$("#totalpurchaseOnCheckoutHidden").val(total);
+		}
+		catch(e)
+		{
+			console.log("checkout.js appendProducttoCheckoutTable Exception : "+e);
+		}
 	}
 	
 	function conformOrder()
+	{
+	try
 	{
 		var totalammount = $("#totalpurchaseOnCheckoutHidden").val();
 		var address = "";
@@ -179,133 +190,176 @@ catch (e) {
 		var ammount = $("#totalpurchaseOnCheckout").text();
 		if(ammount == "Total Price : Rs 0.00 " || ammount == "Total Price : Rs 0 " || ammount == "Total Price : Rs 0.0 ")
 			{
-				jAlert('Your cart is empty, Add product in cart to proceed further', 'Message');
+				jAlert('Your cart is empty. \n Add product in cart to proceed further.', 'Message');
 				$("#conformOrder").attr('data-toggle','');
 				return false;
 			}
 		else
 			{
-		
-				for(var i=0; i<count; i++)
+//				for(var i=0; i<count; i++)
+//				{
+//				var j = parseInt(i)+1;
+//				var bool = $("#radio"+j).is(":checked");
+//					if(bool == true)
+//						{
+//							address = "";
+//							address = $("#textarea"+j).val();
+//						}
+//				}
+				jConfirm("<b>Total Ammount : </b>"+totalammount+"\n <b>Delivery Address : </b>"+orderAddress+"\n", "Message", function(e)
 				{
-				var j = parseInt(i)+1;
-				var bool = $("#radio"+j).is(":checked");
-					if(bool == true)
+					if(e)
+					{
+//						$("#conformOrder").attr('data-toggle','collapse');
+						
+						var loginData = $.session.get('loginData');
+						
+						if(loginData != null)
 						{
-							address = "";
-							address = $("#textarea"+j).val();
+							var sessionData = JSON.parse(loginData);
+							var userid = sessionData.key;
+							var userType = sessionData.userType;
+							objhandleRequest.conformOder(userid, userType);
+							return true;
 						}
-					
-				}
-				alert("totalammount : "+totalammount+" address : "+address);
+					}
+					else
+					{
+						$("#conformOrder").attr('data-toggle','');
+						return false;
+					}
+				});
+//				alert("totalammount : "+totalammount+" address : "+orderAddress);
+				
 //				jAlert("Order Successful");
 				
 				$.cookie('key', null);
 			}
 	}
+	catch(e)
+	{
+		console.log("checkout.js conformOrder Exception : "+e);
+	}
+	}
 	
 	function proceed(condition)
 	{
-		var txtareaAddress = "";
-		if(condition == "login")
-			{
-				var loginData = $.session.get('loginData');
-				if(loginData == null)
-					{
-						jAlert('Please login first to proceed', 'Message');
-						$("#nextAccordion").attr('data-toggle','');
-						return false;
-					}
-				else
-					{
-						$("#nextAccordion").attr('data-toggle','collapse');
-						return true;
-					}
-			}
-		if(condition == "address")
-			{
-			var oldadd = $("#oldadd").is(":checked");
-			
-			if(oldadd == true)
-			{
-				
-				for(var i=0; i<count; i++)
+		try
+		{
+			var txtareaAddress = "";
+			if(condition == "login")
 				{
-				var j = parseInt(i)+1;
-				var bool = $("#radio"+j).is(":checked");
-					if(bool == true)
+					var loginData = $.session.get('loginData');
+					if(loginData == null)
 						{
-							txtareaAddress = "";
-							txtareaAddress = $("#textarea"+j).val();
-						}
-					
-				}
-					if(txtareaAddress != "" && txtareaAddress != null && txtareaAddress.length != 0)
-						{
-						$(".2nd_next").attr('data-toggle','collapse');
-						
-						/*jConfirm('Address : '+txtareaAddress, 'Message',function(e){
-							if(e == true)
-								{
-									return true;
-								}
-							else
-								{
-//									$(".2nd_next").attr('data-toggle','');
-									return false;
-								}
-						});*/
-							
-						}
-					else
-						{
-							jAlert('Please select atleast one address or add a new address','Message');
-							$("#nextAccordion1").attr('data-toggle','');
-
+							jAlert('Please login first to proceed', 'Message');
+							$("#nextAccordion").attr('data-toggle','');
 							return false;
 						}
-				
-			}
-				
-			}
-		if(condition == "newaddress")
-			{
-				var newadd = $("#newadd").is(":checked");
-				if(newadd == true)
-				{
-					var newAddress = $("#newatxtddress").val();
-					if(newAddress != "" && newAddress != null && newAddress.length != 0)
-					{
-						$("#newaddressnbtn").attr('data-toggle','collapse');
-						checklogin();
-						return true;
-					}
 					else
-					{
-						jAlert('Please Enter the new address details','Message');
-						$("#newaddressnbtn").attr('data-toggle','');
-						return false;
-					}
+						{
+							$("#nextAccordion").attr('data-toggle','collapse');
+							return true;
+						}
 				}
-			
-			}
-		
+			if(condition == "address")
+				{
+				var oldadd = $("#oldadd").is(":checked");
+				
+				if(oldadd == true)
+				{
+					
+					for(var i=0; i<count; i++)
+					{
+					var j = parseInt(i)+1;
+					var bool = $("#radio"+j).is(":checked");
+						if(bool == true)
+							{
+								txtareaAddress = "";
+								txtareaAddress = $("#textarea"+j).val();
+							}
+						
+					}
+						if(txtareaAddress != "" && txtareaAddress != null && txtareaAddress.length != 0)
+							{
+							orderAddress = txtareaAddress;
+							$(".2nd_next").attr('data-toggle','collapse');
+							
+							/*jConfirm('Address : '+txtareaAddress, 'Message',function(e){
+								if(e == true)
+									{
+										return true;
+									}
+								else
+									{
+	//									$(".2nd_next").attr('data-toggle','');
+										return false;
+									}
+							});*/
+								
+							}
+						else
+							{
+								jAlert('Please select atleast one address or add a new address','Message');
+								$("#nextAccordion1").attr('data-toggle','');
+	
+								return false;
+							}
+					
+				}
+					
+				}
+			if(condition == "newaddress")
+				{
+					var newadd = $("#newadd").is(":checked");
+					if(newadd == true)
+					{
+//						var newAddress = $("#newatxtddress").val();
+						var newAddress = document.getElementById("newatxtddress").value;
+						if(newAddress != "" && newAddress != null && newAddress.length != 0)
+						{
+							orderAddress = newAddress;
+							$("#newaddressnbtn").attr('data-toggle','collapse');
+							checklogin();
+							return true;
+						}
+						else
+						{
+							jAlert('Please Enter the new address details','Message');
+							$("#newaddressnbtn").attr('data-toggle','');
+							return false;
+						}
+					}
+				
+				}
+	}
+	catch(e)
+	{
+		console.log("checkout.js proceed Exception : "+e);
+	}
 	}
 	
 	function checklogin()
 	{
-		var loginData = $.session.get('loginData');
-
-		if(loginData != null)
+		try
 		{
-			var sessionData = JSON.parse(loginData);
-			var userid = sessionData.key;
-			var userType = sessionData.userType;
-			$.session.set('checkout','checkout');
-			objhandleRequest.handledisplayProductinCart("", "withlogin", userid, userType);
+			var loginData = $.session.get('loginData');
+	
+			if(loginData != null)
+			{
+				var sessionData = JSON.parse(loginData);
+				var userid = sessionData.key;
+				var userType = sessionData.userType;
+				$.session.set('checkout','checkout');
+				objhandleRequest.handledisplayProductinCart("", "withlogin", userid, userType);
+			}
+			else
+			{
+				getProductfromCookie("prod");
+			}
 		}
-		else
-		{
-			getProductfromCookie("prod");
-		}
+	catch(e)
+	{
+		console.log("checkout.js checklogin Exception : "+e);
+	}
 	}

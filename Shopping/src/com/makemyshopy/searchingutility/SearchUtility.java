@@ -47,7 +47,8 @@ public class SearchUtility {
    //Assuming database bookstore exists
    Connection conn = conn = MyConnection.getConnection();
    Statement stmt = conn.createStatement(); 
-   
+   mms.writeLogs("SearchUtility createIndex Search Queary : "+sql,1);
+   System.out.println("Search Queary : "+sql);
    ResultSet rs = stmt.executeQuery(sql);
    
    //Lucene Section
@@ -222,7 +223,7 @@ public class SearchUtility {
 
 
 // public static void main(String[] args)
-public String searchProduct(String keyword, String action)  
+public String searchProduct(String keyword, String action, Long shopid)  
 	 {
 try
 {
@@ -239,7 +240,8 @@ try
 	   else if(action.equals("product"))
 	   {
 		   searchColumnName= "prodName";
-		   sql = "select * from products";
+		   sql = "select * from products where supplier_ref = "+shopid+"";
+		   
 		   command = 2003;
 	   }
 	   

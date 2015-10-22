@@ -401,7 +401,8 @@ public class ProductInterfaceImpl implements ProductInterface
 						
 						String product = (String) object.get("txt");
 						String action = (String) object.get("action");
-						String output = searchKeyword.searchProduct(product, action);
+						Long shopid = (Long) object.get("shopid");
+						String output = searchKeyword.searchProduct(product, action, shopid);
 						
 						/*
 						ps = conn.prepareStatement("select * from products where product_name LIKE '" + product + "%'");
@@ -518,6 +519,7 @@ public class ProductInterfaceImpl implements ProductInterface
 						JSONObject object = (JSONObject) JSONValue.parse(jsonMsg);
 
 						Long userid = (Long) object.get("userid");
+						Long shopid = (Long) object.get("shopid");
 						String userType = (String) object.get("userType");
 						Long productid = (Long) object.get("productid");
 						String ipaddress = (String) object.get("ipaddress");
@@ -540,13 +542,14 @@ public class ProductInterfaceImpl implements ProductInterface
 						
 						if (action.trim().equalsIgnoreCase("add"))
 						{
-							sql = "insert into cart("+usertypecolumnname+", productid, quantity, ipaddress, datetime) values(?, ?, ?, ?, now())";
+							sql = "insert into cart("+usertypecolumnname+", productid, quantity, ipaddress, datetime, shopid) values(?, ?, ?, ?, now(), ?)";
 							ps2 = conn.prepareStatement(sql);
 							
 							ps2.setLong(1, userid);
 							ps2.setLong(2, productid);
 							ps2.setLong(3, quantity);
 							ps2.setString(4, ipaddress);
+							ps2.setLong(5, shopid);
 						}
 						else if (action.trim().equalsIgnoreCase("update"))
 						{
@@ -649,7 +652,82 @@ public class ProductInterfaceImpl implements ProductInterface
 						mms.writeLogs("ProductInterfaceImpl handleRequestResponse() "+command+" Exception : "+e,0);
 					}
 					break;
+					
+				case 1013:
+					try
+					{
+						JSONObject object = (JSONObject) JSONValue.parse(jsonMsg);
+						
+						Long userid = (Long) object.get("userid");
+						String userType = (String) object.get("userType");
+						float total = 0;
+						String orderid = RandomStringUtilsTrial.orderNumber();
+						String sql = "";
+						String usertypecolumnname = "";
+						
+						if (userType != null && userType.trim().equalsIgnoreCase("customer"))
+						{
+							usertypecolumnname = "customer_key"; 
+						}
+						else if (userType != null && userType.trim().equalsIgnoreCase("supplier"))
+						{
+							usertypecolumnname = "supplier_key";
+						}
+						
+						ps1 = conn.prepareStatement("select * from cart where "+usertypecolumnname+" = ?  and orderid is null");
+						ps1.setLong(1, userid);
 
+						rs1 = ps1.executeQuery();
+						while (rs1.next())
+						{
+							Long productkey = rs1.getLong("productid");
+							Long quantity = rs1.getLong("quantity");
+							Long shopid = rs1.getLong("shopid");
+
+							ps = conn.prepareStatement("select * from products where product_key=?");
+							ps.setLong(1, productkey);
+
+							rs = ps.executeQuery();
+							while (rs.next())
+							{
+								float price = rs.getFloat("unite_price");
+								float stock = rs.getFloat("units_in_stock");
+								String prodName = rs.getString("product_name");
+								String image = rs.getString("picture");
+								
+								total = quantity * price;
+								stock = stock - quantity;
+								
+								ps2 = conn.prepareStatement("update cart c, products p set c.total=?, c.orderid=?, c.productname = ?, c.productimg = ?, c.productprice = ?, c.datetime = now(), p.units_in_stock = ? where c."+usertypecolumnname+" = ? and c.productid = ? and p.product_key = ? and orderid is null");
+								ps2.setFloat(1, total);
+								ps2.setString(2, orderid);
+								ps2.setString(3, prodName);
+								ps2.setString(4, image);
+								ps2.setFloat(5, price);
+								ps2.setFloat(6, stock);
+								ps2.setLong(7, userid);
+								ps2.setLong(8, productkey);
+								ps2.setLong(9, productkey);
+								
+								result1 = ps2.executeUpdate();
+								if (result1 > 0)
+								{
+									
+								}
+							}
+						}
+						
+						parentjson = CommonMethodImpl.putSuccessJson(parentjson, 2013);
+						output = parentjson.toString();
+						return output;
+					}
+					
+					catch (Exception e)
+					{
+						e.printStackTrace();
+						mms.writeLogs("ProductInterfaceImpl handleRequestResponse() "+command+" Exception : "+e,0);
+					}
+					break;
 					
 				case 1051: // -- Customer/Shopkeeper Login //
 					try
