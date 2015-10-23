@@ -28,7 +28,7 @@
                     </ul>
                 </div>
                 <input type="hidden" name="search_param" value="all" id="search_param">         
-                <input type="text" class="form-control" name="x" placeholder="Search your products here...">
+                <input type="text" class="form-control" id="searchProductTxtBox" name="x" placeholder="Search your products here...">
                 <span class="input-group-btn">
                     <button class="btn btn-default btn-primary" id="productSearch" type="button"><span class="glyphicon glyphicon-search"></span></button>
                 </span>

@@ -51,7 +51,7 @@
 					</tr>
 					<tr>
 						<!--searchProductTxtBox -->
-						<input type="text" id="searchProductTxtBox" class="whiteLabel" style="text-align: center; outline: 0; color:black;" name="searchProductTxtBox" placeholder="Search the item here">
+<!-- 						<input type="text" id="searchProductTxtBox" class="whiteLabel" style="text-align: center; outline: 0; color:black;" name="searchProductTxtBox" placeholder="Search the item here"> -->
 <!-- 						<button class="insearch" onclick="searchProduct();" type="submit"> -->
 <!-- 							<span class="glyphicon glyphicon-search"></span> -->
 <!-- 						</button> -->

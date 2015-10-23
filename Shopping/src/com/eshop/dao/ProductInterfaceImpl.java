@@ -366,7 +366,7 @@ public class ProductInterfaceImpl implements ProductInterface
 									childjson.put("stock", rs.getFloat("units_in_stock"));
 									childjson.put("prodName", rs.getString("product_name"));
 									childjson.put("images", rs.getString("picture"));
-
+									childjson.put("quantity", 1);
 									jsonarray.add(childjson);
 									// System.out.println("jsonarray : :  : :"+jsonarray);
 								}
@@ -402,34 +402,52 @@ public class ProductInterfaceImpl implements ProductInterface
 						String product = (String) object.get("txt");
 						String action = (String) object.get("action");
 						Long shopid = (Long) object.get("shopid");
-						String output = searchKeyword.searchProduct(product, action, shopid);
+						Long userid = (Long) object.get("userid");
+						String userType = (String) object.get("userType");
 						
-						/*
-						ps = conn.prepareStatement("select * from products where product_name LIKE '" + product + "%'");
-						// ps.setString(1, jsonMsg );
-						rs = ps.executeQuery();
-						while (rs.next())
+						String usertypecolumnname = "";
+						
+						if (userType != null && userType.trim().equalsIgnoreCase("customer"))
 						{
-							JSONObject childjson = new JSONObject();
-							childjson.put("productid", rs.getLong("product_key"));
-							childjson.put("price", rs.getFloat("unite_price"));
-							childjson.put("stock", rs.getFloat("units_in_stock"));
-							childjson.put("prodName", rs.getString("product_name"));
-							childjson.put("images", rs.getString("picture"));
-
-							jsonarray.add(childjson);
-							// //System.out.println("jsonarray : :  : :"+jsonarray);
+							usertypecolumnname = "customer_key"; 
 						}
-
-						parentjson.put("product", jsonarray);
-						parentjson = CommonMethodImpl.putSuccessJson(parentjson, 2003);
-
-						output = parentjson.toString();
-						// //System.out.println("output ::::::::: "+output);
+						else if (userType != null && userType.trim().equalsIgnoreCase("supplier"))
+						{
+							usertypecolumnname = "supplier_key";
+						}
 						
-						*/
+						JSONObject objparentjson = searchKeyword.searchProduct(product, action, shopid);
 						
-						return output;
+						if(action.equals("product") && userid != null  && userid != 0)
+						{
+							ps1 = conn.prepareStatement("select * from cart where " + usertypecolumnname + " = ?  and orderid is null");
+							ps1.setLong(1, userid);
+	
+							rs1 = ps1.executeQuery();
+							while (rs1.next())
+							{
+								Long productkey = rs1.getLong("productid");
+	
+								JSONObject childjson = new JSONObject();
+								childjson.put("productid", productkey);
+								jsonarray1.add(childjson);
+								// System.out.println("jsonarray : :  : :"+jsonarray);
+							}
+							objparentjson.put("productid", jsonarray1);
+						}
+						
+						if(action.equals("product"))
+						{
+							objparentjson = CommonMethodImpl.putSuccessJson(objparentjson, 2003);
+						}
+						else if(action.equals("shop"))
+						{
+							objparentjson = CommonMethodImpl.putSuccessJson(objparentjson, 2006);
+						}
+						
+						
+							output = objparentjson.toString();
+							return output;
 						
 					}
 					catch (Exception e)

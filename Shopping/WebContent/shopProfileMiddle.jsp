@@ -76,7 +76,9 @@
 
   <!-- End of slider  -->
 
-<div id="productList" style="display: none;"></div>
+<div id="productList" style="display: none;">
+					
+				</div>
 <div id="hideadddiv">
 				<div class="row">
 					<hr class="small">

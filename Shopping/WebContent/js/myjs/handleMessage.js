@@ -179,7 +179,7 @@ function handleProductDisplayResponse(response)
 {
 	try
 	{
-//		alert("response : "+JSON.stringify(response));
+		alert("response : "+JSON.stringify(response));
 		// writeLogAjax('handleProductDisplayResponse :::::: '+JSON.stringify(response),1);
 		var productList = "";
 		// var total = 0;
@@ -228,17 +228,17 @@ function handleProductDisplayResponse(response)
 		}
 
 		$("#productList").empty();
-		$("#productList").append(productList);
+		$("#productList").append('<hr class="small"><h3 class="font" align="center">Search Result</h3><hr class="small">'+productList);
 
 		var condition = "okenable";
 		var loginData = $.session.get('loginData');
-
+//		alert(loginData);
 			if(loginData != null)
 			{
 				var productidArray = response.productid;
 				var count = productidArray.length;
 				
-//				alert("productidArray : "+JSON.stringify(productidArray));
+				alert("productidArray : "+JSON.stringify(productidArray));
 				for ( var i in productidArray)
 				{
 					var gettingProductId = productidArray[i].productid;
@@ -764,7 +764,7 @@ function handleLoginResponse(response)
 			for(var i in arrayofProduct)
 			{
 				var productid = arrayofProduct[i];
-				objhandleRequest.aadToCartForLoggedUser(userid, userType, productid, "authoriseduser", 1, "add");
+				objhandleRequest.aadToCartForLoggedUser(userid, userType, productid, "authoriseduser", 1, "add", 0);
 			}
 			arrayofProduct = 0;
 			
@@ -834,7 +834,16 @@ function handleLoginResponse(response)
 		}
 		else
 			{
+				getcookies();
+				var userid = response.key;
+				for(var i in arrayofProduct)
+				{
+					var productid = arrayofProduct[i];
+					objhandleRequest.aadToCartForLoggedUser(userid, userType, productid, "authoriseduser", 1, "add", 0);
+				}
+				arrayofProduct = 0;
 				location.replace("indexTemplate.jsp");
+				
 			}
 		
 //		setLoginDropDown(custName);

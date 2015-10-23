@@ -1084,6 +1084,9 @@ function getcookies()
 
 function addproducttoCArt(productid)
 {
+	try
+	{
+	count = 0;
 	var loginData = $.session.get('loginData');
 	if (loginData != null)
 	{
@@ -1096,6 +1099,15 @@ function addproducttoCArt(productid)
 		
 		var shopid = $.session.get("shopid");
 		objhandleRequest.aadToCartForLoggedUser(userid, userType, productid, "authoriseduser", 1, "add", shopid);
+		$("#rotatespan").addClass("rotatelabel");
+		var stop = setInterval(function(){
+			count++;
+			if(count == 3)
+				{
+					$("#rotatespan").removeClass("rotatelabel");
+					clearInterval(stop);
+				}
+		}, 1000);
 	}
 	else
     {
@@ -1112,7 +1124,17 @@ function addproducttoCArt(productid)
 		$(".productCountOnCart").empty();
 		document.getElementById("productCountOnCart").innerHTML=len;
 		document.getElementById("productCountOnCart1").innerHTML=len;
-		
+//		************************************************************
+		$("#rotatespan").addClass("rotatelabel");
+		var stop = setInterval(function(){
+			count++;
+			if(count == 3)
+				{
+					$("#rotatespan").removeClass("rotatelabel");
+					clearInterval(stop);
+				}
+		}, 1000);
+//		************************************************************
 		$.cookie('key',JSON.stringify(arrayofProduct));
 		
 		document.getElementById("ok"+productid).style.display = "block";
@@ -1129,7 +1151,11 @@ function addproducttoCArt(productid)
 //		objhandleRequest.aadToCartForLoggedUser(0, "", productid, "unauthorised", 1, "add");
 		
 	}
-			
+	}
+	catch(e)
+	{
+		console.log("ready.js  addproducttoCArt  Exception : "+e);
+	}
 }
 //************************************************************************************//
 
@@ -1269,19 +1295,32 @@ function searchProduct()
 	var txt = $("#searchProductTxtBox").val();
 	if(txt != "" || txt != null)
 		{
-			$(".hideadddiv").hide();
+			$("#hideadddiv").hide();
 			$("#productList").show();
 		}
 	else if(txt == "" || txt == null)
 		{
-			$(".hideadddiv").show();
+			$("#hideadddiv").show();
 			$("#productList").hide();
 		}
 //	alert("txt 1 : "+txt);
 	if(txt != "")
 	{
+		var loginData = $.session.get('loginData');
 		var shopid = $.session.get("shopid");
-		objhandleRequest.searchProduct(txt, "product", shopid);
+		if(loginData != null)
+		{
+			var sessionData = JSON.parse(loginData);
+			var userid = sessionData.key;
+			var userType = sessionData.userType;
+			
+			objhandleRequest.searchProduct(txt, "product", shopid, userid, userType);
+		}
+		else
+		{
+			objhandleRequest.searchProduct(txt, "product", shopid, "", "");
+		}
+		
 	}
 }
 
@@ -1305,7 +1344,7 @@ function searchShop()
 //	alert("txt 1 : "+txt);
 	if(txt != "")
 		{
-			objhandleRequest.searchProduct(txt, "shop");
+			objhandleRequest.searchProduct(txt, "shop", "", "");
 		}
 	
 }

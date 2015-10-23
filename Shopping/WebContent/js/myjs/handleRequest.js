@@ -240,7 +240,7 @@ function handleRequest()
 			var strjsonMsgForSelectedProduct = JSON.stringify(strSelectedProduct);
 
 			handleAllListResponse(strjsonMsgForSelectedProduct);
-
+			console.log("handleRequest     handledisplaySelectedProduct     strjsonMsgForSelectedProduct :: " + strjsonMsgForSelectedProduct);
 		}
 		catch (e)
 		{
@@ -270,7 +270,7 @@ function handleRequest()
 		}
 	}
 
-	function searchProduct(txt, action, shopid)
+	function searchProduct(txt, action, shopid, userid, userType)
 	{
 		try
 		{
@@ -278,6 +278,8 @@ function handleRequest()
 			strSearchProduct.txt = txt;
 			strSearchProduct.action = action;
 			strSearchProduct.shopid = +shopid;
+			strSearchProduct.userid = +userid;
+			strSearchProduct.userType = userType;
 			strSearchProduct.command = 1006;
 
 			var strjsonMsgForstrSearchProduct = JSON.stringify(strSearchProduct);

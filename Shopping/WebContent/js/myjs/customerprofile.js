@@ -239,6 +239,11 @@ $(document).ready(function()
 
 //******************************************************************************************************
 		
+		$("#productSearch").click(function()
+		{
+			searchProduct();
+		});
+		
 		$("#searchProductTxtBox").keypress(function(e)
 		{
 			try

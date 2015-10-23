@@ -305,7 +305,9 @@
 					<button id="getCartProduct" type="button" class="pull-right btn btn-primary getCartProduct" style="border:none;" data-toggle="modal" data-target=".cartmodal" style="margin-right: -11px;">
 						<span class="glyphicon glyphicon-shopping-cart"></span> 
 						<span class="hidden-xs">CART</span> 
-						<span class="badge"><label id="productCountOnCart1" class="productCountOnCart" style="margin: auto;">0</label></span>
+<!-- 						<div class="slow"> -->
+						<span id="rotatespan" class="badge"><label id="productCountOnCart1" class="productCountOnCart" style="margin: auto;">0</label></span>
+<!-- 						</div> -->
 					</button>
 				</div>
 				<div class="search-box">

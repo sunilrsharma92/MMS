@@ -90,20 +90,21 @@
 
 
 			<hr class="small">
-			<h3 align="center">
-				Top Rated <span class="controllers pull-right "> <span
-					class="prev"> (<) </span> <span class="next"> (>) </span>
+			<h3 align="center"> Top Rated <span class="controllers pull-right "> <span class="prev"> (<) </span> <span class="next"> (>) </span>
 				</span>
 
 			</h3>
 			<hr class="small">
 			<div class="responsive">
 
-				<div class="col-md-4 back">
+				<%
+				for(int j = 0; j<3; j++)
+				{
+				%>
+				<div class="col-md-4 back" style="height: 327px;">
 					<div class="main-wrap">
 						<div class="shop-img">
-							<a href="#"> <img class="iim img-responsive"
-								src="Images/shop22.jpg"></a>
+							<a href="#"> <img class="iim img-responsive" src="Images/shop22.jpg"></a>
 							<div class="shop-details">
 								<p>Name:Rahul Madakatti</p>
 								<p>Address: A-402 Tulsi Aangan</p>
@@ -113,87 +114,18 @@
 							<!--/shop-details-->
 						</div>
 						<!--/shop-img-->
-
-
 					</div>
 					<!--/main-wrap-->
-					<div class="shop-now">
-						<h2>Shop Now</h2>
+					<div style="height: 68px;">
+<!-- 						<h2>Shop Now</h2> -->
+						<a href="#" class="button" style="width: 100%; font-size: 20px; color: rgb(0, 170, 153); margin-top: 9px;">Shop Now</a>'
 					</div>
 					<!--/shop-now-->
 				</div>
-				<!--/col-md-4-->
-				<div class="col-md-4 back">
-					<div class="main-wrap">
-						<div class="shop-img">
-							<a href="#"> <img class="iim img-responsive"
-								src="Images/shop22.jpg"></a>
-							<div class="shop-details">
-								<p>Name:Rahul Madakatti</p>
-								<p>Address: A-402 Tulsi Aangan</p>
-								<p>City:Badlapur</p>
-								<p>State:Maharashtra</p>
-							</div>
-							<!--/shop-details-->
-						</div>
-						<!--/shop-img-->
-
-
-					</div>
-					<!--/main-wrap-->
-					<div class="shop-now">
-						<h2>Shop Now</h2>
-					</div>
-					<!--/shop-now-->
-				</div>
-				<!--/col-md-4-->
-				<div class="col-md-4 back">
-					<div class="main-wrap">
-						<div class="shop-img">
-							<a href="#"> <img class="iim img-responsive"
-								src="Images/shop22.jpg"></a>
-							<div class="shop-details">
-								<p>Name:Rahul Madakatti</p>
-								<p>Address: A-402 Tulsi Aangan</p>
-								<p>City:Badlapur</p>
-								<p>State:Maharashtra</p>
-							</div>
-							<!--/shop-details-->
-						</div>
-						<!--/shop-img-->
-
-
-					</div>
-					<!--/main-wrap-->
-					<div class="shop-now">
-						<h2>Shop Now</h2>
-					</div>
-					<!--/shop-now-->
-				</div>
-				<!--/col-md-4-->
-				<div class="col-md-4 back">
-					<div class="main-wrap">
-						<div class="shop-img">
-							<a href="#"> <img class="iim img-responsive"
-								src="Images/shop22.jpg"></a>
-							<div class="shop-details">
-								<p>Name:Rahul Madakatti</p>
-								<p>Address: A-402 Tulsi Aangan</p>
-								<p>City:Badlapur</p>
-								<p>State:Maharashtra</p>
-							</div>
-							<!--/shop-details-->
-						</div>
-						<!--/shop-img-->
-
-
-					</div>
-					<!--/main-wrap-->
-					<div class="shop-now">
-						<h2>Shop Now</h2>
-					</div>
-					<!--/shop-now-->
-				</div>
+				<%
+				}
+				%>
+				
 				<!--/col-md-4-->
 
 
@@ -205,8 +137,7 @@
 	<!--/col-md-12-->
 
 	<div class="container">
-		<h4 id="searchtitle" style="display: none;">List of shope's in
-			your area...</h4>
+		<h4 id="searchtitle" style="display: none;">List of shope's in your area...</h4>
 		<!--  <div id="productList" style="display: none;"> -->
 		<div id="shopList" style="display: none;"></div>
 		<div class="slider1-container hideslider">
@@ -222,7 +153,11 @@
 			<hr class="small">
 			<div class="responsive">
 
-				<div class="col-md-4 back">
+				<%
+				for(int i = 0; i<3; i++)
+				{
+				%>
+				<div class="col-md-4 back" style="height: 327px;">
 					<div class="main-wrap">
 						<div class="shop-img">
 							<a href="#"> <img class="iim img-responsive"
@@ -240,86 +175,16 @@
 
 					</div>
 					<!--/main-wrap-->
-					<div class="shop-now">
-						<h2>Shop Now</h2>
+					<div style="height: 68px;">
+<!-- 						<h2>Shop Now</h2> -->
+						<a href="#" class="button" style="width: 100%; font-size: 20px; color: rgb(0, 170, 153); margin-top: 9px;">Shop Now</a>'
 					</div>
 					<!--/shop-now-->
 				</div>
-				<!--/col-md-4-->
-				<div class="col-md-4 back">
-					<div class="main-wrap">
-						<div class="shop-img">
-							<a href="#"> <img class="iim img-responsive"
-								src="Images/shop22.jpg"></a>
-							<div class="shop-details">
-								<p>Name:Rahul Madakatti</p>
-								<p>Address: A-402 Tulsi Aangan</p>
-								<p>City:Badlapur</p>
-								<p>State:Maharashtra</p>
-							</div>
-							<!--/shop-details-->
-						</div>
-						<!--/shop-img-->
-
-
-					</div>
-					<!--/main-wrap-->
-					<div class="shop-now">
-						<h2>Shop Now</h2>
-					</div>
-					<!--/shop-now-->
-				</div>
-				<!--/col-md-4-->
-				<div class="col-md-4 back">
-					<div class="main-wrap">
-						<div class="shop-img">
-							<a href="#"> <img class="iim img-responsive"
-								src="Images/shop22.jpg"></a>
-							<div class="shop-details">
-								<p>Name:Rahul Madakatti</p>
-								<p>Address: A-402 Tulsi Aangan</p>
-								<p>City:Badlapur</p>
-								<p>State:Maharashtra</p>
-							</div>
-							<!--/shop-details-->
-						</div>
-						<!--/shop-img-->
-
-
-					</div>
-					<!--/main-wrap-->
-					<div class="shop-now">
-						<h2>Shop Now</h2>
-					</div>
-					<!--/shop-now-->
-				</div>
-				<!--/col-md-4-->
-				<div class="col-md-4 back">
-					<div class="main-wrap">
-						<div class="shop-img">
-							<a href="#"> <img class="iim img-responsive"
-								src="Images/shop22.jpg"></a>
-							<div class="shop-details">
-								<p>Name:Rahul Madakatti</p>
-								<p>Address: A-402 Tulsi Aangan</p>
-								<p>City:Badlapur</p>
-								<p>State:Maharashtra</p>
-							</div>
-							<!--/shop-details-->
-						</div>
-						<!--/shop-img-->
-
-
-					</div>
-					<!--/main-wrap-->
-					<div class="shop-now">
-						<h2>Shop Now</h2>
-					</div>
-					<!--/shop-now-->
-				</div>
-				<!--/col-md-4-->
-
-
+				<%
+				}
+				%>
+		
 			</div>
 			<!--/responsive-->
 		</div>

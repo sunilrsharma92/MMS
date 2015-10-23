@@ -113,7 +113,7 @@ public class SearchUtility {
   
  }
  
- public String search(String keyword, String action, String searchColumnName, int command) 
+ public JSONObject search(String keyword, String action, String searchColumnName, int command) 
  {
 	 String output = "";
 	 JSONArray jsonarray = new JSONArray();
@@ -206,11 +206,13 @@ public class SearchUtility {
    }
 
    parentjson.put("product", jsonarray);
-   parentjson = CommonMethodImpl.putSuccessJson(parentjson, command);
-
-   output = parentjson.toString();
+   
+//   
+//   parentjson = CommonMethodImpl.putSuccessJson(parentjson, command);
+//
+//   output = parentjson.toString();
 	// //System.out.println("output ::::::::: "+output);
-   return output;
+   return parentjson;
 	
   } catch (Exception e) 
   {
@@ -223,7 +225,7 @@ public class SearchUtility {
 
 
 // public static void main(String[] args)
-public String searchProduct(String keyword, String action, Long shopid)  
+public JSONObject searchProduct(String keyword, String action, Long shopid)  
 	 {
 try
 {
@@ -252,7 +254,7 @@ try
   obj.createIndex(action, sql);
   
   //searching keyword
-  String jsonRecord = obj.search(keyword, action, searchColumnName, command);
+  JSONObject jsonRecord = obj.search(keyword, action, searchColumnName, command);
 //  String jsonRecord = obj.search("lov");
 
   
