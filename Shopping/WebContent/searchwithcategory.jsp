@@ -33,7 +33,10 @@
                     <button class="btn btn-default btn-primary" id="productSearch" type="button"><span class="glyphicon glyphicon-search"></span></button>
                 </span>
             </div>
-        </div>
+			</div>
+			<button type="button" class="btn btn-default" style="width: 33px;">
+					<span class="glyphicon glyphicon-thumbs-up"></span>
+				</button>
     </div>
 </div>
 

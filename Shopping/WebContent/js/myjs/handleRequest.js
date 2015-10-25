@@ -350,6 +350,7 @@ function handleRequest()
 			
 			var strjsonMsgForaadToCart = JSON.stringify(straadToCart);
 			console.log("handleRequest     aadToCartForLoggedUser  : " + strjsonMsgForaadToCart);
+//			alert("handleRequest     aadToCartForLoggedUser  : " + strjsonMsgForaadToCart);
 			handleAllListResponse(strjsonMsgForaadToCart);
 			
 		}

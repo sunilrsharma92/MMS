@@ -996,7 +996,8 @@ function getProductfromCookie(condition)
 	var gettingCookieValue = JSON.parse(gettingCookieArray);
 	console.log("JSON.parse(gettingCookieArray) : "+gettingCookieValue);
 	writeLogAjax("JSON.parse(gettingCookieArray) : "+gettingCookieValue,1);
-	for (i in gettingCookieValue)
+//	alert("Length : "+gettingCookieValue.length);
+	for (var i in gettingCookieValue)
 	{
 		var gettingProductId = gettingCookieValue[i];
 		
@@ -1011,9 +1012,10 @@ function getProductfromCookie(condition)
 		
 		
 		count++;
+//		alert("i : "+i+" count : "+count);
 		$(".productCountOnCart").empty();
-		document.getElementById("productCountOnCart").innerHTML = i;
-		document.getElementById("productCountOnCart1").innerHTML = i;
+		document.getElementById("productCountOnCart").innerHTML = gettingCookieValue.length;
+		document.getElementById("productCountOnCart1").innerHTML = gettingCookieValue.length;
 		
 		if(condition == "okenable")
 			{
@@ -1111,13 +1113,16 @@ function addproducttoCArt(productid)
 	}
 	else
     {
+		var shopid = $.session.get("shopProfileKey");
+		var prodid = productid+"/"+shopid;
 		getcookies();
 		for(var i in arrayofProduct)
 			{
 				arrayofProduct[i] == productid;
 				
 			}
-	    arrayofProduct.push([ productid ]);
+//	    arrayofProduct.push([ productid ]);
+	    arrayofProduct.push([ prodid ]);
 		
 		var len = arrayofProduct.length;
 		
@@ -1216,6 +1221,7 @@ function removeproductfromCArt(id)
 {
 try
   {
+	$(".overlay").show();
 	var loginData = $.session.get('loginData');
 	if (loginData != null)
 	{
@@ -1276,7 +1282,7 @@ try
 		
 			document.getElementById("ok"+id).style.display = "none";
 			document.getElementById("btn"+id).disabled = false;
-			
+			$(".overlay").hide();
 			
 			
    }

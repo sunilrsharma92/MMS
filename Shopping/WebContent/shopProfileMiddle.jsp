@@ -25,7 +25,7 @@
 
  </div><!-- end of col-2 -->
  <div id="dashboard" class = "col-md-10">
- <jsp:include page="searchwithcategory.jsp" />
+<%--  <jsp:include page="searchwithcategory.jsp" /> --%>
 
 
    <!-- Slider -->

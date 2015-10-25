@@ -325,9 +325,11 @@ public class ProductInterfaceImpl implements ProductInterface
 							{
 								Long productkey = rs1.getLong("productid");
 								Long quantity = rs1.getLong("quantity");
-
-								ps = conn.prepareStatement("select * from products where product_key=?");
+								Long shopkey = rs1.getLong("shopid");
+								
+								ps = conn.prepareStatement("select * from products where product_key=? and supplier_ref=?");
 								ps.setLong(1, productkey);
+								ps.setLong(2, shopkey);
 
 								rs = ps.executeQuery();
 								while (rs.next())
@@ -350,12 +352,26 @@ public class ProductInterfaceImpl implements ProductInterface
 							String[] productid = product.split("#");
 							for (int i = 0; i < productid.length; i++)
 							{
+								String id = "";
+								String shopid = "";
+								Long productkey = (long) 0;
+								Long shopkey = (long) 0;
+								
+								String[] prodarr = productid[i].split("/");
+								
+								for (int j = 0; j < prodarr.length; j++)
+								{
+									id = prodarr[0];
+									shopid = prodarr[1];
+								}
 								// String id = (String) productid.get(i);
-								Long productkey = Long.parseLong(productid[i]);
+								productkey = Long.parseLong(id);
+								shopkey = Long.parseLong(shopid);
 								// System.out.println(productkey);
 
-								ps = conn.prepareStatement("select * from products where product_key=?");
+								ps = conn.prepareStatement("select * from products where product_key=? and supplier_ref=?");
 								ps.setLong(1, productkey);
+								ps.setLong(2, shopkey);
 
 								rs = ps.executeQuery();
 								while (rs.next())
@@ -556,6 +572,26 @@ public class ProductInterfaceImpl implements ProductInterface
 						else if (userType != null && userType.trim().equalsIgnoreCase("supplier"))
 						{
 							usertypecolumnname = "supplier_key";
+						}
+						
+						if (action.trim().equalsIgnoreCase("add"))
+						{
+							ps1 = conn.prepareStatement("select * from cart where "+usertypecolumnname+" = ? and productid = ? and shopid = ? and orderid is null");
+							ps1.setLong(1, userid);
+							ps1.setLong(2, productid);
+							ps1.setLong(3, shopid);
+	
+							rs1 = ps1.executeQuery();
+						
+							while (rs1.next())
+							{
+								Long productkey = rs1.getLong("productid");
+								Long quantityOld = rs1.getLong("quantity");
+								Long shopkey = rs1.getLong("shopid");
+									
+								action = "update";
+								quantity = quantity+quantityOld;
+							}
 						}
 						
 						if (action.trim().equalsIgnoreCase("add"))

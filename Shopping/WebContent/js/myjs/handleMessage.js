@@ -179,7 +179,7 @@ function handleProductDisplayResponse(response)
 {
 	try
 	{
-		alert("response : "+JSON.stringify(response));
+//		alert("response : "+JSON.stringify(response));
 		// writeLogAjax('handleProductDisplayResponse :::::: '+JSON.stringify(response),1);
 		var productList = "";
 		// var total = 0;
@@ -238,7 +238,7 @@ function handleProductDisplayResponse(response)
 				var productidArray = response.productid;
 				var count = productidArray.length;
 				
-				alert("productidArray : "+JSON.stringify(productidArray));
+//				alert("productidArray : "+JSON.stringify(productidArray));
 				for ( var i in productidArray)
 				{
 					var gettingProductId = productidArray[i].productid;
@@ -499,7 +499,7 @@ function handleProductDisplayinCartResponse(response)
 				appendProducttoCheckoutTable(productList1, totalpurchase, total, count);
 //				$.session.remove('checkout');
 			}
-		
+		$(".overlay").hide();
 	}
 	catch (e)
 	{
@@ -763,8 +763,19 @@ function handleLoginResponse(response)
 			var userid = response.key;
 			for(var i in arrayofProduct)
 			{
-				var productid = arrayofProduct[i];
-				objhandleRequest.aadToCartForLoggedUser(userid, userType, productid, "authoriseduser", 1, "add", 0);
+				var arr = arrayofProduct[i];
+				var productarr = arr.toString().split("/");
+				var productid = "";
+				var shopid = "";
+				for(var h in productarr)
+					{
+					productid = productarr[0];
+					shopid = productarr[1];
+					}
+				objhandleRequest.aadToCartForLoggedUser(userid, userType, productid, "authoriseduser", "1", "add", shopid);
+//				
+//				var productid = arrayofProduct[i];
+//				objhandleRequest.aadToCartForLoggedUser(userid, userType, productid, "authoriseduser", 1, "add", 0);
 			}
 			arrayofProduct = 0;
 			
@@ -836,13 +847,31 @@ function handleLoginResponse(response)
 			{
 				getcookies();
 				var userid = response.key;
-				for(var i in arrayofProduct)
+//				alert("arrayofProduct : "+arrayofProduct);
+				var arrayofProductLength = arrayofProduct.length;
+//				alert("Length : "+arrayofProductLength);
+//				console.log("arrayofProductLength : "+arrayofProductLength);
+				for(var j in arrayofProduct)
 				{
-					var productid = arrayofProduct[i];
-					objhandleRequest.aadToCartForLoggedUser(userid, userType, productid, "authoriseduser", 1, "add", 0);
+					var arr = arrayofProduct[j];
+					var productarr = arr.toString().split("/");
+					var productid = "";
+					var shopid = "";
+					for(var k in productarr)
+						{
+						productid = productarr[0];
+						shopid = productarr[1];
+						}
+					objhandleRequest.aadToCartForLoggedUser(userid, userType, productid, "authoriseduser", "1", "add", shopid);
+//					console.log(j+" == "+arrayofProductLength);
 				}
-				arrayofProduct = 0;
-				location.replace("indexTemplate.jsp");
+//				alert("arrayofProduct : "+arrayofProduct);
+				$.cookie("key","");
+				if(arrayofProductLength == 0)
+				{
+					arrayofProduct = 0;
+					location.replace("indexTemplate.jsp");
+				}
 				
 			}
 		

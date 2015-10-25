@@ -73,10 +73,11 @@
 
 
 <!-- 				<span>Ratings:*****</span>  -->
-				<span class = "pull-right">Social	Connect:
-					<button type = "button" class = "btn btn-default">
-						<span class = "glyphicon glyphicon-thumbs-up"></span> facebook
-					</button>
+				<span class = "pull-left">
+				<jsp:include page="searchwithcategory.jsp" />
+<!-- 					<button type = "button" class = "btn btn-default" style="width: 33px;"> -->
+<!-- 						<span class = "glyphicon glyphicon-thumbs-up"></span> -->
+<!-- 					</button> -->
 				</span>
 <!-- 				</button> -->
 			</div>
