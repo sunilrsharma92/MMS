@@ -946,13 +946,13 @@ tbody{
 	width: 98px;
 }
 
-/*Loading Inage*/
+/*Loading Image*/
 
 #loading-img {
     background: url(../loader_img/LoadingNew.gif) center center no-repeat;
 /*     background: url(../loader_img/load.gif) center center no-repeat; */
 /*     background: url(https://goo.gl/photos/D1uwSqvhgVwdeAQXA) center center no-repeat; */
-    height: 100%;
+    height: 50%;
 /*     z-index: 20; */
     z-index: 100000;
 }

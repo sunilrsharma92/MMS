@@ -121,9 +121,13 @@ $(document).ready(function()
 							clearInterval(clear);
 						}
 					}, 500);
-
-					$.session.remove("profileimg");
-					$.session.set("profileimg", msg);
+					
+					var loginData = $.session.get('loginData');
+					var sessionData = JSON.parse(loginData);
+					sessionData.profileImg = msg;
+					$.session.remove("loginData");
+					$.session.set("loginData", JSON.stringify(sessionData));
+					alert("JSON.stringify(sessionData) : "+JSON.stringify(sessionData));
 				}
 			});
 		}
@@ -275,7 +279,76 @@ $(document).ready(function()
 	{
 		console.log("Customerptofile.js  document.ready Excepion : " + e)
 	}
+	
+//******************************************************************************************************
+try
+{
+//	var data = generatedata(20);
+	var imagerenderer = function (row, column, value)
+	{
+		return '<div style="height: 20px; width: 20px; margin-left: 27px; margin-top: 2px;"><img src="jqwidgets/css/images/search.png" onclick="displayOrder('+row+');"></div>';
+	}
+	var data = [
+	            {name:"Deva", productname:"Rice", date:"20/11/2015",quantity:6},
+	            {name:"Deva1", productname:"Rice", date:"20/11/2015",quantity:6},
+	            {name:"Deva2", productname:"Rice", date:"20/11/2015",quantity:6},
+	            {name:"Deva3", productname:"Rice", date:"20/11/2015",quantity:6},
+	            {name:"Deva4", productname:"Rice", date:"20/11/2015",quantity:6},
+	            {name:"Deva5", productname:"Rice", date:"20/11/2015",quantity:6}
+	            ];
+    var source =
+    {
+        localdata: data,
+        datafields:
+        [
+            { name: 'name', type: 'string' },
+            { name: 'productname', type: 'string' },
+            { name: 'available', type: 'bool' },
+            { name: 'date', type: 'date'},
+            { name: 'quantity', type: 'number' }
+        ],
+        datatype: "array"
+    };
+
+//    var dataAdapter = new $.jqx.dataAdapter(source);
+
+    $("#41").jqxGrid(
+    {
+        width: '95%',
+        filterable: true,
+        source: source,
+        autoheight: true,
+        pageable: true,
+        editable:false,
+//         showeverpresentrow: true,
+//         everpresentrowposition: "top",
+        showfilterrow: true,
+        selectionmode: 'multiplecellsadvanced',
+        columns: [
+		  {text: 'Ship Date', datafield: 'date', filtertype: 'range', width: '20%', cellsalign: 'left', cellsformat: 'd' },
+          {text: 'Order ID', columntype: 'textbox', filtertype: 'input', datafield: 'name', width: '30%'},
+          {text: 'ShopName', filtertype: 'checkedlist', datafield: 'productname', width: '30%'},
+          {text: 'Qty.', datafield: 'quantity', filtertype: 'number',  cellsalign: 'right', width: '10%' },
+          {text: 'View.', menu: false, sortable: false, filterable: false, showfilterrow: false,  cellsalign: 'center', width: '10%', cellsrenderer: imagerenderer}
+        ]
+    });
+}
+catch(e)
+{
+	console.log("customerProfile.js --> Exception : "+e);
+}
+//******************************************************************************************************
+	
 });
+
+//******************************************************************************************************
+
+function displayOrder(row)
+{
+	editrow = row;
+	var dataRecord = $("#41").jqxGrid("getrowdata",editrow);
+	console.log("Order Id : "+dataRecord.name);
+}
 
 //******************************************************************************************************
 
@@ -286,7 +359,7 @@ function loadProfileMenu(id)
 		var idofpage = $(id).attr("id");
 		writeLogAjax("idofpage : " + idofpage, 1);
 		// -- id
-		for (var i = 0; i <= 3; i++)
+		for (var i = 0; i <= 4; i++)
 		{
 			$("#" + i + "1").hide();
 		}

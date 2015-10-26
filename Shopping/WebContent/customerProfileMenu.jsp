@@ -5,9 +5,6 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
-
-<!-- <script type="text/javascript" src="js/jquery-2.1.3.min.js"></script> -->
-<% %>
 </head>
 <body>
 
@@ -90,7 +87,7 @@
 						<div class="strong"><span class="glyphicon glyphicon-list-alt"></span> Orders</div>
 	
 						<div class="list-group side-bar">
-							<a href="#" id="orders" class="list-group-item" onclick="loadPage(this)">My orders</a>
+							<a href="#" id="4" class="list-group-item" onclick="loadProfileMenu(this)">My orders</a>
 							<hr class="large">
 						</div>
 					</div>
@@ -204,6 +201,9 @@
 						</table>
 					</form>
 				</div>
+				
+				<div id="41" style="margin: 10px auto;">
+    			</div>
 				
 				</div>
 				<!-- End of row -->
