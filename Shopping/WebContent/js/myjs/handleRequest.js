@@ -19,6 +19,7 @@ function handleRequest()
 	this.aadToCartForLoggedUser = aadToCartForLoggedUser;
 	this.removeFromCart = removeFromCart;
 	this.conformOder = conformOder;
+	this.getOrdersHistory = getOrdersHistory;
 
 	// ****** This function is used to get all main product category ******//
 	function handleCategoryRequest()
@@ -392,13 +393,37 @@ function handleRequest()
 			strconform.command = 1013;
 			
 			var strjsonMsgForstrconform = JSON.stringify(strconform);
-			console.log("handleRequest     strjsonMsgForstrconform  : " + strjsonMsgForstrconform);
+			console.log("handleRequest     conformOder  strjsonMsgForstrconform  : " + strjsonMsgForstrconform);
 			handleAllListResponse(strjsonMsgForstrconform);
 			
 		}
 		catch (e)
 		{
 			console.log("handleRequest     conformOder     Exception :: " + e);
+		}
+	}
+	
+	function getOrdersHistory(userid, userType, command, orderid)
+	{
+		try
+		{
+			var strconform = {};
+			strconform.userid = +userid;
+			strconform.userType = userType;
+			strconform.command = +command;
+			if(command == 1015)
+			{
+				strconform.orderid = orderid;
+			}
+			
+			var strjsonMsgForstrconform = JSON.stringify(strconform);
+			console.log("handleRequest     getOrdersHistory  strjsonMsgForstrconform : " + strjsonMsgForstrconform);
+			handleAllListResponse(strjsonMsgForstrconform);
+			
+		}
+		catch (e)
+		{
+			console.log("handleRequest     getOrdersHistory     Exception :: " + e);
 		}
 	}
 	

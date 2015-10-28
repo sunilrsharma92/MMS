@@ -400,6 +400,16 @@ function handleConformOrderResponse(response)
 	}
 }
 
+function handleOrderHistoryResponse(response)
+{
+	dataGridOrderHistory(response);
+}
+
+function handleOrderDetailsResponse(response)
+{
+	displayProductPurchased(response);
+}
+
 function handleProductDisplayinCartResponse(response)
 {
 	try
