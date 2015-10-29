@@ -128,7 +128,7 @@ $(document).ready(function()
 					sessionData.profileImg = msg;
 					$.session.remove("loginData");
 					$.session.set("loginData", JSON.stringify(sessionData));
-					alert("JSON.stringify(sessionData) : "+JSON.stringify(sessionData));
+//					alert("JSON.stringify(sessionData) : "+JSON.stringify(sessionData));
 				}
 			});
 		}
@@ -502,6 +502,20 @@ function displayProductPurchased(response)
 				var country = GlobalResponse[l].country;
 				var img = GlobalResponse[l].img;
 				
+				var add = "";
+				
+				if(address1 != "" || address1 != null)
+				{
+					add = address1;
+				}
+				else if(address2 != "" || address2 != null)
+				{
+					add = address2;
+				}
+				else
+				{
+					add = "(No address to display)";
+				}
 //				purchasearray.push({
 //					userid : userid,
 //					orderid : orderid,
@@ -528,18 +542,13 @@ function displayProductPurchased(response)
 //					img : img
 //				});
 				
-				productList = productList + '<tr>' + '<td class="cimg"><img class="cartimgsize" id="" src="' + productimg + '"></td>' + '<td class="cname">' + productname + '</td>' + '<td class="cqty">'
-
-				+ '<div class="input-group bootstrap-touchspin quantitybtn">' 
-				+ '<span class="input-group-btn">' 
-//				+ '<button class="btn btn-default bootstrap-touchspin-down" id="minus' + productid + '" onclick="' + quantityfunctionMinus + '" type="button">-</button></span>' + '<input id="demo' + productid + '" onkeyup="' + quantityfunctionMinus + '" onfocus="storeoldvalue(this);" type="text" value="'+quantity+'" name="demo1" class="form-control cartquantity">' + '<span class="input-group-btn">' 
-				+ '<input id="" type="text" disabled="disabled" value="'+quantity+'" name="demo1" class="form-control cartquantity">' + '<span class="input-group-btn">' 
-				+'</span>' 
-				+ '</div>'
-
-				+ '</td>' 
-				+ '<td class="cprice">' + productprice + '</td>' + '<td align="center"></td>'
-				+ '<td class="cprice">' + total + '</td>' + '<td align="center"></td>' + '</tr>';
+				productList = productList + '<tr>' 
+				+ '<td class="cimg"><img class="cartimgsize" id="" src="' + productimg + '"></td>' 
+				+ '<td class="cname">' + productname + '</td>' 
+				+ '<td class="cqty">'+ quantity + '</td>' 
+				+ '<td class="cprice">' + productprice + '</td>'
+				+ '<td class="cprice">' + total + '</td>'
+				+ '</tr>';
 			}
 			
 			
@@ -558,8 +567,16 @@ function displayProductPurchased(response)
 //		+ '<td class="cprice">' + productprice + '</td>' + '<td align="center"></td>'
 //		+ '<td class="cprice">' + total + '</td>' + '<td align="center"></td>' + '</tr>';
 
-		$("#appendOrder").append('<label style="color: #3099DB;">'+shopname+'</label>');
-		$("#appendOrder").append(productList);
+//		$("#appendOrder").append('<label style="color: black;">'+shopname+'</label>');
+//		$("#appendOrder").append('<tr><td collspan = "5">'+shopname+'</td></tr>');
+		$("#appendOrder").append('<tr><td colspan = "5">'
+				+ '<table style="width: 100%">'
+				+ '<tr><td style="text-align: center; color: rgb(2, 86, 2); font-size: 19px;">'+shopname+'</td></tr>'
+				+ '<tr><td style="text-align: center; color: rgb(2, 86, 2); font-size: 14px;">'+add+'</td></tr>'
+				+ '</table>'
+				+ '</td></tr>'
+				+ productList
+				+ '<tr><td colspan = "5" style="background-color: #2D97D9;"></td></tr>');
 //		$("#appendOrder").append(JSON.stringify(purchasearray));
 		purchasearray = [];
 		productList = "";
@@ -570,6 +587,7 @@ function displayProductPurchased(response)
 //	alert(GrandTotal);
 //	$("#appendOrder").append('<label style="color: #3099DB">Grand Total</label>');
 //	$("#appendOrder").append(productList);
+	$("#grandtotal").empty();
 	$("#grandtotal").append("Total Ammount : "+GrandTotal);
 	
 //	purchasearray = [];

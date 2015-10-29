@@ -208,12 +208,11 @@
 
 
 
-
-					<div class="panel-body">
-						<div class="container cheight" style="width: 100%;">
-							<table class="table table-striped" cellspacing="0"
-								cellpadding="0">
-								<thead class="hidden-xs">
+					
+					<div class="panel-body" style="margin-top: 20px;">
+						<div class="container" style="width: 100%; height: auto;">
+							<table class="table table-striped" cellspacing="0" cellpadding="0">
+								<thead class="hidden-xs" style="background-color: #2D97D9">
 									<tr>
 										<th class="cimg">Image</th>
 										<th class="cname">Name</th>
