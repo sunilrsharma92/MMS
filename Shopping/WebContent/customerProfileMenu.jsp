@@ -13,9 +13,10 @@
 		<div class="container" style="background-color: #FFF;">
 			<!-- Start of row -->
 			<div class="row">
-				<div class="col-md-3">
+				<div class="col-md-3" style="background: rgb(233, 233, 233) none repeat scroll 0% 0%;">
 					<div id="custOrderPanel" style="display: none;">
-						<h3><span class="label label-default"> MY ACCOUNT</span></h3>
+<!-- 						<h3><span class="label label-default"> MY ACCOUNT</span></h3> -->
+						<h3><div class="label label-default" style="width: 100%; display: block;"> MY ACCOUNT</div></h3>
 						<hr class="large">
 						<!-- <form action="UploadServlet" method="post" enctype="multipart/form-data">
 						<div class=""  style="margin-bottom:10px"; >
@@ -31,7 +32,7 @@
 										<div id="loading-img"></div>
 									</div>
 							
-							<div style="width: 150px;height: 150px;">
+							<div style="width: 150px;height: 150px; margin: 0px auto;">
 							<img id="profileImg" src="Images/default_profile_pic.png" class="img-circle" style="width:100%; height:100%; background-color:whitesmoke;">
 							</div>
 					     	 <input type="file" name="fileName" id="fileName" style="display:none;" class="roleType" class="border"/>  
@@ -84,23 +85,23 @@
 						
 
 
-						<div class="strong"><span class="glyphicon glyphicon-list-alt"></span> Orders</div>
+						<div class="strong list-group"><span class="glyphicon glyphicon-list-alt"></span> Orders</div>
 	
 						<div class="list-group side-bar">
-							<a href="#" id="4" class="list-group-item" onclick="loadProfileMenu(this)">My orders</a>
+							<a href="#" id="4" style="border: 1px solid #CCC;" class="list-group-item" onclick="loadProfileMenu(this)">My orders</a>
 							<hr class="large">
 						</div>
 					</div>
-					<div class="strong">
+					<div class="strong list-group">
 						<span class="glyphicon glyphicon-user"></span> Profile
 					</div>
 					<div class="list-group side-bar">
-						<a href="#" id="0" class="list-group-item " onclick="loadProfileMenu(this)">Personal Info</a> 
-						<a href="#"	id="1" class="list-group-item" onclick="loadProfileMenu(this)">Addresses</a>
-						<a href="#"	id="2" class="list-group-item"	onclick="loadProfileMenu(this)">Change Password</a> 
+						<a href="#" id="0" class="list-group-item customerSideMenu" onclick="loadProfileMenu(this)">Personal Info</a> 
+						<a href="#"	id="1" class="list-group-item customerSideMenu" onclick="loadProfileMenu(this)">Addresses</a>
+						<a href="#"	id="2" class="list-group-item customerSideMenu" onclick="loadProfileMenu(this)">Change Password</a> 
 						<!-- <a href="#" class="list-group-item">Update Email/Mobile</a> -->
 <!-- 						<a href="#" id="3" class="list-group-item"	onclick="loadProfileMenu(this)">Deactivate Account</a>  -->
-						<a href="#" id="" class="list-group-item">Manage Notifications</a>
+						<a href="#" id="" class="list-group-item" style="border: 1px solid #ccc;">Manage Notifications</a>
 						<hr class="large">
 					</div>
 
@@ -209,7 +210,7 @@
 
 
 					
-					<div class="panel-body" style="margin-top: 20px;">
+					<div id="4111" class="panel-body" style="margin-top: 20px; display: none;">
 						<div class="container" style="width: 100%; height: auto;">
 							<table class="table table-striped" cellspacing="0" cellpadding="0">
 								<thead class="hidden-xs" style="background-color: #2D97D9">

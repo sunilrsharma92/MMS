@@ -950,6 +950,7 @@ tbody{
 
 #loading-img {
     background: url(../loader_img/LoadingNew.gif) center center no-repeat;
+    	background-size: 100px 100px;
 /*     background: url(../loader_img/load.gif) center center no-repeat; */
 /*     background: url(https://goo.gl/photos/D1uwSqvhgVwdeAQXA) center center no-repeat; */
     height: 50%;
@@ -958,14 +959,14 @@ tbody{
 }
 
 .overlay {
-    background: #e9e9e9;
+/*     background: #e9e9e9; */
     display: none;
     position: absolute;
     top: 0;
     right: 0;
     bottom: 0;
     left: 0;
-    opacity: 0.5;
+/*     opacity: 0.5; */
 }
 
 /* //Deva */
@@ -1102,6 +1103,19 @@ a.button:active {
 -moz-box-shadow: 10px 10px 5px #888;
 -webkit-box-shadow: 10px 10px 5px #888;
 box-shadow: 10px 10px 5px #888;
+}
+
+.customerSideMenu
+{
+	border-width: 1px 1px medium; 
+	border-style: solid solid none; 
+	border-color: rgb(204, 204, 204) rgb(204, 204, 204) 
+	-moz-use-text-color; 
+	-moz-border-top-colors: none; 
+	-moz-border-right-colors: none; 
+	-moz-border-bottom-colors: none; 
+	-moz-border-left-colors: none; 
+	border-image: none;
 }
     /*\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\Devendra\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\*/
     

@@ -115,7 +115,7 @@ $(document).ready(function()
 						count++;
 						console.log("count : " + count + "msg : " + msg);
 
-						if(count == 7)
+						if(count == 10)
 						{
 							$("#profileImg").attr("src", msg);
 							$(".overlay").show().delay(100).fadeOut();
@@ -503,12 +503,12 @@ function displayProductPurchased(response)
 				var img = GlobalResponse[l].img;
 				
 				var add = "";
-				
-				if(address1 != "" || address1 != null)
+//				alert(address1.length+ " " +address1.length);
+				if(address1 != "" || address1 != "null" || address1.length > 6)
 				{
 					add = address1;
 				}
-				else if(address2 != "" || address2 != null)
+				else if(address2 != "" || address2 != "null" || address2.length > 6)
 				{
 					add = address2;
 				}
@@ -569,6 +569,9 @@ function displayProductPurchased(response)
 
 //		$("#appendOrder").append('<label style="color: black;">'+shopname+'</label>');
 //		$("#appendOrder").append('<tr><td collspan = "5">'+shopname+'</td></tr>');
+		
+		$("#4111").show();
+		
 		$("#appendOrder").append('<tr><td colspan = "5">'
 				+ '<table style="width: 100%">'
 				+ '<tr><td style="text-align: center; color: rgb(2, 86, 2); font-size: 19px;">'+shopname+'</td></tr>'
@@ -609,7 +612,16 @@ function loadProfileMenu(id)
 		}
 
 		$("#" + idofpage + "1").show();
-
+		
+		if(idofpage+"1" == "41")
+		{
+			$("#4111").show();
+		}
+		else
+		{
+			$("#4111").hide();
+		}
+		
 		// $.session.set('contentState', idofpage);
 
 		$("#dashboard").hide(); // -- hide dashboard after profile click,to
