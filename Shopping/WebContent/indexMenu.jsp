@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <!-- <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"> -->
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
@@ -153,9 +154,9 @@
 <!-- 											<h3 class="font">Login:</h3> -->
 											<form class="login-val" style="text-align: center;">
 												<div style="margin-bottom: 10px;"></div>
-												<input class="textbox font" type="text" id="emailLogin"	name="email" placeholder="Enter Email Id"></br>
-												 <input	class="textbox font" type="password" id="passLoginTemp"	name="password" placeholder="Enter Password"></br> 
-												<input class="textbox font" type="text" id="otpLogin" placeholder="OTP" style="display: none"></br>
+												<input class="textbox font" type="text" id="emailLogin"	name="email" placeholder="Enter Email Id"><br>
+												 <input	class="textbox font" type="password" id="passLoginTemp"	name="password" placeholder="Enter Password"><br> 
+												<input class="textbox font" type="text" id="otpLogin" placeholder="OTP" style="display: none"><br>
 												 <input	type="button" onclick="login()" class="btn btn-primary btn_width_93_perc" id="userlogin" value="Login" />
 												 <div style="margin-top: 10px; color:red; font-size: 12px;" id="loginalerts"></div>
 												 
@@ -167,14 +168,14 @@
 											<!--                         <label class="pull-left font"><h4>Customer</h4></label>  -->
 
 											<!-- 						<label for="cmn-toggle-1"></label> <label class="font" style="float: left;"><h4>Shoper</h4></label> -->
-											<!-- 						</br> -->
+											<!-- 						<br> -->
 											<form class="signup-val" style="text-align: center;">
 													<div style="margin-bottom: 10px;"></div>
-													<input class="textbox font" type="text" name="email" id="emailSignUp" placeholder="Enter Email id"></br> 
-													<input class="textbox font" type="text" name="mobile" id="mobile" placeholder="Enter Mobile No"></br> 
-													<input class="textbox font" type="password" name="password" id="passSignUp" placeholder="Enter Password"></br> 
-													<input class="textbox font" type="password" name="password2" id="repass" placeholder="ReEnter Password"></br></br>
-<!-- 												<div class="g-recaptcha" name="captcha" data-sitekey="6LfaxwsTAAAAAEB5RYVVeSFM3AyHzAHb3YvgtGvx"></div></br> -->
+													<input class="textbox font" type="text" name="email" id="emailSignUp" placeholder="Enter Email id"><br> 
+													<input class="textbox font" type="text" name="mobile" id="mobile" placeholder="Enter Mobile No"><br> 
+													<input class="textbox font" type="password" name="password" id="passSignUp" placeholder="Enter Password"><br> 
+													<input class="textbox font" type="password" name="password2" id="repass" placeholder="ReEnter Password"><br><br>
+<!-- 												<div class="g-recaptcha" name="captcha" data-sitekey="6LfaxwsTAAAAAEB5RYVVeSFM3AyHzAHb3YvgtGvx"></div><br> -->
 												<div id="warnings" style="display:none;"></div>
 												<input type="button" onclick="signUp()" class="btn btn-primary btn_width_93_perc" id="signup" value="Sign Up" />
 <!-- 												<input type="button" class="btn btn-primary btn_width_93_perc" id="signup" value="Sign Up" /> -->
@@ -186,7 +187,7 @@
 <!-- 											<h3 class="font">Forgot Password:</h3> -->
 											<form class="forgot-val"style="text-align: center;">
 												<div style="margin-bottom: 10px;"></div>
-												<input class="textbox font" type="text" name="email" id="emailForgotPwd" placeholder="Enter Email id"></br></br>
+												<input class="textbox font" type="text" name="email" id="emailForgotPwd" placeholder="Enter Email id"><br><br>
 												<input type="button" onclick="forgotPwd()" value="Submit" class="btn btn-primary btn_width_93_perc"/>
 												<div style="margin-top: 10px; color:red; font-size: 12px;" id="forgetpassalerts"></div>
 											</form>
@@ -329,7 +330,7 @@
 <!-- 					<button class="insearch" onclick="searchProduct();" type="submit"> -->
 <!-- 						<span class="glyphicon glyphicon-search"></span> -->
 <!-- 					</button> -->
-				</input>
+				
 				<button type="button" class="btn btn-circle btn-danger changeview" id="removesearchbtn">
 					<span class=" glyphicon glyphicon-remove"></span>
 				</button>

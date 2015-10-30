@@ -25,7 +25,6 @@ public class WriteLogServlet extends HttpServlet {
      */
     public WriteLogServlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
