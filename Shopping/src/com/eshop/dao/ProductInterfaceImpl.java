@@ -783,6 +783,167 @@ public class ProductInterfaceImpl implements ProductInterface
 					}
 					break;
 					
+				case 1014:
+					try
+					{
+						JSONObject object = (JSONObject) JSONValue.parse(jsonMsg);
+						
+						Long userid = (Long) object.get("userid");
+						String userType = (String) object.get("userType");
+						float total = 0;
+						String sql = "";
+						String usertypecolumnname = "";
+						
+						if (userType != null && userType.trim().equalsIgnoreCase("customer"))
+						{
+							usertypecolumnname = "customer_key";
+						}
+						else if (userType != null && userType.trim().equalsIgnoreCase("supplier"))
+						{
+							usertypecolumnname = "supplier_key";
+						}
+						
+						ps = conn.prepareStatement("select c.*, s.company_name, s.first_name, s.last_name, "
+								+ "s.phone, s.address1, s.address2, s.city,"
+								+ " s.state, s.street, s.postal_code, s.country, "
+								+ "s.profile_img from cart c, suppliers s "
+								+ "where c."+usertypecolumnname+" = ? and c.shopid = s.supplier_key group by c.orderid order by datetime DESC");
+						
+						ps.setLong(1, userid);
+						
+						rs = ps.executeQuery();
+						while (rs.next())
+						{
+							JSONObject childjson = new JSONObject();
+							long id = (long) 0;
+							
+							if(userType.trim().equalsIgnoreCase("customer"))
+							{
+								id = rs.getLong("customer_key");
+							}
+							else if(userType.trim().equalsIgnoreCase("supplier"))
+							{
+								id = rs.getLong("supplier_key");
+							}
+							
+							childjson.put("userid", id);
+							childjson.put("orderid", rs.getString("orderid"));
+							childjson.put("datetime", rs.getString("datetime"));
+							childjson.put("shopid", rs.getLong("shopid"));
+							childjson.put("companyname", rs.getString("company_name"));
+							childjson.put("name", rs.getString("first_name")+" "+rs.getString("last_name"));
+							childjson.put("phone", rs.getString("phone"));
+							childjson.put("address1", rs.getString("address1"));
+							childjson.put("address2", rs.getString("address2"));
+							childjson.put("city", rs.getString("city"));
+							childjson.put("state", rs.getString("state"));
+							childjson.put("street", rs.getString("street"));
+							childjson.put("pincode", rs.getString("postal_code"));
+							childjson.put("country", rs.getString("country"));
+							childjson.put("img", rs.getString("profile_img"));
+
+							jsonarray.add(childjson);
+							
+						}
+						parentjson.put("Order", jsonarray);
+						parentjson = CommonMethodImpl.putSuccessJson(parentjson, 2014);
+						output = parentjson.toString();
+						return output;
+					}
+					
+					catch (Exception e)
+					{
+						e.printStackTrace();
+						mms.writeLogs("ProductInterfaceImpl handleRequestResponse() "+command+" Exception : "+e,0);
+					}
+					break;
+					
+				case 1015:
+					try
+					{
+						JSONObject object = (JSONObject) JSONValue.parse(jsonMsg);
+						
+						Long userid = (Long) object.get("userid");
+						String userType = (String) object.get("userType");
+						String orderid = (String) object.get("orderid");
+						float total = 0;
+						String sql = "";
+						String usertypecolumnname = "";
+						
+						if (userType != null && userType.trim().equalsIgnoreCase("customer"))
+						{
+							usertypecolumnname = "customer_key";
+						}
+						else if (userType != null && userType.trim().equalsIgnoreCase("supplier"))
+						{
+							usertypecolumnname = "supplier_key";
+						}
+						
+						ps = conn.prepareStatement("select c.*, s.company_name, s.first_name, s.last_name, "
+								+ "s.phone, s.address1, s.address2, s.city,"
+								+ " s.state, s.street, s.postal_code, s.country, "
+								+ "s.profile_img from cart c, suppliers s "
+								+ "where c."+usertypecolumnname+" = ? and c.orderid=? and c.shopid = s.supplier_key");
+						
+						ps.setLong(1, userid);
+						ps.setString(2, orderid);
+						
+						rs = ps.executeQuery();
+						while (rs.next())
+						{
+							JSONObject childjson = new JSONObject();
+							long id = (long) 0;
+							
+							if(userType.trim().equalsIgnoreCase("customer"))
+							{
+								id = rs.getLong("customer_key");
+							}
+							else if(userType.trim().equalsIgnoreCase("supplier"))
+							{
+								id = rs.getLong("supplier_key");
+							}
+							
+							childjson.put("userid", id);
+							childjson.put("orderid", rs.getString("orderid"));
+							childjson.put("datetime", rs.getString("datetime"));
+							childjson.put("shopid", rs.getLong("shopid"));
+							
+							childjson.put("productid", rs.getLong("productid"));
+							childjson.put("productname", rs.getString("productname"));
+							childjson.put("productimg", rs.getString("productimg"));
+							childjson.put("productprice", rs.getFloat("productprice"));
+							childjson.put("total", rs.getFloat("total"));
+							childjson.put("quantity", rs.getLong("quantity"));
+							
+							
+							childjson.put("companyname", rs.getString("company_name"));
+							childjson.put("name", rs.getString("first_name")+" "+rs.getString("last_name"));
+							childjson.put("phone", rs.getString("phone"));
+							childjson.put("address1", rs.getString("address1"));
+							childjson.put("address2", rs.getString("address2"));
+							childjson.put("city", rs.getString("city"));
+							childjson.put("state", rs.getString("state"));
+							childjson.put("street", rs.getString("street"));
+							childjson.put("pincode", rs.getString("postal_code"));
+							childjson.put("country", rs.getString("country"));
+							childjson.put("img", rs.getString("profile_img"));
+							
+							jsonarray.add(childjson);
+							
+						}
+						parentjson.put("Order", jsonarray);
+						parentjson = CommonMethodImpl.putSuccessJson(parentjson, 2015);
+						output = parentjson.toString();
+						return output;
+					}
+					
+					catch (Exception e)
+					{
+						e.printStackTrace();
+						mms.writeLogs("ProductInterfaceImpl handleRequestResponse() "+command+" Exception : "+e,0);
+					}
+					break;
+					
 				case 1051: // -- Customer/Shopkeeper Login //
 					try
 					{

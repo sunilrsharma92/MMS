@@ -72,6 +72,14 @@ function listResponseHandler(response, command, status)
 					case 2013:
 						handleConformOrderResponse(response);
 						break;
+						
+					case 2014:
+						handleOrderHistoryResponse(response);
+						break;
+						
+					case 2015:
+						handleOrderDetailsResponse(response);
+						break;
 
 					case 2003:
 						handleProductDisplayResponse(response);
