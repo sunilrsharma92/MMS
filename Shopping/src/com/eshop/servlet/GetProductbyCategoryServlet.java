@@ -31,7 +31,6 @@ public class GetProductbyCategoryServlet extends HttpServlet
 	public GetProductbyCategoryServlet()
 	{
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	/**

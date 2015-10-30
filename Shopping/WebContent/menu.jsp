@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!-- <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"> -->
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
@@ -56,18 +57,18 @@
                     <div class="tab-content">
                       <div id="home" class="tab-pane fade in active">
                         <h3 class="font">Login:</h3>
-                        <input class="textbox" type="text" name="user"  placeholder="Username"></br>
-                        <input class="textbox" type="password" name="pass" placeholder="Password"></br>
-                        <!-- <a href="#" id="forgot">forgot password?</a></br> -->
+                        <input class="textbox" type="text" name="user"  placeholder="Username"><br>
+                        <input class="textbox" type="password" name="pass" placeholder="Password"><br>
+                        <!-- <a href="#" id="forgot">forgot password?</a><br> -->
                         <button class="btn btn-primary" type="button">Login</button>
                       </div>
                       <div id="menu1" class="tab-pane fade">
                         <h3 class="font">Sign up</h3>
-                        <input class="textbox"  type="text" name="user" placeholder="Enter Email id"></br>
-                        <input class="textbox"  type="text" name="user" placeholder="Enter Username"></br>
-                        <input class="textbox"  type="text" name="user" placeholder="Enter Mobile No"></br>
-                        <input class="textbox" type="password" name="user" placeholder="Enter Password"></br>
-                        <input class="textbox" type="password" name="user" placeholder="ReEnter Password"></br>
+                        <input class="textbox"  type="text" name="user" placeholder="Enter Email id"><br>
+                        <input class="textbox"  type="text" name="user" placeholder="Enter Username"><br>
+                        <input class="textbox"  type="text" name="user" placeholder="Enter Mobile No"><br>
+                        <input class="textbox" type="password" name="user" placeholder="Enter Password"><br>
+                        <input class="textbox" type="password" name="user" placeholder="ReEnter Password"><br>
                         <button class="btn btn-primary" type="button">Sign Up</button> 
                       </div>
                       <div id="menu2" class="tab-pane fade">
@@ -158,7 +159,7 @@
 
      
         </div> 
-      </div>
+      
 
       
 

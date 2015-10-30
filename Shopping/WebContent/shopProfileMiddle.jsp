@@ -1,6 +1,7 @@
 <%@ page language = "java" contentType = "text/html; charset = ISO-8859-1"
     pageEncoding = "ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!-- <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"> -->
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv = "Content-Type" content = "text/html; charset = ISO-8859-1">
@@ -92,7 +93,7 @@
 							String img = "Images/chadders/" + i + ".jpg";
 					%>
 
-					<div class="col-md-2 col-sm-3  col-xs-4 wrap">
+					<%-- <div class="col-md-2 col-sm-3  col-xs-4 wrap">
 						<div class="portfolio-item">
 							<div class="inner-wrap">
 								<a href="#"> <img
@@ -111,11 +112,33 @@
 								<button type="button" class="btn btn-success cartsz ">ADD</button>
 							</div>
 						</div>
-					</div>
+					</div> --%>
+						<div class="col-md-2 col-sm-3  col-xs-4 wrap">
+							<div class="portfolio-item">
+								<div class="inner-wrap">
+									<a href="#"> <img class="img-portfolio img-responsive" src="<%=img%>"></a>
+								</div>
+							</div>
+							<div class="align-center">
+								<div class="productname ">Active Wheel washing power</div>
+								<div class="quantity ">
+									<select class="form-control textbox" id="stateSave"	placeholder="select state">
+										<option value="one">500gm</option>
+										<option value="one">250gm</option>
+									</select>
+								</div>
+								<div class="productprice">
+									<span>Rs.120</span><span class="pull-right"><strike>Rs.140</strike></span>
+								</div>
+								<div class="cartbtn ">
+									<button type="button" class="btn btn-success cartsz ">ADD<span class="pull-right glyphicon glyphicon-shopping-cart"></span></button>
+								</div>
+							</div>
+						</div>
 
-					<%
-						}
-					%>
+						<%
+							}
+						%>
 
 
 				</div>
@@ -130,7 +153,7 @@
 							String img = "Images/chadders/" + i + ".jpg";
 					%>
 
-					<div class="col-md-2 col-sm-3  col-xs-4 wrap">
+					<%-- <div class="col-md-2 col-sm-3  col-xs-4 wrap">
 						<div class="portfolio-item">
 							<div class="inner-wrap">
 								<a href="#"> <img
@@ -149,7 +172,30 @@
 								<button type="button" class="btn btn-success cartsz ">ADD</button>
 							</div>
 						</div>
-					</div>
+					</div> --%>
+					<div class="col-md-2 col-sm-3  col-xs-4 wrap">
+							<div class="portfolio-item">
+								<div class="inner-wrap">
+									<a href="#"> <img class="img-portfolio img-responsive" src="<%=img%>"></a>
+								</div>
+							</div>
+							<div class="align-center">
+								<div class="productname ">Active Wheel washing power</div>
+								<div class="quantity ">
+									<select class="form-control textbox" id="stateSave"	placeholder="select state">
+										<option value="one">500gm</option>
+										<option value="one">250gm</option>
+									</select>
+								</div>
+								<div class="productprice">
+									<span>Rs.120</span><span class="pull-right"><strike>Rs.140</strike></span>
+								</div>
+								<div class="cartbtn ">
+									<button type="button" class="btn btn-success cartsz ">ADD<span class="pull-right glyphicon glyphicon-shopping-cart"></span></button>
+								</div>
+							</div>
+						</div>
+					
 
 					<%
 						}
