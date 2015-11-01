@@ -807,7 +807,7 @@ public class ProductInterfaceImpl implements ProductInterface
 								+ "s.phone, s.address1, s.address2, s.city,"
 								+ " s.state, s.street, s.postal_code, s.country, "
 								+ "s.profile_img from cart c, suppliers s "
-								+ "where c."+usertypecolumnname+" = ? and c.shopid = s.supplier_key group by c.orderid order by datetime DESC");
+								+ "where c."+usertypecolumnname+" = ? and c.shopid = s.supplier_key and orderid is not null group by c.orderid order by datetime DESC");
 						
 						ps.setLong(1, userid);
 						
@@ -1120,6 +1120,8 @@ public class ProductInterfaceImpl implements ProductInterface
 						String tempOtp = "";
 						String user = "";
 						int checkEmailExist = 0;
+						String createTable = "";
+						String tableName = "";
 
 						if (userType != null && userType.trim().equalsIgnoreCase("customer"))
 						{
@@ -1133,6 +1135,7 @@ public class ProductInterfaceImpl implements ProductInterface
 							emailExist = "select email from suppliers";
 							sqlInsert = "insert into suppliers(email,phone,password) values(?,?,?)";
 							user = "suppliers";
+							
 						}
 
 						ps = conn.prepareStatement(emailExist);
@@ -1178,7 +1181,22 @@ public class ProductInterfaceImpl implements ProductInterface
 								if (result > 0)
 								{
 									String sql1 = "";
-	
+									
+									if (userType != null && userType.trim().equalsIgnoreCase("supplier"))
+									{
+										String lastIdQuery = "select LAST_INSERT_ID() as last_id from "+user+"";
+										ps3 = conn.prepareStatement(lastIdQuery);
+									    rs2 = ps3.executeQuery();
+									    if(rs2.next())
+									    {
+									    	String lastid = rs2.getString("last_id");
+											tableName = "`shop"+lastid+"`";
+											createTable = "CREATE TABLE IF NOT EXISTS "+tableName+" (`product_key` bigint(20) NOT NULL AUTO_INCREMENT,`product_name` longtext,`category_ref` bigint(20) DEFAULT NULL,`sub_category_ref` bigint(20) DEFAULT NULL,`unite_price` float DEFAULT NULL,`picture` longtext,`sku` bigint(20) DEFAULT NULL,`idsku` bigint(20) DEFAULT NULL,`vendor_product_ref` bigint(20) DEFAULT NULL,`product_description` longtext,`supplier_ref` bigint(20) DEFAULT NULL,`quantity_per_unit` bigint(20) DEFAULT NULL,`msrp` bigint(20) DEFAULT NULL,`available_colors` longtext,`size` bigint(20) DEFAULT NULL,`color` longtext,`discount` float DEFAULT NULL,`unit_weight` float DEFAULT NULL,`units_in_stock` bigint(20) DEFAULT NULL,`units_on_order` bigint(20) DEFAULT NULL,`reorder_level` longtext,`product_available` longtext,`discount_available` longtext,`current_order` longtext,`ranking` longtext,`note` longtext,PRIMARY KEY (`product_key`)) ENGINE=InnoDB AUTO_INCREMENT=271 DEFAULT CHARSET=latin1;";
+																					
+											System.out.println("lastInserted ID : "+createTable);
+									    }
+									}
+									
 									tempOtp = RandomStringUtilsTrial.orderNumber();
 	
 									if (tempOtp != null && !tempOtp.trim().isEmpty())
@@ -1204,6 +1222,23 @@ public class ProductInterfaceImpl implements ProductInterface
 											{
 												boolean result = sm.sendMessage("+91"+(String) object.get("mobileKey"),tempOtp);
 												parentjson = new JSONObject();
+												
+												if (userType != null && userType.trim().equalsIgnoreCase("supplier"))
+												{
+													ps2 = conn.prepareStatement(createTable);
+													resultTemp = ps2.executeUpdate();
+													
+													if (resultTemp > 0)
+													{
+														parentjson.put("Table --> "+tableName+" --> Created", "YES");
+													}
+													else
+													{
+														parentjson.put("Table --> "+tableName+" --> Created", "NO");
+													}
+												}
+												
+												
 												parentjson = CommonMethodImpl.putSuccessJson(parentjson, 2052);// succcess
 												parentjson.put("email", emailSignUp);
 												parentjson.put("statusdesc", "Success");
@@ -1502,7 +1537,7 @@ public class ProductInterfaceImpl implements ProductInterface
 						
 						if (email != null && !email.trim().isEmpty())
 							sql += " and email = ? ";
-
+						System.out.println("Update user address sql : "+sql);
 						ps = conn.prepareStatement(sql);
 						ps.setLong(1, key);
 						if (email != null && !email.trim().isEmpty())

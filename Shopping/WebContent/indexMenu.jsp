@@ -227,7 +227,8 @@
 				</button>
 				<button type="button" class="navbar-toggle getCartProduct" data-toggle="modal"	data-target=".cartmodal">
 					<span class="glyphicon glyphicon-shopping-cart"></span> 
-					<span class="badge"><label	id="productCountOnCart" class="productCountOnCart" style="margin: auto;">0</label></span>
+					
+					<span id="rotatespan1" class="badge rotatespanclass"><label	id="productCountOnCart" class="productCountOnCart" style="margin: auto;">0</label></span>
 					
 				</button>
 				<div class="search-box pull-right hidden-lg hidden-md hidden-sm">
@@ -307,7 +308,7 @@
 						<span class="glyphicon glyphicon-shopping-cart"></span> 
 						<span class="hidden-xs">CART</span> 
 <!-- 						<div class="slow"> -->
-						<span id="rotatespan" class="badge"><label id="productCountOnCart1" class="productCountOnCart" style="margin: auto;">0</label></span>
+						<span id="rotatespan" class="badge rotatespanclass"><label id="productCountOnCart1" class="productCountOnCart" style="margin: auto;">0</label></span>
 <!-- 						</div> -->
 					</button>
 				</div>

@@ -382,6 +382,7 @@ tbody{
 .textbox {
 	margin : 5px;
 	width : 66%;
+/* 	width : 88%; */
 	height : 40px;
 	border  : 1px solid gray;
 /* 	border-radius : 4px; */
@@ -1211,4 +1212,34 @@ box-shadow: 10px 10px 5px #888;
 		
 		transform:translateZ(-100px) translateX(0) rotateY(180deg);
 	}
+}
+
+.alignprof
+{
+	margin: 58px auto; 
+	width: 100%;
+}
+
+.alignprofDiv
+{
+	margin: 58px auto; 
+	width: 60%;
+	background: #E9E9E9 none repeat scroll 0% 0%;
+	box-shadow: 0px 4px 17px 7px grey;
+}
+
+.alignTable
+{
+	height: 200px;
+	width: 100%;
+}
+
+.margin_top_bottom
+{
+	margin-bottom: 13px;
+	margin-top: 5px;
+}
+
+select::-ms-expand {
+    display: none;
 }

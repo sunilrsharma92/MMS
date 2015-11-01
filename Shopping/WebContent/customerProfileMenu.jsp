@@ -6,6 +6,18 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
+<style>
+table td
+{
+	padding-left: 30px;
+	width: 0%;
+}
+
+#loadpagecontent input
+{
+	width: 88%;
+}
+</style>
 </head>
 <body>
 
@@ -111,23 +123,23 @@
 				<div id="loadpagecontent" class="col-md-9">
 				
 <!-- 		**************		Personal Information	******************** -->
-				<div id="01" style="display:none;">
-					<h3 class="bold">Personal Information:</h3>
-					<form>
-						<table>
+				<div id="01" class="alignprofDiv" style="display:none;">
+					<h3 class="bold" style="padding-left: 30px; text-shadow: 7px 17px 19px;">Personal Information:</h3>
+					<form class="alignprof">
+						<table class="alignTable">
 							<tr><td>First Name:</td><td><input id="firstNameSave" type="text" class="textbox" value=""></td></tr>
 							<tr><td>Last Name:</td><td><input id="lastNameSave" type="text" class="textbox" ></td></tr>
 							<tr><td>Mobile No:</td><td><input id="mobileNoSave" type="text" class="textbox" ></td></tr>
 			<!-- 				<tr><td>Email Address:</td><td><input id="emailSave" type="text" class="textbox"></td></tr> -->
-							<tr><td></td><td><button type="button" id="saveProfile" class="btn btn-primary" onclick="saveUserDetails('personalInfo')">Save Changes</button></td></tr>
+							<tr><td></td><td><button type="button" id="saveProfile" class="btn btn-primary margin_top_bottom" onclick="saveUserDetails('personalInfo')">Save Changes</button></td></tr>
 						</table>
 					</form>
 				</div>
 <!-- 		**************		Addresses	******************** -->
-				<div id="11" style="display:none;">
-					<h3 class="bold">Add/Edit Address:</h3>
-					<form>
-						<table>
+				<div id="11" class="alignprofDiv" style="display:none;">
+					<h3 class="bold" style="padding-left: 30px; text-shadow: 7px 17px 19px;">Add/Edit Address:</h3>
+					<form class="alignprof">
+						<table class="alignTable">
 							<tr><td>Address 1:</td><td><input type="text" id="address1Save" class="textbox" name="name"></td></tr>
 							<tr><td>Address 2:</td><td><input type="text" id="address2Save" class="textbox" name="name"></td></tr>
 							<tr><td>Street name:</td><td><input type="text" id="streetSave" class="textbox" name="name"></td></tr>
@@ -172,34 +184,34 @@
 							<tr><td>City:</td><td><input type="text" id="citySave" class="textbox" name="name"></td></tr>
 							<tr><td>Pincode:</td><td><input type="text" id="pincodeSave" class="textbox" name="name"></td></tr>
 							<!-- <tr><td>Email Address:</td><td><input type="text" class="textbox" name="name"></td></tr> -->
-							<tr><td></td><td><button type="button" class="btn btn-primary" onclick="saveUserDetails('address')">Save Changes</button></td></tr>
+							<tr><td></td><td><button type="button" class="btn btn-primary margin_top_bottom" onclick="saveUserDetails('address')">Save Changes</button></td></tr>
 						</table>
 					</form>
 				
 				</div>
 <!-- 		**************		Change Password:	******************** -->	
-				<div id="21" style="display:none;">
-					<h3 class="bold">Change Password:</h3>
-					<form>
-						<table>
+				<div id="21" class="alignprofDiv" style="display:none;">
+					<h3 class="bold" style="padding-left: 30px; text-shadow: 7px 17px 19px;">Change Password:</h3>
+					<form class="alignprof">
+						<table class="alignTable">
 							<tr><td>Old Password:</td><td><input type="text" class="textbox" id="oldPwd" name="name"></td></tr>
 							<tr><td>New Password:</td><td><input type="text" class="textbox" name="name" id="password1"></td></tr>
 							<tr><td>Retype New Password:</td><td><input type="text" class="textbox" name="name" id="password2"></td></tr>
 							<!-- <tr><td>Email Address:</td><td><input type="text" class="textbox" name="name"></td></tr> -->
-							<tr><td></td><td><button type="button" class="btn btn-primary" onclick="resetPassword()">Save Changes</button></td></tr>
+							<tr><td></td><td><button type="button" class="btn btn-primary margin_top_bottom" onclick="resetPassword()">Save Changes</button></td></tr>
 						</table>
 					</form>
 				</div>
 <!-- 		**************		Deactivate Account:	******************** -->		
 				<div id="31" style="display:none;">
-					<h3 class="bold">Deactivate Account:</h3>
-					<form>
-						<table>
+					<h3 class="bold" style="padding-left: 30px; text-shadow: 7px 17px 19px;">Deactivate Account:</h3>
+					<form class="alignprof">
+						<table class="alignTable">
 						<tr><td>Email Address:</td><td><input type="text" class="textbox" name="name"></td></tr>
 						<tr><td>Mobile Number:</td><td><input type="text" class="textbox" name="name"></td></tr>
 						<tr><td>Password:</td><td><input type="text" class="textbox" name="name"></td></tr>
 						<!-- <tr><td>Email Address:</td><td><input type="text" class="textbox" name="name"></td></tr> -->
-						<tr><td></td><td><button type="button" class="btn btn-primary">Confirm Deactivation	</button></td></tr>
+						<tr><td></td><td><button type="button" class="btn btn-primary margin_top_bottom">Confirm Deactivation	</button></td></tr>
 						</table>
 					</form>
 				</div>
@@ -226,13 +238,14 @@
 								<tbody id="appendOrder">
 
 								</tbody>
+								<div style="color: #00AA99; font-size: 20px; float: right;" id="grandtotal"></div>
 							</table>
 						</div>
-						<div id="totalpurchaseOnCheckout" class="totaldiv"></div>
-						<input type="hidden" name="txttotalpurchaseOnCheckoutHidden"
-							id="totalpurchaseOnCheckoutHidden" value="">
-					</div>
-					<div style="color: #00AA99; font-size: 20px; float: right;" id="grandtotal"></div>
+<!-- 						<div id="totalpurchaseOnCheckout" class="totaldiv"></div> -->
+<!-- 						<input type="hidden" name="txttotalpurchaseOnCheckoutHidden" -->
+<!-- 							id="totalpurchaseOnCheckoutHidden" value=""> -->
+<!-- 					</div> -->
+					
 
 
 

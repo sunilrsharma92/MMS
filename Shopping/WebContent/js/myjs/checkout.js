@@ -188,7 +188,7 @@ catch (e) {
 		var address = "";
 		
 		var ammount = $("#totalpurchaseOnCheckout").text();
-		if(ammount == "Total Price : Rs 0.00 " || ammount == "Total Price : Rs 0 " || ammount == "Total Price : Rs 0.0 ")
+		if(ammount == "Total Price : Rs 0.00 " || ammount == "Total Price : Rs 0 " || ammount == "Total Price : Rs 0.0 " || ammount == "Total Price : NaN" || ammount == "Total Price : " || ammount == "")
 			{
 				jAlert('Your cart is empty. \n Add product in cart to proceed further.', 'Message');
 				$("#conformOrder").attr('data-toggle','');

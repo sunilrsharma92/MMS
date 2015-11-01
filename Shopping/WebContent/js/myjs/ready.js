@@ -266,22 +266,9 @@ $('#checkout').click(function(){
 try
 {
 $("#search").keyup(function(e){
-//	alert("Data Label : "+JSON.stringify(datalabel));
-	var label = "";
+
+	var label = datalabelShop.autoCompleteLabel;
 	
-//	if(shopAction == "shop")
-//	{
-		label = datalabelShop.autoCompleteLabel;
-//	}
-//	else if(prodAction == "prod")
-//	{
-//		label = datalabelProd.autoCompleteLabel;
-//	}
-	
-	
-	
-	
-//	alert("Label : "+JSON.stringify(label));
 	$("#search").autocomplete({
 	source : label,
 
@@ -612,7 +599,7 @@ function loadPage(id)
 	else if(vid == "checkout")
 	{
 		var ammount = $("#totalpurchase").text();
-		if(ammount == "Total Price : Rs 0.00 " || ammount == "Total Price : Rs 0 ")
+		if(ammount == "Total Price : Rs 0.00 " || ammount == "Total Price : Rs 0 " || ammount == "Total Price : NaN" || ammount == "Total Price : " || ammount == "")
 			{
 				jAlert('Add product in cart to proceed further', 'Message');
 				vid = "";
@@ -1101,12 +1088,14 @@ function addproducttoCArt(productid)
 		
 		var shopid = $.session.get("shopid");
 		objhandleRequest.aadToCartForLoggedUser(userid, userType, productid, "authoriseduser", 1, "add", shopid);
-		$("#rotatespan").addClass("rotatelabel");
+//		$("#rotatespan").addClass("rotatelabel");
+		$(".rotatespanclass").addClass("rotatelabel");
 		var stop = setInterval(function(){
 			count++;
 			if(count == 3)
 				{
-					$("#rotatespan").removeClass("rotatelabel");
+//					$("#rotatespan").removeClass("rotatelabel");
+				$(".rotatespanclass").removeClass("rotatelabel");
 					clearInterval(stop);
 				}
 		}, 1000);
@@ -1130,12 +1119,14 @@ function addproducttoCArt(productid)
 		document.getElementById("productCountOnCart").innerHTML=len;
 		document.getElementById("productCountOnCart1").innerHTML=len;
 //		************************************************************
-		$("#rotatespan").addClass("rotatelabel");
+//		$("#rotatespan").addClass("rotatelabel");
+		$(".rotatespanclass").addClass("rotatelabel");
 		var stop = setInterval(function(){
 			count++;
 			if(count == 3)
 				{
-					$("#rotatespan").removeClass("rotatelabel");
+//					$("#rotatespan").removeClass("rotatelabel");
+				$(".rotatespanclass").removeClass("rotatelabel");
 					clearInterval(stop);
 				}
 		}, 1000);
