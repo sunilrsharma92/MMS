@@ -114,7 +114,7 @@ table td
 						<a href="#"	id="2" class="list-group-item customerSideMenu" onclick="loadProfileMenu(this)">Change Password</a> 
 						<!-- <a href="#" class="list-group-item">Update Email/Mobile</a> -->
 <!-- 						<a href="#" id="3" class="list-group-item"	onclick="loadProfileMenu(this)">Deactivate Account</a>  -->
-						<a href="#" id="" class="list-group-item" style="border: 1px solid #ccc;">Manage Notifications</a>
+						<a href="#" id="" class="list-group-item">Manage Notifications</a>
 						<hr class="large">
 					</div>
 

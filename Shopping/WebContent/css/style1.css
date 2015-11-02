@@ -18,7 +18,7 @@ body{
   margin: 0px;
   }
   	.controllers{
-	text-align: right;
+	text-align: right
 }
 .controllers span{
 	display: inline-block;
@@ -207,7 +207,7 @@ button#removesearchbtn {
 	border:none;
 	background-color:transparent;
 	border-bottom: 2px solid #AAA;
-    padding-bottom: 14px;
+    padding-bottom: 12px;
     margin-left: -4px;
 }
 button.changeview {
@@ -626,6 +626,9 @@ line-height : 1.4em;
 
 .productname {
 	height : 60px;
+}
+.productprice {
+    margin: 10px 0px 10px 0px;
 }
 
 .oktick {
@@ -1106,18 +1109,18 @@ a.button:active {
 box-shadow: 10px 10px 5px #888;
 }
 
-.customerSideMenu
-{
-	border-width: 1px 1px medium; 
-	border-style: solid solid none; 
-	border-color: rgb(204, 204, 204) rgb(204, 204, 204) 
-	-moz-use-text-color; 
-	-moz-border-top-colors: none; 
-	-moz-border-right-colors: none; 
-	-moz-border-bottom-colors: none; 
-	-moz-border-left-colors: none; 
-	border-image: none;
-}
+/* .customerSideMenu */
+/* { */
+/* 	border-width: 1px 1px medium;  */
+/* 	border-style: solid solid none;  */
+/* 	border-color: rgb(204, 204, 204) rgb(204, 204, 204)  */
+/* 	-moz-use-text-color;  */
+/* 	-moz-border-top-colors: none;  */
+/* 	-moz-border-right-colors: none;  */
+/* 	-moz-border-bottom-colors: none;  */
+/* 	-moz-border-left-colors: none;  */
+/* 	border-image: none; */
+/* } */
     /*\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\Devendra\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\*/
     
     

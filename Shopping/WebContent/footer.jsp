@@ -43,7 +43,7 @@
 				<h4>
 					<strong>Social Connect</strong>
 				</h4>
-
+				<img src="Images/youtube.png"><br> 
 			</div>
 
 

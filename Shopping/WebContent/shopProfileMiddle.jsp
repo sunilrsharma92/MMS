@@ -19,9 +19,22 @@
      <a href = "#" class = "list-group-item"><span class = "glyphicon glyphicon-pencil"></span> Edit Featured</a>
      <a href = "#" class = "list-group-item"><span class = "glyphicon glyphicon-pencil"></span> Edit New item</a>
      <hr class = "large">
-     <jsp:include page="customerProfileMenu.jsp" />
+<%--      <jsp:include page="customerProfileMenu.jsp" /> --%>
      <a href = "table.html" class = "list-group-item"><span class = "glyphicon glyphicon-plus"></span> Add Products</a>
-
+	<hr class = "large">
+<!-- 	<div class="strong list-group"> -->
+<!-- 						<span class="glyphicon glyphicon-user"></span> Profile -->
+<!-- 					</div> -->
+					<div class="list-group side-bar">
+						<a href = "#" class = "list-group-item active"><span class = "glyphicon glyphicon-user"></span> Profile</a>
+						<a href="#" id="0" class="list-group-item customerSideMenu" onclick="loadProfileMenu(this)">Personal Info</a> 
+						<a href="#"	id="1" class="list-group-item customerSideMenu" onclick="loadProfileMenu(this)">Addresses</a>
+						<a href="#"	id="2" class="list-group-item customerSideMenu" onclick="loadProfileMenu(this)">Change Password</a> 
+						<!-- <a href="#" class="list-group-item">Update Email/Mobile</a> -->
+<!-- 						<a href="#" id="3" class="list-group-item"	onclick="loadProfileMenu(this)">Deactivate Account</a>  -->
+						<a href="#" id="" class="list-group-item">Manage Notifications</a>
+						<hr class="large">
+					</div>
    </div>
 
  </div><!-- end of col-2 -->
@@ -122,7 +135,7 @@
 							<div class="align-center">
 								<div class="productname ">Active Wheel washing power</div>
 								<div class="quantity ">
-									<select class="form-control textbox" id="stateSave"	placeholder="select state">
+									<select class="form-control" id="stateSave"	placeholder="select state">
 										<option value="one">500gm</option>
 										<option value="one">250gm</option>
 									</select>
@@ -182,7 +195,7 @@
 							<div class="align-center">
 								<div class="productname ">Active Wheel washing power</div>
 								<div class="quantity ">
-									<select class="form-control textbox" id="stateSave"	placeholder="select state">
+									<select class="form-control" id="stateSave"	placeholder="select state">
 										<option value="one">500gm</option>
 										<option value="one">250gm</option>
 									</select>
@@ -206,6 +219,7 @@
 				</div>
 				</div>
 				<!-- End of inner row -->
+				
 
 
 			</div><!-- end col-10 -->
