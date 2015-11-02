@@ -25,6 +25,7 @@ $(document).ready(function()
 		}
 
 		var userType = $.session.get('userType');
+//		alert("userType : "+userType);
 		if(userType == "customer")
 		{
 			try
@@ -309,48 +310,54 @@ try
 	{
 		return '<div style="text-align: center; margin-top: 3px;"><img src="Images/View.gif" style="cursor:pointer; height:20px; width:20px;" onclick="displayOrder(' + row + ')"/></div>';
 	}
+	try
+	{
+	    var data = response.Order;
+	//    GlobalResponse = data;
+	    var orderarray = [];
+	    for(var i in data)
+	    {
+	    	var userid = data[i].userid;
+			var orderid = data[i].orderid;
+			var datetime = data[i].datetime;
+			var shopid = data[i].shopid;
+			var shopname = data[i].companyname;
+			
+			var name = data[i].name;
+			var phone = data[i].phone;
+			var address1 = data[i].address1;
+			var address2 = data[i].address2;
+			var city = data[i].city;
+			var state = data[i].state;
+			var street = data[i].street;
+			var pincode = data[i].pincode;
+			var country = data[i].country;
+			var img = data[i].img;
+			
+			orderarray.push({
+				userid : userid,
+				orderid : orderid,
+				datetime : datetime,
+				shopid : shopid,
+				shopname : shopname,
+				name : name,
+				phone : phone,
+				address1 : address1,
+				address2 : address2,
+				city : city,
+				state : state,
+				street : street,
+				pincode : pincode,
+				country : country,
+				img : img
+			});
+	    }
+	}
+	catch(e)
+	{
+		console.log("Blank Response");
+	}
 	
-    var data = response.Order;
-//    GlobalResponse = data;
-    var orderarray = [];
-    for(var i in data)
-    {
-    	var userid = data[i].userid;
-		var orderid = data[i].orderid;
-		var datetime = data[i].datetime;
-		var shopid = data[i].shopid;
-		var shopname = data[i].companyname;
-		
-		var name = data[i].name;
-		var phone = data[i].phone;
-		var address1 = data[i].address1;
-		var address2 = data[i].address2;
-		var city = data[i].city;
-		var state = data[i].state;
-		var street = data[i].street;
-		var pincode = data[i].pincode;
-		var country = data[i].country;
-		var img = data[i].img;
-		
-		orderarray.push({
-			userid : userid,
-			orderid : orderid,
-			datetime : datetime,
-			shopid : shopid,
-			shopname : shopname,
-			name : name,
-			phone : phone,
-			address1 : address1,
-			address2 : address2,
-			city : city,
-			state : state,
-			street : street,
-			pincode : pincode,
-			country : country,
-			img : img
-		});
-    }
-    
 	var source =
     {
         localdata: orderarray,
