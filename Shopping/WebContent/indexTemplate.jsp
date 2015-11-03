@@ -16,6 +16,7 @@
   
 <link rel="stylesheet" href="css/style1.css">
 
+
 <link rel="stylesheet" href="css/jqx/jqx.base.css">
 <link rel="stylesheet" href="js/jAlert/css/jquery.alerts.css">
 
@@ -61,7 +62,7 @@ ul li:hover ul.dropdown-menu {
 <body>
 <jsp:include page="indexMenu.jsp" />
 
-<div id="loadpage">
+<div id="loadpage" style="min-height: 396px;">
 <jsp:include page="indexBody.jsp" />
 </div>
 

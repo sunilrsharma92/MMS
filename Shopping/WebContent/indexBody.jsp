@@ -7,9 +7,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, maximum-scale=1">
+	
 <title>Make my shopy</title>
 
 <link href="slick/jquerysctipttop.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 <link rel="stylesheet" type="text/css" href="slick/slick.css" />
 <link rel="stylesheet" type="text/css" href="slick/slick-theme.css" />
 
@@ -41,7 +43,7 @@
 				<!-- </div> -->
 				<!--/main slider carousel-->
 				<!-- thumb navigation carousel -->
-				<div class="" id="slider-thumbs">
+				<div class="hidden-xs" id="slider-thumbs">
 					<!-- thumb navigation carousel items -->
 					<ul class="list-inline">
 						<li><a id="carousel-selector-1" class="selected">
@@ -90,9 +92,8 @@
 
 
 			<hr class="small">
-			<h3 align="center"> Top Rated <span class="controllers pull-right "> <span class="prev"> (<) </span> <span class="next"> (>) </span>
-				</span>
-
+			<h3 align="center"> Top Rated 
+				<span class="controllers pull-right "> <span> <i class="fa fa-arrow-circle-left"></i></span> <span> <i class="fa fa-arrow-circle-right"></i></span></span>
 			</h3>
 			<hr class="small">
 			<div class="responsive">
@@ -144,11 +145,8 @@
 
 
 			<hr class="small">
-			<h3 align="center">
-				Newly Joined <span class="controllers pull-right "> <span
-					class="prev"> (<) </span> <span class="next"> (>) </span>
-				</span>
-
+			<h3 align="center">Newly Joined 
+				<span class="controllers pull-right "> <span> <i class="fa fa-arrow-circle-left"></i></span> <span> <i class="fa fa-arrow-circle-right"></i></span></span>
 			</h3>
 			<hr class="small">
 			<div class="responsive">
