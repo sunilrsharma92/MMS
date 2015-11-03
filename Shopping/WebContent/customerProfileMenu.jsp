@@ -111,10 +111,10 @@ table td
 					<div class="list-group side-bar">
 						<a href="#" id="0" class="list-group-item customerSideMenu" onclick="loadProfileMenu(this)">Personal Info</a> 
 						<a href="#"	id="1" class="list-group-item customerSideMenu" onclick="loadProfileMenu(this)">Addresses</a>
-						<a href="#"	id="2" class="list-group-item customerSideMenu" onclick="loadProfileMenu(this)">Change Password</a> 
+						<a href="#"	id="2" class="list-group-item customerSideMenu" onclick="loadProfileMenu(this)" style="border-bottom: 1px solid #CCC;">Change Password</a> 
 						<!-- <a href="#" class="list-group-item">Update Email/Mobile</a> -->
 <!-- 						<a href="#" id="3" class="list-group-item"	onclick="loadProfileMenu(this)">Deactivate Account</a>  -->
-						<a href="#" id="" class="list-group-item">Manage Notifications</a>
+<!-- 						<a href="#" id="" class="list-group-item customerSideMenu">Manage Notifications</a> -->
 						<hr class="large">
 					</div>
 

@@ -99,6 +99,7 @@ $(document).ready(function(){
 					$.session.remove("shopProfileKey");
 					$.session.remove("viewshop");
 					$.session.remove("userType");
+					$.session.remove("userType1");
 //					$.cookie("key","");
 	
 					window.location.replace("indexTemplate.jsp");
@@ -121,6 +122,15 @@ $(document).ready(function(){
 	// -- My Profile link
 	$("#profileLink").click(function() {
 //		alert("profileLink");
+		$.session.remove("shopid");
+		
+		
+		var userType1 = $.session.get("userType1");
+		if(userType1 != null && userType1 != "" && userType1 != undefined)
+		{
+			$.session.set("userType", userType1);
+		}
+		
 		var vid = "";
 		$.session.set("viewshop","");
 		var userType = $.session.get('userType');
@@ -496,6 +506,16 @@ function loadShopProfilePage(id)
 	{
 	try
 	{
+		var shopid = $.session.get("shopid");
+		
+		var loginData = $.session.get('loginData');
+		if(loginData != null && loginData != "" && loginData != undefined)
+		{
+			var userType = $.session.get('userType');
+			$.session.remove('userType');
+			$.session.set('userType1', userType);
+		}
+		
 		$.session.set("viewshop","viewshop");
 		$.session.set("shopid",id);
 		$("#loadpage").load("shopProfile.jsp");
@@ -1305,11 +1325,20 @@ function searchProduct()
 	{
 		var loginData = $.session.get('loginData');
 		var shopid = $.session.get("shopid");
+		
+//		alert("ShopID : "+shopid);
+		
 		if(loginData != null)
 		{
 			var sessionData = JSON.parse(loginData);
 			var userid = sessionData.key;
 			var userType = sessionData.userType;
+			
+			if(shopid === undefined)
+			{
+				shopid = userid;
+//				alert("shopid new : "+shopid);
+			}
 			
 			objhandleRequest.searchProduct(txt, "product", shopid, userid, userType);
 		}

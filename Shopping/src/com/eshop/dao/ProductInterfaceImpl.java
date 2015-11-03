@@ -1126,14 +1126,14 @@ public class ProductInterfaceImpl implements ProductInterface
 						if (userType != null && userType.trim().equalsIgnoreCase("customer"))
 						{
 							emailExist = "select email from customers";
-							sqlInsert = "insert into customers(email,phone,password) values(?,?,?)";
+							sqlInsert = "insert into customers(email,phone,password,profile_img) values(?,?,?,?)";
 							user = "customers";
 						}
 
 						if (userType != null && userType.trim().equalsIgnoreCase("supplier"))
 						{
 							emailExist = "select email from suppliers";
-							sqlInsert = "insert into suppliers(email,phone,password) values(?,?,?)";
+							sqlInsert = "insert into suppliers(email,phone,password,profile_img) values(?,?,?,?)";
 							user = "suppliers";
 							
 						}
@@ -1166,6 +1166,7 @@ public class ProductInterfaceImpl implements ProductInterface
 								// ps.setString(2, usernameSignUp);
 								ps.setString(2, (String) object.get("mobileKey"));
 								ps.setString(3, encryptedPwd);
+								ps.setString(4, "Images/CPImg/350x260.png");
 	//							ps.setString(4, (String) object.get("firstNameSignUp"));
 	
 								try

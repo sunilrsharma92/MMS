@@ -16,7 +16,7 @@
 		<div class = "row row1">
 			<div class = "col-md-3 col-sm-6 col-xs-12 prof">
 <!-- 				<img  id="shopprofileimg" src="https://placehold.it/350x260"  class = "img-responsive"   style="margin-bottom: 10px;"> -->
-					<img src="https://placehold.it/350x260"  class = "img-responsive"   style="margin-bottom: 10px;">
+					<img src="Images/CPImg/350x260.png"  class = "img-responsive"   style="margin-bottom: 10px;">
 			</div>
 			<!-- end of col-3 -->
 			<div class = "col-md-9 col-sm-6 col-xs-12">
