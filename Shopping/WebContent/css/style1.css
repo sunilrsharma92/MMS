@@ -60,10 +60,10 @@ body{
   color: #FFF;
   /*text-decoration: none;*/
  }
-img{
+/* img{
   width: 100%;
   
-}
+} */
 .add{
 border: 1px solid #D8D5D5;
 /*     margin: 1px; */
@@ -468,6 +468,7 @@ tbody{
 
 
 .foot-1 {
+
 /* 	height : 100%; */
 
 	background-color : #008ed6;
@@ -1245,4 +1246,18 @@ box-shadow: 10px 10px 5px #888;
 
 select::-ms-expand {
     display: none;
+}
+.mylogo{
+	width: 111px; 
+	height: 45px; 
+	margin-top: -7px;
+}
+
+
+
+
+//small screen css is here//
+
+@media (max-width: 480px) {
+body{background-color: red;}
 }

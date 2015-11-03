@@ -62,7 +62,7 @@ ul li:hover ul.dropdown-menu {
 <body>
 <jsp:include page="indexMenu.jsp" />
 
-<div id="loadpage">
+<div id="loadpage" style="min-height: 396px;">
 <jsp:include page="indexBody.jsp" />
 </div>
 
