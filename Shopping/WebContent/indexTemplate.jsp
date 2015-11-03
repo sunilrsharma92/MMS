@@ -16,6 +16,7 @@
   
 <link rel="stylesheet" href="css/style1.css">
 
+
 <link rel="stylesheet" href="css/jqx/jqx.base.css">
 <link rel="stylesheet" href="js/jAlert/css/jquery.alerts.css">
 
