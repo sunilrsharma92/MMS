@@ -30,6 +30,7 @@ public class SendMessage
 			try
 			{
 				String readvalue = "";
+//				FileReader fileReader = new FileReader("sms.properties");
 				FileReader fileReader = new FileReader("F:\\D Drive\\My Career\\MMS Local Code\\Shopping\\sms.properties");
 				properties.load(fileReader);
 
