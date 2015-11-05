@@ -60,14 +60,45 @@ ul li:hover ul.dropdown-menu {
 </style>
 </head>
 <body>
-<jsp:include page="indexMenu.jsp" />
+<%-- <jsp:include page="indexMenu.jsp" />
 
-<div id="loadpage" style="min-height: 396px;">
+<div id="loadpage" >
 <jsp:include page="indexBody.jsp" />
 </div>
 
 <div style="margin-bottom: 0px;">
 <jsp:include page="footer.jsp" />
-</div>
+</div> --%>
+
+
+<div id="wrapper">
+		
+		<div id="header">
+			<jsp:include page="indexMenu.jsp" />
+		</div><!-- #header -->
+		
+		<div id="content">
+			<div id="loadpage" >
+				<jsp:include page="indexBody.jsp" />
+			</div>
+		</div><!-- #content -->
+		
+		<div id="footer">
+			<jsp:include page="footer.jsp" />
+		</div><!-- #footer -->
+		
+	</div><!-- #wrapper -->
+
+
+
+
+
+
+
+
+
+
+
+
 </body>
 </html>
