@@ -5,12 +5,16 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.util.Properties;
 
+import javax.naming.ldap.PagedResultsControl;
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServlet;
+
 import com.eshop.logger.MakemyshopyLogger;
 
-public class MyConnection {
+public class MyConnection extends HttpServlet{
 	
 	
-	  public static Connection getConnection()
+	  public static Connection getConnection(String DBData)
 	  {
 		Connection con = null;
 		String drivername = "";
@@ -24,18 +28,39 @@ public class MyConnection {
 	      {
 	    	  
 				MakemyshopyLogger mms = new MakemyshopyLogger();
-				Properties properties = new Properties();
+//				Properties properties = new Properties();
 				try
 				{
 					String readvalue = "";
-					FileReader fileReader = new FileReader("D:\\Git\\Code\\Local Code\\Shopping\\db.properties");
+/*//					FileReader fileReader = new FileReader("db.properties");
+					FileReader fileReader = new FileReader("F:\\D Drive\\My Career\\MMS Local Code\\Shopping\\db.properties");
 					properties.load(fileReader);
 
 					drivername = properties.getProperty("drivername");
 					connection = properties.getProperty("connection");
 					username = properties.getProperty("username");
-					password = properties.getProperty("password");
-
+					password = properties.getProperty("password");*/
+					
+					String[] DBDataArray = DBData.split("#");
+//					System.out.println("DBDataArray.length : "+DBDataArray.length+" DBDataArray : "+DBDataArray.toString());
+					/*for(int i = 0; i<DBDataArray.length; i++)
+					{*/
+						connection = DBDataArray[0];
+						drivername = DBDataArray[1];
+						username = DBDataArray[2];
+						password = DBDataArray[3];
+					/*}*/
+					
+					if(username.equals("NaN"))
+					{
+						username = "";
+					}
+					
+					if(password.equals("NaN"))
+					{
+						password = "";
+					}
+					
 					readvalue = "drivername : " + drivername + " connection : " + connection + " username: " + username + " password : " + password + "";
 //					System.out.println(readvalue);
 

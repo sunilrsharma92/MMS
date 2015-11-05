@@ -83,7 +83,7 @@ public class IPAddressUtility
 		
 		IPAddressUtility ip = new IPAddressUtility();
 		String IPAddress = ip.getIpAddress();
-		System.out.println("IPAddress : "+IPAddress);
+//		System.out.println("IPAddress : "+IPAddress);
 
 	}
 }

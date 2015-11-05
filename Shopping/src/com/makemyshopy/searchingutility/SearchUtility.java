@@ -37,7 +37,7 @@ public class SearchUtility {
 	MakemyshopyLogger mms = new MakemyshopyLogger();
  public static final File INDEX_DIRECTORY = new File("IndexDirectory");
  
- public void createIndex(String action, String sql) {
+ public void createIndex(String action, String sql, String DBData) {
   
 //  System.out.println("-- Indexing --");
   
@@ -45,10 +45,10 @@ public class SearchUtility {
    //JDBC Section
    Class.forName("com.mysql.jdbc.Driver").newInstance();
    //Assuming database bookstore exists
-   Connection conn = conn = MyConnection.getConnection();
+   Connection conn = conn = MyConnection.getConnection(DBData);
    Statement stmt = conn.createStatement(); 
    mms.writeLogs("SearchUtility createIndex Search Queary : "+sql,1);
-   System.out.println("Search Queary : "+sql);
+//   System.out.println("Search Queary : "+sql);
    ResultSet rs = stmt.executeQuery(sql);
    
    //Lucene Section
@@ -225,7 +225,7 @@ public class SearchUtility {
 
 
 // public static void main(String[] args)
-public JSONObject searchProduct(String keyword, String action, Long shopid)  
+public JSONObject searchProduct(String keyword, String action, Long shopid, String DBData)  
 	 {
 try
 {
@@ -251,7 +251,7 @@ try
    SearchUtility obj = new SearchUtility();
   
   //creating index
-  obj.createIndex(action, sql);
+  obj.createIndex(action, sql, DBData);
   
   //searching keyword
   JSONObject jsonRecord = obj.search(keyword, action, searchColumnName, command);

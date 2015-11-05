@@ -16,7 +16,7 @@ public class SendMessage
 //	public static void main(String args[])
 	public boolean sendMessage(String mobilenumber, String tempOtp)
 	{
-		System.out.println("mobilenumber : "+mobilenumber+" tempOtp : "+tempOtp);
+//		mms.writeLogs("mobilenumber : "+mobilenumber+" tempOtp : "+tempOtp,1);
 		String accountid = "";
 		String apikey = "";
 		String Senderid = "";

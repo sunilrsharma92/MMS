@@ -3,6 +3,7 @@ package com.eshop.servlet;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -55,7 +56,22 @@ public class GetProductbyCategoryServlet extends HttpServlet
 		
 		try
 		{
-
+			//Getting DB Connection from web.xml
+			ServletContext ss = this.getServletContext();
+	        String connection = ss.getInitParameter("connection");
+	        String drivername = ss.getInitParameter("drivername");
+	        String username = ss.getInitParameter("username");
+	        String password = ss.getInitParameter("password");
+	        
+	        mms.writeLogs("GetProductByCategoryServlet --> DOPost ------> "+connection+" ** "+drivername+" ** "+username+ "**" +password, 1);
+	        String DBData = connection+"#"+drivername+"#"+username+"#"+password;
+			//////////////////////////////////////////////
+			
+			
+			
+			
+			
+			
 			String jsonMsg = request.getParameter("jsonMsg");
 			int command = Integer.parseInt(request.getParameter("command"));
 			
@@ -80,7 +96,7 @@ public class GetProductbyCategoryServlet extends HttpServlet
 			
 			// System.out.println("jsonMsg  :::::::::::: "+jsonMsg+"  Command :::::::::::: "+command);
 	
-			String strjsonMsgResponse = getResponse.handleRequestResponse(jsonMsg, command);
+			String strjsonMsgResponse = getResponse.handleRequestResponse(jsonMsg, command, DBData);
 			
 			JSONObject object = (JSONObject) JSONValue.parse(strjsonMsgResponse);
 			int command1 = ((Long) object.get("command")).intValue();

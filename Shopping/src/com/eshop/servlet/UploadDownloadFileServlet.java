@@ -27,6 +27,10 @@ public class UploadDownloadFileServlet extends HttpServlet
     private static final long serialVersionUID = 1L;
     private ServletFileUpload uploader = null;
     private String relativePath = "C:\\Users\\Home\\Desktop\\Projects\\New Think Bigger\\Upload Image to Folder You Want\\MI Assignment Devendrakumar R. Barai\\WebContent\\themes\\images";
+    
+//    private String relativePath = System.getProperty("catalina.base") + "\\webapps\\shopping1\\WEB-INF\\web.xml";
+//    mms.writeLogs("tomcatPath : "+xmlfilepath, 1);
+    
     private String foldername;
     private String PathofFile;
     private int Categoryid;
@@ -118,7 +122,7 @@ public class UploadDownloadFileServlet extends HttpServlet
                     //Plain request parameters will come here.
                 	//int Categoryid=Integer.parseInt(request.getParameter("Category"));
                 	String name = fileItem.getFieldName();
-                	System.out.println("Name "+name);
+//                	System.out.println("Name "+name);
                 	
                 	//Categoryid=Integer.parseInt(name);
                 	//System.out.println("Categoryid Name "+Categoryid);
