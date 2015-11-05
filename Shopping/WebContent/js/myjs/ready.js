@@ -425,9 +425,10 @@ $('#myCarousel').carousel({
 
 
 $('.responsive').slick({
-prevArrow:'.slider-container .prev',
+/*prevArrow:'.slider-container .prev',
 nextArrow:'.slider-container .next',
-
+*/
+	arrows: true,
 dots: false,
 infinite: false,
 speed: 300,

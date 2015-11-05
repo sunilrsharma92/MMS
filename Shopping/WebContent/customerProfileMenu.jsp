@@ -6,7 +6,16 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 <style>
+.hideme{
+	display:none;
+	margin-top: -20px;
+    margin-left: 40px;
+}
+.profilewrap:hover .hideme{display:block;}
+
+
 table td
 {
 	padding-left: 30px;
@@ -45,8 +54,9 @@ table td
 										<div id="loading-img"></div>
 									</div>
 							
-							<div style="width: 150px;height: 150px; margin: 0px auto;">
-							<img id="profileImg" src="Images/default_profile_pic.png" class="img-circle" style="width:100%; height:100%; background-color:whitesmoke;">
+							<div class="profilewrap" id="onEnter" style="width: 150px;height: 150px; margin: 0px auto;">
+								<img id="profileImg" src="Images/default_profile_pic.png" class="img-circle" style="width:100%; height:100%; background-color:whitesmoke;">
+								<div class="hideme"><i class="fa fa-camera"></i> change </div>
 							</div>
 					     	 <input type="file" name="fileName" id="fileName" style="display:none;" class="roleType" class="border"/>  
 					     	 <input type="submit" value="Save File" id="upldBtn" style="display:none;"/> &nbsp;&nbsp;
