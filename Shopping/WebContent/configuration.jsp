@@ -60,7 +60,8 @@
                                       
                             <div id="validation" class="loginwarning"></div>
                             <div class="configWindowBtnAlign">	    
-                            <input type="submit" value="Modify" id="Modify" title="Modify" onclick=""  tabindex="3" class="submit_btn_image_index btn_wd_ht_index textfont"/>
+                            <input type="button" value="Modify" id="Modify" title="Modify" onclick=""  tabindex="3" class="submit_btn_image_index btn_wd_ht_index textfont"/>
+                            <input type="button" value="Save" id="Save" title="Save DB details" onclick="updateWebServiceDetails();"  tabindex="3" style="display: none;" class="submit_btn_image_index btn_wd_ht_index textfont"/>
                                 <!--<input type="reset"  value="Reset" id="Reset" title="Reset" onclick="ResetFields();" tabindex="4" class="reset_btn_image_index btn_wd_ht_index textfont">-->
                             </div>                   
                             </div>

@@ -48,9 +48,12 @@ $(document).ready(function()
                      
                      $(".inputbox_login_page").css("background-color","");
                      
-                     $("#Modify").attr("title","Save");
+                     $("#Modify").hide();
+                     $("#Save").show();
+                     
+                     /*$("#Modify").attr("title","Save");
                      $("#Modify").attr("value","Save");
-                     $("#Modify").attr("onclick","updateWebServiceDetails();");
+                     $("#Modify").attr("onclick","updateWebServiceDetails();");*/
                      
                  });
                  
@@ -163,9 +166,12 @@ function updateWebServiceDetails()
                          
                          $(".inputbox_login_page").css("background-color","#CCC");
                              
-                         $("#Modify").attr("title","Modify");
+                         $("#Modify").show();
+                         $("#Save").hide();
+                         
+                         /*$("#Modify").attr("title","Modify");
                          $("#Modify").attr("value","Modify");
-                         $("#Modify").attr("onclick","");
+                         $("#Modify").attr("onclick","");*/
                      
                      },
                      error:function(data)
