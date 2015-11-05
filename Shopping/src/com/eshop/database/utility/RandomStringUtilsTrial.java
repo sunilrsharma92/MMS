@@ -10,7 +10,7 @@ public class RandomStringUtilsTrial
 	public static String orderNumber()
 	{
 		String OTP=RandomStringUtils.random(8, true, true);
-	    System.out.println("OTP : "+OTP);
+//	    System.out.println("OTP : "+OTP);
 		return OTP;
 	}
 	/*

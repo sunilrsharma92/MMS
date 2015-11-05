@@ -77,16 +77,20 @@ function updateWebServiceDetails()
         var strU = "";
         var strP = "";
         
-        if(connectionValue == "" && drivernameValue == "" && usernameValue == "" && passwordValue == "")
+//        if(connectionValue == "" && drivernameValue == "" && usernameValue == "" && passwordValue == "")
+        if(connectionValue == "" && drivernameValue == "")
         {
             $("#validation").css('color', '#290606');
-            document.getElementById("validation").innerHTML = "All parameters are required to configure DB connection";
+            document.getElementById("validation").innerHTML = "Connection and Driver name are required to configure DB connection";
             return false;
         }
         
         if(connectionValue == "")
         {
-            strC = "";
+            strC = "NaN";
+            $("#validation").css('color', '#290606');
+            document.getElementById("validation").innerHTML = "Connection URL is required.";
+            return false;
         }
         else
         {
@@ -95,7 +99,10 @@ function updateWebServiceDetails()
         
         if(drivernameValue == "")
         {
-            strD = "";
+            strD = "NaN";
+            $("#validation").css('color', '#290606');
+            document.getElementById("validation").innerHTML = "Driver name is required.";
+            return false;
         }
         else
         {
