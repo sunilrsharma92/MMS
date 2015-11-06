@@ -109,7 +109,7 @@
 						class="dropdown-toggle whiteLabelLink" style="display:none; padding: 8px;">My Account <b class="caret"></b></a>
 					<ul class="dropdown-menu">
 						<li><a href="#" id="profileLink"> <span class="glyphicon glyphicon-user"></span> Profile </a></li>
-						<li><a href="#"> <span class="glyphicon glyphicon-th-list"></span> Recent Orders</a></li>
+						<li><a href="#"> <span class="glyphicon glyphicon-list-alt"></span> Recent Orders</a></li>
 						<li><a href="#"> <span class="glyphicon glyphicon-heart"></span> Favorite Shop</a></li>
 						<li class="divider"></li>
 						<li><a href="#" id="logoutLink"> <span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
