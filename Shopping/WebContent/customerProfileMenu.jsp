@@ -6,7 +6,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="css/font-awesome.min.css">
 <style>
 .hideme{
 	display:none;
@@ -155,7 +155,6 @@ table td
 							<tr><td>Street name:</td><td><input type="text" id="streetSave" class="textbox" name="name"></td></tr>
 							<tr><td>State:</td>
 								<td>
-									<!-- <input type="text" class="textbox" name="name"></td></tr> -->
 									<select class="form-control textbox" id="stateSave" placeholder="select state">
 										<option value="one">Select State</option>
 										<option value="one">Andhra Pradesh</option>
@@ -248,7 +247,7 @@ table td
 								<tbody id="appendOrder">
 
 								</tbody>
-								<div style="color: #00AA99; font-size: 20px; float: right;" id="grandtotal"></div>
+								<div class="grand_total" id="grandtotal"></div>
 							</table>
 						</div>
 <!-- 						<div id="totalpurchaseOnCheckout" class="totaldiv"></div> -->

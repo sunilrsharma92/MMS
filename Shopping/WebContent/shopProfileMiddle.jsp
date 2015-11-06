@@ -14,19 +14,16 @@
   <div class = "row">
    <div class = "col-md-2">
     <div class = "list-group side-bar hidemenu">
-     <a href = "profile1.html" class = "list-group-item active"><span class = "glyphicon glyphicon-home"></span> Dash</a>
-     <a href = "#" class = "list-group-item"><span class = "glyphicon glyphicon-pencil"></span> Edit Slider</a>
-     <a href = "#" class = "list-group-item"><span class = "glyphicon glyphicon-pencil"></span> Edit Featured</a>
-     <a href = "#" class = "list-group-item"><span class = "glyphicon glyphicon-pencil"></span> Edit New item</a>
-     <hr class = "large">
-<%--      <jsp:include page="customerProfileMenu.jsp" /> --%>
-     <a href = "table.html" class = "list-group-item"><span class = "glyphicon glyphicon-plus"></span> Add Products</a>
-	<hr class = "large">
-<!-- 	<div class="strong list-group"> -->
-<!-- 						<span class="glyphicon glyphicon-user"></span> Profile -->
-<!-- 					</div> -->
+<!--      <a href = "profile1.html" class = "list-group-item active"><span class = "glyphicon glyphicon-home"></span> Dash</a> -->
+<!--      <a href = "#" class = "list-group-item"><span class = "glyphicon glyphicon-pencil"></span> Edit Slider</a> -->
+<!--      <a href = "#" class = "list-group-item"><span class = "glyphicon glyphicon-pencil"></span> Edit Featured</a> -->
+<!--      <a href = "#" class = "list-group-item"><span class = "glyphicon glyphicon-pencil"></span> Edit New item</a> -->
+<!--      <hr class = "large"> -->
+<!--      <a href = "table.html" class = "list-group-item"><span class = "glyphicon glyphicon-plus"></span> Add Products</a> -->
+<!-- 	<hr class = "large"> -->
 					<div class="list-group side-bar">
 						<a href = "#" class = "list-group-item active"><span class = "glyphicon glyphicon-user"></span> Profile</a>
+						<a href="#" id="4" style="border: 1px solid #CCC;" class="list-group-item" onclick="loadProfileMenu(this)">My orders</a>
 						<a href="#" id="0" class="list-group-item" onclick="loadProfileMenu(this)">Personal Info</a> 
 						<a href="#"	id="1" class="list-group-item" onclick="loadProfileMenu(this)">Addresses</a>
 						<a href="#"	id="2" class="list-group-item" onclick="loadProfileMenu(this)">Change Password</a> 
@@ -37,15 +34,14 @@
 					</div>
    </div>
 
+	
  </div><!-- end of col-2 -->
+ 
  <div id="dashboard" class = "col-md-10">
-<%--  <jsp:include page="searchwithcategory.jsp" /> --%>
-
-
-   <!-- Slider -->
+ <!-- Slider -->
 
    <br>
-   <div id = "myCarousel" class = "carousel slide" data-ride = "carousel">
+<div id = "myCarousel" class = "carousel slide" data-ride = "carousel">
     <!-- Indicators -->
     <ol class = "carousel-indicators">
       <li data-target = "#myCarousel" data-slide-to = "0" class = "active"></li>
@@ -90,9 +86,7 @@
 
   <!-- End of slider  -->
 
-<div id="productList" style="display: none;">
-					
-				</div>
+<div id="productList" style="display: none;"></div>
 <div id="hideadddiv">
 				<div class="row">
 					<hr class="small">
@@ -106,26 +100,6 @@
 							String img = "Images/chadders/" + i + ".jpg";
 					%>
 
-					<%-- <div class="col-md-2 col-sm-3  col-xs-4 wrap">
-						<div class="portfolio-item">
-							<div class="inner-wrap">
-								<a href="#"> <img
-									class="img-portfolio img-responsive inner-wrap" src="<%=img%>">
-								</a>
-							</div>
-						</div>
-						<div class="align-center">
-							<div class="productname ">Product Name:</div>
-							<div class="productprice">price:120</div>
-							<div class="instock ">Instock:</div>
-							<div class="quantity ">
-								Quantity:<input id="qtytxt" type="text" name="quantity">
-							</div>
-							<div class="cartbtn ">
-								<button type="button" class="btn btn-success cartsz ">ADD</button>
-							</div>
-						</div>
-					</div> --%>
 						<div class="col-md-2 col-sm-3  col-xs-4 wrap">
 							<div class="portfolio-item">
 								<div class="inner-wrap">
@@ -165,27 +139,7 @@
 						{
 							String img = "Images/chadders/" + i + ".jpg";
 					%>
-
-					<%-- <div class="col-md-2 col-sm-3  col-xs-4 wrap">
-						<div class="portfolio-item">
-							<div class="inner-wrap">
-								<a href="#"> <img
-									class="img-portfolio img-responsive inner-wrap" src="<%=img%>">
-								</a>
-							</div>
-						</div>
-						<div class="align-center">
-							<div class="productname ">Product Name:</div>
-							<div class="productprice">price:120</div>
-							<div class="instock ">Instock:</div>
-							<div class="quantity ">
-								Quantity:<input id="qtytxt" type="text" name="quantity">
-							</div>
-							<div class="cartbtn ">
-								<button type="button" class="btn btn-success cartsz ">ADD</button>
-							</div>
-						</div>
-					</div> --%>
+					
 					<div class="col-md-2 col-sm-3  col-xs-4 wrap">
 							<div class="portfolio-item">
 								<div class="inner-wrap">
@@ -223,9 +177,108 @@
 
 
 			</div><!-- end col-10 -->
+<div id="loadpagecontent" class="col-md-9">
+				
+<!-- 		**************		Personal Information	******************** -->
+				<div id="01" class="alignprofDiv" style="display:none;">
+					<h3 class="bold" style="padding-left: 30px; text-shadow: 7px 17px 19px;">Personal Information:</h3>
+					<form class="alignprof">
+						<table class="alignTable">
+							<tr><td>First Name:</td><td><input id="firstNameSave" type="text" class="textbox" value=""></td></tr>
+							<tr><td>Last Name:</td><td><input id="lastNameSave" type="text" class="textbox" ></td></tr>
+							<tr><td>Mobile No:</td><td><input id="mobileNoSave" type="text" class="textbox" ></td></tr>
+			<!-- 				<tr><td>Email Address:</td><td><input id="emailSave" type="text" class="textbox"></td></tr> -->
+							<tr><td></td><td><button type="button" id="saveProfile" class="btn btn-primary margin_top_bottom" onclick="saveUserDetails('personalInfo')">Save Changes</button></td></tr>
+						</table>
+					</form>
+				</div>
+<!-- 		**************		Addresses	******************** -->
+				<div id="11" class="alignprofDiv" style="display:none;">
+					<h3 class="bold" style="padding-left: 30px; text-shadow: 7px 17px 19px;">Add/Edit Address:</h3>
+					<form class="alignprof">
+						<table class="alignTable">
+							<tr><td>Address 1:</td><td><input type="text" id="address1Save" class="textbox" name="name"></td></tr>
+							<tr><td>Address 2:</td><td><input type="text" id="address2Save" class="textbox" name="name"></td></tr>
+							<tr><td>Street name:</td><td><input type="text" id="streetSave" class="textbox" name="name"></td></tr>
+							<tr><td>State:</td>
+								<td>
+									<select class="form-control textbox" id="stateSave" placeholder="select state">
+										
+										<option value="one">Maharashtra</option>
+														
+								    </select>
+								</td>
+							</tr>
+							<tr><td>City:</td><td><input type="text" id="citySave" class="textbox" name="name"></td></tr>
+							<tr><td>Pincode:</td><td><input type="text" id="pincodeSave" class="textbox" name="name"></td></tr>
+							<!-- <tr><td>Email Address:</td><td><input type="text" class="textbox" name="name"></td></tr> -->
+							<tr><td></td><td><button type="button" class="btn btn-primary margin_top_bottom" onclick="saveUserDetails('address')">Save Changes</button></td></tr>
+						</table>
+					</form>
+				
+				</div>
+<!-- 		**************		Change Password:	******************** -->	
+				<div id="21" class="alignprofDiv" style="display:none;">
+					<h3 class="bold" style="padding-left: 30px; text-shadow: 7px 17px 19px;">Change Password:</h3>
+					<form class="alignprof">
+						<table class="alignTable">
+							<tr><td>Old Password:</td><td><input type="text" class="textbox" id="oldPwd" name="name"></td></tr>
+							<tr><td>New Password:</td><td><input type="text" class="textbox" name="name" id="password1"></td></tr>
+							<tr><td>Retype New Password:</td><td><input type="text" class="textbox" name="name" id="password2"></td></tr>
+							<!-- <tr><td>Email Address:</td><td><input type="text" class="textbox" name="name"></td></tr> -->
+							<tr><td></td><td><button type="button" class="btn btn-primary margin_top_bottom" onclick="resetPassword()">Save Changes</button></td></tr>
+						</table>
+					</form>
+				</div>
+<!-- 		**************		Deactivate Account:	******************** -->		
+				<div id="31" style="display:none;">
+					<h3 class="bold" style="padding-left: 30px; text-shadow: 7px 17px 19px;">Deactivate Account:</h3>
+					<form class="alignprof">
+						<table class="alignTable">
+						<tr><td>Email Address:</td><td><input type="text" class="textbox" name="name"></td></tr>
+						<tr><td>Mobile Number:</td><td><input type="text" class="textbox" name="name"></td></tr>
+						<tr><td>Password:</td><td><input type="text" class="textbox" name="name"></td></tr>
+						<!-- <tr><td>Email Address:</td><td><input type="text" class="textbox" name="name"></td></tr> -->
+						<tr><td></td><td><button type="button" class="btn btn-primary margin_top_bottom">Confirm Deactivation	</button></td></tr>
+						</table>
+					</form>
+				</div>
+				
+				<div id="41" style="margin: 10px auto; display:none;">
+    			</div>
+
+
+
+
+					
+					<div id="4111" class="panel-body" style="margin-top: 20px; display: none;">
+						<div class="container" style="width: 100%; height: auto;">
+							<table class="table table-striped" cellspacing="0" cellpadding="0">
+								<thead class="hidden-xs" style="background-color: #2D97D9">
+									<tr>
+										<th class="cimg">Image</th>
+										<th class="cname">Name</th>
+										<th class="cqty">Qty</th>
+										<th class="cprice">Price</th>
+										<th class="cdelete">Total</th>
+									</tr>
+								</thead>
+								<tbody id="appendOrder">
+
+								</tbody>
+								<div class="grand_total" id="grandtotal"></div>
+							</table>
+						</div>
+				</div>
+				<!-- End of row -->
+
+			</div>
+			
 </div><!-- end of row -->
 </div><!-- end of container -->
 <!--end of middle  -->
+
+
 
 </body>
 </html>

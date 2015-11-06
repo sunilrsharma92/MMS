@@ -1308,3 +1308,11 @@ select::-ms-expand {
 @media (max-width: 480px) {
 body{background-color: red;}
 }
+
+.grand_total
+{
+	color: #D52727; 
+	font-size: 20px; 
+	float: right; 
+	height: 20px;
+}

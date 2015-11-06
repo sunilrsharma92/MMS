@@ -18,14 +18,18 @@
 
 
 <link rel="stylesheet" href="css/jqx/jqx.base.css">
-<link rel="stylesheet" href="js/jAlert/css/jquery.alerts.css">
+<link rel="stylesheet" href="js/jqueryConfirm/jquery-confirm.css">
 
+<!-- <!-- //Alert -->
+<!-- <link rel="stylesheet" href="js/jAlert/css/jquery.alerts.css"> -->
+<!-- <script type="text/javascript" src="js/jAlert/js/jquery.js"></script> -->
+<!-- <script type="text/javascript" src="js/jAlert/js/jquery.ui.draggable.js"></script> -->
+<!-- <script type="text/javascript" src="js/jAlert/js/jquery.alerts.js"></script> -->
+<!-- <!-- //Alert End -->
 
-<script type="text/javascript" src="js/jAlert/js/jquery.js"></script>
-<script type="text/javascript" src="js/jAlert/js/jquery.ui.draggable.js"></script>
-<script type="text/javascript" src="js/jAlert/js/jquery.alerts.js"></script>
 
 <script type="text/javascript" src="js/jquery-2.1.4.js"></script>
+<script type="text/javascript" src="js/jqueryConfirm/jquery-confirm.js"></script>
 <script type="text/javascript" src="js/bootstrap.js"></script>
 <!-- <script type="text/javascript" src="js/slick.min.js"></script> -->
 <script type="text/javascript" src="js/jquery.form.js"></script>

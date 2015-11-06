@@ -800,7 +800,7 @@ public class ProductInterfaceImpl implements ProductInterface
 						}
 						else if (userType != null && userType.trim().equalsIgnoreCase("supplier"))
 						{
-							usertypecolumnname = "supplier_key";
+							usertypecolumnname = "shopid";
 						}
 						
 						ps = conn.prepareStatement("select c.*, s.company_name, s.first_name, s.last_name, "
@@ -869,21 +869,24 @@ public class ProductInterfaceImpl implements ProductInterface
 						float total = 0;
 						String sql = "";
 						String usertypecolumnname = "";
-						
+						String orderSQl = "";
 						if (userType != null && userType.trim().equalsIgnoreCase("customer"))
 						{
 							usertypecolumnname = "customer_key";
+							orderSQl = "select c.*, s.company_name, s.first_name, s.last_name, "
+									+ "s.phone, s.address1, s.address2, s.city,"
+									+ " s.state, s.street, s.postal_code, s.country, "
+									+ "s.profile_img from cart c, suppliers s "
+									+ "where c."+usertypecolumnname+" = ? and c.orderid=? and c.shopid = s.supplier_key";
 						}
 						else if (userType != null && userType.trim().equalsIgnoreCase("supplier"))
 						{
-							usertypecolumnname = "supplier_key";
+							usertypecolumnname = "shopid";
+							orderSQl = "select c.*,  s.first_name, s.last_name, s.phone, s.address1, s.address2, s.city,s.state, s.street, s.postal_code, s.country, s.profile_img"
+							+" from cart c, customers s where c."+usertypecolumnname+" = ? and c.orderid= ?  and c.customer_key = s.customer_key";
 						}
-						
-						ps = conn.prepareStatement("select c.*, s.company_name, s.first_name, s.last_name, "
-								+ "s.phone, s.address1, s.address2, s.city,"
-								+ " s.state, s.street, s.postal_code, s.country, "
-								+ "s.profile_img from cart c, suppliers s "
-								+ "where c."+usertypecolumnname+" = ? and c.orderid=? and c.shopid = s.supplier_key");
+						System.out.println("SQL : "+orderSQl);
+						ps = conn.prepareStatement(orderSQl);
 						
 						ps.setLong(1, userid);
 						ps.setString(2, orderid);
@@ -897,10 +900,13 @@ public class ProductInterfaceImpl implements ProductInterface
 							if(userType.trim().equalsIgnoreCase("customer"))
 							{
 								id = rs.getLong("customer_key");
+								childjson.put("companyname", rs.getString("company_name"));
 							}
 							else if(userType.trim().equalsIgnoreCase("supplier"))
 							{
 								id = rs.getLong("supplier_key");
+								childjson.put("companyname", "");
+								
 							}
 							
 							childjson.put("userid", id);
@@ -916,17 +922,35 @@ public class ProductInterfaceImpl implements ProductInterface
 							childjson.put("quantity", rs.getLong("quantity"));
 							
 							
-							childjson.put("companyname", rs.getString("company_name"));
+//							childjson.put("companyname", rs.getString("company_name"));
 							childjson.put("name", rs.getString("first_name")+" "+rs.getString("last_name"));
 							childjson.put("phone", rs.getString("phone"));
-							childjson.put("address1", rs.getString("address1"));
-							childjson.put("address2", rs.getString("address2"));
+							
+							if(rs.getString("address1") != null)
+							{
+								childjson.put("address1", rs.getString("address1"));
+							}
+							else
+							{
+								childjson.put("address1", "");
+							}
+							
+							if(rs.getString("address2") != null)
+							{
+								childjson.put("address2", rs.getString("address2"));
+							}
+							else
+							{
+								childjson.put("address2", "");
+							}
+							
 							childjson.put("city", rs.getString("city"));
 							childjson.put("state", rs.getString("state"));
 							childjson.put("street", rs.getString("street"));
 							childjson.put("pincode", rs.getString("postal_code"));
 							childjson.put("country", rs.getString("country"));
 							childjson.put("img", rs.getString("profile_img"));
+							childjson.put("userType", userType);
 							
 							jsonarray.add(childjson);
 							

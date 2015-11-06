@@ -79,32 +79,65 @@ $(document).ready(function(){
 	// -- logout
 	$("#logoutLink").click(function() {
 
-		jConfirm("Are you sure you want to logout", "Alert Message", function(e){
-			if(e == true)
-				{
-					$.session.remove('loginData');
-					$.session.remove('usertype');
-					$.session.remove('pageState');
-					$.session.remove('checkout');
-					$.session.remove('contentState');
-					$.session.remove('addressList');
-					$.session.remove('count');
-					$.session.remove('viewprod');
-					$.session.remove('zoominage');
-					$.session.remove('prodDisc');
-					$.session.remove('checkoutlogin');
-					$.session.remove('itemsinCart');
-					$.session.remove("profileimg");
-					$.session.remove("shopprofileResponse");
-					$.session.remove("shopProfileKey");
-					$.session.remove("viewshop");
-					$.session.remove("userType");
-					$.session.remove("userType1");
-//					$.cookie("key","");
+		$.confirm({
+	        title: 'Alert Message !',
+	        backgroundDismiss: false,
+	        content: "Are you sure you want to logout",
+	        confirm: function(){
+	        	
+				$.session.remove('loginData');
+				$.session.remove('usertype');
+				$.session.remove('pageState');
+				$.session.remove('checkout');
+				$.session.remove('contentState');
+				$.session.remove('addressList');
+				$.session.remove('count');
+				$.session.remove('viewprod');
+				$.session.remove('zoominage');
+				$.session.remove('prodDisc');
+				$.session.remove('checkoutlogin');
+				$.session.remove('itemsinCart');
+				$.session.remove("profileimg");
+				$.session.remove("shopprofileResponse");
+				$.session.remove("shopProfileKey");
+				$.session.remove("viewshop");
+				$.session.remove("userType");
+				$.session.remove("userType1");
+//				$.cookie("key","");
+
+				window.location.replace("indexTemplate.jsp");
+	        	
+	        },
+	        cancel: function(){}
+	        
+	    });
 	
-					window.location.replace("indexTemplate.jsp");
-				}
-		});
+//		jConfirm("Are you sure you want to logout", "Alert Message", function(e){
+//			if(e == true)
+//				{
+//					$.session.remove('loginData');
+//					$.session.remove('usertype');
+//					$.session.remove('pageState');
+//					$.session.remove('checkout');
+//					$.session.remove('contentState');
+//					$.session.remove('addressList');
+//					$.session.remove('count');
+//					$.session.remove('viewprod');
+//					$.session.remove('zoominage');
+//					$.session.remove('prodDisc');
+//					$.session.remove('checkoutlogin');
+//					$.session.remove('itemsinCart');
+//					$.session.remove("profileimg");
+//					$.session.remove("shopprofileResponse");
+//					$.session.remove("shopProfileKey");
+//					$.session.remove("viewshop");
+//					$.session.remove("userType");
+//					$.session.remove("userType1");
+////					$.cookie("key","");
+//	
+//					window.location.replace("indexTemplate.jsp");
+//				}
+//		});
 		
 	});
 	
@@ -622,7 +655,10 @@ function loadPage(id)
 		var ammount = $("#totalpurchase").text();
 		if(ammount == "Total Price : Rs 0.00 " || ammount == "Total Price : Rs 0 " || ammount == "Total Price : NaN" || ammount == "Total Price : " || ammount == "")
 			{
-				jAlert('Add product in cart to proceed further', 'Message');
+//				jAlert('Add product in cart to proceed further', 'Message');
+				
+				jqueryconform("Message", "Add product in cart to proceed further");
+			
 				vid = "";
 				return false;
 			}
@@ -669,7 +705,15 @@ function loadPage(id)
 }
 
 
-
+function jqueryconform(title, message)
+{
+	$.alert({
+        title: title+' !',
+        backgroundDismiss: false,
+        content: message,
+        confirm: function(){}
+    });
+}
 // -- old method,currently not in use
 /*function saveShopkeeperDetails()
  {
@@ -902,21 +946,41 @@ function signUp()
 	
 //	return false;
 	$("#userType").addClass('blink_me');
-	var result = jConfirm("Are you sure you want to register as "+userType,"Make My Shopy",function(e)
-	{
-		if(e)
-		{
-			$("#userType").removeClass('blink_me');
+	
+	$.confirm({
+        title: 'Alert Message !',
+        backgroundDismiss: false,
+        content: "Are you sure you want to register as "+userType,
+        confirm: function()
+        {
+        	$("#userType").removeClass('blink_me');
 			$(".overlay").show();
 			objhandleRequest.handleRegisteration(passSignUp, mobileKey, emailKey, userType);
 			return true;
-		}
-		else
-		{
-			$("#userType").removeClass('blink_me');
-			return false;
-		}
+        },
+        cancel: function()
+        {
+        	$("#userType").removeClass('blink_me');
+//			return false;
+//        	alert("Cancled");
+        }
 	});
+    
+//	var result = jConfirm("Are you sure you want to register as "+userType,"Make My Shopy",function(e)
+//	{
+//		if(e)
+//		{
+//			$("#userType").removeClass('blink_me');
+//			$(".overlay").show();
+//			objhandleRequest.handleRegisteration(passSignUp, mobileKey, emailKey, userType);
+//			return true;
+//		}
+//		else
+//		{
+//			$("#userType").removeClass('blink_me');
+//			return false;
+//		}
+//	});
 	}
 }
 
@@ -1310,6 +1374,9 @@ try
 function searchProduct()
 {
 //	alert("txt : ");
+	$("#dashboard").show(); // -- show dashboard after search product click.
+	$("#loadpagecontent").hide(); // -- show dashboard after search product click.
+	
 	var txt = $("#searchProductTxtBox").val();
 	if(txt != "" || txt != null)
 		{
@@ -1378,7 +1445,8 @@ function searchShop()
 
 function callAlerts(msg)
 {
-	jAlert(msg,"Make My Shopy");
+//	jAlert(msg,"Make My Shopy");
+	jqueryconform("Message", msg);
 }
 
 //function validationMsg(id,msg)

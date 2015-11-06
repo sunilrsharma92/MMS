@@ -542,14 +542,18 @@ function handleSignUpResponse(response)
 	if(action == 3)
 	{
 		var email = response.email;
-		jAlert("we have send OTP to " + email + " and to your registered mobile please provide us during your first login", "Message");
-//			$("#crossClose").trigger( "click" );
+//		jAlert("we have send OTP to " + email + " and to your registered mobile please provide us during your first login", "Message");
+
+		jqueryconform('Message',"We have send OTP to " + email + " and to your registered mobile please provide us during your first login");
+		
+		//			$("#crossClose").trigger( "click" );
 			$("#logintab").trigger( "click" );
 			$("#otpLogin").show();
 	}
 	else
 	{
-		jAlert(statusdesc, "Alert Message");
+//		jAlert(statusdesc, "Alert Message");
+		jqueryconform('Message' ,statusdesc);
 	}
 	// return false;
 }
@@ -585,7 +589,8 @@ function handleUserShippingAddressResponse(response)
 	}
 	else
 	{
-		jAlert(statusdesc, "Alert Message");
+//		jAlert(statusdesc, "Alert Message");
+		jqueryconform('Message', statusdesc);
 	}
 }
 
@@ -598,13 +603,16 @@ function handleForgetPasswordResponse(response)
 	if(action == 3)
 	{
 		var email = response.email;
-		jAlert("We have send your password to " + email + " please check it out", "Message");
+//		jAlert("We have send your password to " + email + " please check it out", "Message");
+		jqueryconform('Message',"We have send your password to " + email + " please check it out");
 		$( "#crossClose" ).trigger( "click" );
 	}
 	else
 	{
+		
 		var statusdesc = response.statusdesc;
-		jAlert(statusdesc, "Alert Message");
+//		jAlert(statusdesc, "Alert Message");
+		jqueryconform('Message',statusdesc);
 	}
 	// return false;
 }
@@ -669,13 +677,15 @@ function handleSaveUserDetailsResponse(response)
 		$.session.remove('loginData');
 		$.session.set('loginData', JSON.stringify(response));
 		
-		jAlert("Updated successfully", "Alert Message");
+//		jAlert("Updated successfully", "Alert Message");
+		jqueryconform('Message',"Updated successfully");
 		
 	}
 	else
 	{
 		var statusdesc = response.statusdesc;
-		jAlert(statusdesc, "Alert Message");
+//		jAlert(statusdesc, "Alert Message");
+		jqueryconform('Message',statusdesc);
 	}
 }
 var addresslistcheck = "";
@@ -686,11 +696,13 @@ function handleResetPasswordResponse(response)
 	var statusdesc = response.statusdesc;
 	if(action != 3)
 	{
-		jAlert(statusdesc, "Alert Message");
+//		jAlert(statusdesc, "Alert Message");
+		jqueryconform('Message',statusdesc);
 	}
 	else
 	{
-		jAlert("Password changed successfully", "Alert Message");
+//		jAlert("Password changed successfully", "Alert Message");
+		jqueryconform('Message','Password changed successfully');
 	}
 //	
 }
@@ -717,7 +729,8 @@ function handleLoginResponse(response)
 
 	if(action != 3)
 	{
-		jAlert(statusdesc, "Alert Message");
+//		jAlert(statusdesc, "Alert Message");
+		jqueryconform('Message',statusdesc);
 		
 		$.session.remove('loginData');
 		$.session.remove('usertype');
@@ -931,12 +944,14 @@ function handleProfilePicResponse(response)
 	var statusdesc = response.statusdesc;
 	if(action != 3)
 	{
-		jAlert(statusdesc, "Alert Message");
+//		jAlert(statusdesc, "Alert Message");
+		jqueryconform('Message',statusdesc);
 	}
 	else
 	{
-		jAlert("Password changed successfully", "Alert Message");
+//		jAlert("Password changed successfully", "Alert Message");
 		
+		jqueryconform('Message','Password changed successfully');
 		var profileImg = response.profileImg;
 		var loginData = $.session.get('loginData');
 		
