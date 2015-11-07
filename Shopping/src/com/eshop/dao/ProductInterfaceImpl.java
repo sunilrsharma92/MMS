@@ -33,6 +33,7 @@ public class ProductInterfaceImpl implements ProductInterface
 	public static final String OTP_REGISTER = "otpRegister";
 	public static final String FORGOT_PASSWORD = "ForgotPassword";
 	public static final String CHANGE_PASSWORD = "changPassword";
+	public static final String PURCHASE_DETAILS = "purchaseDetails";
 
 	@Override
 	public String handleRequestResponse(String jsonMsg, int command, String DBData)

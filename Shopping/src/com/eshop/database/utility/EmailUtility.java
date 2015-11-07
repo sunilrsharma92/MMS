@@ -163,6 +163,13 @@ public class EmailUtility
 					message.setSubject("Registration Link with OTP");
 					message.setContent(mailTemplet, "text/html; charset=utf-8");
 				}
+				
+				if (propertyValue != null && propertyValue.equalsIgnoreCase(ProductInterfaceImpl.PURCHASE_DETAILS)) //purchaseDetails
+				{
+					msg = "";
+					message.setSubject("Order Details");
+					message.setContent(mailTemplet, "text/html; charset=utf-8");
+				}
 
 				if (propertyValue != null && propertyValue.equalsIgnoreCase(ProductInterfaceImpl.FORGOT_PASSWORD))
 				{
