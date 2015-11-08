@@ -32,6 +32,16 @@ public class Editxmlservlet extends HttpServlet {
         String username = ss.getInitParameter("username");
         String password = ss.getInitParameter("password");
         
+        if(username.equals("NaN"))
+		{
+			username = "";
+		}
+		
+		if(password.equals("NaN"))
+		{
+			password = "";
+		}
+		
         mms.writeLogs("Editxmlservlet --> DOGET ------> "+connection+" ** "+drivername+" ** "+username+ "**" +password, 1);
         
 //        System.out.println("Editxmlservlet --> DOGET ------> "+connection+" ** "+drivername+" ** "+username+ "**" +password);
@@ -48,7 +58,7 @@ public class Editxmlservlet extends HttpServlet {
             ModifyXMLDOM mxd = new ModifyXMLDOM();
             String xmlfilepath = "";
             ServletContext ss = this.getServletContext();
-            System.out.println("ss : "+ss);
+//            System.out.println("ss : "+ss);
 
             String connection = "";
             String drivername = "";
@@ -57,8 +67,8 @@ public class Editxmlservlet extends HttpServlet {
             
             String connectionValue = "";
             String drivernameValue = "";
-            String usernameValue = "";
-            String passwordValue = "";
+            String usernameValue = "NaN";
+            String passwordValue = "NaN";
             
 //            xmlfilepath = "F:\\D Drive\\My Career\\Workspace\\XMLWritting\\WebContent\\WEB-INF\\web.xml";
             xmlfilepath = System.getProperty("catalina.base") + "\\webapps\\shopping1\\WEB-INF\\web.xml";

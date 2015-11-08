@@ -18,14 +18,18 @@
 
 
 <link rel="stylesheet" href="css/jqx/jqx.base.css">
-<link rel="stylesheet" href="js/jAlert/css/jquery.alerts.css">
+<link rel="stylesheet" href="js/jqueryConfirm/jquery-confirm.css">
 
+<!-- <!-- //Alert -->
+<!-- <link rel="stylesheet" href="js/jAlert/css/jquery.alerts.css"> -->
+<!-- <script type="text/javascript" src="js/jAlert/js/jquery.js"></script> -->
+<!-- <script type="text/javascript" src="js/jAlert/js/jquery.ui.draggable.js"></script> -->
+<!-- <script type="text/javascript" src="js/jAlert/js/jquery.alerts.js"></script> -->
+<!-- <!-- //Alert End -->
 
-<script type="text/javascript" src="js/jAlert/js/jquery.js"></script>
-<script type="text/javascript" src="js/jAlert/js/jquery.ui.draggable.js"></script>
-<script type="text/javascript" src="js/jAlert/js/jquery.alerts.js"></script>
 
 <script type="text/javascript" src="js/jquery-2.1.4.js"></script>
+<script type="text/javascript" src="js/jqueryConfirm/jquery-confirm.js"></script>
 <script type="text/javascript" src="js/bootstrap.js"></script>
 <!-- <script type="text/javascript" src="js/slick.min.js"></script> -->
 <script type="text/javascript" src="js/jquery.form.js"></script>
@@ -60,14 +64,45 @@ ul li:hover ul.dropdown-menu {
 </style>
 </head>
 <body>
-<jsp:include page="indexMenu.jsp" />
+<%-- <jsp:include page="indexMenu.jsp" />
 
-<div id="loadpage" style="min-height: 396px;">
+<div id="loadpage" >
 <jsp:include page="indexBody.jsp" />
 </div>
 
 <div style="margin-bottom: 0px;">
 <jsp:include page="footer.jsp" />
-</div>
+</div> --%>
+
+
+<div id="wrapper">
+		
+		<div id="header">
+			<jsp:include page="indexMenu.jsp" />
+		</div><!-- #header -->
+		
+		<div id="content">
+			<div id="loadpage" >
+				<jsp:include page="indexBody.jsp" />
+			</div>
+		</div><!-- #content -->
+		
+		<div id="footer">
+			<jsp:include page="footer.jsp" />
+		</div><!-- #footer -->
+		
+	</div><!-- #wrapper -->
+
+
+
+
+
+
+
+
+
+
+
+
 </body>
 </html>

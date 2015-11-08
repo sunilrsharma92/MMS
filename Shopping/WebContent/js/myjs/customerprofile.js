@@ -429,6 +429,8 @@ function displayOrder(row)
 
 function displayProductPurchased(response)
 {
+try
+{
 	var shopidArray = [];
 	var purchasearray = [];
 	var action = "";
@@ -508,14 +510,15 @@ function displayProductPurchased(response)
 				var pincode = GlobalResponse[l].pincode;
 				var country = GlobalResponse[l].country;
 				var img = GlobalResponse[l].img;
+				var type = GlobalResponse[l].userType;
 				
 				var add = "";
-//				alert(address1.length+ " " +address1.length);
-				if(address1 != "" || address1 != "null" || address1.length > 6)
+				console.log(address1.length+ " " +address2.length);
+				if(address1 != "" && address1 != null && address1.length > 6)
 				{
 					add = address1;
 				}
-				else if(address2 != "" || address2 != "null" || address2.length > 6)
+				else if(address2 != "" && address2 != null && address2.length > 6)
 				{
 					add = address2;
 				}
@@ -523,6 +526,14 @@ function displayProductPurchased(response)
 				{
 					add = "(No address to display)";
 				}
+				
+				if(type == "supplier")
+				{
+					shopname = "";
+					shopname = name;
+					add = add+". Contact Number : "+phone;
+				}
+				
 //				purchasearray.push({
 //					userid : userid,
 //					orderid : orderid,
@@ -603,6 +614,11 @@ function displayProductPurchased(response)
 //	purchasearray = [];
 //	productList = "";
 }
+catch(e)
+{
+	console.log("customerProfile.js --> displayProductPurchased --> Exception --> "+e);
+}
+}
 
 //******************************************************************************************************
 
@@ -632,6 +648,7 @@ function loadProfileMenu(id)
 		// $.session.set('contentState', idofpage);
 
 		$("#dashboard").hide(); // -- hide dashboard after profile click,to
+		$("#loadpagecontent").show(); // -- hide dashboard after profile click,to
 								// avoid mixture of profile and dashboard
 
 		if(idofpage == "0" || idofpage == "1")

@@ -22,7 +22,8 @@ function handleAllListResponse(jsonMsg)
 			else
 			{
 				$(".overlay").show().delay(100).fadeOut();
-	        		jAlert("Response is blank", "Message");
+//	        		jAlert("Response is blank", "Message");
+				jqueryconform('Alert Message','Response is blank');
 	        		writeLogAjax("***********************************No Response FROM SERVLET***********************************", 0);
 			}
 

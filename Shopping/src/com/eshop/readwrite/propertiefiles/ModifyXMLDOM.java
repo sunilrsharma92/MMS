@@ -66,7 +66,7 @@ public class ModifyXMLDOM {
            StreamResult result = new StreamResult(new File(xmlFilePath));
            transformer.setOutputProperty(OutputKeys.INDENT, "yes");
            transformer.transform(source, result);
-           System.out.println("XML file updated successfully");
+           mms.writeLogs("XML file updated successfully",1);
            
            if(strUpdatedConnection.equalsIgnoreCase(""))
            {

@@ -35,6 +35,9 @@ public class UploadServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     private ServletFileUpload uploader = null;
     private String relativePath = "F:\\D Drive\\My Career\\MMS Local Code\\Shopping\\WebContent\\Images\\ProfileImg";
+    
+//    private String relativePath = System.getProperty("catalina.base") + "\\webapps\\shopping1\\WebContent\\Images\\ProfileImg";
+    
     private String foldername;
     private String PathofFile;
     private String foldernamejsp = "";
@@ -48,7 +51,7 @@ public class UploadServlet extends HttpServlet {
     	System.out.println(relativePath.length());
         foldername = "Images\\ProfileImg";
         foldernamejsp = "Images/ProfileImg/";
-        System.out.println("FolderName "+foldername);
+//        System.out.println("FolderName "+foldername);
         DiskFileItemFactory fileFactory = new DiskFileItemFactory();
         File filesDir = (File) file;
         fileFactory.setRepository(filesDir);
@@ -93,7 +96,6 @@ public class UploadServlet extends HttpServlet {
         os.flush();
         os.close();
         fis.close();
-        //System.out.println("File downloaded successfully");
     }
  
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
@@ -156,7 +158,19 @@ public class UploadServlet extends HttpServlet {
 	                if(img != null && !img.trim().isEmpty())
 	                {
 	                	ProductInterface dao = new ProductInterfaceImpl();
-	                	dao.handleRequestResponse(key, 1058);
+	                	
+	                	//Getting DB Connection from web.xml
+	        			ServletContext ss = this.getServletContext();
+	        	        String connection = ss.getInitParameter("connection");
+	        	        String drivername = ss.getInitParameter("drivername");
+	        	        String username = ss.getInitParameter("username");
+	        	        String password = ss.getInitParameter("password");
+	        	        
+	        	        log.writeLogs("UploadServlet --> DOPost ------> "+connection+" ** "+drivername+" ** "+username+ "**" +password, 1);
+	        	        String DBData = connection+"#"+drivername+"#"+username+"#"+password;
+	        			//////////////////////////////////////////////
+	        	        
+	                	dao.handleRequestResponse(key, 1058, DBData);
 	                }
                 
                 }
@@ -168,7 +182,7 @@ public class UploadServlet extends HttpServlet {
         {
 //            out.write("Exception in uploading file.");
         	e.printStackTrace();
-        	System.out.println("Exception in uploading file.");
+        	log.writeLogs("Exception in uploading file.",0);
         } 
         
 //        out.write("</body></html>");

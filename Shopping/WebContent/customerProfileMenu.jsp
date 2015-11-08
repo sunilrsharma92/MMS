@@ -6,7 +6,16 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
+<link rel="stylesheet" href="css/font-awesome.min.css">
 <style>
+.hideme{
+	display:none;
+	margin-top: -20px;
+    margin-left: 40px;
+}
+.profilewrap:hover .hideme{display:block;}
+
+
 table td
 {
 	padding-left: 30px;
@@ -45,8 +54,9 @@ table td
 										<div id="loading-img"></div>
 									</div>
 							
-							<div style="width: 150px;height: 150px; margin: 0px auto;">
-							<img id="profileImg" src="Images/default_profile_pic.png" class="img-circle" style="width:100%; height:100%; background-color:whitesmoke;">
+							<div class="profilewrap" id="onEnter" style="width: 150px;height: 150px; margin: 0px auto;">
+								<img id="profileImg" src="Images/default_profile_pic.png" class="img-circle" style="width:100%; height:100%; background-color:whitesmoke;">
+								<div class="hideme"><i class="fa fa-camera"></i> change </div>
 							</div>
 					     	 <input type="file" name="fileName" id="fileName" style="display:none;" class="roleType" class="border"/>  
 					     	 <input type="submit" value="Save File" id="upldBtn" style="display:none;"/> &nbsp;&nbsp;
@@ -145,7 +155,6 @@ table td
 							<tr><td>Street name:</td><td><input type="text" id="streetSave" class="textbox" name="name"></td></tr>
 							<tr><td>State:</td>
 								<td>
-									<!-- <input type="text" class="textbox" name="name"></td></tr> -->
 									<select class="form-control textbox" id="stateSave" placeholder="select state">
 										<option value="one">Select State</option>
 										<option value="one">Andhra Pradesh</option>
@@ -238,7 +247,7 @@ table td
 								<tbody id="appendOrder">
 
 								</tbody>
-								<div style="color: #00AA99; font-size: 20px; float: right;" id="grandtotal"></div>
+								<div class="grand_total" id="grandtotal"></div>
 							</table>
 						</div>
 <!-- 						<div id="totalpurchaseOnCheckout" class="totaldiv"></div> -->

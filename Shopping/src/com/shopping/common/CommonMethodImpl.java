@@ -18,13 +18,13 @@ public class CommonMethodImpl {
 	
 	
 	@SuppressWarnings("unchecked")
-	public static JSONObject getCustDetailsByProperty(String property,Object value, JSONObject parentjson)
+	public static JSONObject getCustDetailsByProperty(String property,Object value, JSONObject parentjson, String DBData)
 	{
 		Connection conn = null;
 		PreparedStatement stmt = null;
 		try
 		{
-			conn = MyConnection.getConnection();
+			conn = MyConnection.getConnection(DBData);
 			String sql = "select * from customers where "+property+" = '"+value+"'";
 			stmt = conn.prepareStatement(sql);
 			ResultSet rs = stmt.executeQuery();
@@ -66,13 +66,13 @@ public class CommonMethodImpl {
 	
 	
 	@SuppressWarnings("unchecked")
-	public static JSONObject getShopkeeperDetailsByProperty(String property,Object value, JSONObject parentjson)
+	public static JSONObject getShopkeeperDetailsByProperty(String property,Object value, JSONObject parentjson, String DBData)
 	{
 		Connection conn = null;
 		PreparedStatement stmt = null;
 		try
 		{
-			conn = MyConnection.getConnection();
+			conn = MyConnection.getConnection(DBData);
 			String sql = "select * from suppliers where "+property+" = '"+value+"'";
 			stmt = conn.prepareStatement(sql);
 			ResultSet rs = stmt.executeQuery();
@@ -114,13 +114,13 @@ public class CommonMethodImpl {
 	
 	
 	@SuppressWarnings("unchecked")
-	public static JSONObject getShippingDetails(String property,Object value, JSONObject parentjson, String address, JSONArray jsonarray)
+	public static JSONObject getShippingDetails(String property,Object value, JSONObject parentjson, String address, JSONArray jsonarray, String DBData)
 	{
 		Connection conn = null;
 		PreparedStatement stmt = null;
 		try
 		{
-			conn = MyConnection.getConnection();
+			conn = MyConnection.getConnection(DBData);
 			String sql = "select * from shipping_address where "+property+" = "+value+"";
 			stmt = conn.prepareStatement(sql);
 			ResultSet rs = stmt.executeQuery();

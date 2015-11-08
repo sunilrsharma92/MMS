@@ -33,14 +33,15 @@ public class ProductInterfaceImpl implements ProductInterface
 	public static final String OTP_REGISTER = "otpRegister";
 	public static final String FORGOT_PASSWORD = "ForgotPassword";
 	public static final String CHANGE_PASSWORD = "changPassword";
+	public static final String PURCHASE_DETAILS = "purchaseDetails";
 
 	@Override
-	public String handleRequestResponse(String jsonMsg, int command)
+	public String handleRequestResponse(String jsonMsg, int command, String DBData)
 	{
 		mms = new MakemyshopyLogger();
 		try
 		{
-			conn = MyConnection.getConnection();
+			conn = MyConnection.getConnection(DBData);
 
 			switch (command)
 			{
@@ -432,7 +433,7 @@ public class ProductInterfaceImpl implements ProductInterface
 							usertypecolumnname = "supplier_key";
 						}
 						
-						JSONObject objparentjson = searchKeyword.searchProduct(product, action, shopid);
+						JSONObject objparentjson = searchKeyword.searchProduct(product, action, shopid, DBData);
 						
 						if(action.equals("product") && userid != null  && userid != 0)
 						{
@@ -488,7 +489,7 @@ public class ProductInterfaceImpl implements ProductInterface
 								usertype = "supplier_key";
 							}
 						
-						parentjson = CommonMethodImpl.getShippingDetails(usertype, key, parentjson, "address", jsonarray);
+						parentjson = CommonMethodImpl.getShippingDetails(usertype, key, parentjson, "address", jsonarray, DBData);
 						if (parentjson != null)
 						{
 							parentjson = CommonMethodImpl.putSuccessJson(parentjson, 2007);
@@ -526,7 +527,7 @@ public class ProductInterfaceImpl implements ProductInterface
 						JSONObject object = (JSONObject) JSONValue.parse(jsonMsg);
 						
 						Long supplierKey = (Long) object.get("supplierKey");
-						parentjson = CommonMethodImpl.getShopkeeperDetailsByProperty("supplier_key", supplierKey, parentjson);
+						parentjson = CommonMethodImpl.getShopkeeperDetailsByProperty("supplier_key", supplierKey, parentjson, DBData);
 						if(parentjson != null)
 						{
 							parentjson = CommonMethodImpl.putSuccessJson(parentjson, 2010);
@@ -800,7 +801,7 @@ public class ProductInterfaceImpl implements ProductInterface
 						}
 						else if (userType != null && userType.trim().equalsIgnoreCase("supplier"))
 						{
-							usertypecolumnname = "supplier_key";
+							usertypecolumnname = "shopid";
 						}
 						
 						ps = conn.prepareStatement("select c.*, s.company_name, s.first_name, s.last_name, "
@@ -869,21 +870,24 @@ public class ProductInterfaceImpl implements ProductInterface
 						float total = 0;
 						String sql = "";
 						String usertypecolumnname = "";
-						
+						String orderSQl = "";
 						if (userType != null && userType.trim().equalsIgnoreCase("customer"))
 						{
 							usertypecolumnname = "customer_key";
+							orderSQl = "select c.*, s.company_name, s.first_name, s.last_name, "
+									+ "s.phone, s.address1, s.address2, s.city,"
+									+ " s.state, s.street, s.postal_code, s.country, "
+									+ "s.profile_img from cart c, suppliers s "
+									+ "where c."+usertypecolumnname+" = ? and c.orderid=? and c.shopid = s.supplier_key";
 						}
 						else if (userType != null && userType.trim().equalsIgnoreCase("supplier"))
 						{
-							usertypecolumnname = "supplier_key";
+							usertypecolumnname = "shopid";
+							orderSQl = "select c.*,  s.first_name, s.last_name, s.phone, s.address1, s.address2, s.city,s.state, s.street, s.postal_code, s.country, s.profile_img"
+							+" from cart c, customers s where c."+usertypecolumnname+" = ? and c.orderid= ?  and c.customer_key = s.customer_key";
 						}
-						
-						ps = conn.prepareStatement("select c.*, s.company_name, s.first_name, s.last_name, "
-								+ "s.phone, s.address1, s.address2, s.city,"
-								+ " s.state, s.street, s.postal_code, s.country, "
-								+ "s.profile_img from cart c, suppliers s "
-								+ "where c."+usertypecolumnname+" = ? and c.orderid=? and c.shopid = s.supplier_key");
+						System.out.println("SQL : "+orderSQl);
+						ps = conn.prepareStatement(orderSQl);
 						
 						ps.setLong(1, userid);
 						ps.setString(2, orderid);
@@ -897,10 +901,13 @@ public class ProductInterfaceImpl implements ProductInterface
 							if(userType.trim().equalsIgnoreCase("customer"))
 							{
 								id = rs.getLong("customer_key");
+								childjson.put("companyname", rs.getString("company_name"));
 							}
 							else if(userType.trim().equalsIgnoreCase("supplier"))
 							{
 								id = rs.getLong("supplier_key");
+								childjson.put("companyname", "");
+								
 							}
 							
 							childjson.put("userid", id);
@@ -916,17 +923,35 @@ public class ProductInterfaceImpl implements ProductInterface
 							childjson.put("quantity", rs.getLong("quantity"));
 							
 							
-							childjson.put("companyname", rs.getString("company_name"));
+//							childjson.put("companyname", rs.getString("company_name"));
 							childjson.put("name", rs.getString("first_name")+" "+rs.getString("last_name"));
 							childjson.put("phone", rs.getString("phone"));
-							childjson.put("address1", rs.getString("address1"));
-							childjson.put("address2", rs.getString("address2"));
+							
+							if(rs.getString("address1") != null)
+							{
+								childjson.put("address1", rs.getString("address1"));
+							}
+							else
+							{
+								childjson.put("address1", "");
+							}
+							
+							if(rs.getString("address2") != null)
+							{
+								childjson.put("address2", rs.getString("address2"));
+							}
+							else
+							{
+								childjson.put("address2", "");
+							}
+							
 							childjson.put("city", rs.getString("city"));
 							childjson.put("state", rs.getString("state"));
 							childjson.put("street", rs.getString("street"));
 							childjson.put("pincode", rs.getString("postal_code"));
 							childjson.put("country", rs.getString("country"));
 							childjson.put("img", rs.getString("profile_img"));
+							childjson.put("userType", userType);
 							
 							jsonarray.add(childjson);
 							
@@ -959,13 +984,13 @@ public class ProductInterfaceImpl implements ProductInterface
 
 						if (userType != null && userType.trim().equalsIgnoreCase("customer"))
 						{
-							parentjson = CommonMethodImpl.getCustDetailsByProperty(CommonMethodImpl.EMAIL_ID, email, parentjson);
+							parentjson = CommonMethodImpl.getCustDetailsByProperty(CommonMethodImpl.EMAIL_ID, email, parentjson, DBData);
 							sql = "update customers set active = 1 where email = ?";
 							usertypecolumnname = "customer_key"; 
 						}
 						else if (userType != null && userType.trim().equalsIgnoreCase("supplier"))
 						{
-							parentjson = CommonMethodImpl.getShopkeeperDetailsByProperty(CommonMethodImpl.EMAIL_ID, email, parentjson);
+							parentjson = CommonMethodImpl.getShopkeeperDetailsByProperty(CommonMethodImpl.EMAIL_ID, email, parentjson, DBData);
 							sql = "update suppliers set active = 1 where email = ?";
 							usertypecolumnname = "supplier_key";
 						}
@@ -1194,7 +1219,7 @@ public class ProductInterfaceImpl implements ProductInterface
 											tableName = "`shop"+lastid+"`";
 											createTable = "CREATE TABLE IF NOT EXISTS "+tableName+" (`product_key` bigint(20) NOT NULL AUTO_INCREMENT,`product_name` longtext,`category_ref` bigint(20) DEFAULT NULL,`sub_category_ref` bigint(20) DEFAULT NULL,`unite_price` float DEFAULT NULL,`picture` longtext,`sku` bigint(20) DEFAULT NULL,`idsku` bigint(20) DEFAULT NULL,`vendor_product_ref` bigint(20) DEFAULT NULL,`product_description` longtext,`supplier_ref` bigint(20) DEFAULT NULL,`quantity_per_unit` bigint(20) DEFAULT NULL,`msrp` bigint(20) DEFAULT NULL,`available_colors` longtext,`size` bigint(20) DEFAULT NULL,`color` longtext,`discount` float DEFAULT NULL,`unit_weight` float DEFAULT NULL,`units_in_stock` bigint(20) DEFAULT NULL,`units_on_order` bigint(20) DEFAULT NULL,`reorder_level` longtext,`product_available` longtext,`discount_available` longtext,`current_order` longtext,`ranking` longtext,`note` longtext,PRIMARY KEY (`product_key`)) ENGINE=InnoDB AUTO_INCREMENT=271 DEFAULT CHARSET=latin1;";
 																					
-											System.out.println("lastInserted ID : "+createTable);
+//											System.out.println("lastInserted ID : "+createTable);
 									    }
 									}
 									
@@ -1288,7 +1313,7 @@ public class ProductInterfaceImpl implements ProductInterface
 							{
 								parentjson = CommonMethodImpl.putFailedJson(parentjson, command);// Encryption password failed
 								parentjson.put("statusdesc", "Registration failed");// Registeration failed
-								System.out.println("Encrypting password failed");
+								mms.writeLogs("Reason for Registration failed ----> Encrypting password failed",1);
 								parentjson.put("command", command);
 							}
 
@@ -1355,7 +1380,7 @@ public class ProductInterfaceImpl implements ProductInterface
 						if (userType != null && userType.trim().equalsIgnoreCase("customer"))
 						{
 							if (email != null && !email.trim().isEmpty())
-								parentjson = CommonMethodImpl.getCustDetailsByProperty(CommonMethodImpl.EMAIL_ID, email, parentjson);
+								parentjson = CommonMethodImpl.getCustDetailsByProperty(CommonMethodImpl.EMAIL_ID, email, parentjson, DBData);
 							
 							user = "customers";
 						}
@@ -1364,7 +1389,7 @@ public class ProductInterfaceImpl implements ProductInterface
 						if (userType != null && userType.trim().equalsIgnoreCase("supplier"))
 						{
 							if (email != null && !email.trim().isEmpty())
-								parentjson = CommonMethodImpl.getShopkeeperDetailsByProperty(CommonMethodImpl.EMAIL_ID, email, parentjson);
+								parentjson = CommonMethodImpl.getShopkeeperDetailsByProperty(CommonMethodImpl.EMAIL_ID, email, parentjson, DBData);
 							
 							user = "suppliers";
 						}
@@ -1393,14 +1418,14 @@ public class ProductInterfaceImpl implements ProductInterface
 											parentjson = CommonMethodImpl.putSuccessJson(parentjson, 2054);// succcess
 											parentjson.put("email", email);
 											parentjson.put("statusdesc", "Success");
-											System.out.println("OTP as password updation succeeded");
+											mms.writeLogs("OTP as password updation succeeded",1);
 										}
 										else
 										{
 											parentjson.put("status", 11);// OTP Updation Failed
 											parentjson.put("statusdesc", "OTP as password updation failed");
 											parentjson.put("command", command);
-											System.out.println("OTP as password updation failed");
+											mms.writeLogs("OTP as password updation failed",0);
 										}
 									}
 									else
@@ -1408,7 +1433,7 @@ public class ProductInterfaceImpl implements ProductInterface
 										parentjson.put("status", 10);// Encryption of password failed
 										parentjson.put("statusdesc", "Forgot Password Failed,Please try again");
 										parentjson.put("command", command);
-										System.out.println("Encryption of password failed,Forgot password");
+										mms.writeLogs("Encryption of password failed,Forgot password",0);
 									}
 								}
 								else
@@ -1417,7 +1442,7 @@ public class ProductInterfaceImpl implements ProductInterface
 									parentjson.put("email", email);
 									parentjson.put("statusdesc", "Email sending Failed");
 									parentjson.put("command", command);
-									System.out.println("Email sending failed");
+									mms.writeLogs("Email sending failed",0);
 								}
 							}
 							else
@@ -1427,7 +1452,7 @@ public class ProductInterfaceImpl implements ProductInterface
 								parentjson.put("email", email);
 								parentjson.put("statusdesc", "Email sending Failed");
 								parentjson.put("command", command);
-								System.out.println("OTP generation failed");
+								mms.writeLogs("OTP generation failed",0);
 							}
 						}
 						else
@@ -1527,18 +1552,18 @@ public class ProductInterfaceImpl implements ProductInterface
 						if(userType != null && key != null && userType.trim().equalsIgnoreCase("customer"))
 						{
 							sql += "where customer_key = ?";
-							parentjson = CommonMethodImpl.getCustDetailsByProperty(CommonMethodImpl.EMAIL_ID, email, parentjson);
+							parentjson = CommonMethodImpl.getCustDetailsByProperty(CommonMethodImpl.EMAIL_ID, email, parentjson, DBData);
 						}
 						
 						else if(userType != null  && key != null && userType.trim().equalsIgnoreCase("supplier"))
 						{
 							sql += "where supplier_key = ?";
-							parentjson = CommonMethodImpl.getShopkeeperDetailsByProperty(CommonMethodImpl.EMAIL_ID, email, parentjson);
+							parentjson = CommonMethodImpl.getShopkeeperDetailsByProperty(CommonMethodImpl.EMAIL_ID, email, parentjson, DBData);
 						}
 						
 						if (email != null && !email.trim().isEmpty())
 							sql += " and email = ? ";
-						System.out.println("Update user address sql : "+sql);
+						mms.writeLogs("Update user address sql : "+sql,1);
 						ps = conn.prepareStatement(sql);
 						ps.setLong(1, key);
 						if (email != null && !email.trim().isEmpty())
@@ -1550,11 +1575,11 @@ public class ProductInterfaceImpl implements ProductInterface
 						{
 							if(userType != null && key != null && userType.trim().equalsIgnoreCase("customer"))
 							{
-								parentjson = CommonMethodImpl.getCustDetailsByProperty(CommonMethodImpl.EMAIL_ID, email, parentjson);
+								parentjson = CommonMethodImpl.getCustDetailsByProperty(CommonMethodImpl.EMAIL_ID, email, parentjson, DBData);
 							}
 							else if(userType != null  && key != null && userType.trim().equalsIgnoreCase("supplier"))
 							{
-								parentjson = CommonMethodImpl.getShopkeeperDetailsByProperty(CommonMethodImpl.EMAIL_ID, email, parentjson);
+								parentjson = CommonMethodImpl.getShopkeeperDetailsByProperty(CommonMethodImpl.EMAIL_ID, email, parentjson, DBData);
 							}
 							
 							parentjson = CommonMethodImpl.putSuccessJson(parentjson, 2055);
@@ -1622,27 +1647,27 @@ public class ProductInterfaceImpl implements ProductInterface
 									if(verification)
 									{
 										parentjson = CommonMethodImpl.putSuccessJson(parentjson, 2056);
-										System.out.println("Email sending success");
+										mms.writeLogs("Email sending success",1);
 									}
 									else
 									{
 										parentjson = CommonMethodImpl.putFailedJson(parentjson, command);
 										parentjson.put("statusdesc", "Error occurred during sending email,Please try again");
-										System.out.println("Email sending failed");
+										mms.writeLogs("Email sending failed",0);
 									}
 								}
 								else
 								{
 									parentjson = CommonMethodImpl.putFailedJson(parentjson, command);
 									parentjson.put("statusdesc", "Error occurred during reset,Please try again");
-									System.out.println("Error occurred during update query of reset");
+									mms.writeLogs("Error occurred during update query of reset",0);
 								}
 							}
 							else
 							{
 								parentjson = CommonMethodImpl.putFailedJson(parentjson, command);
 								parentjson.put("statusdesc", "Error occurred,Please try again");
-								System.out.println("Error occurred during encryption");
+								mms.writeLogs("Error occurred during encryption",0);
 							}
 
 						}

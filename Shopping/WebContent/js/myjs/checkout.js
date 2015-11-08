@@ -190,7 +190,10 @@ catch (e) {
 		var ammount = $("#totalpurchaseOnCheckout").text();
 		if(ammount == "Total Price : Rs 0.00 " || ammount == "Total Price : Rs 0 " || ammount == "Total Price : Rs 0.0 " || ammount == "Total Price : NaN" || ammount == "Total Price : " || ammount == "")
 			{
-				jAlert('Your cart is empty. \n Add product in cart to proceed further.', 'Message');
+//				jAlert('Your cart is empty. \n Add product in cart to proceed further.', 'Message');
+			
+			jqueryconform("Message", "Your cart is empty. \n Add product in cart to proceed further.");
+					
 				$("#conformOrder").attr('data-toggle','');
 				return false;
 			}
@@ -206,29 +209,56 @@ catch (e) {
 //							address = $("#textarea"+j).val();
 //						}
 //				}
-				jConfirm("<b>Total Ammount : </b>"+totalammount+"\n <b>Delivery Address : </b>"+orderAddress+"\n", "Message", function(e)
-				{
-					if(e)
+			
+			$.confirm({
+		        title: 'Alert Message !',
+		        backgroundDismiss: false,
+		        content: "<b>Total Ammount : </b>"+totalammount+"\n <b>Delivery Address : </b>"+orderAddress+"\n",
+		        confirm: function()
+		        {
+		        	
+		        	var loginData = $.session.get('loginData');
+					
+					if(loginData != null)
 					{
-//						$("#conformOrder").attr('data-toggle','collapse');
-						
-						var loginData = $.session.get('loginData');
-						
-						if(loginData != null)
-						{
-							var sessionData = JSON.parse(loginData);
-							var userid = sessionData.key;
-							var userType = sessionData.userType;
-							objhandleRequest.conformOder(userid, userType);
-							return true;
-						}
+						var sessionData = JSON.parse(loginData);
+						var userid = sessionData.key;
+						var userType = sessionData.userType;
+						objhandleRequest.conformOder(userid, userType);
+						return true;
 					}
-					else
-					{
-						$("#conformOrder").attr('data-toggle','');
-						return false;
-					}
-				});
+		        },
+		        cancel: function()
+		        {
+		        	$("#conformOrder").attr('data-toggle','');
+//					return false;
+		        }
+		        });
+			
+			
+//				jConfirm("<b>Total Ammount : </b>"+totalammount+"\n <b>Delivery Address : </b>"+orderAddress+"\n", "Message", function(e)
+//				{
+//					if(e)
+//					{
+////						$("#conformOrder").attr('data-toggle','collapse');
+//						
+//						var loginData = $.session.get('loginData');
+//						
+//						if(loginData != null)
+//						{
+//							var sessionData = JSON.parse(loginData);
+//							var userid = sessionData.key;
+//							var userType = sessionData.userType;
+//							objhandleRequest.conformOder(userid, userType);
+//							return true;
+//						}
+//					}
+//					else
+//					{
+//						$("#conformOrder").attr('data-toggle','');
+//						return false;
+//					}
+//				});
 //				alert("totalammount : "+totalammount+" address : "+orderAddress);
 				
 //				jAlert("Order Successful");
@@ -252,7 +282,8 @@ catch (e) {
 					var loginData = $.session.get('loginData');
 					if(loginData == null)
 						{
-							jAlert('Please login first to proceed', 'Message');
+//							jAlert('Please login first to proceed', 'Message');
+							jqueryconform('Message', 'Please login first to proceed');
 							$("#nextAccordion").attr('data-toggle','');
 							return false;
 						}
@@ -300,7 +331,10 @@ catch (e) {
 							}
 						else
 							{
-								jAlert('Please select atleast one address or add a new address','Message');
+//								jAlert('Please select atleast one address or add a new address','Message');
+								
+								jqueryconform('Message','Please select atleast one address or add a new address');
+								
 								$("#nextAccordion1").attr('data-toggle','');
 	
 								return false;
@@ -325,7 +359,10 @@ catch (e) {
 						}
 						else
 						{
-							jAlert('Please Enter the new address details','Message');
+//							jAlert('Please Enter the new address details','Message');
+							
+							jqueryconform('Message','Please Enter the new address details');
+							
 							$("#newaddressnbtn").attr('data-toggle','');
 							return false;
 						}

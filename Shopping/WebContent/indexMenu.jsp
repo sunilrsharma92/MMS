@@ -108,17 +108,17 @@
 					<a data-target="#" id="myAcc" href="page.html" data-toggle="dropdown"
 						class="dropdown-toggle whiteLabelLink" style="display:none; padding: 8px;">My Account <b class="caret"></b></a>
 					<ul class="dropdown-menu">
-						<li><a href="#" id="profileLink">Profile</a></li>
-						<li><a href="#">Recent Orders</a></li>
-						<li><a href="#">Favorite Shop</a></li>
+						<li><a href="#" id="profileLink"> <span class="glyphicon glyphicon-user"></span> Profile </a></li>
+						<li><a href="#"> <span class="glyphicon glyphicon-list-alt"></span> Recent Orders</a></li>
+						<li><a href="#"> <span class="glyphicon glyphicon-heart"></span> Favorite Shop</a></li>
 						<li class="divider"></li>
-						<li><a href="#" id="logoutLink">Logout</a></li>
+						<li><a href="#" id="logoutLink"> <span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
 					</ul>
 				</li>
 
 				<a href="#" data-toggle="modal" data-target="#LoginModal" id="loginDialogLink" class="whiteLabelLink pull-right"> 
-						<span class="glyphicon glyphicon-user" style="margin-right: 4px;"></span>
-						<label id="loginlabel">Login</label>
+						<span class="glyphicon glyphicon-log-in" style="margin-right: 4px;"></span>
+						<label id="loginlabel"> Login</label>
 					</a> <!-- Modal -->
 					
 					<div class="modal fade" id="LoginModal" role="dialog">
