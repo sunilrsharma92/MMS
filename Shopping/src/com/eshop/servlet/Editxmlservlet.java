@@ -71,7 +71,7 @@ public class Editxmlservlet extends HttpServlet {
             String passwordValue = "NaN";
             
 //            xmlfilepath = "F:\\D Drive\\My Career\\Workspace\\XMLWritting\\WebContent\\WEB-INF\\web.xml";
-            xmlfilepath = System.getProperty("catalina.base") + "\\webapps\\shopping1\\WEB-INF\\web.xml";
+            xmlfilepath = System.getProperty("catalina.base") + "/webapps/heenaboutique.com/ROOT/WEB-INF/web.xml";
             mms.writeLogs("tomcatPath : "+xmlfilepath, 1);
             
             connection= request.getParameter("connection");

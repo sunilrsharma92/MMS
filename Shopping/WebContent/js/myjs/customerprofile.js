@@ -91,8 +91,7 @@ $(document).ready(function()
 		}
 	
 //******************************************************************************************************
-	$("#profileImg").click(function(){
-
+	$(".icon_click").click(function(){
 		$("#fileName").trigger("click");
 
 	});

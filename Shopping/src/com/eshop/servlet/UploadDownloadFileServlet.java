@@ -26,9 +26,9 @@ public class UploadDownloadFileServlet extends HttpServlet
 {
     private static final long serialVersionUID = 1L;
     private ServletFileUpload uploader = null;
-    private String relativePath = "C:\\Users\\Home\\Desktop\\Projects\\New Think Bigger\\Upload Image to Folder You Want\\MI Assignment Devendrakumar R. Barai\\WebContent\\themes\\images";
+//    private String relativePath = "C:\\Users\\Home\\Desktop\\Projects\\New Think Bigger\\Upload Image to Folder You Want\\MI Assignment Devendrakumar R. Barai\\WebContent\\themes\\images";
     
-//    private String relativePath = System.getProperty("catalina.base") + "\\webapps\\shopping1\\WEB-INF\\web.xml";
+    private String relativePath = System.getProperty("catalina.base") + "\\webapps\\heenaboutique.com\\ROOT\\WEB-INF\\web.xml";
 //    mms.writeLogs("tomcatPath : "+xmlfilepath, 1);
     
     private String foldername;
