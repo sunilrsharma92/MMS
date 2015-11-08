@@ -1,9 +1,6 @@
 package com.eshop.servlet;
 
-import in.smsowl.client.SmsOwl;
-
 import java.io.IOException;
-import java.util.HashMap;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

@@ -32,7 +32,7 @@
 <script type="text/javascript" src="js/jqueryConfirm/jquery-confirm.js"></script>
 <script type="text/javascript" src="js/bootstrap.js"></script>
 <!-- <script type="text/javascript" src="js/slick.min.js"></script> -->
-<script type="text/javascript" src="js/jquery.form.js"></script>
+<!-- <script type="text/javascript" src="js/jquery.form.js"></script> -->
 
 <script type="text/javascript" src='js/jquery.elevatezoom.js'></script>
 <script type="text/javascript" src="js/autoComplete/js/jquery-ui.js"></script><!-- //autocomplete -->

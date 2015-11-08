@@ -40,14 +40,7 @@ table td
 <!-- 						<h3><span class="label label-default"> MY ACCOUNT</span></h3> -->
 						<h3><div class="label label-default" style="width: 100%; display: block;"> MY ACCOUNT</div></h3>
 						<hr class="large">
-						<!-- <form action="UploadServlet" method="post" enctype="multipart/form-data">
-						<div class=""  style="margin-bottom:10px"; >
-						<img src="Images/default_profile_pic.png" class="img-circle" style="width:50%; background-color:whitesmoke;">
-						<input type="file" value="Upload" id="upload"> 
-						<input type="file" value="Upload" id="remove"> 
-						<input type="submit">
-						</div>
-						</form> -->
+						
 						<form enctype="multipart/form-data" id="uploadFile" action="UploadServlet" method="post">
 							
 							<div class="overlay">
@@ -65,7 +58,20 @@ table td
 						$(document).ready(function (){
 							try
 							{
-						$('#uploadFile').ajaxForm({
+								$("#profileImg").click(function(){
+									alert("1");
+									$("#fileName").trigger("click");
+
+								});
+
+							$("#fileName").change(function()
+							{
+								alert("2");
+								$("#upldBtn").trigger("click");
+								alert("3");
+							});
+							
+							$('#uploadFile').ajaxForm({
 							success : function (msg)
 							{
 								$(".overlay").show();
@@ -76,7 +82,7 @@ table td
 									count++;
 									console.log("count : "+count+"msg : "+msg);
 									
-									if(count == 7)
+									if(count == 10)
 										{
 										$("#profileImg").attr("src",msg);
 										$(".overlay").show().delay(100).fadeOut();
@@ -84,9 +90,13 @@ table td
 										}
 								}, 500);
 								
-								
-								$.session.remove("profileimg");
-								$.session.set("profileimg", msg);
+								var loginData = $.session.get('loginData');
+								var sessionData = JSON.parse(loginData);
+								sessionData.profileImg = msg;
+								$.session.remove("loginData");
+								$.session.set("loginData", JSON.stringify(sessionData));
+								alert("JSON.stringify(sessionData) : "+JSON.stringify(sessionData));
+
 							}
 						});
 							}
@@ -102,6 +112,7 @@ table td
 								}
 							
 						});
+						
 						</script>
 						
 						</form>

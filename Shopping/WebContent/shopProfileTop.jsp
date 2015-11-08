@@ -52,7 +52,7 @@
 									</div>
 							
 							<div style="width: 150px;height: 150px; margin: 0px auto;">
-							<img  id="profileImg" src="https://placehold.it/350x260"  class = "img-responsive"   style="margin-bottom: 10px;">
+							<img  id="profileImg" src="Images/default_profile_pic.png"  class = "img-responsive"   style="margin-bottom: 10px;">
 <!-- 							<img id="profileImg" src="Images/default_profile_pic.png" class="img-circle" style="width:100%; height:100%; background-color:whitesmoke;"> -->
 							</div>
 					     	 <input type="file" name="fileName" id="fileName" style="display:none;" class="roleType" class="border"/>  
@@ -62,7 +62,20 @@
 						$(document).ready(function (){
 							try
 							{
-						$('#uploadFile').ajaxForm({
+								$("#profileImg").click(function(){
+									alert("1");
+									$("#fileName").trigger("click");
+
+								});
+
+							$("#fileName").change(function()
+							{
+								alert("2");
+								$("#upldBtn").trigger("click");
+								alert("3");
+							});
+							
+							$('#uploadFile').ajaxForm({
 							success : function (msg)
 							{
 								$(".overlay").show();
@@ -73,7 +86,7 @@
 									count++;
 									console.log("count : "+count+"msg : "+msg);
 									
-									if(count == 7)
+									if(count == 10)
 										{
 										$("#profileImg").attr("src",msg);
 										$(".overlay").show().delay(100).fadeOut();
@@ -81,9 +94,13 @@
 										}
 								}, 500);
 								
-								
-								$.session.remove("profileimg");
-								$.session.set("profileimg", msg);
+								var loginData = $.session.get('loginData');
+								var sessionData = JSON.parse(loginData);
+								sessionData.profileImg = msg;
+								$.session.remove("loginData");
+								$.session.set("loginData", JSON.stringify(sessionData));
+								alert("JSON.stringify(sessionData) : "+JSON.stringify(sessionData));
+
 							}
 						});
 							}
