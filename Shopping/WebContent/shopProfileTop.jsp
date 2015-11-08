@@ -15,8 +15,65 @@
 	<div class = "container-fluid" style = "background-color: #037DBB; margin-top:-15px; margin-bottom:15px;">
 		<div class = "row row1">
 			<div class = "col-md-3 col-sm-6 col-xs-12 prof">
-				<img  id="shopprofileimg" src="https://placehold.it/350x260"  class = "img-responsive"   style="margin-bottom: 10px;">
 <!-- 					<img src="Images/CPImg/350x260.png"  class = "img-responsive"   style="margin-bottom: 10px;"> -->
+
+				<form enctype="multipart/form-data" id="uploadFile" action="UploadServlet" method="post">
+							
+							<div class="overlay">
+										<div id="loading-img"></div>
+									</div>
+							
+							<div style="width: 150px;height: 150px; margin: 0px auto;">
+							<img  id="profileImg" src="https://placehold.it/350x260"  class = "img-responsive"   style="margin-bottom: 10px;">
+<!-- 							<img id="profileImg" src="Images/default_profile_pic.png" class="img-circle" style="width:100%; height:100%; background-color:whitesmoke;"> -->
+							</div>
+					     	 <input type="file" name="fileName" id="fileName" style="display:none;" class="roleType" class="border"/>  
+					     	 <input type="submit" value="Save File" id="upldBtn" style="display:none;"/> &nbsp;&nbsp;
+						<script type="text/javascript" src="js/jquery.form.js"></script>
+						<script type="text/javascript">
+						$(document).ready(function (){
+							try
+							{
+						$('#uploadFile').ajaxForm({
+							success : function (msg)
+							{
+								$(".overlay").show();
+								var count = 0;
+								
+								var clear = setInterval(function()
+									{
+									count++;
+									console.log("count : "+count+"msg : "+msg);
+									
+									if(count == 7)
+										{
+										$("#profileImg").attr("src",msg);
+										$(".overlay").show().delay(100).fadeOut();
+										clearInterval(clear);
+										}
+								}, 500);
+								
+								
+								$.session.remove("profileimg");
+								$.session.set("profileimg", msg);
+							}
+						});
+							}
+							catch (e) 
+							{
+								console.log("Exception in uploading file on jsp : "+e);
+							}
+							
+							var profileImg = $.session.get("profileimg");
+							if(profileImg != "" || profileImg !=null)
+								{
+									$("#profileImg").attr("src",profileImg);
+								}
+							
+						});
+						</script>
+						
+						</form>
 			</div>
 			<!-- end of col-3 -->
 			<div class = "col-md-9 col-sm-6 col-xs-12">
