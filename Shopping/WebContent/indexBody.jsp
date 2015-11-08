@@ -11,7 +11,6 @@
 <title>Make my shopy</title>
 
 <link href="slick/jquerysctipttop.css" rel="stylesheet" type="text/css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 <link rel="stylesheet" type="text/css" href="slick/slick.css" />
 <link rel="stylesheet" type="text/css" href="slick/slick-theme.css" />
 
@@ -93,7 +92,7 @@
 
 			<hr class="small">
 			<h3 align="center"> Top Rated 
-				<span class="controllers pull-right "> <span> <i class="fa fa-arrow-circle-left"></i></span> <span> <i class="fa fa-arrow-circle-right"></i></span></span>
+				<span class="controllers pull-right "> <span class="glyphicon glyphicon-circle-arrow-left"></span> <span class="glyphicon glyphicon-circle-arrow-right"></span></span>
 			</h3>
 			<hr class="small">
 			<div class="responsive">
@@ -146,7 +145,7 @@
 
 			<hr class="small">
 			<h3 align="center">Newly Joined 
-				<span class="controllers pull-right "> <span> <i class="fa fa-arrow-circle-left"></i></span> <span> <i class="fa fa-arrow-circle-right"></i></span></span>
+				<span class="controllers pull-right "> <span class="glyphicon glyphicon-circle-arrow-left"></span> <span class="glyphicon glyphicon-circle-arrow-right"></span></span>
 			</h3>
 			<hr class="small">
 			<div class="responsive">

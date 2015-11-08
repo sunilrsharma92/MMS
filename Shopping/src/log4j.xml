@@ -4,8 +4,7 @@
 
 	<appender name="fileAppender" class="org.apache.log4j.DailyRollingFileAppender">
 	<param name="append" value="true"/>
-<!-- 		<param name="File" value="logs/makemyshopyLog.log"/> -->
-		<param name="File" value="C:/MakeMyShopy/Logs/makemyshopyLog.log"/>
+		<param name="File" value="${catalina.base}/logs/MMS/makemyshopyLog.log"/>
 		<param name="Threshold" value="DEBUG"/>
 		<param name="DatePattern" value="'.'yyyy-MM-dd-HH'.log'"/>
                 <param name="MaxFileSize" value="5MB"/>

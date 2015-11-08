@@ -21,7 +21,6 @@
 <!-- <script src = "http://code.jquery.com/jquery-2.0.3.min.js"></script> -->
 <script src = "js/bootstrap.min.js"></script>
 <!-- x-editable (bootstrap version) -->
-<!--<script src = "js/bootstrap-editable.min.js"></script> -->
 <!-- main.js -->
 <!--<script src = "js/main.js"></script>-->
 

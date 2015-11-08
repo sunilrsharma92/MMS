@@ -23,7 +23,7 @@
 <!-- 	<hr class = "large"> -->
 					<div class="list-group side-bar">
 						<a href = "#" class = "list-group-item active"><span class = "glyphicon glyphicon-user"></span> Profile</a>
-						<a href="#" id="4" style="border: 1px solid #CCC;" class="list-group-item" onclick="loadProfileMenu(this)">My orders</a>
+						<a href="#" id="4" class="list-group-item" onclick="loadProfileMenu(this)">My orders</a>
 						<a href="#" id="0" class="list-group-item" onclick="loadProfileMenu(this)">Personal Info</a> 
 						<a href="#"	id="1" class="list-group-item" onclick="loadProfileMenu(this)">Addresses</a>
 						<a href="#"	id="2" class="list-group-item" onclick="loadProfileMenu(this)">Change Password</a> 

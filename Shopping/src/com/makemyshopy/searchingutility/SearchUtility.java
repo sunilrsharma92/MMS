@@ -35,10 +35,14 @@ import com.shopping.common.CommonMethodImpl;
 public class SearchUtility {
  
 	MakemyshopyLogger mms = new MakemyshopyLogger();
- public static final File INDEX_DIRECTORY = new File("IndexDirectory");
+	static String path = System.getProperty("catalina.base")+"/temp/IndexDirectory";
+	
+	
+ public static final File INDEX_DIRECTORY = new File(path);
  
  public void createIndex(String action, String sql, String DBData) {
   
+	 mms.writeLogs("SearchUtility INDEX_DIRECTORY path : "+path,1);
 //  System.out.println("-- Indexing --");
   
   try {
@@ -217,6 +221,7 @@ public class SearchUtility {
   } catch (Exception e) 
   {
 	  e.printStackTrace();
+	  mms.writeLogs("SearchUtility INDEX_DIRECTORY path : "+path,1);
 	  mms.writeLogs("SearchUtility search() Exception : "+e,0);
   }
   return null;

@@ -6,12 +6,15 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
-<link rel="stylesheet" href="css/font-awesome.min.css">
 <style>
 .hideme{
 	display:none;
-	margin-top: -20px;
-    margin-left: 40px;
+	margin-top: -95px;
+    margin-left: 50px;
+}
+span.glyphicon.glyphicon-camera {
+    font-size: 50px;
+    /* color: #FFF; */
 }
 .profilewrap:hover .hideme{display:block;}
 
@@ -43,13 +46,13 @@ table td
 						
 						<form enctype="multipart/form-data" id="uploadFile" action="UploadServlet" method="post">
 							
-							<div class="overlay">
+							<div class="overlay" style="margin-top: 45px;">
 										<div id="loading-img"></div>
 									</div>
 							
 							<div class="profilewrap" id="onEnter" style="width: 150px;height: 150px; margin: 0px auto;">
-								<img id="profileImg" src="Images/default_profile_pic.png" class="img-circle" style="width:100%; height:100%; background-color:whitesmoke;">
-								<div class="hideme"><i class="fa fa-camera"></i> change </div>
+								<img class="icon_click" id="profileImg" src="Images/default_profile_pic.png" class="img-circle" style="width:100%; height:100%; background-color:whitesmoke;">
+								<div class="hideme icon_click"><span class="glyphicon glyphicon-camera "></span></div>
 							</div>
 					     	 <input type="file" name="fileName" id="fileName" style="display:none;" class="roleType" class="border"/>  
 					     	 <input type="submit" value="Save File" id="upldBtn" style="display:none;"/> &nbsp;&nbsp;
@@ -122,7 +125,7 @@ table td
 						<div class="strong list-group"><span class="glyphicon glyphicon-list-alt"></span> Orders</div>
 	
 						<div class="list-group side-bar">
-							<a href="#" id="4" style="border: 1px solid #CCC;" class="list-group-item" onclick="loadProfileMenu(this)">My orders</a>
+							<a href="#" id="4" class="list-group-item" onclick="loadProfileMenu(this)">My orders</a>
 							<hr class="large">
 						</div>
 					</div>
@@ -130,12 +133,12 @@ table td
 						<span class="glyphicon glyphicon-user"></span> Profile
 					</div>
 					<div class="list-group side-bar">
-						<a href="#" id="0" class="list-group-item customerSideMenu" onclick="loadProfileMenu(this)">Personal Info</a> 
-						<a href="#"	id="1" class="list-group-item customerSideMenu" onclick="loadProfileMenu(this)">Addresses</a>
-						<a href="#"	id="2" class="list-group-item customerSideMenu" onclick="loadProfileMenu(this)" style="border-bottom: 1px solid #CCC;">Change Password</a> 
+						<a href="#" id="0" class="list-group-item" onclick="loadProfileMenu(this)">Personal Info</a> 
+						<a href="#"	id="1" class="list-group-item" onclick="loadProfileMenu(this)">Addresses</a>
+						<a href="#"	id="2" class="list-group-item" onclick="loadProfileMenu(this)" style="border-bottom: 1px solid #CCC;">Change Password</a> 
 						<!-- <a href="#" class="list-group-item">Update Email/Mobile</a> -->
 <!-- 						<a href="#" id="3" class="list-group-item"	onclick="loadProfileMenu(this)">Deactivate Account</a>  -->
-<!-- 						<a href="#" id="" class="list-group-item customerSideMenu">Manage Notifications</a> -->
+<!-- 						<a href="#" id="" class="list-group-item">Manage Notifications</a> -->
 						<hr class="large">
 					</div>
 
