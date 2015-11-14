@@ -42,6 +42,12 @@
 </head>
 <body>
 	<div class="container">
+	<!-- Loading img -->
+									<div class="overlay">
+										<div id="loading-img"></div>
+									</div>
+									<!-- Loading img -->
+									
 		<h4>Checking out</h4>
 		<div class="panel-group" id="accordion">
 

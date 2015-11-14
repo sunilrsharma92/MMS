@@ -36,43 +36,59 @@
 <!-- <script type="text/javascript" src="js/myjs/customerprofile.js"></script> -->
 
 <script type="text/javascript" src="js/myjs/customerprofile.js"></script>
+
+<style>
+
+.hideme
+{
+	display:none;
+	margin-top: -129px;
+	margin-left: 127px;
+}
+span.glyphicon.glyphicon-camera {
+    font-size: 50px;
+    /* color: #FFF; */
+}
+.profilewrap:hover .hideme{display:block;}
+
+</style>
+
 </head>
 <body>
 
 	<!-- start of top -->
 	<div class = "container-fluid" style = "background-color: #037DBB; margin-top:-15px; margin-bottom:15px;">
 		<div class = "row row1">
-			<div class = "col-md-3 col-sm-6 col-xs-12 prof">
+			<div class = "col-md-3 col-sm-6 col-xs-12 prof" style="height: 230px;">
 <!-- 					<img src="Images/CPImg/350x260.png"  class = "img-responsive"   style="margin-bottom: 10px;"> -->
 
-				<form enctype="multipart/form-data" id="uploadFile" action="UploadServlet" method="post">
+				<form enctype="multipart/form-data" id="uploadFile" action="UploadServlet" method="post" style="height:100%">
 							
 							<div class="overlay">
-										<div id="loading-img"></div>
-									</div>
-							
-							<div style="width: 150px;height: 150px; margin: 0px auto;">
-							<img  id="profileImg" src="Images/default_profile_pic.png"  class = "img-responsive"   style="margin-bottom: 10px;">
-<!-- 							<img id="profileImg" src="Images/default_profile_pic.png" class="img-circle" style="width:100%; height:100%; background-color:whitesmoke;"> -->
+							<div id="loading-img" style="margin: 37px;"></div>
 							</div>
-					     	 <input type="file" name="fileName" id="fileName" style="display:none;" class="roleType" class="border"/>  
-					     	 <input type="submit" value="Save File" id="upldBtn" style="display:none;"/> &nbsp;&nbsp;
+							
+							<div class="profilewrap shopprofileimgclick" id="onEnter" style="margin-bottom: 10px; height:100%">
+								<img  id="shopprofileimg" src="https://placehold.it/350x260"  class="iim img-responsive icon_click" style="margin-bottom: 10px; height:100%">
+								<div class="hideme icon_click"><span class="glyphicon glyphicon-camera"></span></div>
+							</div>
+							
+					     	<input type="file" name="fileName" id="fileName" style="display:none;" class="roleType" class="border"/>  
+					     	<input type="submit" value="Save File" id="upldBtn" style="display:none;"/> &nbsp;&nbsp;
 						<script type="text/javascript" src="js/jquery.form.js"></script>
 						<script type="text/javascript">
 						$(document).ready(function (){
 							try
 							{
-								$("#profileImg").click(function(){
-									alert("1");
+								$(".shopprofileimgclick").click(function(){
 									$("#fileName").trigger("click");
 
 								});
 
 							$("#fileName").change(function()
 							{
-								alert("2");
+								$(".overlay").show();
 								$("#upldBtn").trigger("click");
-								alert("3");
 							});
 							
 							$('#uploadFile').ajaxForm({
@@ -88,18 +104,18 @@
 									
 									if(count == 10)
 										{
-										$("#profileImg").attr("src",msg);
+										$("#shopprofileimg").attr("src",msg);
 										$(".overlay").show().delay(100).fadeOut();
 										clearInterval(clear);
 										}
-								}, 500);
+								}, 1000);
 								
 								var loginData = $.session.get('loginData');
 								var sessionData = JSON.parse(loginData);
 								sessionData.profileImg = msg;
 								$.session.remove("loginData");
 								$.session.set("loginData", JSON.stringify(sessionData));
-								alert("JSON.stringify(sessionData) : "+JSON.stringify(sessionData));
+// 								alert("JSON.stringify(sessionData) : "+JSON.stringify(sessionData));
 
 							}
 						});

@@ -28,30 +28,18 @@ public class MyConnection extends HttpServlet{
 	      {
 	    	  
 				MakemyshopyLogger mms = new MakemyshopyLogger();
-//				Properties properties = new Properties();
 				try
 				{
 					String readvalue = "";
-/*//					FileReader fileReader = new FileReader("db.properties");
-					FileReader fileReader = new FileReader("F:\\D Drive\\My Career\\MMS Local Code\\Shopping\\db.properties");
-					properties.load(fileReader);
 
-					drivername = properties.getProperty("drivername");
-					connection = properties.getProperty("connection");
-					username = properties.getProperty("username");
-					password = properties.getProperty("password");*/
-					
 					String[] DBDataArray = DBData.split("#");
-//					System.out.println("DBDataArray.length : "+DBDataArray.length+" DBDataArray : "+DBDataArray.toString());
-					/*for(int i = 0; i<DBDataArray.length; i++)
-					{*/
+
 						connection = DBDataArray[0];
 						drivername = DBDataArray[1];
 						username = DBDataArray[2];
 						password = DBDataArray[3];
-					/*}*/
-					
-					if(username.equals("NaN"))
+
+				    if(username.equals("NaN"))
 					{
 						username = "";
 					}
@@ -62,7 +50,6 @@ public class MyConnection extends HttpServlet{
 					}
 					
 					readvalue = "drivername : " + drivername + " connection : " + connection + " username: " + username + " password : " + password + "";
-//					System.out.println(readvalue);
 
 					mms.writeLogs("ReadWriteUpdatePropertieFiles readCommonPropertieFile() Details from properties files : " + readvalue, 1);
 				}
@@ -73,7 +60,6 @@ public class MyConnection extends HttpServlet{
 				}
 	    	  
 	        Class.forName(drivername);  
-//	        con=DriverManager.getConnection("jdbc:mysql://localhost:3306/heenabou_shopprofile","heenabou_shop","rahulm@2015");
 	        con=DriverManager.getConnection(connection,username,password);
 	      }
 	    }
@@ -83,39 +69,4 @@ public class MyConnection extends HttpServlet{
 	    }        
 	    return con;
 	  }
-	/* public static void main(String args[])
-	 {
-		MyConnection.getConnection();
-	 }*/
 }
-	  
-	 /* public static void CloseConnection()
-	  {
-	    try
-	    {
-	       con.close();
-	       con = null;
-	    }
-	    catch (SQLException e)
-	    {
-	       e.printStackTrace();
-	    } 
-	  }*/
-	  
-	  /*public static ResultSet getResultFromSqlQuery(String SqlQueryString)
-	  {
-	     Statement stmt;
-	     ResultSet rs = null;
-	     try
-	     {  
-	        getConnection();  
-	        stmt = con.createStatement();
-	        rs = stmt.executeQuery(SqlQueryString);
-	     }
-	     catch (SQLException e)
-	     {
-	        e.printStackTrace();
-	     }       
-	     return rs;
-	  }
-	}*/

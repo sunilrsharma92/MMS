@@ -82,8 +82,8 @@ ul li:hover ul.dropdown-menu {
 		</div><!-- #header -->
 		
 		<div id="content">
-			<div id="loadpage" >
-				<jsp:include page="indexBody.jsp" />
+			<div id="loadpage">
+			<jsp:include page="indexBody.jsp" />
 			</div>
 		</div><!-- #content -->
 		

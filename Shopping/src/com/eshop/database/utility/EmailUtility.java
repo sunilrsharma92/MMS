@@ -16,7 +16,7 @@ import com.eshop.dao.ProductInterfaceImpl;
 public class EmailUtility
 {
 
-	public static boolean sendEmail(String email, String password, String propertyValue, String tempOtp) throws AddressException, MessagingException
+	public static boolean sendEmail(String email, String password, String propertyValue, String tempOtp, String purchaseTemplate) throws AddressException, MessagingException
 	{
 
 		// final String user="sunilrsharma92@gmail.com";//change accordingly
@@ -168,7 +168,7 @@ public class EmailUtility
 				{
 					msg = "";
 					message.setSubject("Order Details");
-					message.setContent(mailTemplet, "text/html; charset=utf-8");
+					message.setContent(purchaseTemplate, "text/html; charset=utf-8");
 				}
 
 				if (propertyValue != null && propertyValue.equalsIgnoreCase(ProductInterfaceImpl.FORGOT_PASSWORD))
@@ -183,11 +183,11 @@ public class EmailUtility
 					message.setText("Your password has been reset...\nIf it wasn't you,Make Forgot Password from our website to get your updated password");
 				}
 
-				if (propertyValue != null && propertyValue.equalsIgnoreCase(ProductInterfaceImpl.CHANGE_PASSWORD))
+				/*if (propertyValue != null && propertyValue.equalsIgnoreCase(ProductInterfaceImpl.CHANGE_PASSWORD))
 				{
 					message.setSubject("Information Alert");
 					message.setText("Your password has been reset...\nIf it wasn't you,Make Forgot Password from our website to get your updated password");
-				}
+				}*/
 				// 3rd step)send message
 				Transport.send(message);
 

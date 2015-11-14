@@ -23,6 +23,7 @@ import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
+import com.eshop.dao.ConstantValues;
 import com.eshop.dao.ProductInterface;
 import com.eshop.dao.ProductInterfaceImpl;
 import com.eshop.logger.MakemyshopyLogger;
@@ -34,9 +35,9 @@ import com.eshop.logger.MakemyshopyLogger;
 public class UploadServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     private ServletFileUpload uploader = null;
-//    private String relativePath = "F:\\Git\\Shopping Local Code\\Shopping\\WebContent\\Images\\ProfileImg";
     
-    private String relativePath = System.getProperty("catalina.base") + "/webapps/heenaboutique.com/ROOT/Images/ProfileImg";
+//    private String relativePath = ConstantValues.relativePathHC;
+    private String relativePath = ConstantValues.relativePath;
     
     private String foldername;
     private String PathofFile;

@@ -24,7 +24,7 @@ public class ProductInterfaceImpl implements ProductInterface
 	JSONArray jsonarray = new JSONArray();
 	JSONArray jsonarray1 = new JSONArray();
 	MakemyshopyLogger mms = null;
-	PreparedStatement ps, ps1, ps2, ps3 = null;
+	PreparedStatement ps, ps1, ps2, ps3, ps4 = null;
 	Connection conn = null;
 	ResultSet rs, rs1, rs2 = null;
 	int result, result1, result2, resultTemp = 0;
@@ -715,10 +715,12 @@ public class ProductInterfaceImpl implements ProductInterface
 						
 						Long userid = (Long) object.get("userid");
 						String userType = (String) object.get("userType");
+						String newAddress = (String) object.get("newAddress");
 						float total = 0;
-						String orderid = RandomStringUtilsTrial.orderNumber();
+						String orderid = RandomStringUtilsTrial.orderNumber().toUpperCase();
 						String sql = "";
 						String usertypecolumnname = "";
+						boolean addValidation = true;
 						
 						if (userType != null && userType.trim().equalsIgnoreCase("customer"))
 						{
@@ -767,12 +769,46 @@ public class ProductInterfaceImpl implements ProductInterface
 								result1 = ps2.executeUpdate();
 								if (result1 > 0)
 								{
+									parentjson = CommonMethodImpl.putSuccessJson(parentjson, 2013);
+									parentjson.put("orderid", orderid);
 									
+								}
+								else
+								{
+									parentjson = CommonMethodImpl.putFailedJson(parentjson, command);
+									parentjson.put("statusdesc", "Something went wrong. Please try again..");
 								}
 							}
 						}
 						
-						parentjson = CommonMethodImpl.putSuccessJson(parentjson, 2013);
+						String addressQuery = "select shipping_address from shipping_address where "+usertypecolumnname+" = ?";
+						ps3 = conn.prepareStatement(addressQuery);
+						ps3.setLong(1, userid);
+						rs2 = ps3.executeQuery();
+						while(rs2.next())
+						{
+							String dbAddress = rs2.getString("shipping_address");
+							if(dbAddress.equalsIgnoreCase(newAddress))
+							{
+								addValidation = false;
+							}
+							
+						}
+						
+						if(addValidation == true)
+						{
+							String addAddressQuery = "insert into shipping_address("+usertypecolumnname+", shipping_address, orderid) values(?, ?, ?)";
+							ps4 = conn.prepareStatement(addAddressQuery);
+							ps4.setLong(1, userid);
+							ps4.setString(2, newAddress);
+							ps4.setString(3, orderid);
+							result2 = ps4.executeUpdate();
+							if(result2 > 0)
+							{
+								
+							}
+						}
+						
 						output = parentjson.toString();
 						return output;
 					}
@@ -877,14 +913,14 @@ public class ProductInterfaceImpl implements ProductInterface
 							orderSQl = "select c.*, s.company_name, s.first_name, s.last_name, "
 									+ "s.phone, s.address1, s.address2, s.city,"
 									+ " s.state, s.street, s.postal_code, s.country, "
-									+ "s.profile_img from cart c, suppliers s "
+									+ "s.profile_img, s.email from cart c, suppliers s "
 									+ "where c."+usertypecolumnname+" = ? and c.orderid=? and c.shopid = s.supplier_key";
 						}
 						else if (userType != null && userType.trim().equalsIgnoreCase("supplier"))
 						{
 							usertypecolumnname = "shopid";
-							orderSQl = "select c.*,  s.first_name, s.last_name, s.phone, s.address1, s.address2, s.city,s.state, s.street, s.postal_code, s.country, s.profile_img"
-							+" from cart c, customers s where c."+usertypecolumnname+" = ? and c.orderid= ?  and c.customer_key = s.customer_key";
+							orderSQl = "select c.*,  s.first_name, s.last_name, s.phone, s.address1, s.address2, s.city,s.state, s.street, s.postal_code, s.country, s.profile_img, s.email, sp.shipping_address "
+							+" from cart c, customers s, shipping_address sp where c."+usertypecolumnname+" = ? and c.orderid= ?  and c.customer_key = s.customer_key and sp.orderid = '"+orderid+"'";
 						}
 						System.out.println("SQL : "+orderSQl);
 						ps = conn.prepareStatement(orderSQl);
@@ -902,11 +938,33 @@ public class ProductInterfaceImpl implements ProductInterface
 							{
 								id = rs.getLong("customer_key");
 								childjson.put("companyname", rs.getString("company_name"));
+								
+								if(rs.getString("address1") != null)
+								{
+									childjson.put("address1", rs.getString("address1"));
+								}
+								else
+								{
+									childjson.put("address1", "");
+								}
+								
+								if(rs.getString("address2") != null)
+								{
+									childjson.put("address2", rs.getString("address2"));
+								}
+								else
+								{
+									childjson.put("address2", "");
+								}
+								
 							}
 							else if(userType.trim().equalsIgnoreCase("supplier"))
 							{
 								id = rs.getLong("supplier_key");
 								childjson.put("companyname", "");
+//								childjson.put("shippingAddress", rs.getString("shipping_address"));
+								childjson.put("address1", rs.getString("shipping_address"));
+								childjson.put("address2", "");
 								
 							}
 							
@@ -927,24 +985,6 @@ public class ProductInterfaceImpl implements ProductInterface
 							childjson.put("name", rs.getString("first_name")+" "+rs.getString("last_name"));
 							childjson.put("phone", rs.getString("phone"));
 							
-							if(rs.getString("address1") != null)
-							{
-								childjson.put("address1", rs.getString("address1"));
-							}
-							else
-							{
-								childjson.put("address1", "");
-							}
-							
-							if(rs.getString("address2") != null)
-							{
-								childjson.put("address2", rs.getString("address2"));
-							}
-							else
-							{
-								childjson.put("address2", "");
-							}
-							
 							childjson.put("city", rs.getString("city"));
 							childjson.put("state", rs.getString("state"));
 							childjson.put("street", rs.getString("street"));
@@ -962,6 +1002,44 @@ public class ProductInterfaceImpl implements ProductInterface
 						return output;
 					}
 					
+					catch (Exception e)
+					{
+						e.printStackTrace();
+						mms.writeLogs("ProductInterfaceImpl handleRequestResponse() "+command+" Exception : "+e,0);
+					}
+					break;
+					
+				case 1016:
+					try
+					{
+							JSONObject object = (JSONObject) JSONValue.parse(jsonMsg);
+							
+							String purchaseTemplet = (String) object.get("purchaseTemplet");
+							String userType = (String) object.get("userType");
+							String email = (String) object.get("email");
+							Long total = (Long) object.get("total");
+							String phone = (String) object.get("phone");
+							String name = (String) object.get("name");
+							String orderid = (String) object.get("orderid");
+							
+							boolean verification = EmailUtility.sendEmail(email, null, PURCHASE_DETAILS, null, purchaseTemplet);
+							if(verification)
+							{
+								parentjson = CommonMethodImpl.putSuccessJson(parentjson, 2016);
+								parentjson.put("statusdesc", "Your order has been placed successfully, please visit to your mail id or to makemyshopy.com for complete details");
+							}
+							else
+							{
+								parentjson = CommonMethodImpl.putFailedJson(parentjson, command);
+								parentjson.put("statusdesc", "Your order has been placed successfully, but failed to send order details to your registered mail-id");
+							}
+							
+							output = parentjson.toString();
+							return output;
+							
+//							boolean result = sm.sendMessage("+91"+phone,orderid);
+							
+					}
 					catch (Exception e)
 					{
 						e.printStackTrace();
@@ -1227,7 +1305,7 @@ public class ProductInterfaceImpl implements ProductInterface
 	
 									if (tempOtp != null && !tempOtp.trim().isEmpty())
 									{
-										boolean verification = EmailUtility.sendEmail(emailSignUp, null, OTP_REGISTER, tempOtp);
+										boolean verification = EmailUtility.sendEmail(emailSignUp, null, OTP_REGISTER, tempOtp, null);
 	//									if (userType != null && userType.trim().equalsIgnoreCase("customer"))
 	//									{
 	//										user = "customers";
@@ -1399,7 +1477,7 @@ public class ProductInterfaceImpl implements ProductInterface
 							
 							if (tempOtp != null && !tempOtp.trim().isEmpty())
 							{
-								boolean verification = EmailUtility.sendEmail((String) parentjson.get("emailId"), (String) parentjson.get("password"), FORGOT_PASSWORD, tempOtp);
+								boolean verification = EmailUtility.sendEmail((String) parentjson.get("emailId"), (String) parentjson.get("password"), FORGOT_PASSWORD, tempOtp, null);
 								if(verification)
 								{
 									String encryptedPwd = EncryptionUtility.encryptUsingMD5(tempOtp); // -- otp set as pwd 
@@ -1643,7 +1721,7 @@ public class ProductInterfaceImpl implements ProductInterface
 								result = ps.executeUpdate();
 								if (result > 0)
 								{
-									boolean verification = EmailUtility.sendEmail(email, null, CHANGE_PASSWORD, null);
+									boolean verification = EmailUtility.sendEmail(email, null, CHANGE_PASSWORD, null, null);
 									if(verification)
 									{
 										parentjson = CommonMethodImpl.putSuccessJson(parentjson, 2056);
