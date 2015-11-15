@@ -3,9 +3,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>MakeMyShopy</title>
+<title>MakeMyShopy, India's First Local Shop Shopping | Buy local grocery goods,Hotels etc</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<link rel="icon" type="image/png" href="Images/Modified.ico">
+<meta name="Keywords" content="Online Shopping, India, Books, Store, makemyshopy">
+<meta name="Description" content="makemyshopy.com - India's Local Shopping website to buy wide range of products. CoD and Free Shipping.">
 
 <link rel="stylesheet" href="css/bootstrap.css">
 <link rel="stylesheet" href="js/autoComplete/css/jquery-ui.css">
