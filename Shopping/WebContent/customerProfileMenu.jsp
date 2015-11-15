@@ -51,7 +51,7 @@ table td
 									</div>
 							
 							<div class="profilewrap" id="onEnter" style="width: 150px;height: 150px; margin: 0px auto;">
-								<img class="icon_click" id="profileImg" src="Images/default_profile_pic.png" class="img-circle" style="width:100%; height:100%; background-color:whitesmoke;">
+								<img id="profileImg" src="Images/default_profile_pic.png" class="img-circle icon_click" style="width:100%; height:100%; background-color:whitesmoke;">
 								<div class="hideme icon_click"><span class="glyphicon glyphicon-camera "></span></div>
 							</div>
 					     	 <input type="file" name="fileName" id="fileName" style="display:none;" class="roleType" class="border"/>  
