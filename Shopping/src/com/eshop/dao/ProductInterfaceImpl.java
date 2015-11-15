@@ -36,7 +36,7 @@ public class ProductInterfaceImpl implements ProductInterface
 	public static final String PURCHASE_DETAILS = "purchaseDetails";
 
 	@Override
-	public String handleRequestResponse(String jsonMsg, int command, String DBData)
+	public String handleRequestResponse(String jsonMsg, int command, String DBData, String regsmsTemplet)
 	{
 		mms = new MakemyshopyLogger();
 		try
@@ -1324,7 +1324,7 @@ public class ProductInterfaceImpl implements ProductInterface
 											resultTemp = ps1.executeUpdate();
 											if (resultTemp > 0)
 											{
-												boolean result = sm.sendMessage("+91"+(String) object.get("mobileKey"),tempOtp);
+												boolean result = sm.sendMessage("+91"+(String) object.get("mobileKey"),tempOtp, regsmsTemplet, "registration");
 												parentjson = new JSONObject();
 												
 												if (userType != null && userType.trim().equalsIgnoreCase("supplier"))

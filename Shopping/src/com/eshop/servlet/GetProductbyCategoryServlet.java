@@ -31,6 +31,15 @@ public class GetProductbyCategoryServlet extends HttpServlet
 	private String username = "";
 	private String password = "";
 	private String DBData = "";
+	
+	private String accountid = "";
+	private String apikey = "";
+	private String Senderid = "";
+	private String templateid = "";
+	private String templatename = "";
+	private String regsmsTemplet = "";
+	private String readvalue = "";
+	
 	MakemyshopyLogger mms = null;
 	
 	/**
@@ -58,9 +67,20 @@ public class GetProductbyCategoryServlet extends HttpServlet
 	    drivername = ss.getInitParameter("drivername");
 	    username = ss.getInitParameter("username");
 	    password = ss.getInitParameter("password");
+	    
 	    DBData = connection+"#"+drivername+"#"+username+"#"+password;
 	    mms.writeLogs("GetProductByCategoryServlet --> DOPost ------> "+connection+" ** "+drivername+" ** "+username+ "**" +password, 1);
 	    
+	    accountid = ss.getInitParameter("otp_accountid");
+		apikey = ss.getInitParameter("otp_apikey");
+		Senderid = ss.getInitParameter("otp_Senderid");
+		templateid = ss.getInitParameter("otp_templateid");
+		templatename = ss.getInitParameter("otp_templatename");
+		
+		regsmsTemplet = accountid+"#"+apikey+"#"+Senderid+"#"+templateid+"#"+templatename;
+		readvalue = "accountid : "+accountid+" apikey : "+apikey+" Senderid: "+Senderid+" templatename : "+templatename+" templateid : "+templateid+" accountid : "+accountid+"";
+		System.out.println(readvalue);
+		
 	}
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
@@ -94,8 +114,8 @@ public class GetProductbyCategoryServlet extends HttpServlet
 				jsonMsg = objjson.toJSONString();
 				mms.writeLogs("Command : "+command+" JSON Request with IPAddress : "+jsonMsg, 1);
 			}
-	
-			String strjsonMsgResponse = getResponse.handleRequestResponse(jsonMsg, command, DBData);
+			
+			String strjsonMsgResponse = getResponse.handleRequestResponse(jsonMsg, command, DBData, regsmsTemplet);
 			
 			JSONObject object = (JSONObject) JSONValue.parse(strjsonMsgResponse);
 			int command1 = ((Long) object.get("command")).intValue();

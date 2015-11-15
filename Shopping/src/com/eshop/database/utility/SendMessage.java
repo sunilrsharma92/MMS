@@ -14,7 +14,7 @@ import com.eshop.logger.MakemyshopyLogger;
 public class SendMessage
 {
 //	public static void main(String args[])
-	public boolean sendMessage(String mobilenumber, String tempOtp)
+	public boolean sendMessage(String mobilenumber, String tempOtp, String regsmsTemplet, String action)
 	{
 //		mms.writeLogs("mobilenumber : "+mobilenumber+" tempOtp : "+tempOtp,1);
 		String accountid = "";
@@ -26,19 +26,27 @@ public class SendMessage
 		try
 		{
 			MakemyshopyLogger mms = new MakemyshopyLogger();
-			Properties properties = new Properties();
+//			Properties properties = new Properties();
 			try
 			{
 				String readvalue = "";
 //				FileReader fileReader = new FileReader("sms.properties");
-				FileReader fileReader = new FileReader("F:\\D Drive\\My Career\\MMS Local Code\\Shopping\\sms.properties");
+				/*FileReader fileReader = new FileReader("F:\\D Drive\\My Career\\MMS Local Code\\Shopping\\sms.properties");
 				properties.load(fileReader);
 
 				accountid = properties.getProperty("otp_accountid");
 				apikey = properties.getProperty("otp_apikey");
 				Senderid = properties.getProperty("otp_Senderid");
 				templateid = properties.getProperty("otp_templateid");
-				templatename = properties.getProperty("otp_templatename");
+				templatename = properties.getProperty("otp_templatename");*/
+				
+				
+				String[] prop = regsmsTemplet.split("#");
+				accountid = prop[0];
+				apikey = prop[1];
+				Senderid = prop[2];
+				templateid = prop[3];
+				templatename = prop[4];
 				
 				readvalue = "accountid : "+accountid+" apikey : "+apikey+" Senderid: "+Senderid+" templatename : "+templatename+" templateid : "+templateid+" accountid : "+accountid+"";
 				System.out.println(readvalue);
