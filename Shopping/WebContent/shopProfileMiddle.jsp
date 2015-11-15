@@ -13,7 +13,7 @@
 <div class = "container">
   <div class = "row">
    <div class = "col-md-2">
-    <div class = "list-group side-bar hidemenu">
+    <div class = "list-group side-bar hidemenu" style="display: none;">
 <!--      <a href = "profile1.html" class = "list-group-item active"><span class = "glyphicon glyphicon-home"></span> Dash</a> -->
 <!--      <a href = "#" class = "list-group-item"><span class = "glyphicon glyphicon-pencil"></span> Edit Slider</a> -->
 <!--      <a href = "#" class = "list-group-item"><span class = "glyphicon glyphicon-pencil"></span> Edit Featured</a> -->

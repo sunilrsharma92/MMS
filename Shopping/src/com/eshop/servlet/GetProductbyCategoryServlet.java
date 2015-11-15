@@ -25,7 +25,14 @@ import com.eshop.logger.MakemyshopyLogger;
 public class GetProductbyCategoryServlet extends HttpServlet
 {
 	private static final long serialVersionUID = 1L;
-
+	
+	private String connection = "";
+	private String drivername = "";
+	private String username = "";
+	private String password = "";
+	private String DBData = "";
+	MakemyshopyLogger mms = null;
+	
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
@@ -43,6 +50,18 @@ public class GetProductbyCategoryServlet extends HttpServlet
 
 	}
 
+	public void init() throws ServletException
+	{
+		mms = new MakemyshopyLogger();
+		ServletContext ss = this.getServletContext();
+		connection = ss.getInitParameter("connection");
+	    drivername = ss.getInitParameter("drivername");
+	    username = ss.getInitParameter("username");
+	    password = ss.getInitParameter("password");
+	    DBData = connection+"#"+drivername+"#"+username+"#"+password;
+	    mms.writeLogs("GetProductByCategoryServlet --> DOPost ------> "+connection+" ** "+drivername+" ** "+username+ "**" +password, 1);
+	    
+	}
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
@@ -51,50 +70,30 @@ public class GetProductbyCategoryServlet extends HttpServlet
 	{
 		PrintWriter out = response.getWriter();
 		ProductInterface getResponse = new ProductInterfaceImpl();
-		MakemyshopyLogger mms = new MakemyshopyLogger();
+		mms = new MakemyshopyLogger();
 		HttpSession session = request.getSession();
+		IPAddressUtility ipadd = new IPAddressUtility();
+		JSONObject objjson = new JSONObject();
+		JSONParser objjsonparser = new JSONParser();
 		
 		try
 		{
-			//Getting DB Connection from web.xml
-			ServletContext ss = this.getServletContext();
-	        String connection = ss.getInitParameter("connection");
-	        String drivername = ss.getInitParameter("drivername");
-	        String username = ss.getInitParameter("username");
-	        String password = ss.getInitParameter("password");
 	        
-	        mms.writeLogs("GetProductByCategoryServlet --> DOPost ------> "+connection+" ** "+drivername+" ** "+username+ "**" +password, 1);
-	        String DBData = connection+"#"+drivername+"#"+username+"#"+password;
-			//////////////////////////////////////////////
-			
-			
-			
-			
-			
-			
 			String jsonMsg = request.getParameter("jsonMsg");
 			int command = Integer.parseInt(request.getParameter("command"));
 			
 			if(command == 1051 || command == 1011)
 			{
 				String newjsonMsg =jsonMsg;
-				IPAddressUtility ipadd = new IPAddressUtility();
-				
 				String IPAddress = ipadd.getIpAddress();
-				
-				JSONObject objjson = new JSONObject();
-				JSONParser objjsonparser = new JSONParser();
 				Object obj = objjsonparser.parse(newjsonMsg);
+				
 				objjson = (JSONObject)obj;
 				objjson.put("ipaddress", IPAddress);
 				
 				jsonMsg = objjson.toJSONString();
 				mms.writeLogs("Command : "+command+" JSON Request with IPAddress : "+jsonMsg, 1);
 			}
-			
-	//		mms.writeLogs("Command : "+command+" JSON Request TO SERVLET : "+jsonMsg, 1);
-			
-			// System.out.println("jsonMsg  :::::::::::: "+jsonMsg+"  Command :::::::::::: "+command);
 	
 			String strjsonMsgResponse = getResponse.handleRequestResponse(jsonMsg, command, DBData);
 			
@@ -102,8 +101,6 @@ public class GetProductbyCategoryServlet extends HttpServlet
 			int command1 = ((Long) object.get("command")).intValue();
 			if(command1 == 2051)
 			{
-				
-
 				int key = ((Long) object.get("key")).intValue();
 				String userType = (String) object.get("userType");
 				
@@ -114,7 +111,6 @@ public class GetProductbyCategoryServlet extends HttpServlet
 				mms.writeLogs("Command : "+command+" JSON Msg for Login to store in session :  "+jsonMsg, 1);
 			}
 			
-	//		mms.writeLogs("JSON Response FROM SERVLET : "+strjsonMsgResponse, 1);
 			out.println(strjsonMsgResponse);
 			
 		}
@@ -122,6 +118,16 @@ public class GetProductbyCategoryServlet extends HttpServlet
 		{
 			mms.writeLogs("GetProductbyCategoryServlet doPost Exception : "+e, 0);
 			e.printStackTrace();
+		}
+		finally
+		{
+			out = null;
+			getResponse = null;
+			mms = null;
+			session = null;
+			ipadd = null;
+			objjson = null;
+			objjsonparser = null;
 		}
 	}
 

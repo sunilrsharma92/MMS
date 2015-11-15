@@ -27,6 +27,7 @@ import org.apache.lucene.util.Version;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
+import com.eshop.dao.ConstantValues;
 import com.eshop.database.utility.MyConnection;
 import com.eshop.logger.MakemyshopyLogger;
 import com.shopping.common.CommonMethodImpl;
@@ -35,7 +36,10 @@ import com.shopping.common.CommonMethodImpl;
 public class SearchUtility {
  
 	MakemyshopyLogger mms = new MakemyshopyLogger();
-	static String path = System.getProperty("catalina.base")+"/temp/IndexDirectory";
+	
+	
+//	static String path = System.getProperty("catalina.base")+"/temp/IndexDirectory";
+	static String path = ConstantValues.SearchUtilityPath;
 	
 	
  public static final File INDEX_DIRECTORY = new File(path);

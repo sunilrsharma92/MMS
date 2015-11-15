@@ -2,14 +2,11 @@ function handleRequest()
 {
 	this.handleCategoryRequest = handleCategoryRequest;
 	this.handleAllProductForAutoCompleteRequest = handleAllProductForAutoCompleteRequest;
-	// this.handleSubCategoryRequest = handleSubCategoryRequest;
-//	this.handleShopProfileDetails = handleShopProfileDetails;
 	this.handleUserDetailsSave = handleUserDetailsSave;
 	this.handleShopProfileDisplay = handleShopProfileDisplay;
 	this.handleLogin = handleLogin;
 	this.handleRegisteration = handleRegisteration;
 	this.handleResetPassword = handleResetPassword;
-	// this.handleUsernameAvailCust = handleUsernameAvailCust;
 	this.handleForgotPwd = handleForgotPwd;
 	this.handledisplaySelectedProduct = handledisplaySelectedProduct;
 	this.handledisplayProductinCart = handledisplayProductinCart;
@@ -20,28 +17,23 @@ function handleRequest()
 	this.removeFromCart = removeFromCart;
 	this.conformOder = conformOder;
 	this.getOrdersHistory = getOrdersHistory;
-
-	// ****** This function is used to get all main product category ******//
+	this.emailOrderDetails = emailOrderDetails;
+	
 	function handleCategoryRequest()
 	{
 		try
 		{
 			var strmainCategory = {};
 			strmainCategory.command = 1000;
-
 			var strjsonMsgForstrmainCategory = JSON.stringify(strmainCategory);
-			// alert("handleRequest handleCategoryRequest
-			// strjsonMsgForstrmainCategory : "+strjsonMsgForstrmainCategory);
 			console.log("handleRequest     handleCategoryRequest     strjsonMsgForstrmainCategory : " + strjsonMsgForstrmainCategory);
 			handleAllListResponse(strjsonMsgForstrmainCategory);
-
 		}
 		catch (e)
 		{
 			console.log("handleRequest     handleCategoryRequest     Exception :: " + e);
 		}
 	}
-	
 	function handleAllProductForAutoCompleteRequest(action)
 	{
 		try
@@ -49,45 +41,18 @@ function handleRequest()
 			var strProduct = {};
 			strProduct.action = action;
 			strProduct.command = 1002;
-			
 			var strjsonMsgForstrstrProduct = JSON.stringify(strProduct);
 			console.log("handleRequest     handleCategoryRequest     strjsonMsgForstrstrProduct : " + strjsonMsgForstrstrProduct);
 			handleAllListResponse(strjsonMsgForstrstrProduct);
-			
 		}
 		catch (e)
 		{
 			console.log("handleRequest     handleCategoryRequest     Exception :: " + e);
 		}
 	}
-
-	// -- old method,currently not in use
-	/*function handleShopProfileDetails(firstName, lastName, address, city, state, pincode)
+	function handleUserDetailsSave(firstName, lastName, mobileNo, email, address1, address2, state, city, street, pincode, userType, key)
 	{
 		try
-		{
-			var strShopProfile = {};
-			strShopProfile.firstName = firstName;
-			strShopProfile.lastName = lastName;
-			strShopProfile.address = address;
-			strShopProfile.city = city;
-			strShopProfile.state = state;
-			strShopProfile.pincode = parseInt(pincode);
-			strShopProfile.command = 1001;
-
-			var strjsonMsgForShopProfile = JSON.stringify(strShopProfile);
-			console.log("handleRequest     handleShopProfileDetails     strjsonMsgForstrShopProfile : " + strjsonMsgForShopProfile);
-			handleAllListResponse(strjsonMsgForShopProfile);
-
-		}
-		catch (e)
-		{
-			console.log("handleRequest     handleShopProfileDetails     Exception :: " + e);
-		}
-	}*/
-
-	function handleUserDetailsSave(firstName, lastName, mobileNo, email, address1, address2, state, city, street, pincode, userType, key) {
-	try
 		{
 			var strUserDetails = {};
 			strUserDetails.firstName = firstName;
@@ -103,19 +68,15 @@ function handleRequest()
 			strUserDetails.userType = userType;
 			strUserDetails.key = +key;
 			strUserDetails.command = 1055;
-
 			var strjsonMsgForUserDetails = JSON.stringify(strUserDetails);
-			console.log("handleRequest     handleUserDetailsSave     strUserDetails : "+ strjsonMsgForUserDetails);
+			console.log("handleRequest     handleUserDetailsSave     strUserDetails : " + strjsonMsgForUserDetails);
 			handleAllListResponse(strjsonMsgForUserDetails);
-
 		}
 		catch (e)
 		{
 			console.log("handleRequest     handleCustomerDetailsSave     Exception :: " + e);
 		}
 	}
-
-	// -- customer/shopKeeper login verification
 	function handleLogin(emailLogin, passLogin, userType, otpLogin)
 	{
 		try
@@ -126,54 +87,43 @@ function handleRequest()
 			login.userType = userType;
 			login.otpLogin = otpLogin;
 			login.command = 1051;
-
 			var strJsonMsgForLogin = JSON.stringify(login);
 			console.log("handleRequest     handleLogin     strJsonMsgForLogin : " + strJsonMsgForLogin);
-
 			handleAllListResponse(strJsonMsgForLogin);
 		}
 		catch (e)
 		{
-			console.log("handleRequest handleLogin Exception :: " + e)
+			console.log("handleRequest handleLogin Exception :: " + e);
 		}
 	}
-
-	// -- Customer/ShopKeeper sign up and email verification
-
 	function handleRegisteration(passSignUp, mobileKey, emailKey, userType)
 	{
 		try
 		{
 			var signUp = {};
 			signUp.passSignUp = passSignUp;
-//			signUp.firstNameSignUp = firstNameSignUp;
 			signUp.mobileKey = mobileKey;
 			signUp.emailKey = emailKey;
 			signUp.userType = userType;
 			signUp.command = 1052;
-
 			var strJsonMsgForSignUp = JSON.stringify(signUp);
 			console.log("handleRequest     handleRegisteration     strJsonMsgForSignUp : " + strJsonMsgForSignUp);
-
 			handleAllListResponse(strJsonMsgForSignUp);
 		}
 		catch (e)
 		{
-			console.log("handleRequest handleRegisteration Exception :: " + e)
+			console.log("handleRequest handleRegisteration Exception :: " + e);
 		}
 	}
-
 	function handleResetPassword(password1, userType, email)
 	{
 		try
 		{
 			var resetPwd = {};
-//			changePwd.oldPwd = oldPwd;
 			resetPwd.pwd = password1;
 			resetPwd.email = email;
 			resetPwd.userType = userType;
 			resetPwd.command = 1056;
-
 			var strJsonMsgForResetPwd = JSON.stringify(resetPwd);
 			handleAllListResponse(strJsonMsgForResetPwd);
 			console.log("handleRequest     handleResetPassword     strJsonMsgForResetPwd : " + strJsonMsgForResetPwd);
@@ -183,7 +133,6 @@ function handleRequest()
 			console.log("handleRequest handleResetPassword Exception ::" + e);
 		}
 	}
-
 	function handleForgotPwd(emailForgotPwd, userType)
 	{
 		try
@@ -192,21 +141,15 @@ function handleRequest()
 			forgotPwd.emailForgotPwd = emailForgotPwd;
 			forgotPwd.userType = userType;
 			forgotPwd.command = 1054;
-
 			var strJsonMsgForForgotPwd = JSON.stringify(forgotPwd);
 			console.log("handleRequest     handleForgotPwd     strJsonMsgForForgotPwd : " + strJsonMsgForForgotPwd);
-
 			handleAllListResponse(strJsonMsgForForgotPwd);
-
 		}
 		catch (e)
 		{
-			console.log("handleRequest handleForgotPwd Exception :: " + e)
+			console.log("handleRequest handleForgotPwd Exception :: " + e);
 		}
-
 	}
-	
-	// -- show shop profile for particular supplier
 	function handleShopProfileDisplay(supplierKey)
 	{
 		try
@@ -214,18 +157,15 @@ function handleRequest()
 			var strShopProfileDisplay = {};
 			strShopProfileDisplay.supplierKey = parseInt(supplierKey);
 			strShopProfileDisplay.command = 1010;
-			// alert('haha');
 			var strJsonMsgForShopProfile = JSON.stringify(strShopProfileDisplay);
 			console.log("handleRequest     handleShopProfileDisplay     strJsonMsgForShopProfile : " + strJsonMsgForShopProfile);
-
 			handleAllListResponse(strJsonMsgForShopProfile);
 		}
 		catch (e)
 		{
-			console.log("handleRequest handleShopProfileDisplay Exception :: " + e)
+			console.log("handleRequest handleShopProfileDisplay Exception :: " + e);
 		}
 	}
-	
 	function handledisplaySelectedProduct(mainCategoryID, subCategoryID, userid, userType, action)
 	{
 		try
@@ -237,9 +177,7 @@ function handleRequest()
 			strSelectedProduct.userType = userType;
 			strSelectedProduct.action = action;
 			strSelectedProduct.command = 1003;
-
 			var strjsonMsgForSelectedProduct = JSON.stringify(strSelectedProduct);
-
 			handleAllListResponse(strjsonMsgForSelectedProduct);
 			console.log("handleRequest     handledisplaySelectedProduct     strjsonMsgForSelectedProduct :: " + strjsonMsgForSelectedProduct);
 		}
@@ -248,7 +186,6 @@ function handleRequest()
 			console.log("handleRequest     handledisplaySelectedProduct     Exception :: " + e);
 		}
 	}
-
 	function handledisplayProductinCart(productArray, action, userid, userType)
 	{
 		try
@@ -259,18 +196,15 @@ function handleRequest()
 			strProductinCart.userid = +userid;
 			strProductinCart.userType = userType;
 			strProductinCart.command = 1005;
-
 			var strjsonMsgForstrProductinCart = JSON.stringify(strProductinCart);
 			console.log("handleRequest     handledisplaySelectedProduct     handledisplayProductinCart : " + strjsonMsgForstrProductinCart);
 			handleAllListResponse(strjsonMsgForstrProductinCart);
-
 		}
 		catch (e)
 		{
 			console.log("handleRequest     handledisplaySelectedProduct     Exception :: " + e);
 		}
 	}
-
 	function searchProduct(txt, action, shopid, userid, userType)
 	{
 		try
@@ -282,11 +216,9 @@ function handleRequest()
 			strSearchProduct.userid = +userid;
 			strSearchProduct.userType = userType;
 			strSearchProduct.command = 1006;
-
 			var strjsonMsgForstrSearchProduct = JSON.stringify(strSearchProduct);
 			console.log("handleRequest     searchProduct/Shop  : " + strjsonMsgForstrSearchProduct);
 			handleAllListResponse(strjsonMsgForstrSearchProduct);
-
 		}
 		catch (e)
 		{
@@ -301,18 +233,15 @@ function handleRequest()
 			strSearchAddress.key = +key;
 			strSearchAddress.userType = userType;
 			strSearchAddress.command = 1007;
-			
 			var strjsonMsgForstrSearchAddress = JSON.stringify(strSearchAddress);
 			console.log("handleRequest     getUserAddressfromShippingaddress  : " + strjsonMsgForstrSearchAddress);
 			handleAllListResponse(strjsonMsgForstrSearchAddress);
-			
 		}
 		catch (e)
 		{
 			console.log("handleRequest     handledisplaySelectedProduct     Exception :: " + e);
 		}
 	}
-	
 	function handleUpdateProfilePic(profileImg, key, userType, email)
 	{
 		try
@@ -323,18 +252,15 @@ function handleRequest()
 			strUpdateProfilePic.profileImg = profileImg;
 			strUpdateProfilePic.email = email;
 			strUpdateProfilePic.command = 1057;
-			
 			var strjsonMsgForUpdateProfilePic = JSON.stringify(strUpdateProfilePic);
 			console.log("handleRequest     getUserAddressfromShippingaddress  : " + strjsonMsgForUpdateProfilePic);
 			handleAllListResponse(strjsonMsgForUpdateProfilePic);
-			
 		}
 		catch (e)
 		{
 			console.log("handleRequest     handleUpdateProfilePic     Exception :: " + e);
 		}
 	}
-	
 	function aadToCartForLoggedUser(userid, userType, productid, authorisedUser, quantity, action, shopid)
 	{
 		try
@@ -348,19 +274,15 @@ function handleRequest()
 			straadToCart.action = action;
 			straadToCart.authoriseduser = authorisedUser;
 			straadToCart.command = 1011;
-			
 			var strjsonMsgForaadToCart = JSON.stringify(straadToCart);
 			console.log("handleRequest     aadToCartForLoggedUser  : " + strjsonMsgForaadToCart);
-//			alert("handleRequest     aadToCartForLoggedUser  : " + strjsonMsgForaadToCart);
 			handleAllListResponse(strjsonMsgForaadToCart);
-			
 		}
 		catch (e)
 		{
 			console.log("handleRequest     aadToCartForLoggedUser     Exception :: " + e);
 		}
 	}
-	
 	function removeFromCart(userid, userType, productid, authorisedUser)
 	{
 		try
@@ -371,38 +293,33 @@ function handleRequest()
 			strremoveFromCart.productid = +productid;
 			strremoveFromCart.authoriseduser = authorisedUser;
 			strremoveFromCart.command = 1012;
-			
 			var strjsonMsgForremoveFromCart = JSON.stringify(strremoveFromCart);
 			console.log("handleRequest     removeFromCartForLoggedUser  : " + strjsonMsgForremoveFromCart);
 			handleAllListResponse(strjsonMsgForremoveFromCart);
-			
 		}
 		catch (e)
 		{
 			console.log("handleRequest     removeFromCartForLoggedUser     Exception :: " + e);
 		}
 	}
-		
-	function conformOder(userid, userType)
+	function conformOder(userid, userType, newAddress)
 	{
 		try
 		{
 			var strconform = {};
 			strconform.userid = +userid;
 			strconform.userType = userType;
+			strconform.newAddress = newAddress;
 			strconform.command = 1013;
-			
 			var strjsonMsgForstrconform = JSON.stringify(strconform);
 			console.log("handleRequest     conformOder  strjsonMsgForstrconform  : " + strjsonMsgForstrconform);
 			handleAllListResponse(strjsonMsgForstrconform);
-			
 		}
 		catch (e)
 		{
 			console.log("handleRequest     conformOder     Exception :: " + e);
 		}
 	}
-	
 	function getOrdersHistory(userid, userType, command, orderid)
 	{
 		try
@@ -415,40 +332,36 @@ function handleRequest()
 			{
 				strconform.orderid = orderid;
 			}
-			
 			var strjsonMsgForstrconform = JSON.stringify(strconform);
 			console.log("handleRequest     getOrdersHistory  strjsonMsgForstrconform : " + strjsonMsgForstrconform);
 			handleAllListResponse(strjsonMsgForstrconform);
-			
 		}
 		catch (e)
 		{
 			console.log("handleRequest     getOrdersHistory     Exception :: " + e);
 		}
 	}
-	
-//	function updateProductQuantity(productid, total)
-//	{
-//		try
-//		{
-//			var straadToCart = {};
-//			straadToCart.userid = +userid;
-//			straadToCart.userType = userType;
-//			straadToCart.productid = +productid;
-//			straadToCart.total = +total;
-////			straadToCart.ipaddress = ipaddress;
-//			straadToCart.authoriseduser = authorisedUser;
-//			straadToCart.command = 1012;
-//			
-//			var strjsonMsgForaadToCart = JSON.stringify(straadToCart);
-//			console.log("handleRequest     aadToCartForLoggedUser  : " + strjsonMsgForaadToCart);
-//			handleAllListResponse(strjsonMsgForaadToCart);
-//			
-//		}
-//		catch (e)
-//		{
-//			console.log("handleRequest     aadToCartForLoggedUser     Exception :: " + e);
-//		}
-//	}
-
+	function emailOrderDetails(purchaseTemplet, customerEmailid, userType, total, phone, name, orderid)
+	{
+		try
+		{
+			var stremailOrderDetails = {};
+			stremailOrderDetails.purchaseTemplet = purchaseTemplet;
+			stremailOrderDetails.userType = userType;
+			stremailOrderDetails.email = customerEmailid;
+			stremailOrderDetails.total = +total;
+			stremailOrderDetails.phone = phone;
+			stremailOrderDetails.name = name;
+			stremailOrderDetails.orderid = orderid;
+			stremailOrderDetails.command = 1016;
+			
+			var strjsonMsgForstremailOrderDetails = JSON.stringify(stremailOrderDetails);
+			console.log("handleRequest     emailOrderDetails  strjsonMsgForstremailOrderDetails : " + strjsonMsgForstremailOrderDetails);
+			handleAllListResponse(strjsonMsgForstremailOrderDetails);
+		}
+		catch (e)
+		{
+			console.log("handleRequest     emailOrderDetails     Exception :: " + e);
+		}
+	}
 }

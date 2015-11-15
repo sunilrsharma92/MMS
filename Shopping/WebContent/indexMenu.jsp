@@ -298,9 +298,9 @@
 
 			<ul class="nav navbar-nav navbar-left collapse navbar-collapse">
 				<li><a href="" id="indexBody" onclick="loadPage(this);">HOME</a></li>
-				<li><a href="">Page2</a></li>
-				<li><a href="">Page3</a></li>
-				<li><a href="">Page4</a></li>
+<!-- 				<li><a href="">Page2</a></li> -->
+<!-- 				<li><a href="">Page3</a></li> -->
+<!-- 				<li><a href="">Page4</a></li> -->
 			</ul>
 			<div class="nav navbar-nav navbar-right hidden-xs">
 				<div class="dropdown  cartMenu ">

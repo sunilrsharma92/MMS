@@ -47,10 +47,10 @@ table td
 						<form enctype="multipart/form-data" id="uploadFile" action="UploadServlet" method="post">
 							
 							<div class="overlay" style="margin-top: 45px;">
-										<div id="loading-img"></div>
-									</div>
+								<div id="loading-img"></div>
+							</div>
 							
-							<div class="profilewrap" id="onEnter" style="width: 150px;height: 150px; margin: 0px auto;">
+							<div class="profilewrap profileimgclick" id="onEnter" style="width: 150px;height: 150px; margin: 0px auto;">
 								<img id="profileImg" src="Images/default_profile_pic.png" class="img-circle icon_click" style="width:100%; height:100%; background-color:whitesmoke;">
 								<div class="hideme icon_click"><span class="glyphicon glyphicon-camera "></span></div>
 							</div>
@@ -61,17 +61,15 @@ table td
 						$(document).ready(function (){
 							try
 							{
-								$("#profileImg").click(function(){
-									alert("1");
+								$(".profileimgclick").click(function(){
 									$("#fileName").trigger("click");
 
 								});
 
 							$("#fileName").change(function()
 							{
-								alert("2");
+								$(".overlay").show();
 								$("#upldBtn").trigger("click");
-								alert("3");
 							});
 							
 							$('#uploadFile').ajaxForm({
@@ -91,14 +89,15 @@ table td
 										$(".overlay").show().delay(100).fadeOut();
 										clearInterval(clear);
 										}
-								}, 500);
+								}, 1000);
 								
 								var loginData = $.session.get('loginData');
 								var sessionData = JSON.parse(loginData);
 								sessionData.profileImg = msg;
 								$.session.remove("loginData");
 								$.session.set("loginData", JSON.stringify(sessionData));
-								alert("JSON.stringify(sessionData) : "+JSON.stringify(sessionData));
+								
+// 								alert("JSON.stringify(sessionData) : "+JSON.stringify(sessionData));
 
 							}
 						});
