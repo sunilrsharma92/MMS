@@ -131,6 +131,7 @@ function listResponseHandler(response, command, status)
 					case 1016:
 						var statusdesc = response.statusdesc;
 						jqueryconform("Message", statusdesc);
+						$("#profileLink").trigger("click");
 						break;
 					case 1051:
 						handleLoginResponse(response);

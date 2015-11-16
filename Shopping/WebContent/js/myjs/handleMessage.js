@@ -289,7 +289,6 @@ function handleOrderDetailsResponse(response)
 function handleOrderDetailsEmailTemplateResponse(response)
 {
 
-	$(".overlay").show().delay(100).fadeOut();
 	var statusdesc = response.statusdesc;
 	jqueryconform("Message", statusdesc);
 	
@@ -299,9 +298,8 @@ function handleOrderDetailsEmailTemplateResponse(response)
 		var sessionData = JSON.parse(loginData);
 		var userid = sessionData.key;
 		var userType = sessionData.userType;
-		
-		$("#profileLink").trigger("click");
 		objhandleRequest.handledisplayProductinCart("", "withlogin", userid, userType);
+		$("#profileLink").trigger("click");
 	}
 	
 }
@@ -404,7 +402,7 @@ function EmailProductPurchased(response)
 						add = add + ". Contact Number : " + phone;
 					}*/
 					productList = productList + '<tr style="-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;page-break-inside: avoid;">'+
-					'                        <td class="cimg" style="-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;padding: 8px;width: 5%;line-height: 1.42857143;vertical-align: top;border-top: 1px solid #ddd;background-color: #fff!important;">'+productimg+'</td>'+
+					'                        <td class="cimg" style="-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;padding: 8px;width: 5%;line-height: 1.42857143;vertical-align: top;border-top: 1px solid #ddd;background-color: #fff!important;"><img style="width: 20px; height: 20px;" id="" src="'+productimg+'"></td>'+
 					'                        <td class="cname" style="-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;padding: 8px;width: 50%;text-align: left;line-height: 1.42857143;vertical-align: top;border-top: 1px solid #ddd;background-color: #fff!important;">'+productname+'</td>'+
 					'                        <td class="cqty" style="-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;padding: 8px;line-height: 1.42857143;vertical-align: top;border-top: 1px solid #ddd;background-color: #fff!important;">'+quantity+'</td>'+
 					'                        <td class="cprice" style="-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;padding: 8px;line-height: 1.42857143;vertical-align: top;border-top: 1px solid #ddd;background-color: #fff!important;">'+productprice+'</td>'+

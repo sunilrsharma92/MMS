@@ -1068,7 +1068,7 @@ function purchaseTemplet(template, shopName, shopAddress, total, orderid)
 	
 	var loginData1 = $.session.get("loginData");
 	var loginData = JSON.parse(loginData1);
-	alert("loginData : "+JSON.stringify(loginData));
+//	alert("loginData : "+JSON.stringify(loginData));
 
 		var address1 = loginData.address1;
 		var address2 = loginData.address2;
@@ -1086,7 +1086,7 @@ function purchaseTemplet(template, shopName, shopAddress, total, orderid)
 			customerAddress = address2;
 		}
 
-		alert(customerEmailid+" --> "+userType+" --> "+total+" --> "+phone+" --> "+customerName+" --> "+orderid);
+//		alert(customerEmailid+" --> "+userType+" --> "+total+" --> "+phone+" --> "+customerName+" --> "+orderid);
 	
 	var purchaseTemplet = '<head style="-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;">'+
 	'		<style type="text/css" style="-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;">'+
@@ -1110,7 +1110,7 @@ function purchaseTemplet(template, shopName, shopAddress, total, orderid)
 	''+
 	'		<div class="container middle" style="-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;padding-right: 15px;padding-left: 15px;margin-right: auto;margin-left: auto;width: 100%;border: 5px solid #FFF;background-color: #225656;">'+
 	'			<div class="row" style="margin-top: 10px;-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;margin-right: -15px;margin-left: 0px;">'+
-	'				<p class="font" style="-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;orphans: 3;widows: 3;margin: 0 0 10px;color: #FFF;">Hi <b style="-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;font-weight: 700;">Rahul Madakatti</b>,<br style="-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;"><br style="-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;">'+
+	'				<p class="font" style="-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;orphans: 3;widows: 3;margin: 0 0 10px;color: #FFF;">Hi <b style="-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;font-weight: 700;">'+customerName+'</b>,<br style="-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;"><br style="-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;">'+
 	'				Thank you for your order from <a href="http://www.makemyshopy.com" style="font-size: 14px;color: #04E8C0;text-decoration: underline;-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;background-color: transparent;" target="_blank">http://www.makemyshopy.com</a></p><br style="-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;">'+
 	'					<p style="-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;orphans: 3;widows: 3;margin: 0 0 10px;color: #FFF;">Below are the order details:</p>'+
 	''+
@@ -1123,9 +1123,10 @@ function purchaseTemplet(template, shopName, shopAddress, total, orderid)
 	'                      <tr style="-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;page-break-inside: avoid;">'+
 	'                        <th class="cimg" style="-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;padding: 8px;text-align: left;width: 5%;line-height: 1.42857143;vertical-align: bottom;border-top: 1px solid #ddd;border-bottom: 2px solid #ddd;background-color: #fff!important;">Image</th>'+
 	'                        <th class="cname" style="-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;padding: 8px;text-align: left;width: 50%;line-height: 1.42857143;vertical-align: bottom;border-top: 1px solid #ddd;border-bottom: 2px solid #ddd;background-color: #fff!important;">Name</th>'+
-	'                        <th class="csize" style="-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;padding: 8px;text-align: left;line-height: 1.42857143;vertical-align: bottom;border-top: 1px solid #ddd;border-bottom: 2px solid #ddd;background-color: #fff!important;">Size</th>'+
+//	'                        <th class="csize" style="-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;padding: 8px;text-align: left;line-height: 1.42857143;vertical-align: bottom;border-top: 1px solid #ddd;border-bottom: 2px solid #ddd;background-color: #fff!important;">Size</th>'+
 	'                        <th class="cqty" style="-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;padding: 8px;text-align: left;line-height: 1.42857143;vertical-align: bottom;border-top: 1px solid #ddd;border-bottom: 2px solid #ddd;background-color: #fff!important;">Qty</th>'+
 	'                        <th class="cprice" style="-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;padding: 8px;text-align: left;line-height: 1.42857143;vertical-align: bottom;border-top: 1px solid #ddd;border-bottom: 2px solid #ddd;background-color: #fff!important;">Price</th>'+
+//	'                        <th class="cprice" style="-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;padding: 8px;text-align: left;line-height: 1.42857143;vertical-align: bottom;border-top: 1px solid #ddd;border-bottom: 2px solid #ddd;background-color: #fff!important;">Total</th>'+
 	'                      </tr>'+
 	'                    </thead>'+
 	'                    <tbody style="-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;">'
@@ -1136,7 +1137,7 @@ function purchaseTemplet(template, shopName, shopAddress, total, orderid)
 	'             <div class="totaldiv pull-right" style="background-color: #FFF;padding: 5px;-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;text-align: center;padding-top: 7px;float: right!important;">'+
 	'              <span class="" style="-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;">Total Price :</span>'+
 	'              <span class="" style="-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;"><strong style="-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;font-weight: 700;"> Rs '+total+'</strong> </span> '+
-	'              <span class="" style="-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;">You save :</span> '+
+//	'              <span class="" style="-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;">You save :</span> '+
 //	'              <span class="" style="-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;"><strong style="-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;font-weight: 700;"> Rs '+saved+'</strong> </span>'+
 	'              '+
 	'            </div><br style="-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;"><br style="-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;">'+

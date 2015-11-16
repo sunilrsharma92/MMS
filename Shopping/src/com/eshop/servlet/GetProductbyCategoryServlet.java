@@ -38,7 +38,12 @@ public class GetProductbyCategoryServlet extends HttpServlet
 	private String templateid = "";
 	private String templatename = "";
 	private String regsmsTemplet = "";
+	private String regsmsTemplet1 = "";
 	private String readvalue = "";
+	private String ordertemplateid = "";
+	private String ordertemplateName = "";
+	private String order = "";
+	private String regis = "";
 	
 	MakemyshopyLogger mms = null;
 	
@@ -77,7 +82,14 @@ public class GetProductbyCategoryServlet extends HttpServlet
 		templateid = ss.getInitParameter("otp_templateid");
 		templatename = ss.getInitParameter("otp_templatename");
 		
-		regsmsTemplet = accountid+"#"+apikey+"#"+Senderid+"#"+templateid+"#"+templatename;
+		ordertemplateName = ss.getInitParameter("order_templatename");
+		ordertemplateid = ss.getInitParameter("order_templateid");
+		
+//		regsmsTemplet = accountid+"#"+apikey+"#"+Senderid+"#"+templateid+"#"+templatename;
+		regsmsTemplet = accountid+"#"+apikey+"#"+Senderid;
+		order = ordertemplateid +"#"+ ordertemplateName;
+		regis = templateid +"#"+ templatename;
+		
 		readvalue = "accountid : "+accountid+" apikey : "+apikey+" Senderid: "+Senderid+" templatename : "+templatename+" templateid : "+templateid+" accountid : "+accountid+"";
 		System.out.println(readvalue);
 		
@@ -115,7 +127,17 @@ public class GetProductbyCategoryServlet extends HttpServlet
 				mms.writeLogs("Command : "+command+" JSON Request with IPAddress : "+jsonMsg, 1);
 			}
 			
-			String strjsonMsgResponse = getResponse.handleRequestResponse(jsonMsg, command, DBData, regsmsTemplet);
+			if(command == 1016)
+			{
+				regsmsTemplet1 = regsmsTemplet +"#"+ order;
+			}
+			
+			if(command == 1052)
+			{
+				regsmsTemplet1 = regsmsTemplet +"#"+ regis;
+			}
+			
+			String strjsonMsgResponse = getResponse.handleRequestResponse(jsonMsg, command, DBData, regsmsTemplet1);
 			
 			JSONObject object = (JSONObject) JSONValue.parse(strjsonMsgResponse);
 			int command1 = ((Long) object.get("command")).intValue();

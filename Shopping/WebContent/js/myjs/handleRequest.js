@@ -349,7 +349,7 @@ function handleRequest()
 			stremailOrderDetails.purchaseTemplet = purchaseTemplet;
 			stremailOrderDetails.userType = userType;
 			stremailOrderDetails.email = customerEmailid;
-			stremailOrderDetails.total = +total;
+			stremailOrderDetails.total = parseFloat(total);
 			stremailOrderDetails.phone = phone;
 			stremailOrderDetails.name = name;
 			stremailOrderDetails.orderid = orderid;

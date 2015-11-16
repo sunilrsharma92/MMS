@@ -16,6 +16,9 @@
   <welcome-file-list>
     <welcome-file>indexTemplate.jsp</welcome-file>
   </welcome-file-list>
+  
+  <!--   DBConnection details -->
+  
   <context-param>
     <param-name>connection</param-name>
     <param-value>jdbc:mysql://localhost:3306/shopprofile</param-value>
@@ -30,7 +33,13 @@
   </context-param>
   <context-param>
     <param-name>password</param-name>
-    <param-value>root</param-value>
+    <param-value>NaN</param-value>
+  </context-param>
+<!--   Registerion msg template -->
+
+<context-param>
+    <param-name>otp_templatename</param-name>
+    <param-value>otpTemplet</param-value>
   </context-param>
  <context-param>
     <param-name>otp_templateid</param-name>
@@ -41,10 +50,6 @@
     <param-value>dAdXpTZSJGSSdxCdB9GycKRRzymc5ymKCcFkwZtxytB6RKanQh3</param-value>
   </context-param>
   <context-param>
-    <param-name>otp_templatename</param-name>
-    <param-value>otpTemplet</param-value>
-  </context-param>
-  <context-param>
     <param-name>otp_Senderid</param-name>
     <param-value>MMSTRA</param-value>
   </context-param>
@@ -52,28 +57,18 @@
     <param-name>otp_accountid</param-name>
     <param-value>56078e483284c21d24b9a708</param-value>
   </context-param>
-  <context-param>
-    <param-name>password</param-name>
-    <param-value>root</param-value>
+
+<!--   Order msg template -->
+
+<context-param>
+    <param-name>order_templatename</param-name>
+    <param-value>purchaseTemplate</param-value>
   </context-param>
-  <context-param>
-    <param-name>password</param-name>
-    <param-value>root</param-value>
+ <context-param>
+    <param-name>order_templateid</param-name>
+    <param-value>2ab320b68fb94ce8ade42d1e</param-value>
   </context-param>
-  <context-param>
-    <param-name>password</param-name>
-    <param-value>root</param-value>
-  </context-param>
-  <context-param>
-    <param-name>password</param-name>
-    <param-value>root</param-value>
-  </context-param>
-  <context-param>
-    <param-name>password</param-name>
-    <param-value>root</param-value>
-  </context-param>
-  <context-param>
-    <param-name>password</param-name>
-    <param-value>root</param-value>
-  </context-param>
+  
+<!--  *************************END************************** -->
+
 </web-app>

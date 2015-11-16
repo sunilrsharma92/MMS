@@ -14,7 +14,7 @@ import com.eshop.logger.MakemyshopyLogger;
 public class SendMessage
 {
 //	public static void main(String args[])
-	public boolean sendMessage(String mobilenumber, String tempOtp, String regsmsTemplet, String action)
+	public boolean sendMessage(String mobilenumber, String tempOtp, String regsmsTemplet, String action, String name, float total)
 	{
 //		mms.writeLogs("mobilenumber : "+mobilenumber+" tempOtp : "+tempOtp,1);
 		String accountid = "";
@@ -22,6 +22,8 @@ public class SendMessage
 		String Senderid = "";
 		String templateid = "";
 		String templatename = "";
+		String orderid = "";
+		float totalammount = total;
 		
 		try
 		{
@@ -65,7 +67,19 @@ public class SendMessage
 			
 			
 			HashMap<String, String> data = new HashMap<String, String>();
-			data.put("otp", " "+tempOtp);
+			if(action.equalsIgnoreCase("registration"))
+			{
+				data.put("otp", " "+tempOtp);
+			}
+			else if(action.equalsIgnoreCase("ordering"))
+			{
+				orderid = tempOtp;
+				data.put("name", " "+name);	
+				data.put("total", " "+totalammount);	
+				data.put("orderid", " "+orderid);	
+			}
+			
+			
 //			data.put("otp", " "+tempOtp);
 			
 			//client.sendTransactionalSms(senderId, to, templateId, placeholderMap)

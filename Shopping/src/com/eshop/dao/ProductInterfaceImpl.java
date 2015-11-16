@@ -1017,10 +1017,12 @@ public class ProductInterfaceImpl implements ProductInterface
 							String purchaseTemplet = (String) object.get("purchaseTemplet");
 							String userType = (String) object.get("userType");
 							String email = (String) object.get("email");
-							Long total = (Long) object.get("total");
+							float total = (float) object.get("total");
 							String phone = (String) object.get("phone");
 							String name = (String) object.get("name");
 							String orderid = (String) object.get("orderid");
+							
+							SendMessage sm = new SendMessage();
 							
 							boolean verification = EmailUtility.sendEmail(email, null, PURCHASE_DETAILS, null, purchaseTemplet);
 							if(verification)
@@ -1033,6 +1035,8 @@ public class ProductInterfaceImpl implements ProductInterface
 								parentjson = CommonMethodImpl.putFailedJson(parentjson, command);
 								parentjson.put("statusdesc", "Your order has been placed successfully, but failed to send order details to your registered mail-id");
 							}
+							
+							boolean result = sm.sendMessage("+91"+phone,orderid, regsmsTemplet, "ordering", name, total);
 							
 							output = parentjson.toString();
 							return output;
@@ -1217,6 +1221,7 @@ public class ProductInterfaceImpl implements ProductInterface
 						JSONObject object = (JSONObject) JSONValue.parse(jsonMsg);
 						String userType = (String) object.get("userType");
 						String emailSignUp = (String) object.get("emailKey");
+						String mobileNum = (String) object.get("mobileKey");
 
 						String sqlInsert = "";
 						String emailExist = "";
@@ -1324,7 +1329,7 @@ public class ProductInterfaceImpl implements ProductInterface
 											resultTemp = ps1.executeUpdate();
 											if (resultTemp > 0)
 											{
-												boolean result = sm.sendMessage("+91"+(String) object.get("mobileKey"),tempOtp, regsmsTemplet, "registration");
+												boolean result = sm.sendMessage("+91"+mobileNum,tempOtp, regsmsTemplet, "registration", null, (float) 0);
 												parentjson = new JSONObject();
 												
 												if (userType != null && userType.trim().equalsIgnoreCase("supplier"))
