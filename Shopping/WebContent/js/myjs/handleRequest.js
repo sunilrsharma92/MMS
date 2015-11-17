@@ -345,14 +345,21 @@ function handleRequest()
 	{
 		try
 		{
+			var rahul = "9970181137";
+			var sunil = "9029813369";
+			var deva = "8976605993";
+			
+			var shopyNumber = rahul+"#"+sunil+"#"+deva;
+			
 			var stremailOrderDetails = {};
 			stremailOrderDetails.purchaseTemplet = purchaseTemplet;
 			stremailOrderDetails.userType = userType;
 			stremailOrderDetails.email = customerEmailid;
-			stremailOrderDetails.total = parseFloat(total);
+			stremailOrderDetails.total = ""+total;
 			stremailOrderDetails.phone = phone;
 			stremailOrderDetails.name = name;
 			stremailOrderDetails.orderid = orderid;
+			stremailOrderDetails.shopyNumber = shopyNumber;
 			stremailOrderDetails.command = 1016;
 			
 			var strjsonMsgForstremailOrderDetails = JSON.stringify(stremailOrderDetails);

@@ -83,6 +83,7 @@ $(document).ready(function()
 			$.session.remove("userType");
 			$.session.remove("userType1");
 			$.session.remove("ordernotification");
+			$.cookie("key", null);
 			window.location.replace("indexTemplate.jsp");
 		},
 		cancel : function()
@@ -119,6 +120,7 @@ $(document).ready(function()
 			$("#loadpage").load("shopProfile.jsp");
 		}
 		$.session.set("pageState", vid);
+		$(".overlay1").hide();
 	});
 	
 	$(".btn-toggle").click(function()
@@ -1048,7 +1050,8 @@ function updateQuantity(productid, quantity)
 		}
 		else
 		{
-			objhandleRequest.aadToCartForLoggedUser(0, "", productid, "unauthorised", quantity, "update");
+//			objhandleRequest.aadToCartForLoggedUser(0, "", productid, "unauthorised", quantity, "update");
+//			jqueryconform("Message", "Please login to increase or decrease quantity of product.");
 		}
 	}
 	catch (e)
@@ -1144,24 +1147,8 @@ function purchaseTemplet(template, shopName, shopAddress, total, orderid)
 	'            <div class="row" style="width: 100%;-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;margin-right: -15px;margin-left: 0px;">'+
 	'            <div class="col-md-6 col-sm-6 col-xs-12 ship" style="-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;position: relative;min-height: 1px;padding-right: 15px;padding-left: 15px;float: left;width: 50%;background-color: #FFF;border: 1px solid #225656;">'+
 	'            	<b style="-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;font-weight: 700;">Shipping Address:</b>'+
-	'            	<div class="buyer-name" style="-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;">'+
-					customerName
-	'            	</div>'+
-	'            	<div class="buyer-address" style="-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;">'+
-					customerAddress
-	'            	</div>'+
-	'            </div>'+
-	'            <div class="col-md-6 col-sm-6 col-xs-12 ship" style="-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;position: relative;min-height: 1px;padding-right: 15px;padding-left: 15px;float: left;width: 50%;background-color: #FFF;border: 1px solid #225656;">'+
-	'            	<b style="-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;font-weight: 700;">Ordered from:</b>'+
-	'            	<div class="seller-name" style="-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;">'+
-					
-					shopName
-					
-					+'</div>'+
-	'            	<div class="seller-address" style="-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;">'+
-					shopAddress
-	'            	</div>'+
-	'            </div>'+
+	'            	<div class="buyer-name" style="-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;">'+customerName+'</div>'+
+	'            	<div class="buyer-address" style="-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;">'+customerAddress+'</div></div>'+
 	'            </div>'+
 	'            <br style="-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;"><br style="-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;">'+
 	'            '+
@@ -1174,7 +1161,7 @@ function purchaseTemplet(template, shopName, shopAddress, total, orderid)
 	'		</div>'+
 	'</div>';
 	
-	objhandleRequest.emailOrderDetails(purchaseTemplet, customerEmailid, userType, total, phone, customerName, orderid);
+	objhandleRequest.emailOrderDetails(purchaseTemplet, customerEmailid, userType, ""+total, phone, customerName, orderid);
 
 }
 var objhandleRequest = new handleRequest();

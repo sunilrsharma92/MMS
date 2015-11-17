@@ -155,7 +155,7 @@ function conformOrder()
 			content : "<b>Total Ammount : </b>" + totalammount + "\n <b>Delivery Address : </b>" + orderAddress + "\n",
 			confirm : function()
 			{
-				$(".overlay").show();
+				$(".overlay1").show();
 				var loginData = $.session.get("loginData");
 				if(loginData != null)
 				{

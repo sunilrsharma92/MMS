@@ -291,16 +291,18 @@ function handleOrderDetailsEmailTemplateResponse(response)
 
 	var statusdesc = response.statusdesc;
 	jqueryconform("Message", statusdesc);
+	$("#profileLink").trigger("click");
 	
-	var loginData = $.session.get("loginData");
+	/*var loginData = $.session.get("loginData");
 	if(loginData != null)
 	{
 		var sessionData = JSON.parse(loginData);
 		var userid = sessionData.key;
 		var userType = sessionData.userType;
-		objhandleRequest.handledisplayProductinCart("", "withlogin", userid, userType);
+		
 		$("#profileLink").trigger("click");
-	}
+//		objhandleRequest.handledisplayProductinCart("", "withlogin", userid, userType);
+	}*/
 	
 }
 

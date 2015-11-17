@@ -43,7 +43,7 @@
 <body>
 	<div class="container">
 	<!-- Loading img -->
-									<div class="overlay">
+									<div class="overlay1">
 										<div id="loading-img"></div>
 									</div>
 									<!-- Loading img -->

@@ -14,20 +14,30 @@ import com.eshop.logger.MakemyshopyLogger;
 public class SendMessage
 {
 //	public static void main(String args[])
-	public boolean sendMessage(String mobilenumber, String tempOtp, String regsmsTemplet, String action, String name, float total)
+	public boolean sendMessage(String mobilenumber, String tempOtp, String regsmsTemplet, String action, String name, float total, String shopyNumber)
 	{
 //		mms.writeLogs("mobilenumber : "+mobilenumber+" tempOtp : "+tempOtp,1);
 		String accountid = "";
 		String apikey = "";
 		String Senderid = "";
 		String templateid = "";
+		String templateid1 = "";
 		String templatename = "";
 		String orderid = "";
 		float totalammount = total;
 		
+		String rahul = "";
+		String sunil = "";
+		String deva = "";
+		String own = "";
+		
+		MakemyshopyLogger mms = null;
+		HashMap<String, String> data = null;
+		SmsOwl client = null;
+		
 		try
 		{
-			MakemyshopyLogger mms = new MakemyshopyLogger();
+			mms = new MakemyshopyLogger();
 //			Properties properties = new Properties();
 			try
 			{
@@ -42,12 +52,11 @@ public class SendMessage
 				templateid = properties.getProperty("otp_templateid");
 				templatename = properties.getProperty("otp_templatename");*/
 				
-				
 				String[] prop = regsmsTemplet.split("#");
 				accountid = prop[0];
 				apikey = prop[1];
 				Senderid = prop[2];
-				templateid = prop[3];
+				templateid1 = prop[3];
 				templatename = prop[4];
 				
 				readvalue = "accountid : "+accountid+" apikey : "+apikey+" Senderid: "+Senderid+" templatename : "+templatename+" templateid : "+templateid+" accountid : "+accountid+"";
@@ -63,16 +72,22 @@ public class SendMessage
 			
 			
 		    //SmsOwl client = new SmsOwl("56078e483284c21d24b9a708", "dAdXpTZSJGSSdxCdB9GycKRRzymc5ymKCcFkwZtxytB6RKanQh3");
-			SmsOwl client = new SmsOwl(accountid, apikey);
+			client = new SmsOwl(accountid, apikey);
 			
 			
-			HashMap<String, String> data = new HashMap<String, String>();
+			data = new HashMap<String, String>();
 			if(action.equalsIgnoreCase("registration"))
 			{
+				templateid = templateid1;
 				data.put("otp", " "+tempOtp);
 			}
 			else if(action.equalsIgnoreCase("ordering"))
 			{
+				
+				String[] templateidArray = templateid1.split("@");
+				
+				templateid = templateidArray[0];
+				
 				orderid = tempOtp;
 				data.put("name", " "+name);	
 				data.put("total", " "+totalammount);	
@@ -87,12 +102,31 @@ public class SendMessage
 			
 			//client.sendTransactionalSms("MMSTRA", mobNumber, "a4baf07c1259be39fb3c0ba7", data);
 			  client.sendTransactionalSms(Senderid, mobNumber, templateid, data);
+			  
+			  /*if(!shopyNumber.equalsIgnoreCase(""))
+				{
+				  	String[] templateidArray = templateid1.split("@");
+					templateid = templateidArray[1];
+					String[] numbers = shopyNumber.split("#");
+					for(int i=0; i<numbers.length; i++)
+					{
+						own = numbers[i];
+						client.sendTransactionalSms(Senderid, own, templateid, data);
+					}
+				}*/
+			  
 			  return true;
 			
 		}
 		catch(Exception e)
 		{
 			e.printStackTrace();
+		}
+		finally
+		{
+			client = null;
+			data = null;
+			mms = null;
 		}
 		return false;
 	}
