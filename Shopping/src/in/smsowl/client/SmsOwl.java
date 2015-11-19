@@ -1,6 +1,7 @@
 package in.smsowl.client;
 
 
+import com.eshop.logger.MakemyshopyLogger;
 import com.google.gson.Gson;
 import java.io.InputStreamReader;
 import java.io.Reader;
@@ -87,6 +88,7 @@ public class SmsOwl {
 
     public String sendTransactionalSms(String senderId,String to,String templateId,HashMap<String, String> placeholderMap) throws Exception{
         HttpClient httpClient = HttpClientBuilder.create().build();
+        MakemyshopyLogger mms = new MakemyshopyLogger();
         try{
             Gson gson= new Gson();
             HttpPost post = new HttpPost(url);
@@ -102,11 +104,13 @@ public class SmsOwl {
                 return respObj.getSmsId();
             }else{
                 ErrorResponse respObj = gson.fromJson(reader,ErrorResponse.class);
+                mms.writeLogs(respObj.getMessage(), 0);
                 throw new Exception(respObj.getMessage());
             }
         }catch (Exception ex) {
             throw ex;
         } finally {
+        	mms = null;
             httpClient.getConnectionManager().shutdown();
         }
     }

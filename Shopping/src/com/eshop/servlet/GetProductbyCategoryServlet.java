@@ -74,7 +74,7 @@ public class GetProductbyCategoryServlet extends HttpServlet
 	    password = ss.getInitParameter("password");
 	    
 	    DBData = connection+"#"+drivername+"#"+username+"#"+password;
-	    mms.writeLogs("GetProductByCategoryServlet --> DOPost ------> "+connection+" ** "+drivername+" ** "+username+ "**" +password, 1);
+	    mms.writeLogs("GetProductByCategoryServlet init() ----> DB Connection info ----> "+connection+" , "+drivername+" , "+username+ " , " +password, 1);
 	    
 	    accountid = ss.getInitParameter("otp_accountid");
 		apikey = ss.getInitParameter("otp_apikey");

@@ -9,7 +9,16 @@ function handleAllListResponse(jsonMsg)
 				var response = JSON.parse(strJsonResponse);
 				var command = response.command;
 				var status = parseInt(response.status);
-				writeLogAjax("command : " + command + " status : " + status + " JSON Response FROM SERVLET :  " + JSON.stringify(response), 1);
+				
+				if(command != 2002 && command != 2005 && command != 2014 && command != 2015 && command != 2016 && command != 2006)
+				{
+					writeLogAjax("command : " + command + " status : " + status + " JSON Response FROM SERVLET :  " + JSON.stringify(response), 1);
+				}
+				else
+				{
+					writeLogAjax("command : " + command + " status : " + status, 1);
+				}
+				
 				listResponseHandler(response, command, status);
 			}
 			else

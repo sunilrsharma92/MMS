@@ -59,7 +59,7 @@ public class SendMessage
 				templateid1 = prop[3];
 				templatename = prop[4];
 				
-				readvalue = "accountid : "+accountid+" apikey : "+apikey+" Senderid: "+Senderid+" templatename : "+templatename+" templateid : "+templateid+" accountid : "+accountid+"";
+				readvalue = "accountid : "+accountid+" apikey : "+apikey+" Senderid: "+Senderid+" templatename : "+templatename+" templateid : "+templateid1+" accountid : "+accountid+"";
 				System.out.println(readvalue);
 
 				mms.writeLogs("SendMessage sendMessage() Details from properties files : " + readvalue, 1);
@@ -103,7 +103,7 @@ public class SendMessage
 			//client.sendTransactionalSms("MMSTRA", mobNumber, "a4baf07c1259be39fb3c0ba7", data);
 			  client.sendTransactionalSms(Senderid, mobNumber, templateid, data);
 			  
-			  /*if(!shopyNumber.equalsIgnoreCase(""))
+			  if(!shopyNumber.equalsIgnoreCase(""))
 				{
 				  	String[] templateidArray = templateid1.split("@");
 					templateid = templateidArray[1];
@@ -111,15 +111,16 @@ public class SendMessage
 					for(int i=0; i<numbers.length; i++)
 					{
 						own = numbers[i];
-						client.sendTransactionalSms(Senderid, own, templateid, data);
+						client.sendTransactionalSms(Senderid, "+91"+own, templateid, data);
 					}
-				}*/
+				}
 			  
 			  return true;
 			
 		}
 		catch(Exception e)
 		{
+			mms.writeLogs(""+e, 0);
 			e.printStackTrace();
 		}
 		finally

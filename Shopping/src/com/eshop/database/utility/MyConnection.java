@@ -51,7 +51,7 @@ public class MyConnection extends HttpServlet{
 					
 					readvalue = "drivername : " + drivername + " connection : " + connection + " username: " + username + " password : " + password + "";
 
-					mms.writeLogs("ReadWriteUpdatePropertieFiles readCommonPropertieFile() Details from properties files : " + readvalue, 1);
+//					mms.writeLogs("ReadWriteUpdatePropertieFiles readCommonPropertieFile() Details from properties files : " + readvalue, 1);
 				}
 				catch (Exception e)
 				{

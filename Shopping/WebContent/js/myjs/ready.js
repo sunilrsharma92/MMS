@@ -99,6 +99,7 @@ $(document).ready(function()
 	$("#profileLink").click(function()
 	{
 		$.session.remove("shopid");
+		
 		var userType1 = $.session.get("userType1");
 		if(userType1 != null && userType1 != "" && userType1 != undefined)
 		{

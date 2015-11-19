@@ -271,6 +271,7 @@ function handleOrderHistoryResponse(response)
 {
 	dataGridOrderHistory(response);
 }
+
 function handleOrderDetailsResponse(response)
 {
 	var action = $.session.get("ordernotification");
@@ -291,18 +292,33 @@ function handleOrderDetailsEmailTemplateResponse(response)
 
 	var statusdesc = response.statusdesc;
 	jqueryconform("Message", statusdesc);
-	$("#profileLink").trigger("click");
+//	$("#profileLink").trigger("click");
 	
-	/*var loginData = $.session.get("loginData");
-	if(loginData != null)
+	$.session.remove("shopid");
+	
+	var userType1 = $.session.get("userType1");
+	console.log("userType1 : "+userType1);
+	if(userType1 != null && userType1 != "" && userType1 != undefined)
 	{
-		var sessionData = JSON.parse(loginData);
-		var userid = sessionData.key;
-		var userType = sessionData.userType;
-		
-		$("#profileLink").trigger("click");
-//		objhandleRequest.handledisplayProductinCart("", "withlogin", userid, userType);
-	}*/
+		$.session.set("userType", userType1);
+	}
+	var vid = "";
+	$.session.set("viewshop", "");
+	var userType = $.session.get("userType");
+	if(userType == "customer")
+	{
+		vid = "customerProfile";
+		$("#loadpage").empty();
+		$("#loadpage").load("customerProfile.jsp");
+	}
+	if(userType == "supplier")
+	{
+		vid = "shopProfile";
+		$("#loadpage").empty();
+		$("#loadpage").load("shopProfile.jsp");
+	}
+	$.session.set("pageState", vid);
+	$(".overlay1").hide();
 	
 }
 
