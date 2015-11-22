@@ -10,7 +10,7 @@
 	
 <title>Make my shopy</title>
 
-<link href="slick/jquerysctipttop.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="slick/jquerysctipttop.css">
 <link rel="stylesheet" type="text/css" href="slick/slick.css" />
 <link rel="stylesheet" type="text/css" href="slick/slick-theme.css" />
 
@@ -188,6 +188,6 @@
 		<!--/slider-container-->
 	</div>
 	<!--/col-md-12-->
-	<script type="text/javascript" src="slick/slick.min.js"></script>
+	
 </body>
 </html>

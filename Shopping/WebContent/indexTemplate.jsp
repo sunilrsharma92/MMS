@@ -12,30 +12,15 @@
 
 <link rel="stylesheet" href="css/bootstrap.css">
 <link rel="stylesheet" href="js/autoComplete/css/jquery-ui.css">
-
-<!-- <link href="http://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css"> -->
-<!-- <link rel="stylesheet" type="text/css" href="css/slick/slick.css"/> -->
-<!-- <link rel="stylesheet" type="text/css" href="css/slick/slick-theme.css"/> -->
-  
 <link rel="stylesheet" href="css/style1.css">
 
 
 <link rel="stylesheet" href="css/jqx/jqx.base.css">
 <link rel="stylesheet" href="js/jqueryConfirm/jquery-confirm.css">
 
-<!-- <!-- //Alert -->
-<!-- <link rel="stylesheet" href="js/jAlert/css/jquery.alerts.css"> -->
-<!-- <script type="text/javascript" src="js/jAlert/js/jquery.js"></script> -->
-<!-- <script type="text/javascript" src="js/jAlert/js/jquery.ui.draggable.js"></script> -->
-<!-- <script type="text/javascript" src="js/jAlert/js/jquery.alerts.js"></script> -->
-<!-- <!-- //Alert End -->
-
-
 <script type="text/javascript" src="js/jquery-2.1.4.js"></script>
 <script type="text/javascript" src="js/jqueryConfirm/jquery-confirm.js"></script>
 <script type="text/javascript" src="js/bootstrap.js"></script>
-<!-- <script type="text/javascript" src="js/slick.min.js"></script> -->
-<!-- <script type="text/javascript" src="js/jquery.form.js"></script> -->
 
 <script type="text/javascript" src='js/jquery.elevatezoom.js'></script>
 <script type="text/javascript" src="js/autoComplete/js/jquery-ui.js"></script><!-- //autocomplete -->
@@ -50,6 +35,7 @@
 <script type="text/javascript" src="js/json_parse.js"></script>
 <script type="text/javascript" src="js/json2.js"></script>
 
+<script type="text/javascript" src="slick/slick.min.js"></script>
 
 <script type="text/javascript" src="js/myjs/handleRequest.js"></script>
 <script type="text/javascript" src="js/myjs/handleResponse.js"></script>
@@ -86,7 +72,7 @@ ul li:hover ul.dropdown-menu {
 		
 		<div id="content">
 			<div id="loadpage">
-			<jsp:include page="indexBody.jsp" />
+<%-- 			<jsp:include page="indexBody.jsp" /> --%>
 			</div>
 		</div><!-- #content -->
 		
@@ -95,17 +81,6 @@ ul li:hover ul.dropdown-menu {
 		</div><!-- #footer -->
 		
 	</div><!-- #wrapper -->
-
-
-
-
-
-
-
-
-
-
-
 
 </body>
 </html>

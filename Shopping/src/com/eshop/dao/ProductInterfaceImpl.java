@@ -184,11 +184,20 @@ public class ProductInterfaceImpl implements ProductInterface
 //																 + "<td class='cname'>" + rs.getString("product_name") + "</td></tr></table>";
 								if(action.equals("shop"))
 								{
-									jsonarray.add(rs.getString("company_name"));
+									String companyName = rs.getString("company_name");
+									if(companyName != null)
+									{
+										jsonarray.add(rs.getString("company_name"));
+									}
+									
 								}
 								else if(action.equals("prod"))
 								{
-									jsonarray.add(rs.getString("product_name"));
+									String productName = rs.getString("product_name");
+									if(productName != null)
+									{
+										jsonarray.add(rs.getString("product_name"));
+									}
 //									childjson.put("name", rs.getString("product_name"));
 //									childjson.put("icon", rs.getString("picture"));
 								}

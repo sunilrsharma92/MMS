@@ -1295,6 +1295,7 @@ box-shadow: 10px 10px 5px #888;
 {
 	height: 200px;
 	width: 100%;
+	text-align: center;
 }
 
 .margin_top_bottom
@@ -1309,7 +1310,7 @@ select::-ms-expand {
 .mylogo{
 	width: 111px; 
 	height: 45px; 
-	margin-top: -7px;
+	margin-top: -10px;
 }
 
 

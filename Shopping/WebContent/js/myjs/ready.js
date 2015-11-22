@@ -170,32 +170,42 @@ $(document).ready(function()
 	{
 		$("#search").keyup(function(e)
 		{
-			var label = datalabelShop.autoCompleteLabel;
-			$("#search").autocomplete(
+//			console.log("datalabelShop : "+JSON.stringify(datalabelShop));
+			try
 			{
-			source : label,
-			select : function(event, ui)
-			{
-				var text = ui.item.label;
-				var pageSta = $.session.get("pageState");
-				if(pageSta != "indexBody")
+				
+				var label1 = datalabelShop.autoCompleteLabel;
+				
+				$("#search").autocomplete(
 				{
-					$.session.set("pageState", "indexBody");
-					$("#loadpage").empty();
-					$("#loadpage").load("indexBody.jsp");
-				}
-				var count = 0;
-				var clear = setInterval(function()
+				source : label1,
+				select : function(event, ui)
 				{
-					count++;
-					if(count == 2)
+					var text = ui.item.label;
+					var pageSta = $.session.get("pageState");
+					if(pageSta != "indexBody")
 					{
-						searchShop();
-						clearInterval(clear);
+						$.session.set("pageState", "indexBody");
+						$("#loadpage").empty();
+						$("#loadpage").load("indexBody.jsp");
 					}
-				}, 1000);
+					var count = 0;
+					var clear = setInterval(function()
+					{
+						count++;
+						if(count == 2)
+						{
+							searchShop();
+							clearInterval(clear);
+						}
+					}, 1000);
+				}
+				});
 			}
-			});
+			catch(e)
+			{
+				console.log("Shop searching Exception : "+e);
+			}
 		});
 		$("#search").keypress(function(e)
 		{
@@ -245,12 +255,20 @@ $(document).ready(function()
 	});
 	$("[id^=carousel-selector-]").hover(function()
 	{
-		var id_selector = $(this).attr("id");
-		var id = id_selector.substr(id_selector.length - 1);
-		id = parseInt(id);
-		$("#myCarousel").carousel(id - 1);
-		$("[id^=carousel-selector-]").removeClass("selected");
-		$(this).addClass("selected");
+		try
+		{
+			alert();
+			var id_selector = $(this).attr("id");
+			var id = id_selector.substr(id_selector.length - 1);
+			id = parseInt(id);
+			$("#myCarousel").carousel(id - 1);
+			$("[id^=carousel-selector-]").removeClass("selected");
+			$(this).addClass("selected");
+		}
+		catch(e)
+		{
+			console.log("ready.js slider on hover : "+e);
+		}
 	});
 	$("#myCarousel").on("slid.bs.carousel", function(e)
 	{

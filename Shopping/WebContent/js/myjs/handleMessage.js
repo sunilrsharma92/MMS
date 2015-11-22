@@ -58,6 +58,7 @@ function handleProductArrayForAutoCompleteResponse(response)
 		var autoCompleteLabel = response.autoCompleteLabel;
 		var action = response.action;
 		$.session.set("response", response);
+		console.log(action+" : "+response);
 		autocompleteLabel(response, action);
 	}
 	catch(e)
@@ -428,7 +429,7 @@ function EmailProductPurchased(response)
 					
 				}
 			}
-			var table = '<tr><td colspan = "5">' + '<table style="width: 100%">' + '<tr><td style="text-align: center; color: rgb(2, 86, 2); font-size: 19px;">' + shopname + "</td></tr>" + '<tr><td style="text-align: center; color: rgb(2, 86, 2); font-size: 14px;">' + add + "</td></tr>" + "</table>" + "</td></tr>" + productList + '<tr><td colspan = "5" style="background-color: #2D97D9;"></td></tr>';			
+			var table = '<tr style="background-color: #E9E9E9;"><td colspan = "5">' + '<table style="width: 100%">' + '<tr><td style="text-align: center; color: rgb(2, 86, 2); font-size: 19px;">' + shopname + "</td></tr>" + '<tr><td style="text-align: center; color: rgb(2, 86, 2); font-size: 14px;">' + add + "</td></tr>" + "</table>" + "</td></tr>" + productList + '<tr><td colspan = "5" style="background-color: #2D97D9;"></td></tr>';			
 			purchasearray = [];
 			productList = "";
 			template = template + table;
