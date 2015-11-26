@@ -213,7 +213,7 @@
 					<span class="glyphicon glyphicon-option-vertical"></span>	
 				</button>
 <!-- 				<a href="#" id="indexBody1" onclick="loadPage(this);" class="navbar-brand"><img src="Images/rgb.gif" class="img-rounded" alt="Cinque Terre" style="width: 111px; height: 45px; margin-top: -7px;"> </a> -->
-				<a href="#" id="indexBody1" onclick="loadPage(this);" class="navbar-brand"><img src="Images/Modified.png" class="img-rounded mylogo" alt="Cinque Terre" style=""> </a>
+				<a href="#" id="indexBody1" onclick="loadPage(this);" class="navbar-brand"><img src="Images/llogo.png" class="img-rounded mylogo" alt="Cinque Terre" style=""> </a>
 
 
 				<!-- <button type="button" class="pull-right"> btn</button> -->

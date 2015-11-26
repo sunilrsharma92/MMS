@@ -43,9 +43,9 @@
 				<h4>
 					<strong>Social Connect</strong>
 				</h4>
-				<a href="www.facebook.com"><img src="Images/face.png"></a>
-				<a href="www.googleplus.com"><img src="Images/goog.png"></a>
-				<a href="www.youtube.com"><img src="Images/you.png"></a>
+				<a href="http://www.facebook.com"><img src="Images/face.png"></a>
+				<a href="http://www.googleplus.com"><img src="Images/goog.png"></a>
+				<a href="http://www.youtube.com"><img src="Images/you.png"></a>
 			</div>
 
 
