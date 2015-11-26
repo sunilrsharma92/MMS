@@ -634,15 +634,10 @@ function handleLoginResponse(response)
 		$(".overlay").show().delay(100).fadeOut();
 		var action = response.status;
 		var statusdesc = response.statusdesc;
-		var itemsinCart = response.itemsinCart;
-		$.session.set("itemsinCart", itemsinCart);
+		
 		var msg = "Your account is not yet verified. Please enter your verification code(OTP)";
 		var invalidOTP = "Invalid OTP. Please check your mail for the valid OTP";
-		var userType = response.userType;
-		if(userType != null)
-		{
-			removePwdFromSession(response, userType);
-		}
+		
 		if(action != 3)
 		{
 			jqueryconform("Message", statusdesc);
@@ -662,54 +657,84 @@ function handleLoginResponse(response)
 		}
 		else
 		{
-			$("#myAcc").show();
-			$("#loginDialogLink").hide();
-			$("#crossClose").trigger("click");
-			var checkoutlogin = $.session.get("checkoutlogin");
-			if(checkoutlogin == "checkoutlogin")
+			var itemsinCart = response.itemsinCart;
+			$.session.set("itemsinCart", itemsinCart);
+			var userType = response.userType;
+			
+			if(userType != null)
 			{
-				getcookies();
-				var userid = response.key;
-				for ( var i in arrayofProduct)
-				{
-					var arr = arrayofProduct[i];
-					var productarr = arr.toString().split("/");
-					var productid = "";
-					var shopid = "";
-					for ( var h in productarr)
-					{
-						productid = productarr[0];
-						shopid = productarr[1];
-					}
-					objhandleRequest.aadToCartForLoggedUser(userid, userType, productid, "authoriseduser", "1", "add", shopid);
-				}
-				arrayofProduct = 0;
+				removePwdFromSession(response, userType);
+			}
+			
+			var otp = response.otp;
+			if(otp == "admin")
+			{
+				$.session.set("pageState", "adminControl");
 				$("#loadpage").empty();
-				$("#loadpage").load("checkout.jsp");
+				$("#crossClose").trigger("click");
+				
+				$("#loginDialogLink").hide();
+				$("#myAcc").show();
+				$("#myAccList").hide();
+				$("#myAcc").attr("onclick","callPage('adminControl.jsp');");
+				
+				$("#loadpage").load("adminControl.jsp");
 			}
 			else
 			{
-				getcookies();
-				var userid = response.key;
-				var arrayofProductLength = arrayofProduct.length;
-				for ( var j in arrayofProduct)
+				$("#myAcc").show();
+				$("#loginDialogLink").hide();
+				$("#crossClose").trigger("click");
+				
+				$("#myAcc").removeAttr("onclick");
+				$("#myAccList").show();
+				
+				var checkoutlogin = $.session.get("checkoutlogin");
+				if(checkoutlogin == "checkoutlogin")
 				{
-					var arr = arrayofProduct[j];
-					var productarr = arr.toString().split("/");
-					var productid = "";
-					var shopid = "";
-					for ( var k in productarr)
+					getcookies();
+					var userid = response.key;
+					for ( var i in arrayofProduct)
 					{
-						productid = productarr[0];
-						shopid = productarr[1];
+						var arr = arrayofProduct[i];
+						var productarr = arr.toString().split("/");
+						var productid = "";
+						var shopid = "";
+						for ( var h in productarr)
+						{
+							productid = productarr[0];
+							shopid = productarr[1];
+						}
+						objhandleRequest.aadToCartForLoggedUser(userid, userType, productid, "authoriseduser", "1", "add", shopid);
 					}
-					objhandleRequest.aadToCartForLoggedUser(userid, userType, productid, "authoriseduser", "1", "add", shopid);
-				}
-				$.cookie("key", "");
-				if(arrayofProductLength == 0)
-				{
 					arrayofProduct = 0;
-					location.replace("indexTemplate.jsp");
+					$("#loadpage").empty();
+					$("#loadpage").load("checkout.jsp");
+				}
+				else
+				{
+					getcookies();
+					var userid = response.key;
+					var arrayofProductLength = arrayofProduct.length;
+					for ( var j in arrayofProduct)
+					{
+						var arr = arrayofProduct[j];
+						var productarr = arr.toString().split("/");
+						var productid = "";
+						var shopid = "";
+						for ( var k in productarr)
+						{
+							productid = productarr[0];
+							shopid = productarr[1];
+						}
+						objhandleRequest.aadToCartForLoggedUser(userid, userType, productid, "authoriseduser", "1", "add", shopid);
+					}
+					$.cookie("key", "");
+					if(arrayofProductLength == 0)
+					{
+						arrayofProduct = 0;
+						location.replace("indexTemplate.jsp");
+					}
 				}
 			}
 		}

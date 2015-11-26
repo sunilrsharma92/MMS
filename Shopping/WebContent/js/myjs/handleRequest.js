@@ -18,6 +18,7 @@ function handleRequest()
 	this.conformOder = conformOder;
 	this.getOrdersHistory = getOrdersHistory;
 	this.emailOrderDetails = emailOrderDetails;
+	this.getAllOrders = getAllOrders;
 	
 	function handleCategoryRequest()
 	{
@@ -339,6 +340,21 @@ function handleRequest()
 		catch (e)
 		{
 			console.log("handleRequest     getOrdersHistory     Exception :: " + e);
+		}
+	}
+	function getAllOrders()
+	{
+		try
+		{
+			var strconform = {};
+			strconform.command = 1020;
+			var strjsonMsgForstrconform = JSON.stringify(strconform);
+			console.log("handleRequest     getAllOrders  command : "+strjsonMsgForstrconform);
+			handleAllListResponse(strjsonMsgForstrconform);
+		}
+		catch (e)
+		{
+			console.log("handleRequest     getAllOrders     Exception :: " + e);
 		}
 	}
 	function emailOrderDetails(purchaseTemplet, customerEmailid, userType, total, phone, name, orderid)

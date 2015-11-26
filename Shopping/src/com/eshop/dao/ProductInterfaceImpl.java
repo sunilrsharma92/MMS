@@ -3,6 +3,8 @@ package com.eshop.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -27,7 +29,7 @@ public class ProductInterfaceImpl implements ProductInterface
 	SendMessage sm = null;
 	PreparedStatement ps, ps1, ps2, ps3, ps4 = null;
 	Connection conn = null;
-	ResultSet rs, rs1, rs2 = null;
+	ResultSet rs, rs1, rs2, rs3 = null;
 	int result, result1, result2, resultTemp = 0;
 	String output = null;
 
@@ -1046,6 +1048,135 @@ public class ProductInterfaceImpl implements ProductInterface
 							
 //							boolean result = sm.sendMessage("+91"+phone,orderid);
 							
+					}
+					catch (Exception e)
+					{
+						e.printStackTrace();
+						mms.writeLogs("ProductInterfaceImpl handleRequestResponse() "+command+" Exception : "+e,0);
+					}
+					break;
+					
+				case 1020:
+					try
+					{
+						String orderSQl = "select * from cart where orderid is not null group by orderid order by datetime DESC";
+						ps = conn.prepareStatement(orderSQl);
+						
+						rs = ps.executeQuery();
+						while (rs.next())
+						{
+							JSONObject childjson = new JSONObject();
+							
+							String id = null;
+							String custKey = ""+rs.getLong("customer_key");
+							String suppKey = ""+rs.getLong("supplier_key");
+							String columnNAme = null;
+							String tableNAme = null;
+							Long key = (long) 0;
+							
+							if(!custKey.equalsIgnoreCase("0"))
+							{
+								id = "customer_key#"+rs.getLong("customer_key");
+								columnNAme = "customer_key";
+								tableNAme = "customers";
+								key = rs.getLong("customer_key");
+							}
+							else if(!suppKey.equalsIgnoreCase("0"))
+							{
+								id = "supplier_key#"+rs.getLong("supplier_key");
+								columnNAme = "supplier_key";
+								tableNAme = "suppliers";
+								key = rs.getLong("supplier_key");
+							}
+							
+							childjson.put("userid", id);
+							childjson.put("orderid", rs.getString("orderid"));
+							childjson.put("datetime", rs.getString("datetime"));
+							
+							//getting cart details by orderid from database
+							String shopidArraySQl = "select * from cart where orderid = '"+rs.getString("orderid")+"' group by shopid";
+							List shopidArray = new ArrayList();
+							ps2 = conn.prepareStatement(shopidArraySQl);
+							
+							rs2 = ps2.executeQuery();
+							while (rs2.next())
+							{
+								Long shopid = rs2.getLong("shopid");
+								
+								shopidArray.add(shopid);//adding list of shopid in array for individual customer.
+							}
+							
+							//Iterating shopid and getting purchase details based on orderid and shopid from cart
+							JSONObject childjson2 = new JSONObject();
+							for(int i = 0; i<shopidArray.size(); i++)
+							{
+//								childjson.put("shopid", rs3.getLong("shopid"));
+								JSONArray jsonShoparray = new JSONArray();
+								String ProdDetailsSQl = "select * from cart where orderid = '"+rs.getString("orderid")+"' and shopid = "+shopidArray.get(i)+"";
+								ps3 = conn.prepareStatement(ProdDetailsSQl);
+								
+								rs3 = ps3.executeQuery();
+								while (rs3.next())
+								{
+									JSONObject childjson1 = new JSONObject();
+									childjson1.put("productid", rs3.getLong("productid"));
+									childjson1.put("productname", rs3.getString("productname"));
+									childjson1.put("productimg", rs3.getString("productimg"));
+									childjson1.put("productprice", rs3.getFloat("productprice"));
+									childjson1.put("total", rs3.getFloat("total"));
+									childjson1.put("quantity", rs3.getLong("quantity"));
+								
+									jsonShoparray.add(childjson1);
+								}
+								childjson2.put("shop"+i, jsonShoparray);
+							}
+							childjson.put("shopListByOrderId", childjson2);//array of shop with purchase details for individual customer.
+							
+							//Getting user details based on userid.
+							String usweDetailsSQl = "select * from "+tableNAme+" where "+columnNAme+" = "+key+"";
+							ps1 = conn.prepareStatement(usweDetailsSQl);
+							
+							rs1 = ps1.executeQuery();
+							while (rs1.next())
+							{
+	//							childjson.put("companyname", rs.getString("company_name"));
+								
+								if(rs1.getString("address1") != null)
+								{
+									childjson.put("address1", rs1.getString("address1"));
+								}
+								else
+								{
+									childjson.put("address1", "");
+								}
+								
+								if(rs1.getString("address2") != null)
+								{
+									childjson.put("address2", rs1.getString("address2"));
+								}
+								else
+								{
+									childjson.put("address2", "");
+								}
+								
+								childjson.put("name", rs1.getString("first_name")+" "+rs1.getString("last_name"));
+								childjson.put("phone", rs1.getString("phone"));
+								
+								childjson.put("city", rs1.getString("city"));
+								childjson.put("state", rs1.getString("state"));
+								childjson.put("street", rs1.getString("street"));
+								childjson.put("pincode", rs1.getString("postal_code"));
+								childjson.put("country", rs1.getString("country"));
+								childjson.put("img", rs1.getString("profile_img"));
+							}
+							jsonarray.add(childjson);
+							
+						}
+						parentjson.put("Order", jsonarray);
+						parentjson = CommonMethodImpl.putSuccessJson(parentjson, 2020);
+						output = parentjson.toString();
+						System.out.println("1020 Output : "+output);
+						return output;
 					}
 					catch (Exception e)
 					{

@@ -105,6 +105,9 @@ function listResponseHandler(response, command, status)
 					case 2057:
 						handleProfilePicResponse(response);
 						break;
+					case 2020:
+						getOrders(response);
+						break;
 				}
 				break;
 			case 1:
