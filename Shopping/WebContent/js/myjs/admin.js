@@ -12,21 +12,74 @@ function getOrders(response)
 try
 {
 //	console.log("admin.js  getOrders(response)  : "+JSON.stringify(response));
-	var imagerenderer = function(row, datafield, value)
+	var viewOrder = function(row, datafield, value)
 	{
-		return '<div style="text-align: center; margin-top: 3px;"><img src="Images/View.gif" style="cursor:pointer; height:20px; width:20px;" onclick="displayOrder(' + row + ')"/></div>';
+		return '<div style="text-align: center; margin-top: 3px;" onclick="displayOrder(' + row + ')"><img src="Images/View.gif" style="cursor:pointer; height:20px; width:20px;"/></div>';
 	};
-	var imageAccept = function(row, datafield, value)
+	var acceptOrder = function(row, datafield, value)
 	{
-		return '<div style="text-align: center; margin-top: 3px;"><img src="Images/tick.png" style="cursor:pointer; height:20px; width:20px;" onclick="displayOrder(' + row + ')"/></div>';
+//		 editrow = row;
+		 var displaynoneVal = "block";
+         var dataRecord = $("#admingrid").jqxGrid('getrowdata', row);
+         var status = dataRecord.status;
+         
+         if(status == "Pending")//Pending
+         {
+        	 displaynoneVal = "block";
+         }
+         else if(status == "WIP")//Accepted
+         {
+        	 displaynoneVal = "none";
+         }
+         else if(status == "Cancle")// Cancle order
+         {
+        	 displaynoneVal = "none";
+         }
+         else if(status == "Completed")// Order Completed
+         {
+        	 displaynoneVal = "none";
+         }
+         /*else if(status == "Rejected")// Order Rejected
+         {
+        	 displaynoneVal = "none";
+         }*/
+
+         
+		return '<div style="text-align: center; margin-top: 3px;margin-left: 40%;" onclick="acceptOrder(' + row + ')"><img src="Images/tick.png" style="cursor:pointer; height:20px; width:20px;display:'+displaynoneVal+';"/></div>';
 	};
-	var imageReject = function(row, datafield, value)
+	var cancelOrder = function(row, datafield, value)
 	{
-		return '<div style="text-align: center; margin-top: 3px;"><img src="Images/cross.png" style="cursor:pointer; height:20px; width:20px;" onclick="displayOrder(' + row + ')"/></div>';
+//		 editrow = row;
+		 var displaynoneVal = "block";
+         var dataRecord = $("#admingrid").jqxGrid('getrowdata', row);
+         var status = dataRecord.status;
+         
+         if(status == "Pending")//Pending
+         {
+        	 displaynoneVal = "block";
+         }
+         else if(status == "WIP")//Accepted
+         {
+        	 displaynoneVal = "block";
+         }
+         else if(status == "Cancle")// Cancle order
+         {
+        	 displaynoneVal = "none";
+         }
+         else if(status == "Completed")// Order Completed
+         {
+        	 displaynoneVal = "none";
+         }
+         /*else if(status == "Rejected")// Order Rejected
+         {
+        	 displaynoneVal = "none";
+         }*/
+         
+		return '<div style="text-align: center; margin-top: 3px; margin-left: 40%;" onclick="cancelOrder(' + row + ')"><img src="Images/cross.png" style="cursor:pointer; height:20px; width:20px;display:'+displaynoneVal+';"/></div>';
 	};
-	var imageRejectDelete = function(row, datafield, value)
+	var deleteOrder = function(row, datafield, value)
 	{
-		return '<div style="text-align: center; margin-top: 3px;"><img src="Images/delete.png" style="cursor:pointer; height:20px; width:20px;" onclick="displayOrder(' + row + ')"/></div>';
+		return '<div style="text-align: center; margin-top: 3px;" onclick="deleteOrder(' + row + ')"><img src="Images/delete.png" style="cursor:pointer; height:20px; width:20px;"/></div>';
 	};
 	try
 	{
@@ -67,14 +120,15 @@ try
 			var pincode = data[i].pincode;
 			var country = data[i].country;
 			var img = data[i].img;
+			var status = data[i].status;
 			
-			console.log("datetime : "+datetime);
+//			console.log("datetime : "+datetime);
 			var date1 = datetime.substr(0, 10);
-			console.log("date1 : "+date1);
+//			console.log("date1 : "+date1);
 			var date = date1.split("-").reverse().join("/");
-			console.log("date : "+date);
+//			console.log("date : "+date);
 			var time = datetime.substr(10, 19);
-			console.log("time : "+time);
+//			console.log("time : "+time);
 			
 			orderarray.push(
 			{
@@ -93,7 +147,8 @@ try
 				street : street,
 				pincode : pincode,
 				country : country,
-				img : img
+				img : img,
+				status : status
 			});
 		}
 	}
@@ -120,7 +175,8 @@ try
 	{name : "city", type : "string"},
 	{name : "state", type : "string"},
 	{name : "street", type : "string"},
-	{name : "pincode", type : "string"}]
+	{name : "pincode", type : "string"},
+	{name : "status", type : "string"}]
 	
 	};
 	$("#admingrid").jqxGrid(
@@ -138,34 +194,39 @@ try
 			text : "Purchase Date",
 			datafield : "date",
 			filtertype : "range",
-			width : "15%",
+			width : "11%",
 			cellsalign : "left",
 			cellsformat : "d"
 	},
 	{
 			text : "Purchase Time",
 			datafield : "time",
-			width : "15%",
+			width : "11%",
 			cellsalign : "left",
 			cellsformat : "d"
 	},
 	{
-		text : "Customer Name",
-		datafield : "name",
-		width : "20%",
-		cellsalign : "left",
-		cellsformat : "d"
+			text : "Customer Name",
+			datafield : "name",
+			width : "20%",
+			cellsalign : "left",
+			cellsformat : "d"
 	},
 	{
-		text : "Mobile",
-		datafield : "phone",
-		width : "10%",
-		cellsalign : "left",
-		cellsformat : "d"
+			text : "Mobile",
+			datafield : "phone",
+			width : "10%",
+			cellsalign : "left",
+			cellsformat : "d"
 	},
 	{
 			text : "Order ID",
 			datafield : "orderid",
+			width : "10%"
+	},
+	{
+			text : "Status",
+			datafield : "status",
 			width : "10%"
 	},
 	{
@@ -175,8 +236,8 @@ try
 			filterable : false,
 			showfilterrow : false,
 			cellsalign : "center",
-			width : "10%",
-			cellsrenderer : imagerenderer
+			width : "7%",
+			cellsrenderer : viewOrder
 	}, 
 	{
 			text : "Accept Order",
@@ -185,18 +246,28 @@ try
 			filterable : false,
 			showfilterrow : false,
 			cellsalign : "center",
-			width : "10%",
-			cellsrenderer : imageAccept
+			width : "7%",
+			cellsrenderer : acceptOrder
 	} ,
 	{
-		text : "Cancel Order",
-		menu : false,
-		sortable : false,
-		filterable : false,
-		showfilterrow : false,
-		cellsalign : "center",
-		width : "10%",
-		cellsrenderer : imageReject
+			text : "Cancel Order",
+			menu : false,
+			sortable : false,
+			filterable : false,
+			showfilterrow : false,
+			cellsalign : "center",
+			width : "7%",
+			cellsrenderer : cancelOrder
+	},
+	{
+			text : "Delete Order",
+			menu : false,
+			sortable : false,
+			filterable : false,
+			showfilterrow : false,
+			cellsalign : "center",
+			width : "7%",
+			cellsrenderer : deleteOrder
 	}]
 	});
 }
@@ -211,3 +282,40 @@ function callPage(page)
 {
 	$("#loadpage").load("adminControl.jsp");
 }
+
+function displayOrder(row)
+{
+	editrow = row;
+    var dataRecord = $("#admingrid").jqxGrid('getrowdata', editrow);
+    var shopList = dataRecord.shopList;
+	console.log("shopList : "+JSON.stringify(shopList));
+}
+
+function acceptOrder(row)
+{
+	var orderid = getGridDetails(row);
+	console.log("orderid : "+orderid);
+}
+
+function cancelOrder(row)
+{
+	var orderid = getGridDetails(row);
+	console.log("orderid : "+orderid);
+}
+
+function deleteOrder(row)
+{
+	var orderid = getGridDetails(row);
+	console.log("orderid : "+orderid);
+}
+
+function getGridDetails(row)
+{
+	editrow = row;
+    var dataRecord = $("#admingrid").jqxGrid('getrowdata', editrow);
+    var orderid = dataRecord.orderid;
+    
+    return orderid;
+}
+
+

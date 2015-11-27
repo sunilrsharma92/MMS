@@ -767,16 +767,17 @@ public class ProductInterfaceImpl implements ProductInterface
 								total = quantity * price;
 								stock = stock - quantity;
 								
-								ps2 = conn.prepareStatement("update cart c, products p set c.total=?, c.orderid=?, c.productname = ?, c.productimg = ?, c.productprice = ?, c.datetime = now(), p.units_in_stock = ? where c."+usertypecolumnname+" = ? and c.productid = ? and p.product_key = ? and orderid is null");
+								ps2 = conn.prepareStatement("update cart c, products p set c.total=?, c.orderid=?, c.productname = ?, c.productimg = ?, c.productprice = ?, c.datetime = now(), c.status = ?, p.units_in_stock = ? where c."+usertypecolumnname+" = ? and c.productid = ? and p.product_key = ? and orderid is null");
 								ps2.setFloat(1, total);
 								ps2.setString(2, orderid);
 								ps2.setString(3, prodName);
 								ps2.setString(4, image);
 								ps2.setFloat(5, price);
-								ps2.setFloat(6, stock);
-								ps2.setLong(7, userid);
-								ps2.setLong(8, productkey);
+								ps2.setString(6, "Pending");
+								ps2.setFloat(7, stock);
+								ps2.setLong(8, userid);
 								ps2.setLong(9, productkey);
+								ps2.setLong(10, productkey);
 								
 								result1 = ps2.executeUpdate();
 								if (result1 > 0)
@@ -1101,6 +1102,7 @@ public class ProductInterfaceImpl implements ProductInterface
 							childjson.put("userid", id);
 							childjson.put("orderid", rs.getString("orderid"));
 							childjson.put("datetime", rs.getString("datetime"));
+							childjson.put("status", rs.getString("status"));
 							
 							//getting cart details by orderid from database
 							String shopidArraySQl = "select * from cart where orderid = '"+rs.getString("orderid")+"' group by shopid";
@@ -1177,6 +1179,7 @@ public class ProductInterfaceImpl implements ProductInterface
 								childjson.put("pincode", rs1.getString("postal_code"));
 								childjson.put("country", rs1.getString("country"));
 								childjson.put("img", rs1.getString("profile_img"));
+								
 							}
 							jsonarray.add(childjson);
 							
