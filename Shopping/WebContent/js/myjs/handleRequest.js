@@ -19,6 +19,7 @@ function handleRequest()
 	this.getOrdersHistory = getOrdersHistory;
 	this.emailOrderDetails = emailOrderDetails;
 	this.getAllOrders = getAllOrders;
+	this.acceptCancleOrder = acceptCancleOrder;
 	
 	function handleCategoryRequest()
 	{
@@ -385,6 +386,24 @@ function handleRequest()
 		catch (e)
 		{
 			console.log("handleRequest     emailOrderDetails     Exception :: " + e);
+		}
+	}
+	function acceptCancleOrder(action, userData)
+	{
+		try
+		{
+			var stracceptCancleOrder = {};
+			stracceptCancleOrder.command = 1021;
+			stracceptCancleOrder.action = action;
+			stracceptCancleOrder.userData = userData;
+			
+			var strjsonMsgForstracceptCancleOrder = JSON.stringify(stracceptCancleOrder);
+			console.log("handleRequest     acceptCancleOrder  strjsonMsgForstracceptCancleOrder : " + strjsonMsgForstracceptCancleOrder);
+			handleAllListResponse(strjsonMsgForstracceptCancleOrder);
+		}
+		catch (e)
+		{
+			console.log("handleRequest     acceptCancleOrder     Exception :: " + e);
 		}
 	}
 }

@@ -29,7 +29,7 @@ public class ProductInterfaceImpl implements ProductInterface
 	SendMessage sm = null;
 	PreparedStatement ps, ps1, ps2, ps3, ps4 = null;
 	Connection conn = null;
-	ResultSet rs, rs1, rs2, rs3 = null;
+	ResultSet rs, rs1, rs2, rs3, rs4 = null;
 	int result, result1, result2, resultTemp = 0;
 	String output = null;
 
@@ -1083,6 +1083,7 @@ public class ProductInterfaceImpl implements ProductInterface
 							String columnNAme = null;
 							String tableNAme = null;
 							Long key = (long) 0;
+							float grandTotal = 0;
 							
 							if(!custKey.equalsIgnoreCase("0"))
 							{
@@ -1119,9 +1120,48 @@ public class ProductInterfaceImpl implements ProductInterface
 							
 							//Iterating shopid and getting purchase details based on orderid and shopid from cart
 							JSONObject childjson2 = new JSONObject();
+							JSONArray jsonShoparray1 = new JSONArray();
 							for(int i = 0; i<shopidArray.size(); i++)
 							{
-//								childjson.put("shopid", rs3.getLong("shopid"));
+//								
+								String companyName = null;
+								String shopPhone = null;
+								String address1 = null;
+								String address2 = null;
+								String email = null;
+								String shopkeeperName = null;
+								
+								String ShopDetailSQl = "select * from suppliers where supplier_key = "+shopidArray.get(i)+"";
+								ps4 = conn.prepareStatement(ShopDetailSQl);
+								
+								rs4 = ps4.executeQuery();
+								while(rs4.next())
+								{
+									companyName = rs4.getString("company_name");
+									shopPhone = rs4.getString("phone");
+									email = rs4.getString("email");
+									shopkeeperName = rs4.getString("first_name") + " " + rs4.getString("last_name");
+									
+									if(rs4.getString("address1") != null)
+									{
+										address1 = rs4.getString("address1");
+									}
+									else
+									{
+										address1 = "";
+									}
+									
+									if(rs4.getString("address2") != null)
+									{
+										address2 = rs4.getString("address2");
+									}
+									else
+									{
+										address2 = "";
+									}
+								}
+								
+								
 								JSONArray jsonShoparray = new JSONArray();
 								String ProdDetailsSQl = "select * from cart where orderid = '"+rs.getString("orderid")+"' and shopid = "+shopidArray.get(i)+"";
 								ps3 = conn.prepareStatement(ProdDetailsSQl);
@@ -1130,18 +1170,28 @@ public class ProductInterfaceImpl implements ProductInterface
 								while (rs3.next())
 								{
 									JSONObject childjson1 = new JSONObject();
+									
 									childjson1.put("productid", rs3.getLong("productid"));
 									childjson1.put("productname", rs3.getString("productname"));
 									childjson1.put("productimg", rs3.getString("productimg"));
 									childjson1.put("productprice", rs3.getFloat("productprice"));
 									childjson1.put("total", rs3.getFloat("total"));
 									childjson1.put("quantity", rs3.getLong("quantity"));
-								
+
+									childjson1.put("companyName", companyName);
+									childjson1.put("address1", address1);
+									childjson1.put("address2", address2);
+									childjson1.put("email", email);
+									childjson1.put("shopPhone", shopPhone);
+									childjson1.put("shopkeeperName", shopkeeperName);
+									
+									grandTotal = grandTotal + rs3.getFloat("total");
 									jsonShoparray.add(childjson1);
 								}
-								childjson2.put("shop"+i, jsonShoparray);
+//								childjson2.put("shop"+i, jsonShoparray);
+								jsonShoparray1.add(jsonShoparray);
 							}
-							childjson.put("shopListByOrderId", childjson2);//array of shop with purchase details for individual customer.
+							childjson.put("shopListByOrderId", jsonShoparray1);//array of shop with purchase details for individual customer.
 							
 							//Getting user details based on userid.
 							String usweDetailsSQl = "select * from "+tableNAme+" where "+columnNAme+" = "+key+"";
@@ -1181,6 +1231,8 @@ public class ProductInterfaceImpl implements ProductInterface
 								childjson.put("img", rs1.getString("profile_img"));
 								
 							}
+							
+							childjson.put("grandTotal", grandTotal);
 							jsonarray.add(childjson);
 							
 						}
@@ -1195,6 +1247,50 @@ public class ProductInterfaceImpl implements ProductInterface
 						e.printStackTrace();
 						mms.writeLogs("ProductInterfaceImpl handleRequestResponse() "+command+" Exception : "+e,0);
 					}
+					break;
+					
+				case 1021:
+						try
+						{
+							JSONObject object = (JSONObject) JSONValue.parse(jsonMsg);
+		
+							String action = (String) object.get("action");
+							String data = (String) object.get("userData");
+							String[] userData = data.split("#");
+							String userId = userData[2];
+							String userType = userData[1];
+							String orderid = userData[0];
+							String sqlQuery = null;
+							if(action.equalsIgnoreCase("deleted"))
+							{
+								sqlQuery = "delete from cart where "+userType+" = "+userId+" and orderid = '"+orderid+"'";
+							}
+							else
+							{
+								sqlQuery = "update cart set status = '"+action+"' where "+userType+" = "+userId+" and orderid = '"+orderid+"'";
+							}
+							
+							ps = conn.prepareStatement(sqlQuery);
+							result = ps.executeUpdate();
+							if(result > 0)
+							{
+								parentjson = CommonMethodImpl.putSuccessJson(parentjson, 2021);// succcess
+							}
+							else
+							{
+								parentjson = CommonMethodImpl.putFailedJson(parentjson, 1021);// faliure
+							}
+							
+							parentjson.put("statusdesc", "Success");
+							output = parentjson.toString();
+							return output;
+							
+						}
+						catch(Exception e)
+						{
+							e.printStackTrace();
+							mms.writeLogs("ProductInterfaceImpl handleRequestResponse() "+command+" Exception : "+e,0);
+						}
 					break;
 					
 				case 1051: // -- Customer/Shopkeeper Login //

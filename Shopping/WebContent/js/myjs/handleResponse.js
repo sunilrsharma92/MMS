@@ -108,6 +108,9 @@ function listResponseHandler(response, command, status)
 					case 2020:
 						getOrders(response);
 						break;
+					case 2021:
+						setOrdersStatus(response);
+						break;
 				}
 				break;
 			case 1:
@@ -159,6 +162,9 @@ function listResponseHandler(response, command, status)
 						break;
 					case 1056:
 //						handleChangePasswordResponse(response);
+						break;
+					case 1021:
+						setOrdersStatus(response);
 						break;
 					
 				}
