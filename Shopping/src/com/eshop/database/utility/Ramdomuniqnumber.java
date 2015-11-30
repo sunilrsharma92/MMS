@@ -10,7 +10,7 @@ public class Ramdomuniqnumber
 		 Random random = new Random() ;
 	     int num = random.nextInt(5) + 2;
 	     int randomNumber=100+num;
-	     System.out.println (randomNumber) ; 
+//	     System.out.println (randomNumber) ; 
 		 return randomNumber;
 		
 	}

@@ -45,6 +45,13 @@
 	     
 	//  });
 	   
+	    $("#userType").jqxSwitchButton(
+	    		{
+	    		height : 27,
+	    		width : 81,
+	    		checked : true
+	    		});
+	    
 	});
 	$(window).scroll(function() {    
 	    var scroll = $(window).scrollTop();
@@ -63,8 +70,6 @@
 
 </head>
 <body>
-
-
 
 	<div class="container-fluid  top-bar">
 		<div class="container ">

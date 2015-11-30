@@ -98,7 +98,7 @@ public class GetProductbyCategoryServlet extends HttpServlet
 		regis = templateid +"#"+ templatename;
 		
 		readvalue = "accountid : "+accountid+" apikey : "+apikey+" Senderid: "+Senderid+" templatename : "+templatename+" templateid : "+templateid+" accountid : "+accountid+"";
-		System.out.println(readvalue);
+//		System.out.println(readvalue);
 		
 	}
 	/**

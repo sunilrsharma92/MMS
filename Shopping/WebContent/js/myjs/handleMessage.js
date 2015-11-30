@@ -60,6 +60,7 @@ function handleProductArrayForAutoCompleteResponse(response)
 		$.session.set("response", response);
 		console.log(action+" : "+response);
 		autocompleteLabel(response, action);
+		$(".indexoverlay").hide();
 	}
 	catch(e)
 	{
@@ -112,6 +113,16 @@ function handleShopProfDispResponse(response)
 			jAlert(statusdesc, "Error occurred while populating shop details");
 		}
 		writeLogAjax("handleShopProfDispResponse :::::: " + JSON.stringify(response), 1);
+		$(".customeroverlay").hide();
+		
+		try
+		{
+			$(".indexoverlay").hide();
+		}
+		catch(e)
+		{
+			
+		}
 	}
 	catch (e)
 	{
@@ -181,6 +192,9 @@ function handleProductDisplayResponse(response)
 		{
 			getProductfromCookie(condition);
 		}
+		
+		$(".indexoverlay").hide();
+		
 	}
 	catch (e)
 	{
@@ -218,6 +232,8 @@ function handleShopListResponse(response)
 		}
 		$("#shopList").empty();
 		$("#shopList").append(shopdiv);
+		$(".indexoverlay").hide();
+		
 	}
 	catch (e)
 	{
@@ -490,10 +506,17 @@ function handleProductDisplayinCartResponse(response)
 		var removeProduct = $.session.get("removeProduct");
 		if(removeProduct == "removeProduct")
 		{
-			$(".productCountOnCart").empty();
-			document.getElementById("productCountOnCart").innerHTML = count;
-			document.getElementById("productCountOnCart1").innerHTML = count;
-			$.session.set("removeProduct", "");
+			try
+			{
+				$(".productCountOnCart").empty();
+				document.getElementById("productCountOnCart").innerHTML = count;
+				document.getElementById("productCountOnCart1").innerHTML = count;
+				$.session.set("removeProduct", "");
+			}
+			catch(e)
+			{
+				
+			}
 		}
 		var checkout = $.session.get("checkout");
 		if(checkout != null && checkout !== "" && checkout == "checkout")
@@ -501,6 +524,16 @@ function handleProductDisplayinCartResponse(response)
 			console.log("hii");
 			appendProducttoCheckoutTable(productList1, totalpurchase, total, count);
 		}
+		
+		try
+		{
+			$(".indexoverlay").hide();
+		}
+		catch(e)
+		{
+			
+		}
+		
 		$(".overlay").hide();
 	}
 	catch (e)
@@ -612,11 +645,14 @@ function handleSaveUserDetailsResponse(response)
 		var statusdesc = response.statusdesc;
 		jqueryconform("Message", statusdesc);
 	}
+	
+	$(".customeroverlay").hide();
+	
 }
 var addresslistcheck = "";
 function handleResetPasswordResponse(response)
 {
-	$(".overlay").show().delay(100).fadeOut();
+	
 	var action = response.status;
 	var statusdesc = response.statusdesc;
 	if(action != 3)
@@ -627,12 +663,16 @@ function handleResetPasswordResponse(response)
 	{
 		jqueryconform("Message", "Password changed successfully");
 	}
+	
+	$(".customeroverlay").hide();
+	
+	try{$(".overlay").show().delay(100).fadeOut();}catch(e){}
 }
 function handleLoginResponse(response)
 {
 	try
 	{
-		$(".overlay").show().delay(100).fadeOut();
+		
 		var action = response.status;
 		var statusdesc = response.statusdesc;
 		
@@ -739,6 +779,8 @@ function handleLoginResponse(response)
 				}
 			}
 		}
+		
+		$(".overlay").show().delay(100).fadeOut();
 	}
 	catch(e)
 	{

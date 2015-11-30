@@ -6,25 +6,8 @@
 <head>
 <meta http-equiv= "Content-Type" content= "text/html; charset= ISO-8859-1">
 <title>My Profile</title>
-<meta name= "viewport"
-	content= "width= device-width, initial-scale= 1, maximum-scale= 1">
-<!--  <link rel= "stylesheet" href= "css/bootstrap.css"> -->
+<meta name= "viewport" content= "width= device-width, initial-scale= 1, maximum-scale= 1">
 
-<!--  <script src= 'https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>
- <link href= "css/style1.css" rel= "stylesheet"/>
- <link href= "css/bootstrap.min.css" rel= "stylesheet">
- <script src= "http://code.jquery.com/jquery-2.0.3.min.js"></script> 
- <script type= "text/javascript" src= "js/jquery.cookie.js"></script> -->
-
-<!-- custom js -->
-<!--  <script type= "text/javascript" src= "js/myjs/handleRequest.js"></script>
- <script type= "text/javascript" src= "js/myjs/handleResponse.js"></script>
- <script type= "text/javascript" src= "js/myjs/handleMessage.js"></script>
- <script type= "text/javascript" src= "js/myjs/callServlet.js"></script> -->
-<!-- <script type= "text/javascript" src= "js/myjs/ready.js"></script> -->
-<!-- <script type="text/javascript" src="js/myjs/customerprofile.js"></script> -->
-<!--  <script src= "js/bootstrap.js"></script>
- <script src= "js/bootstrap.min.js"></script>  -->
 
 <style type= "text/css">
 .fade-in {
@@ -46,7 +29,6 @@
 <body>
 	<jsp:include page= "shopProfileTop.jsp" />
 	<jsp:include page= "shopProfileMiddle.jsp" />
-	<%-- <jsp:include page= "footer.jsp" /> --%>
 
 	<input type= "hidden" id= "action" name= "action" value= "edit">
 </body>

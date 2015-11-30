@@ -91,7 +91,7 @@ public class ReadWriteUpdatePropertieFiles
 						String password = properties.getProperty("password");
 						
 						readvalue = "drivername : "+drivername+" connection : "+connection+" username: "+username+" password : "+password+"";
-						System.out.println(readvalue);
+//						System.out.println(readvalue);
 					}
 					else if(num == 2)
 					{
@@ -102,7 +102,7 @@ public class ReadWriteUpdatePropertieFiles
 						String templatename = properties.getProperty("templatename");
 						
 						readvalue = "accountid : "+accountid+" apikey : "+apikey+" Senderid: "+Senderid+" templatename : "+templatename+" templateid : "+templateid+" accountid : "+accountid+"";
-						System.out.println(readvalue);
+//						System.out.println(readvalue);
 					}
 					
 					mms.writeLogs("ReadWriteUpdatePropertieFiles readCommonPropertieFile() Details from properties files : "+readvalue, 1);

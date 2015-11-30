@@ -4,6 +4,7 @@ $(document).ready(function()
 {
 	try
 	{
+		$(".customeroverlay").show();
 		var contentState = $.session.get("contentState");
 //		alert("contentState : "+contentState);
 		if(contentState != null && contentState != "" && contentState != undefined)
@@ -24,6 +25,7 @@ $(document).ready(function()
 		{
 			try
 			{
+				$(".customeroverlay").show();
 				$("#custOrderPanel").show();
 				var loginData = $.session.get("loginData");
 				var sessionData = JSON.parse(loginData);
@@ -47,6 +49,7 @@ $(document).ready(function()
 		{
 			try
 			{
+				
 				$.session.remove("shopProfileKey");
 				$("#custOrderPanel").hide();
 				var loginData = $.session.get("loginData");
@@ -84,6 +87,7 @@ $(document).ready(function()
 				source : prodlabel,
 				select : function(event, ui)
 				{
+					$(".indexoverlay").show();
 					var text = ui.item.label;
 					searchProduct();
 				}
@@ -104,6 +108,7 @@ $(document).ready(function()
 			{
 				if(e.which == 13)
 				{
+					$(".indexoverlay").show();
 					searchProduct();
 				}
 			}
@@ -132,6 +137,7 @@ function dataGridOrderHistory(response)
 {
 	try
 	{
+		$(".customeroverlay").hide();
 		var imagerenderer = function(row, datafield, value)
 		{
 			return '<div style="text-align: center; margin-top: 3px;"><img src="Images/View.gif" style="cursor:pointer; height:20px; width:20px;" onclick="displayOrder(' + row + ')"/></div>';
@@ -262,6 +268,7 @@ function dataGridOrderHistory(response)
 	{
 		console.log("customerProfile.js --> Exception : " + e);
 	}
+	
 }
 function displayOrder(row)
 {

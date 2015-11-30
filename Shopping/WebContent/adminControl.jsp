@@ -27,6 +27,11 @@
 
 </head>
 <body>
+
+<div class="adminoverlay" style="margin-top: 45px;">
+<div id="loading-img"></div>
+</div>
+							
 <div id="admingrid" style="margin: 100px auto"></div>
 
 			     <div id="viewOrderToConform" class="panel-body" style="margin-top: 20px; display: none;">

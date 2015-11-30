@@ -49,7 +49,7 @@ public class UploadServlet extends HttpServlet {
     public void init() throws ServletException
     {
     	File file = new File(relativePath);
-    	System.out.println(relativePath.length());
+//    	System.out.println(relativePath.length());
         foldername = "Images\\ProfileImg";
         foldernamejsp = "Images/ProfileImg/";
 //        System.out.println("FolderName "+foldername);

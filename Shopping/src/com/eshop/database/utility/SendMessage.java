@@ -60,7 +60,7 @@ public class SendMessage
 				templatename = prop[4];
 				
 				readvalue = "accountid : "+accountid+" apikey : "+apikey+" Senderid: "+Senderid+" templatename : "+templatename+" templateid : "+templateid1+" accountid : "+accountid+"";
-				System.out.println(readvalue);
+//				System.out.println(readvalue);
 
 				mms.writeLogs("SendMessage sendMessage() Details from properties files : " + readvalue, 1);
 			}

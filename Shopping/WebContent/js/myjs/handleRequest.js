@@ -40,6 +40,7 @@ function handleRequest()
 	{
 		try
 		{
+//			$(".indexoverlay").show();
 			var strProduct = {};
 			strProduct.action = action;
 			strProduct.command = 1002;
@@ -387,7 +388,7 @@ function handleRequest()
 			stremailOrderDetails.command = +command;
 			
 			var strjsonMsgForstremailOrderDetails = JSON.stringify(stremailOrderDetails);
-			console.log("handleRequest     emailOrderDetails  strjsonMsgForstremailOrderDetails : " + strjsonMsgForstremailOrderDetails);
+//			console.log("handleRequest     emailOrderDetails  strjsonMsgForstremailOrderDetails : " + strjsonMsgForstremailOrderDetails);
 			handleAllListResponse(strjsonMsgForstremailOrderDetails);
 		}
 		catch (e)

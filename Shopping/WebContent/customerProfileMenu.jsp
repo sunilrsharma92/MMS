@@ -33,6 +33,12 @@ table td
 </head>
 <body>
 
+
+<div class="customeroverlay" style="margin-top: 18%; margin-left: 27%;">
+<div id="loading-img"></div>
+</div>
+
+
 	<!-- Start of container -->
 	<div  style="margin-top: 0px; margin-bottom: 0px;">
 		<div class="container" style="background-color: #FFF;">

@@ -6,8 +6,10 @@ var shopAction = "";
 var prodAction = "";
 $(document).ready(function()
 {
-	
-	
+try
+{
+	$(".indexoverlay").show();
+//	$("#indexMenuPage").load("indexMenu.jsp");
 	var ps = $.session.get("pageState");
 //	alert("Page State : "+ps);
 	if(ps == undefined)
@@ -35,12 +37,7 @@ $(document).ready(function()
 	{
 		$(".col-cat").removeClass("hidden-xs");
 	});
-	$("#userType").jqxSwitchButton(
-	{
-	height : 27,
-	width : 81,
-	checked : true
-	});
+	
 	var loginData = $.session.get("loginData");
 	if(loginData != null)
 	{
@@ -84,6 +81,7 @@ $(document).ready(function()
 			$.session.remove("userType1");
 			$.session.remove("ordernotification");
 			$.cookie("key", null);
+			localStorage.clear();
 			window.location.replace("indexTemplate.jsp");
 		},
 		cancel : function()
@@ -98,6 +96,7 @@ $(document).ready(function()
 	
 	$("#profileLink").click(function()
 	{
+		
 		$.session.remove("shopid");
 		
 		var userType1 = $.session.get("userType1");
@@ -121,7 +120,8 @@ $(document).ready(function()
 			$("#loadpage").load("shopProfile.jsp");
 		}
 		$.session.set("pageState", vid);
-		$(".overlay1").hide();
+		$(".customeroverlay").show();
+//		$(".overlay1").hide();
 	});
 	
 	$(".btn-toggle").click(function()
@@ -146,10 +146,13 @@ $(document).ready(function()
 	{
 		getProductfromCookie(action);
 	}
+	
 	objhandleRequest.handleAllProductForAutoCompleteRequest("shop");
 	objhandleRequest.handleAllProductForAutoCompleteRequest("prod");
+	
 	$(".getCartProduct").click(function()
 	{
+		$(".indexoverlay").show();
 		var loginData = $.session.get("loginData");
 		if(loginData != null)
 		{
@@ -181,6 +184,7 @@ $(document).ready(function()
 				source : label1,
 				select : function(event, ui)
 				{
+					$(".indexoverlay").show();
 					var text = ui.item.label;
 					var pageSta = $.session.get("pageState");
 					if(pageSta != "indexBody")
@@ -211,6 +215,7 @@ $(document).ready(function()
 		{
 			if(e.which == 13)
 			{
+				$(".indexoverlay").show();
 				var pageSta = $.session.get("pageState");
 				if(pageSta != "indexBody")
 				{
@@ -324,17 +329,23 @@ $(document).ready(function()
 	} ]
 	});
 	
-	$("#getCartProduct").click(function()
+	/*$("#getCartProduct").click(function()
 	{
 		getProductfromCookie("prod");
-	});
+	});*/
 	
+}
+catch(e)
+{
+	console.log("Document.ready function Exception : "+e);
+}
 });
 
 function loadShopProfilePage(id)
 {
 	try
 	{
+		$(".indexoverlay").show();
 		$("#removesearchbtn").trigger("click");
 		var shopid = $.session.get("shopid");
 		var loginData = $.session.get("loginData");
@@ -374,6 +385,7 @@ function autocompleteLabel(data, action)
 			prodAction = action;
 		}
 	}
+	
 }
 function loadProductViewPage(id)
 {
@@ -448,6 +460,7 @@ function jqueryconform(title, message)
 }
 function saveUserDetails(id)
 {
+	$(".customeroverlay").show();
 	if(id == "address")
 	{
 		$("#firstNameSave").val("");
@@ -484,6 +497,7 @@ function saveUserDetails(id)
 }
 function resetPassword()
 {
+	$(".customeroverlay").show();
 	var password1 = $("#password1").val();
 	var password2 = $("#password2").val();
 	var userType = $.session.get("userType");
@@ -660,7 +674,8 @@ function getProductfromCookie(condition)
 		var count = 0;
 		var prodjoin = "";
 		var gettingCookieArray = $.cookie("key");
-		if(gettingCookieArray != null)
+		
+		if(gettingCookieArray != null && gettingCookieArray != undefined)
 		{
 			var gettingCookieValue = JSON.parse(gettingCookieArray);
 			console.log("JSON.parse(gettingCookieArray) : " + gettingCookieValue);
@@ -696,9 +711,17 @@ function getProductfromCookie(condition)
 		}
 		else
 		{
-			$(".productCountOnCart").empty();
-			document.getElementById("productCountOnCart").innerHTML = count;
-			document.getElementById("productCountOnCart1").innerHTML = count;
+			try
+			{
+				$(".productCountOnCart").empty();
+				document.getElementById("productCountOnCart").innerHTML = count;
+				document.getElementById("productCountOnCart1").innerHTML = count;
+			}
+			catch(e)
+			{
+				
+			}
+			
 		}
 		if(condition === "prod")
 		{
@@ -706,6 +729,9 @@ function getProductfromCookie(condition)
 			writeLogAjax("prodjoin : " + prodjoin, 1);
 			objhandleRequest.handledisplayProductinCart(prodjoin, "withoutlogin", 0, "");
 		}
+		
+		$(".indexoverlay").hide();
+		
 	}
 	catch (e)
 	{
@@ -816,9 +842,19 @@ function removeproductfromCArt(id)
 {
 	try
 	{
-		$(".overlay").show();
+		try
+		{
+//			$(".overlay").show();
+		}
+		catch(e)
+		{
+			
+		}
+		
+		$(".indexoverlay").show();
+		
 		var loginData = $.session.get("loginData");
-		if(loginData != null)
+		if(loginData != null && loginData != undefined)
 		{
 			var sessionData = JSON.parse(loginData);
 			var userid = sessionData.key;
@@ -833,14 +869,27 @@ function removeproductfromCArt(id)
 			var gotCookiesArray = JSON.parse(gotCookies);
 			if(gotCookiesArray == "" || gotCookiesArray == null || gotCookiesArray == undefined)
 			{
-				$(".productCountOnCart").empty();
-				document.getElementById("productCountOnCart").innerHTML = "0";
-				document.getElementById("productCountOnCart1").innerHTML = "0";
+				try
+				{
+					$(".productCountOnCart").empty();
+					document.getElementById("productCountOnCart").innerHTML = "0";
+					document.getElementById("productCountOnCart1").innerHTML = "0";
+				}
+				catch(e)
+				{
+					
+				}
+				
 			}
 			arrayofProduct = [];
 			for ( var i in gotCookiesArray)
 			{
 				var productIdfromCookie = gotCookiesArray[i];
+//				var c = JSON.stringify(productIdfromCookie);
+//				var a = c.split("/");
+//				var b = a[0];
+//				console.log("id : "+id+" b : "+b);
+//				var a = productIdfromCookie.split("")
 				if(id != productIdfromCookie)
 				{
 					arrayofProduct.push([ productIdfromCookie ]);
@@ -862,9 +911,26 @@ function removeproductfromCArt(id)
 			{
 				enablebtn(id);
 			}
-			document.getElementById("ok" + id).style.display = "none";
-			document.getElementById("btn" + id).disabled = false;
-			$(".overlay").hide();
+			try
+			{
+				document.getElementById("ok" + id).style.display = "none";
+				document.getElementById("btn" + id).disabled = false;
+			}
+			catch(e)
+			{
+				
+			}
+			
+			$(".indexoverlay").hide();
+			
+			try
+			{
+				$(".overlay").hide();
+			}
+			catch(e)
+			{
+				
+			}
 		}
 	}
 	catch (e)
@@ -875,7 +941,10 @@ function removeproductfromCArt(id)
 }
 function searchProduct()
 {
+	$(".indexoverlay").show();
 	$("#dashboard").show();
+	
+	$("#myCarousel").hide();
 	$("#loadpagecontent").hide();
 	var txt = $("#searchProductTxtBox").val();
 	if(txt != "" || txt != null)
@@ -914,6 +983,7 @@ function searchProduct()
 }
 function searchShop()
 {
+	$(".indexoverlay").show();
 	var txt = $("#search").val();
 	if(txt != "" || txt != null)
 	{

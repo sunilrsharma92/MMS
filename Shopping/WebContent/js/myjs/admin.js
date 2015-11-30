@@ -1,18 +1,21 @@
 
+var shopcount = 0;
 var objhandleRequest = new handleRequest();
-var orderReponse = "";
+//var orderReponse = "";
 $(document).ready(function(){
-	
+	$(".adminoverlay").show();
 	objhandleRequest.getAllOrders();
 	
 });
+
 
 function getOrders(response)
 {
 try
 {
-	orderReponse = response;
+//	orderReponse = response;
 //	console.log("admin.js  getOrders(response)  : "+JSON.stringify(response));
+	
 	var viewOrder = function(row, datafield, value)
 	{
 		var displayorder = "displayOrder(" + row + ", 'view');";
@@ -22,90 +25,75 @@ try
 	{
 //		 editrow = row;
 		 var displaynoneVal = "block";
-         var dataRecord = $("#admingrid").jqxGrid('getrowdata', row);
-         var status = dataRecord.status;
-         
-         if(status == "Pending")//Pending
-         {
-        	 displaynoneVal = "block";
-         }
-         else if(status == "WIP")//Accepted
-         {
-        	 displaynoneVal = "none";
-         }
-         else if(status == "Cancled")// Cancle order
-         {
-        	 displaynoneVal = "none";
-         }
-         else if(status == "Completed")// Order Completed
-         {
-        	 displaynoneVal = "none";
-         }
-         /*else if(status == "Rejected")// Order Rejected
-         {
-        	 displaynoneVal = "none";
-         }*/
+	     var dataRecord = $("#admingrid").jqxGrid('getrowdata', row);
+	     var status = dataRecord.status;
+	     
+	     if(status == "Pending")//Pending
+	     {
+	    	 displaynoneVal = "block";
+	     }
+	     else if(status == "WIP")//Accepted
+	     {
+	    	 displaynoneVal = "none";
+	     }
+	     else if(status == "Cancled")// Cancle order
+	     {
+	    	 displaynoneVal = "none";
+	     }
+	     else if(status == "Completed")// Order Completed
+	     {
+	    	 displaynoneVal = "none";
+	     }
+	     /*else if(status == "Rejected")// Order Rejected
+	     {
+	    	 displaynoneVal = "none";
+	     }*/
 
-         
+	     
 		return '<div style="text-align: center; margin-top: 3px;margin-left: 40%;" onclick="acceptOrder(' + row + ')"><img src="Images/tick.png" style="cursor:pointer; height:20px; width:20px;display:'+displaynoneVal+';"/></div>';
 	};
 	var cancelOrder = function(row, datafield, value)
 	{
 //		 editrow = row;
 		 var displaynoneVal = "block";
-         var dataRecord = $("#admingrid").jqxGrid('getrowdata', row);
-         var status = dataRecord.status;
-         
-         if(status == "Pending")//Pending
-         {
-        	 displaynoneVal = "block";
-         }
-         else if(status == "WIP")//Accepted
-         {
-        	 displaynoneVal = "block";
-         }
-         else if(status == "Cancled")// Cancle order
-         {
-        	 displaynoneVal = "none";
-         }
-         else if(status == "Completed")// Order Completed
-         {
-        	 displaynoneVal = "none";
-         }
-         /*else if(status == "Rejected")// Order Rejected
-         {
-        	 displaynoneVal = "none";
-         }*/
-         
+	     var dataRecord = $("#admingrid").jqxGrid('getrowdata', row);
+	     var status = dataRecord.status;
+	     
+	     if(status == "Pending")//Pending
+	     {
+	    	 displaynoneVal = "block";
+	     }
+	     else if(status == "WIP")//Accepted
+	     {
+	    	 displaynoneVal = "block";
+	     }
+	     else if(status == "Cancled")// Cancle order
+	     {
+	    	 displaynoneVal = "none";
+	     }
+	     else if(status == "Completed")// Order Completed
+	     {
+	    	 displaynoneVal = "none";
+	     }
+	     /*else if(status == "Rejected")// Order Rejected
+	     {
+	    	 displaynoneVal = "none";
+	     }*/
+	     
 		return '<div style="text-align: center; margin-top: 3px; margin-left: 40%;" onclick="cancelOrder(' + row + ')"><img src="Images/cross.png" style="cursor:pointer; height:20px; width:20px;display:'+displaynoneVal+';"/></div>';
 	};
 	var deleteOrder = function(row, datafield, value)
 	{
 		return '<div style="text-align: center; margin-top: 3px;" onclick="deleteOrder(' + row + ')"><img src="Images/delete.png" style="cursor:pointer; height:20px; width:20px;"/></div>';
 	};
-	try
+
+	
+	var data = "";
+	var orderarray = [];
+	var source = "";
+	data = response.Order;
+	if(data != "" && data != null && data != undefined)
 	{
-		/*var data = [{
-				userid : "1",
-				orderid : "FHEYSH52",
-				datetime : "2015/11/21 12:38:30",
-				date : "2015/11/21",
-				time : "12:38:30",
-				shopid : "5",
-				companyname : "Grocary Mart",
-				name : "Devendra R. Barai",
-				phone : "8976335768",
-				address1 : "Room No: 7, Ramabhilakh yadav chawl, Farid nagar, Bhandup west, Mumbai 400078.",
-				city : "Mumbai",
-				state : "Maharashtra",
-				street : "Bhandup",
-				pincode : "400078",
-				country : "India",
-				img : ""
-				}];*/
-		
-		var data = response.Order;
-		var orderarray = [];
 		for ( var i in data)
 		{
 			var userid = data[i].userid;
@@ -125,14 +113,9 @@ try
 			var status = data[i].status;
 			var grandTotal = data[i].grandTotal;
 			
-//			console.log("datetime : "+datetime);
 			var date1 = datetime.substr(0, 10);
-//			console.log("date1 : "+date1);
 			var date = date1.split("-").reverse().join("/");
-//			console.log("date : "+date);
 			var time = datetime.substr(10, 19);
-//			console.log("time : "+time);
-			
 			orderarray.push(
 			{
 				userid : userid,
@@ -154,147 +137,149 @@ try
 				status : status,
 				grandTotal : grandTotal
 			});
+			
 		}
 	}
-	catch (e)
-	{
-		console.log("Blank Response"+e);
-	}
-//	data = [];
-	var source =
-	{
-	localdata : orderarray,
-	datatype : "JSON",
-	datafields : [
-	{name : "datetime", type : "string"},
-	{name : "date", type : "string"},
-	{name : "time", type : "string"},
-	{name : "orderid", type : "string"},
-	{name : "userid", type : "string"},
-	{name : "shopList"},
-//	{name : "shopname", type : "string"},
-	{name : "name", type : "string"},
-	{name : "phone", type : "string"},
-	{name : "address1", type : "string"},
-	{name : "city", type : "string"},
-	{name : "state", type : "string"},
-	{name : "street", type : "string"},
-	{name : "pincode", type : "string"},
-	{name : "status", type : "string"},
-	{name : "grandTotal", type : "string"}]
 	
-	};
-	$("#admingrid").jqxGrid(
-	{
-	width : "95%",
-	filterable : true,
-	source : source,
-	autoheight : true,
-	pageable : true,
-//	editable : false,
-	showfilterrow : true,
-	selectionmode : "multiplecellsadvanced",
-	columns : [
-	{
-			text : "Purchase Date",
-			datafield : "date",
-			filtertype : "range",
-			width : "10%",
-			cellsalign : "left",
-			cellsformat : "d"
-	},
-	{
-			text : "Purchase Time",
-			datafield : "time",
-			width : "10%",
-			cellsalign : "left",
-			cellsformat : "d"
-	},
-	{
-			text : "Customer Name",
-			datafield : "name",
-			width : "16%",
-			cellsalign : "left",
-			cellsformat : "d"
-	},
-	{
-			text : "Mobile",
-			datafield : "phone",
-			width : "10%",
-			cellsalign : "left",
-			cellsformat : "d"
-	},
-	{
-			text : "Order ID",
-			datafield : "orderid",
-			width : "10%"
-	},
-	{
-			text : "Ammount",
-			datafield : "grandTotal",
-			width : "6%"
-	},
-	{
-			text : "Status",
-			datafield : "status",
-			width : "10%"
-	},
-	{
-			text : "View Order",
-			menu : false,
-			sortable : false,
-			filterable : false,
-			showfilterrow : false,
-			cellsalign : "center",
-			width : "7%",
-			cellsrenderer : viewOrder
-	}, 
-	{
-			text : "Accept Order",
-			menu : false,
-			sortable : false,
-			filterable : false,
-			showfilterrow : false,
-			cellsalign : "center",
-			width : "7%",
-			cellsrenderer : acceptOrder
-	} ,
-	{
-			text : "Cancel Order",
-			menu : false,
-			sortable : false,
-			filterable : false,
-			showfilterrow : false,
-			cellsalign : "center",
-			width : "7%",
-			cellsrenderer : cancelOrder
-	},
-	{
-			text : "Delete Order",
-			menu : false,
-			sortable : false,
-			filterable : false,
-			showfilterrow : false,
-			cellsalign : "center",
-			width : "7%",
-			cellsrenderer : deleteOrder
-	}]
-	});
+		source =
+		{
+		localdata : orderarray,
+		datatype : "JSON",
+		datafields : [
+		{name : "datetime", type : "string"},
+		{name : "date", type : "string"},
+		{name : "time", type : "string"},
+		{name : "orderid", type : "string"},
+		{name : "userid", type : "string"},
+		{name : "shopList"},
+	//	{name : "shopname", type : "string"},
+		{name : "name", type : "string"},
+		{name : "phone", type : "string"},
+		{name : "address1", type : "string"},
+		{name : "city", type : "string"},
+		{name : "state", type : "string"},
+		{name : "street", type : "string"},
+		{name : "pincode", type : "string"},
+		{name : "status", type : "string"},
+		{name : "grandTotal", type : "string"}]
+		
+		};
+		
+		var adapter = new $.jqx.dataAdapter(source);
+		$("#admingrid").jqxGrid(
+		{
+		width : "95%",
+		filterable : true,
+		source : adapter,
+		autoheight : true,
+		pageable : true,
+	//	editable : false,
+		showfilterrow : true,
+		selectionmode : "multiplecellsadvanced",
+		columns : [
+		{
+				text : "Purchase Date",
+				datafield : "date",
+				filtertype : "range",
+				width : "10%",
+				cellsalign : "left",
+				cellsformat : "d"
+		},
+		{
+				text : "Purchase Time",
+				datafield : "time",
+				width : "10%",
+				cellsalign : "left",
+				cellsformat : "d"
+		},
+		{
+				text : "Customer Name",
+				datafield : "name",
+				width : "16%",
+				cellsalign : "left",
+				cellsformat : "d"
+		},
+		{
+				text : "Mobile",
+				datafield : "phone",
+				width : "10%",
+				cellsalign : "left",
+				cellsformat : "d"
+		},
+		{
+				text : "Order ID",
+				datafield : "orderid",
+				width : "10%"
+		},
+		{
+				text : "Ammount",
+				datafield : "grandTotal",
+				width : "6%"
+		},
+		{
+				text : "Status",
+				datafield : "status",
+				width : "10%"
+		},
+		{
+				text : "View Order",
+				menu : false,
+				sortable : false,
+				filterable : false,
+				showfilterrow : false,
+				cellsalign : "center",
+				width : "7%",
+				cellsrenderer : viewOrder
+		}, 
+		{
+				text : "Accept Order",
+				menu : false,
+				sortable : false,
+				filterable : false,
+				showfilterrow : false,
+				cellsalign : "center",
+				width : "7%",
+				cellsrenderer : acceptOrder
+		} ,
+		{
+				text : "Cancel Order",
+				menu : false,
+				sortable : false,
+				filterable : false,
+				showfilterrow : false,
+				cellsalign : "center",
+				width : "7%",
+				cellsrenderer : cancelOrder
+		},
+		{
+				text : "Delete Order",
+				menu : false,
+				sortable : false,
+				filterable : false,
+				showfilterrow : false,
+				cellsalign : "center",
+				width : "7%",
+				cellsrenderer : deleteOrder
+		}]
+		});
+
 }
 catch (e)
 {
-	console.log("customerProfile.js --> Exception : " + e);
+	console.log("admin.js --> Exception : " + e);
 }
-	
+$(".adminoverlay").hide();
 }
 
 function callPage(page)
 {
+	$(".adminoverlay").show();
 	$("#loadpage").load("adminControl.jsp");
 }
 
 function displayOrder(row, action)
 {
+	$(".adminoverlay").show();
 	try
 	{
 		var template = "";
@@ -329,7 +314,11 @@ function displayOrder(row, action)
 	    var shopList = JSON.parse(dataRecord.shopList);
 	    
 //	    console.log("shopList : "+JSON.stringify(shopList));
-		
+	    shopcount = shopList.length;
+	    console.log("shopcount : "+shopcount);
+	    localStorage.setItem("shopcount", shopcount);
+	    localStorage.setItem("acceptcheck", "0");
+	    
 		    	for(var i in shopList)
 		    	{
 		    		var shop = "shop"+i;
@@ -375,6 +364,7 @@ function displayOrder(row, action)
 					
 					if(action == "accepted")
 					{
+						localStorage.setItem("acceptcheck", "1");
 						var table = '<tr style="background-color: #E9E9E9;"><td colspan = "5">' + '<table style="width: 100%">' + '<tr><td style="text-align: center; color: rgb(2, 86, 2); font-size: 19px;">' + name + "</td></tr>" + '<tr><td style="text-align: center; color: rgb(2, 86, 2); font-size: 14px;">' + address + ". Mob : "+phone+"</td></tr>" + "</table>" + "</td></tr>" + productList1 + '<tr><td colspan = "5" style="background-color: #2D97D9;"></td></tr>';
 						template = template + table;
 						table = "";
@@ -391,8 +381,11 @@ function displayOrder(row, action)
 		    	}
 		    	if(action == "view")
 				{
+		    		localStorage.setItem("acceptcheck", "0");
 			    	$("#viewOrderToConform").show();
+			    	$("#appendOrderToVarify").empty();
 					$("#appendOrderToVarify").append(viewTemplate);
+					$(".adminoverlay").hide();
 				}
 	}
 	catch(e)
@@ -413,6 +406,7 @@ function displayOrder(row, action)
 
 function acceptOrder(row)
 {
+	$(".adminoverlay").show();
 	var userData = getGridDetails(row);
 	console.log("orderid : "+userData);
 	objhandleRequest.acceptCancleOrder("WIP", userData);
@@ -422,6 +416,8 @@ function acceptOrder(row)
 
 function cancelOrder(row)
 {
+	localStorage.setItem("acceptcheck", "0");
+	$(".adminoverlay").show();
 	var userData = getGridDetails(row);
 	console.log("orderid : "+userData);
 	objhandleRequest.acceptCancleOrder("Cancled", userData);
@@ -430,6 +426,8 @@ function cancelOrder(row)
 
 function deleteOrder(row)
 {
+	localStorage.setItem("acceptcheck", "0");
+	$(".adminoverlay").show();
 	var userData = getGridDetails(row);
 	console.log("orderid : "+userData);
 	objhandleRequest.acceptCancleOrder("deleted", userData);
@@ -457,7 +455,22 @@ function setOrdersStatus(response)
 	else if(status == 3)
 	{
 //		$("#loadpage").load("adminControl.jsp");
-//		objhandleRequest.getAllOrders();
+		var acceptcheck = localStorage.getItem("acceptcheck");
+		if(acceptcheck == "1" || acceptcheck == 1)
+		{
+			shopcount = +shopcount - 1;
+			
+			console.log("setOrdersStatus(response) --> shopcount : "+shopcount);
+			if(shopcount == "0" || shopcount == 0)
+			{
+				objhandleRequest.getAllOrders();
+			}
+		}
+		else
+		{
+			objhandleRequest.getAllOrders();
+		}
+		
 //		jqueryconform("Message", statusdesc);
 	}
 }

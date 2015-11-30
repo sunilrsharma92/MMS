@@ -42,6 +42,7 @@
 
 </head>
 <body>
+
 	<%-- 	<jsp:include page= "customerProfileTop.jsp" /> --%>
 	<jsp:include page="customerProfileMenu.jsp" />
 	<%-- <jsp:include page= "footer.jsp" /> --%>

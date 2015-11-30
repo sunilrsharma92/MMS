@@ -1019,6 +1019,39 @@ tbody{
     z-index: 1000000;
 /*     opacity: 0.5; */
 }
+.indexoverlay {
+/*     background: #e9e9e9; */
+    display: none;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1000000;
+/*     opacity: 0.5; */
+}
+.customeroverlay {
+/*     background: #e9e9e9; */
+    display: none;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1000000;
+/*     opacity: 0.5; */
+}
+.adminoverlay {
+/*     background: #e9e9e9; */
+    display: none;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1000000;
+/*     opacity: 0.5; */
+}
 .overlay1 {
 /*     background: #e9e9e9; */
     display: none;

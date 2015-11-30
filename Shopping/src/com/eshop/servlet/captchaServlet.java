@@ -87,7 +87,7 @@ public class captchaServlet extends HttpServlet {
 
 	    String captcha = String.copyValueOf(data[index]);
 	    request.getSession().setAttribute("captcha", captcha );
-	    System.out.println("Captcha : "+captcha);
+	    //System.out.println("Captcha : "+captcha);
 	    int x = 0; 
 	    int y = 0;
 
@@ -101,11 +101,11 @@ public class captchaServlet extends HttpServlet {
 
 	    ServletContext ctx = getServletContext();
 	    String path = getServletContext().getRealPath("/Workspace");
-	    System.out.println("path : "+path);
+	    //System.out.println("path : "+path);
 	    
 //	    File file = new File(path+"/Test/WebContent/images/captcha.png");
 	    File file = new File("F:/D Drive/My Career/Workspace/Test/WebContent/images/captcha.png");
-	    System.out.println("file : "+file.toString());
+	    //System.out.println("file : "+file.toString());
 	    
 	    String mimeType = ctx.getMimeType(file.getAbsolutePath());
 	    response.setContentType(mimeType != null? mimeType:"application/octet-stream");

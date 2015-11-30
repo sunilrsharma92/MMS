@@ -51,8 +51,10 @@ ul li:hover ul.dropdown-menu {
 	display: block; /* Display the dropdown */
 }
 </style>
+
 </head>
 <body>
+
 <%-- <jsp:include page="indexMenu.jsp" />
 
 <div id="loadpage" >
@@ -68,10 +70,15 @@ ul li:hover ul.dropdown-menu {
 		
 		<div id="header">
 			<jsp:include page="indexMenu.jsp" />
+<!-- 			<div id="indexMenuPage"></div> -->
 		</div><!-- #header -->
 		
+		<div class="indexoverlay" style="margin-top: 17%;">
+		<div id="loading-img"></div>
+		</div>
+		
 		<div id="content">
-			<div id="loadpage">
+					<div id="loadpage">
 <%-- 			<jsp:include page="indexBody.jsp" /> --%>
 			</div>
 		</div><!-- #content -->

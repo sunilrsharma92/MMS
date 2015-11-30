@@ -9,7 +9,7 @@ function handleAllListResponse(jsonMsg)
 				var response = JSON.parse(strJsonResponse);
 				var command = response.command;
 				var status = parseInt(response.status);
-				
+//				console.log("response : "+JSON.stringify(response))
 				if(command != 2002 && command != 2005 && command != 2014 && command != 2015 && command != 2016 && command != 2006)
 				{
 					writeLogAjax("command : " + command + " status : " + status + " JSON Response FROM SERVLET :  " + JSON.stringify(response), 1);
@@ -106,6 +106,7 @@ function listResponseHandler(response, command, status)
 						handleProfilePicResponse(response);
 						break;
 					case 2020:
+						$("#admingrid").jqxGrid('clear');
 						getOrders(response);
 						break;
 					case 2021:

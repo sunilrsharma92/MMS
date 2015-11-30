@@ -61,7 +61,7 @@ public class ProductInterfaceImpl implements ProductInterface
 							childjson.put("categoryname", rs.getString("category_name"));
 
 							jsonarray.add(childjson);
-							// //System.out.println("jsonarray : :  : :"+jsonarray);
+							// ////System.out.println("jsonarray : :  : :"+jsonarray);
 						}
 
 						parentjson.put("category", jsonarray);
@@ -82,7 +82,7 @@ public class ProductInterfaceImpl implements ProductInterface
 						parentjson = CommonMethodImpl.putSuccessJson(parentjson, 2000);
 
 						output = parentjson.toString();
-						// //System.out.println("output ::::::::: "+output);
+						// ////System.out.println("output ::::::::: "+output);
 						return output;
 					}
 					catch (Exception e)
@@ -108,11 +108,11 @@ public class ProductInterfaceImpl implements ProductInterface
 						ps.setString(6, (String) parentjson.get("lastName"));
 						ps.setLong(7, 1);
 
-						// System.out.println("Sunil before:"+parentjson.toJSONString());
+						// //System.out.println("Sunil before:"+parentjson.toJSONString());
 
 						parentjson.remove("command");
 
-						// System.out.println("Sunil before:"+parentjson.toJSONString());
+						// //System.out.println("Sunil before:"+parentjson.toJSONString());
 
 						result = ps.executeUpdate();
 
@@ -151,7 +151,7 @@ public class ProductInterfaceImpl implements ProductInterface
 							parentjson = CommonMethodImpl.putFailedJson(parentjson, command);
 						}
 						output = parentjson.toString();
-						// System.out.println("output ::::::::: "+output);
+						// //System.out.println("output ::::::::: "+output);
 						return output;
 					}
 
@@ -229,7 +229,7 @@ public class ProductInterfaceImpl implements ProductInterface
 						// {"mainCategoryID":7,"command":1003,"subCategoryID":"1"}
 						JSONObject object = (JSONObject) JSONValue.parse(jsonMsg);
 
-						// System.out.println("Object : "+object.toString());
+						// //System.out.println("Object : "+object.toString());
 
 						Long mc = (Long) object.get("mainCategoryID");
 						Long sc = (Long) object.get("subCategoryID");
@@ -248,7 +248,7 @@ public class ProductInterfaceImpl implements ProductInterface
 							usertypecolumnname = "supplier_key";
 						}
 						
-						// //System.out.println("mc : "+mc+" sc : "+sc);
+						// ////System.out.println("mc : "+mc+" sc : "+sc);
 
 						ps = conn.prepareStatement("select * from products where category_ref=? and sub_category_ref=?");
 						ps.setLong(1, mc);
@@ -264,7 +264,7 @@ public class ProductInterfaceImpl implements ProductInterface
 							childjson.put("images", rs.getString("picture"));
 
 							jsonarray.add(childjson);
-							// //System.out.println("jsonarray : :  : :"+jsonarray);
+							// ////System.out.println("jsonarray : :  : :"+jsonarray);
 						}
 
 						parentjson.put("product", jsonarray);
@@ -282,7 +282,7 @@ public class ProductInterfaceImpl implements ProductInterface
 								JSONObject childjson = new JSONObject();
 								childjson.put("productid", productkey);
 								jsonarray1.add(childjson);
-								// System.out.println("jsonarray : :  : :"+jsonarray);
+								// //System.out.println("jsonarray : :  : :"+jsonarray);
 							}
 							parentjson.put("productid", jsonarray1);
 						}
@@ -290,7 +290,7 @@ public class ProductInterfaceImpl implements ProductInterface
 						
 						parentjson = CommonMethodImpl.putSuccessJson(parentjson, 2003);
 						output = parentjson.toString();
-						// //System.out.println("output ::::::::: "+output);
+						// ////System.out.println("output ::::::::: "+output);
 						return output;
 					}
 					catch (Exception e)
@@ -307,7 +307,7 @@ public class ProductInterfaceImpl implements ProductInterface
 				case 1005:
 					try
 					{
-						// System.out.println("jsonMsg of product in cart ::::::::::::::: "+jsonMsg);
+						// //System.out.println("jsonMsg of product in cart ::::::::::::::: "+jsonMsg);
 
 						JSONObject object = (JSONObject) JSONValue.parse(jsonMsg);
 						//
@@ -327,7 +327,7 @@ public class ProductInterfaceImpl implements ProductInterface
 							usertypecolumnname = "supplier_key";
 						}
 						
-						// System.out.println("product : "+product);
+						// //System.out.println("product : "+product);
 						if(action.equalsIgnoreCase("withlogin"))
 						{
 							ps1 = conn.prepareStatement("select * from cart where "+usertypecolumnname+" = ?  and orderid is null");
@@ -356,7 +356,7 @@ public class ProductInterfaceImpl implements ProductInterface
 									childjson.put("quantity", quantity);
 
 									jsonarray.add(childjson);
-									// System.out.println("jsonarray : :  : :"+jsonarray);
+									// //System.out.println("jsonarray : :  : :"+jsonarray);
 								}
 							}
 						}
@@ -380,7 +380,7 @@ public class ProductInterfaceImpl implements ProductInterface
 								// String id = (String) productid.get(i);
 								productkey = Long.parseLong(id);
 								shopkey = Long.parseLong(shopid);
-								// System.out.println(productkey);
+								// //System.out.println(productkey);
 
 								ps = conn.prepareStatement("select * from products where product_key=? and supplier_ref=?");
 								ps.setLong(1, productkey);
@@ -397,7 +397,7 @@ public class ProductInterfaceImpl implements ProductInterface
 									childjson.put("images", rs.getString("picture"));
 									childjson.put("quantity", 1);
 									jsonarray.add(childjson);
-									// System.out.println("jsonarray : :  : :"+jsonarray);
+									// //System.out.println("jsonarray : :  : :"+jsonarray);
 								}
 							}
 						}
@@ -406,7 +406,7 @@ public class ProductInterfaceImpl implements ProductInterface
 						parentjson = CommonMethodImpl.putSuccessJson(parentjson, 2005);
 
 						output = parentjson.toString();
-						// System.out.println("output ::::::::: "+output);
+						// //System.out.println("output ::::::::: "+output);
 						return output;
 					}
 					catch (Exception e)
@@ -415,7 +415,7 @@ public class ProductInterfaceImpl implements ProductInterface
 
 						output = parentjson.toString();
 						mms.writeLogs("ProductInterfaceImpl handleRequestResponse() "+command+" Exception : "+e,0);
-						// System.out.println("output ::::::::: "+output);
+						// //System.out.println("output ::::::::: "+output);
 						// return output;
 						// e.printStackTrace();
 					}
@@ -460,7 +460,7 @@ public class ProductInterfaceImpl implements ProductInterface
 								JSONObject childjson = new JSONObject();
 								childjson.put("productid", productkey);
 								jsonarray1.add(childjson);
-								// System.out.println("jsonarray : :  : :"+jsonarray);
+								// //System.out.println("jsonarray : :  : :"+jsonarray);
 							}
 							objparentjson.put("productid", jsonarray1);
 						}
@@ -515,7 +515,7 @@ public class ProductInterfaceImpl implements ProductInterface
 						}
 
 						output = parentjson.toString();
-						// //System.out.println("output ::::::::: "+output);
+						// ////System.out.println("output ::::::::: "+output);
 						return output;
 					}
 					catch (Exception e)
@@ -550,7 +550,7 @@ public class ProductInterfaceImpl implements ProductInterface
 						}
 						
 						output = parentjson.toString();
-						// System.out.println("output ::::::::: "+output);
+						// //System.out.println("output ::::::::: "+output);
 						return output;
 					}
 
@@ -650,7 +650,7 @@ public class ProductInterfaceImpl implements ProductInterface
 						}
 						
 						output = parentjson.toString();
-						// System.out.println("output ::::::::: "+output);
+						// //System.out.println("output ::::::::: "+output);
 						return output;
 					}
 					
@@ -709,7 +709,7 @@ public class ProductInterfaceImpl implements ProductInterface
 							}
 							
 							output = parentjson.toString();
-						// System.out.println("output ::::::::: "+output);
+						// //System.out.println("output ::::::::: "+output);
 						return output;
 					}
 					
@@ -935,7 +935,7 @@ public class ProductInterfaceImpl implements ProductInterface
 							orderSQl = "select c.*,  s.first_name, s.last_name, s.phone, s.address1, s.address2, s.city,s.state, s.street, s.postal_code, s.country, s.profile_img, s.email, sp.shipping_address "
 							+" from cart c, customers s, shipping_address sp where c."+usertypecolumnname+" = ? and c.orderid= ?  and c.customer_key = s.customer_key and sp.orderid = '"+orderid+"'";
 						}
-						System.out.println("SQL : "+orderSQl);
+						//System.out.println("SQL : "+orderSQl);
 						ps = conn.prepareStatement(orderSQl);
 						
 						ps.setLong(1, userid);
@@ -1257,7 +1257,7 @@ public class ProductInterfaceImpl implements ProductInterface
 						parentjson.put("Order", jsonarray);
 						parentjson = CommonMethodImpl.putSuccessJson(parentjson, 2020);
 						output = parentjson.toString();
-						System.out.println("1020 Output : "+output);
+						////System.out.println("1020 Output : "+output);
 						return output;
 					}
 					catch (Exception e)
@@ -1368,7 +1368,7 @@ public class ProductInterfaceImpl implements ProductInterface
 											parentjson = new JSONObject();
 											parentjson = CommonMethodImpl.putFailedJson(parentjson, command);
 											parentjson.put("statusdesc", "Login Failed, Incorrect username or password.");
-											System.out.println("Login Failed, Incorrect username or password.");
+											////System.out.println("Login Failed, Incorrect username or password.");
 										}
 									}
 									else // --  Encryption of password failed
@@ -1376,7 +1376,7 @@ public class ProductInterfaceImpl implements ProductInterface
 										parentjson.put("status", 10);// --  Encryption of password failed
 										parentjson.put("statusdesc", "Login Failed,Please try again");
 										parentjson.put("command", command);
-										System.out.println("Encryption of password failed,Unregistered user");
+										////System.out.println("Encryption of password failed,Unregistered user");
 									}
 								}
 								else
@@ -1404,7 +1404,7 @@ public class ProductInterfaceImpl implements ProductInterface
 						else
 						{
 							String encryptedPwd = EncryptionUtility.encryptUsingMD5(normalPwd);
-//							System.out.println("encryptedPwd : "+encryptedPwd);
+//							//System.out.println("encryptedPwd : "+encryptedPwd);
 							if(encryptedPwd != null)
 							{
 								boolean validPwd = EncryptionUtility.validatePassword((String) parentjson.get("password"), encryptedPwd);
@@ -1457,12 +1457,12 @@ public class ProductInterfaceImpl implements ProductInterface
 								parentjson.put("status", 10);// Encryption of password failed
 								parentjson.put("statusdesc", "Login Failed,Please try again");
 								parentjson.put("command", command);
-								System.out.println("Encryption of password failed,Registered user");
+								//System.out.println("Encryption of password failed,Registered user");
 							}
 						}
 
 						output = parentjson.toString();
-						// System.out.println("output ::::::::: "+output);
+						// //System.out.println("output ::::::::: "+output);
 						return output;
 					}
 
@@ -1562,7 +1562,7 @@ public class ProductInterfaceImpl implements ProductInterface
 											tableName = "`shop"+lastid+"`";
 											createTable = "CREATE TABLE IF NOT EXISTS "+tableName+" (`product_key` bigint(20) NOT NULL AUTO_INCREMENT,`product_name` longtext,`category_ref` bigint(20) DEFAULT NULL,`sub_category_ref` bigint(20) DEFAULT NULL,`unite_price` float DEFAULT NULL,`picture` longtext,`sku` bigint(20) DEFAULT NULL,`idsku` bigint(20) DEFAULT NULL,`vendor_product_ref` bigint(20) DEFAULT NULL,`product_description` longtext,`supplier_ref` bigint(20) DEFAULT NULL,`quantity_per_unit` bigint(20) DEFAULT NULL,`msrp` bigint(20) DEFAULT NULL,`available_colors` longtext,`size` bigint(20) DEFAULT NULL,`color` longtext,`discount` float DEFAULT NULL,`unit_weight` float DEFAULT NULL,`units_in_stock` bigint(20) DEFAULT NULL,`units_on_order` bigint(20) DEFAULT NULL,`reorder_level` longtext,`product_available` longtext,`discount_available` longtext,`current_order` longtext,`ranking` longtext,`note` longtext,PRIMARY KEY (`product_key`)) ENGINE=InnoDB AUTO_INCREMENT=271 DEFAULT CHARSET=latin1;";
 																					
-//											System.out.println("lastInserted ID : "+createTable);
+//											////System.out.println("lastInserted ID : "+createTable);
 									    }
 									}
 									
@@ -1670,7 +1670,7 @@ public class ProductInterfaceImpl implements ProductInterface
 							checkEmailExist = 0;
 						}
 						output = parentjson.toString();
-						// System.out.println("output ::::::::: "+output);
+						// ////System.out.println("output ::::::::: "+output);
 						return output;
 					}
 					catch (Exception e)
@@ -1698,7 +1698,7 @@ public class ProductInterfaceImpl implements ProductInterface
 				 * }
 				 * 
 				 * output = parentjson.toString();
-				 * //System.out.println("output ::::::::: "+output); return
+				 * //////System.out.println("output ::::::::: "+output); return
 				 * output; }
 				 * 
 				 * catch (Exception e) 
@@ -1805,7 +1805,7 @@ public class ProductInterfaceImpl implements ProductInterface
 							parentjson.put("statusdesc", "Email-Id " + email + " does not exist");
 						}
 						output = parentjson.toString();
-						// System.out.println("output ::::::::: "+output);
+						// ////System.out.println("output ::::::::: "+output);
 						return output;
 
 					}
@@ -1937,7 +1937,7 @@ public class ProductInterfaceImpl implements ProductInterface
 						}
 
 						output = parentjson.toString();
-						// System.out.println("output ::::::::: "+output);
+						// ////System.out.println("output ::::::::: "+output);
 						return output;
 
 					}
@@ -2020,7 +2020,7 @@ public class ProductInterfaceImpl implements ProductInterface
 						}
 
 						output = parentjson.toString();
-						// System.out.println("output ::::::::: "+output);
+						// ////System.out.println("output ::::::::: "+output);
 						return output;
 
 					}
@@ -2086,11 +2086,11 @@ public class ProductInterfaceImpl implements ProductInterface
 							parentjson = new JSONObject();
 							parentjson = CommonMethodImpl.putFailedJson(parentjson, command);
 							parentjson.put("statusdesc", "Updation failed");
-							System.out.println("Updation failed");
+							//System.out.println("Updation failed");
 						}
 
 						output = parentjson.toString();
-						// System.out.println("output ::::::::: "+output);
+						// //System.out.println("output ::::::::: "+output);
 						return output;
 
 					}
@@ -2147,7 +2147,7 @@ public class ProductInterfaceImpl implements ProductInterface
 					}
 				  
 				  output = parentjson.toString();
-				  //System.out.println("output ::::::::: "+output); 
+				  ////System.out.println("output ::::::::: "+output); 
 				  return output;
 				  }
 				  
