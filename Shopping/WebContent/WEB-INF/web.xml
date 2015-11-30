@@ -69,6 +69,17 @@
     <param-value>2ab320b68fb94ce8ade42d1e@c654953763dfd767ddc8db8b</param-value>
   </context-param>
   
+<!--   Notify to shopkeeper msg template -->
+
+<context-param>
+    <param-name>notify_templatename</param-name>
+    <param-value>gotOrderToShopkeeper</param-value>
+  </context-param>
+ <context-param>
+    <param-name>notify_templateid</param-name>
+    <param-value>2f0426344cd11c69a2ca97b3</param-value>
+  </context-param>
+  
 <!--  *************************END************************** -->
 
 </web-app>

@@ -1035,23 +1035,41 @@ public class ProductInterfaceImpl implements ProductInterface
 							String name = (String) object.get("name");
 							String orderid = (String) object.get("orderid");
 							String shopyNumber = (String) object.get("shopyNumber");
-							
+							String successStatusDesc = null;
+							String failedStatusDesc = null;
+							int returnSuccessCommand = 0;
+							int returnFailedCommand = 0;
 							float total = Float.parseFloat(total1);
 							sm = new SendMessage();
+							
+							if(userType.equalsIgnoreCase(""))
+							{
+								successStatusDesc = "Order Details have been successfull send to shopkeeper.";
+								failedStatusDesc = "Failed to send Order Details to shopkeeper. Please try again";
+								boolean result = sm.sendMessage("+91"+phone,orderid, regsmsTemplet, "notify", name, total, "");
+								returnSuccessCommand = 2021;
+								returnFailedCommand = 1021;
+							}
+							else
+							{
+								successStatusDesc = "Your order has been placed successfully, please visit to your mail id or to makemyshopy.com for complete details";
+								failedStatusDesc = "Your order has been placed successfully, but failed to send order details to your registered mail-id. Please contact to customer-care";
+								boolean result = sm.sendMessage("+91"+phone,orderid, regsmsTemplet, "ordering", name, total, shopyNumber);
+								returnSuccessCommand = 2016;
+								returnFailedCommand = 1016;
+							}
 							
 							boolean verification = EmailUtility.sendEmail(email, null, PURCHASE_DETAILS, null, purchaseTemplet);
 							if(verification)
 							{
-								parentjson = CommonMethodImpl.putSuccessJson(parentjson, 2016);
-								parentjson.put("statusdesc", "Your order has been placed successfully, please visit to your mail id or to makemyshopy.com for complete details");
+								parentjson = CommonMethodImpl.putSuccessJson(parentjson, returnSuccessCommand);
+								parentjson.put("statusdesc", successStatusDesc);
 							}
 							else
 							{
-								parentjson = CommonMethodImpl.putFailedJson(parentjson, command);
-								parentjson.put("statusdesc", "Your order has been placed successfully, but failed to send order details to your registered mail-id");
+								parentjson = CommonMethodImpl.putFailedJson(parentjson, returnFailedCommand);
+								parentjson.put("statusdesc", failedStatusDesc);
 							}
-							
-							boolean result = sm.sendMessage("+91"+phone,orderid, regsmsTemplet, "ordering", name, total, shopyNumber);
 							
 							output = parentjson.toString();
 							return output;

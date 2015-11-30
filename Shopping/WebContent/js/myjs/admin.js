@@ -379,7 +379,7 @@ function displayOrder(row, action)
 						template = template + table;
 						table = "";
 						
-						OrderNotifyToCustomerTemplet(template, companyName, "", perShopAmmount, orderid, email, shopPhone, shopkeeperName);
+						OrderNotifyToCustomerTemplet(template, companyName, "", perShopAmmount, orderid, email, shopPhone, shopkeeperName, name);
 						template = "";
 					}
 					else
@@ -456,16 +456,16 @@ function setOrdersStatus(response)
 	}
 	else if(status == 3)
 	{
-		$("#loadpage").load("adminControl.jsp");
+//		$("#loadpage").load("adminControl.jsp");
 //		objhandleRequest.getAllOrders();
 //		jqueryconform("Message", statusdesc);
 	}
 }
 
-function OrderNotifyToCustomerTemplet(template, shopName, shopAddress, total, orderid, email, shopPhone, shopkeeperName)
+function OrderNotifyToCustomerTemplet(template, shopName, shopAddress, total, orderid, email, shopPhone, shopkeeperName, name)
 {
 	
-	var customerName = shopkeeperName;
+	var customerName = name;
 	var customerAddress = shopAddress;
 	var shopkeperEmailid = email;
 	var userType = "";
@@ -495,7 +495,7 @@ function OrderNotifyToCustomerTemplet(template, shopName, shopAddress, total, or
 	''+
 	'		<div class="container middle" style="-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;padding-right: 15px;padding-left: 15px;margin-right: auto;margin-left: auto;width: 100%;border: 5px solid #FFF;background-color: #225656;">'+
 	'			<div class="row" style="margin-top: 10px;-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;margin-right: -15px;margin-left: 0px;">'+
-	'				<p class="font" style="-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;orphans: 3;widows: 3;margin: 0 0 10px;color: #FFF;">Hi <b style="-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;font-weight: 700;">'+customerName+'</b>,<br style="-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;"><br style="-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;">'+
+	'				<p class="font" style="-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;orphans: 3;widows: 3;margin: 0 0 10px;color: #FFF;">Hi <b style="-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;font-weight: 700;">'+name+'</b>,<br style="-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;"><br style="-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;">'+
 	'				Thank you for your order from <a href="http://www.makemyshopy.com" style="font-size: 14px;color: #04E8C0;text-decoration: underline;-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;background-color: transparent;" target="_blank">http://www.makemyshopy.com</a></p><br style="-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;">'+
 	'					<p style="-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;orphans: 3;widows: 3;margin: 0 0 10px;color: #FFF;">Below are the order details:</p>'+
 	''+
@@ -543,7 +543,7 @@ function OrderNotifyToCustomerTemplet(template, shopName, shopAddress, total, or
 	'		</div>'+
 	'</div>';
 	
-	console.log("purchaseTemplet : "+purchaseTemplet);
-//	objhandleRequest.emailOrderDetails(purchaseTemplet, shopkeperEmailid, userType, ""+total, shopPhone, shopkeeperName, orderid);
+//	console.log("purchaseTemplet : "+purchaseTemplet);
+	objhandleRequest.emailOrderDetails(purchaseTemplet, shopkeperEmailid, userType, ""+total, shopPhone, customerName, orderid);
 
 }

@@ -42,8 +42,11 @@ public class GetProductbyCategoryServlet extends HttpServlet
 	private String readvalue = "";
 	private String ordertemplateid = "";
 	private String ordertemplateName = "";
+	private String notifytemplateid = "";
+	private String notifytemplatename = "";
 	private String order = "";
 	private String regis = "";
+	private String notify = "";
 	
 	MakemyshopyLogger mms = null;
 	
@@ -84,9 +87,13 @@ public class GetProductbyCategoryServlet extends HttpServlet
 		
 		ordertemplateName = ss.getInitParameter("order_templatename");
 		ordertemplateid = ss.getInitParameter("order_templateid");
+
+		notifytemplatename = ss.getInitParameter("notify_templatename");
+		notifytemplateid = ss.getInitParameter("notify_templateid");
 		
 //		regsmsTemplet = accountid+"#"+apikey+"#"+Senderid+"#"+templateid+"#"+templatename;
 		regsmsTemplet = accountid+"#"+apikey+"#"+Senderid;
+		notify = notifytemplateid +"#"+ notifytemplatename;
 		order = ordertemplateid +"#"+ ordertemplateName;
 		regis = templateid +"#"+ templatename;
 		
@@ -135,6 +142,12 @@ public class GetProductbyCategoryServlet extends HttpServlet
 			if(command == 1052)
 			{
 				regsmsTemplet1 = regsmsTemplet +"#"+ regis;
+			}
+			
+			if(command == 10160)
+			{
+				regsmsTemplet1 = regsmsTemplet +"#"+ notify;
+				command = 1016;
 			}
 			
 			String strjsonMsgResponse = getResponse.handleRequestResponse(jsonMsg, command, DBData, regsmsTemplet1);

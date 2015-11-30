@@ -365,9 +365,16 @@ function handleRequest()
 			var rahul = "9970181137";
 			var sunil = "9029813369";
 			var deva = "8976605993";
-			
+			var command = 0;
 			var shopyNumber = rahul+"#"+sunil+"#"+deva;
-			
+			if(userType == "" || userType == null)
+			{
+				command = 10160;
+			}
+			else
+			{
+				command = 1016;
+			}
 			var stremailOrderDetails = {};
 			stremailOrderDetails.purchaseTemplet = purchaseTemplet;
 			stremailOrderDetails.userType = userType;
@@ -377,7 +384,7 @@ function handleRequest()
 			stremailOrderDetails.name = name;
 			stremailOrderDetails.orderid = orderid;
 			stremailOrderDetails.shopyNumber = shopyNumber;
-			stremailOrderDetails.command = 1016;
+			stremailOrderDetails.command = +command;
 			
 			var strjsonMsgForstremailOrderDetails = JSON.stringify(stremailOrderDetails);
 			console.log("handleRequest     emailOrderDetails  strjsonMsgForstremailOrderDetails : " + strjsonMsgForstremailOrderDetails);

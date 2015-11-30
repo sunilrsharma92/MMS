@@ -83,10 +83,18 @@ public class SendMessage
 			}
 			else if(action.equalsIgnoreCase("ordering"))
 			{
-				
 				String[] templateidArray = templateid1.split("@");
 				
 				templateid = templateidArray[0];
+				
+				orderid = tempOtp;
+				data.put("name", " "+name);	
+				data.put("total", " "+totalammount);	
+				data.put("orderid", " "+orderid);	
+			}
+			else if(action.equalsIgnoreCase("notify"))
+			{
+				templateid = templateid1;
 				
 				orderid = tempOtp;
 				data.put("name", " "+name);	
