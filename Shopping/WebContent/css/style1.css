@@ -151,7 +151,7 @@ h3{
 }
 .back{
   background-color: #FFF;
-  margin: 6px;
+  margin: 0px;
 }
 
 .shop-details{
@@ -200,7 +200,10 @@ ul.dropdown-menu {
 }
 /***************************************************End of topMenuBar**********************************************************/
 
-
+.slide_tit{
+	margin-bottom:-10px; 
+	margin-top:-10px;
+	}
 /***************************************************Changed menubar************************************************************/
 
 .search-box {
@@ -428,8 +431,8 @@ tbody{
 
 .textbox {
 	margin : 5px;
-	width : 66%;
-/* 	width : 88%; */
+/* 	width : 66%; */
+	width : 88%;
 	height : 40px;
 	border  : 1px solid gray;
 /* 	border-radius : 4px; */
@@ -1317,7 +1320,8 @@ box-shadow: 10px 10px 5px #888;
 .alignprofDiv
 {
 	margin: 58px auto; 
-	width: 60%;
+/* 	width: 60%; */
+	width: 100%;
 	background: #E9E9E9 none repeat scroll 0% 0%;
 	box-shadow: 0px 4px 17px 7px grey;
 }

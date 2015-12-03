@@ -1,18 +1,17 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
 	
 <title>Make my shopy</title>
+
 
 <link rel="stylesheet" type="text/css" href="slick/jquerysctipttop.css">
 <link rel="stylesheet" type="text/css" href="slick/slick.css" />
 <link rel="stylesheet" type="text/css" href="slick/slick-theme.css" />
+
 
 </head>
 <body>
@@ -26,16 +25,16 @@
 						<!-- main slider carousel items -->
 						<div class="carousel-inner">
 							<div class="active item" data-slide-number="1">
-								<img src="Images/slide11.jpg" class="img-responsive">
+								<img src="Images/slide11.jpg" alt="Chaddars" class="img-responsive">
 							</div>
 							<div class="item" data-slide-number="2">
-								<img src="Images/slide2.png" class="img-responsive">
+								<img src="Images/slide2.png" alt="Make My Shopy" class="img-responsive">
 							</div>
 							<div class="item" data-slide-number="3">
-								<img src="Images/slide11.jpg" class="img-responsive">
+								<img src="Images/slide11.jpg" alt="Chaddars" class="img-responsive">
 							</div>
 							<div class="item" data-slide-number="4">
-								<img src="Images/33.jpg" class="img-responsive">
+								<img src="Images/33.jpg" alt="Fruits" class="img-responsive">
 							</div>
 						</div>
 					</div>
@@ -48,22 +47,22 @@
 					<ul class="list-inline">
 						<li><a id="carousel-selector-1" class="selected">
 								<div class="slider-navigation" style="">
-									Some text<br> Some text here
+									<h4 class="slide_tit">Solapur Chaddars</h4><br> Starting from Rs.599.
 								</div>
 						</a></li>
 						<li><a id="carousel-selector-2">
 								<div class="slider-navigation" style="">
-									Some text<br> Some text here
+									<h4 class="slide_tit">Just Register</h4><br> Start selling online for free.
 								</div>
 						</a></li>
 						<li><a id="carousel-selector-3">
 								<div class="slider-navigation" style="">
-									Some text<br> Some text here
+									<h4 class="slide_tit">Solapur Chaddars</h4><br> Starting from Rs.599.
 								</div>
 						</a></li>
 						<li><a id="carousel-selector-4">
 								<div class="slider-navigation" style="">
-									Some text<br> Some text here
+									<h4 class="slide_tit">Sell</h4><br> All types of products.
 								</div>
 						</a></li>
 					</ul>
@@ -71,15 +70,15 @@
 			</div>
 			<div class="col-md-3 hidden-xs">
 				<div class="col-md-12 col-sm-4 col-xs-4 add">
-					<img src="Images/androidadd123.jpg" class="img-responsive" style="">
+					<img src="Images/androidadd123.jpg" alt="Android and ios app coming soon" class="img-responsive" >
 				</div>
 				<!--/col-md-12-->
 				<div class="col-md-12 col-sm-4 col-xs-4 add">
-					<img src="Images/Add2.jpg" class="img-responsive" style="">
+					<img src="Images/Add2.jpg" alt="trusted seller" class="img-responsive" style="">
 				</div>
 				<!--/col-md-12-->
 				<div class="col-md-12 col-sm-4 col-xs-4 add">
-					<img src="Images/Add3.jpg" class="img-responsive" style="">
+					<img src="Images/Add3.jpg" alt="Save time" class="img-responsive" style="">
 				</div>
 				<!--/col-md-12-->
 
@@ -105,7 +104,7 @@
 				<div class="col-md-4 back" style="height: 327px;">
 					<div class="main-wrap">
 						<div class="shop-img">
-							<a href="#"> <img class="iim img-responsive" src="Images/shop22.jpg"></a>
+							<a href="#"> <img class="iim img-responsive" src="Images/shop22.jpg" alt="shop"></a>
 							<div class="shop-details">
 								<p>Name:Rahul Madakatti</p>
 								<p>Address: A-402 Tulsi Aangan</p>
@@ -159,7 +158,7 @@
 					<div class="main-wrap">
 						<div class="shop-img">
 							<a href="#"> <img class="iim img-responsive"
-								src="Images/shop22.jpg"></a>
+								src="Images/shop22.jpg" alt="shop"></a>
 							<div class="shop-details">
 								<p>Name:Rahul Madakatti</p>
 								<p>Address: A-402 Tulsi Aangan</p>
@@ -189,6 +188,9 @@
 		<!--/slider-container-->
 	</div>
 	<!--/col-md-12-->
+	
+	
+
 	
 </body>
 </html>

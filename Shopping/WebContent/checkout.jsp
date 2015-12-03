@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
 <title>Checkout</title>
 
 <script type="text/javascript" src="js/myjs/checkout.js"></script>
@@ -146,8 +146,7 @@
 									<a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" onclick="proceed('newaddress');" class="btn btn-primary" id="newaddressnbtn">Next</a>
 								</div>
 								<div class="space"></div>
-								<div id="newaddtextarea" style="padding-left: 10px;display: none;"><textarea id="newatxtddress" rows="7" cols="100"></textarea></div>
-
+								<div id="newaddtextarea" style="padding-left: 10px;display: none;"><textarea id="newatxtddress" rows="7" cols="100" style="width: 100%;"></textarea></div>
 							</div>
 						</div>
 					</div>

@@ -2,7 +2,7 @@
 <html>
 <head>
 <title></title>
-<title></title>
+
 <!-- <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
 	<link rel="stylesheet" type="text/css" href="css/style1.css">
 
@@ -22,7 +22,7 @@
 			<tr><td>State:</td>
 				<td>
 					<!-- <input type="text" class="textbox" name="name"></td></tr> -->
-					<select class="form-control textbox" id="stateSave" placeholder="select state">
+					<select class="textbox" id="stateSave" placeholder="select state">
 						<option value="one">Select State</option>
 						<option value="one">Andhra Pradesh</option>
 						<option value="one">Arunachal Pradesh</option>
