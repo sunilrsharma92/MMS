@@ -1,14 +1,21 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>MakeMyShopy, India's First Local Shop Shopping | Buy local grocery goods,Hotels etc</title>
+<title>MakeMyShopy, India's First Local Shop Shopping | Buy local grocery goods,Hotels etc.</title>
+
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<link rel="icon" type="image/png" href="Images/Modified.ico">
-<meta name="Keywords" content="Online Shopping, India, Books, Store, makemyshopy">
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta name="language" content="english">
+
+<meta name="google-site-verification" content="wW9PCAwO4za6cryT7u00KyNxCHglqXbQ9Fym_fSPMxU" />
+<meta name="msvalidate.01" content="615AA05A065A4B49A5AC132A2DF25713" />
+<meta name="alexaVerifyID" content="I5j3j8RQoHLzw7jPGS0AiJpcA0E"/>
+
+<link rel="icon" type="image/png" href="Images/Modified.ico" alt="makemyshopy">
+<meta name="Keywords" content="makemyshopy,Make,my,shopy,Online Shopping, India, Books,Shop,Store,Solapur Chaddars,Chaddars,Solapur">
 <meta name="Description" content="makemyshopy.com - India's Local Shopping website to buy wide range of products. CoD and Free Shipping.">
+<link rel="canonical" href="http://www.makemyshopy.com/">
 
 <link rel="stylesheet" href="css/bootstrap.css">
 <link rel="stylesheet" href="js/autoComplete/css/jquery-ui.css">

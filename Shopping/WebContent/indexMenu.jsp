@@ -1,10 +1,8 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
-<!-- <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"> -->
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <script>
 	$("#minus").click(function()
@@ -72,7 +70,7 @@
 				<li class=""><a href="#" id="login" data-toggle="modal"
 					data-target="#trackModal" class="whiteLabelLink"> <span
 						class="glyphicon glyphicon-map-marker" style="margin-right: 5px;"></span>Track<span
-						class="hidden-xs">your order</span>
+						class="hidden-xs"> your order</span>
 				</a></li>
 
 				<!-- ***************************************Modal************************************* -->
@@ -272,7 +270,10 @@
 
 
 			<ul class="nav navbar-nav navbar-left collapse navbar-collapse">
-				<li><a href="" id="indexBody" onclick="loadPage(this);">HOME</a></li>
+				<li><a href="" id="indexBody" onclick="loadPage(this);">Home</a></li>
+				<li><a href="">Super Markets</a></li> 
+ 				<li><a href="">Hotels</a></li> 
+ 				<li><a href="">Solapur Chaddars</a></li>
 			</ul>
 			<div class="nav navbar-nav navbar-right hidden-xs">
 				<div class="dropdown  cartMenu ">
