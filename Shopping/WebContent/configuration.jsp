@@ -7,13 +7,6 @@
         <title>Configuration</title>
         <link rel="stylesheet" type="text/css" href="css/xmlEditorPage.css" />
         <link rel="stylesheet" type="text/css" href="js/jAlert/css/jquery.alerts.css" /> 
-        
-        <script type="text/javascript" src="js/jAlert/js/jquery.js"></script>
-        <script type="text/javascript" src="js/jAlert/js/jquery.alerts.js"></script>
-        
-        <script type="text/javascript" src="js/jquery-2.1.4.js"></script>
-        <script type="text/javascript" src="js/myjs/updateWebServiceDetails.js"></script>
-        
     </head>
     <body>
         <div class="">
@@ -75,5 +68,11 @@
 
 
         </div>
+        
+        <script type="text/javascript" src="js/jAlert/js/jquery.js"></script>
+        <script type="text/javascript" src="js/jAlert/js/jquery.alerts.js"></script>
+        <script type="text/javascript" src="js/jquery-2.1.4.js"></script>
+        <script type="text/javascript" src="js/myjs/updateWebServiceDetails.js"></script>
+        
     </body>
 </html>

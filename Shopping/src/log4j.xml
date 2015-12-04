@@ -5,8 +5,8 @@
 	<appender name="fileAppender" class="org.apache.log4j.DailyRollingFileAppender">
 	<param name="append" value="true"/>
 
-<!-- 		<param name="File" value="${catalina.base}/logs/MMS/makemyshopyLog.log"/> -->
-		<param name="File" value="C:/apache-tomcat-8.0.24/logs/MMS/makemyshopyLog.log"/>
+		<param name="File" value="${catalina.base}/logs/MMS/makemyshopyLog.log"/>
+<!-- 		<param name="File" value="C:/apache-tomcat-8.0.24/logs/MMS/makemyshopyLog.log"/> -->
 
 		<param name="Threshold" value="DEBUG"/>
 		<param name="DatePattern" value="'.'yyyy-MM-dd-HH'.log'"/>

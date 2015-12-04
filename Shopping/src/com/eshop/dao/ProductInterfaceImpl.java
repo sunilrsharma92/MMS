@@ -864,18 +864,33 @@ public class ProductInterfaceImpl implements ProductInterface
 						rs = ps.executeQuery();
 						while (rs.next())
 						{
+							String keyName = null;
 							JSONObject childjson = new JSONObject();
 							long id = (long) 0;
 							
 							if(userType.trim().equalsIgnoreCase("customer"))
 							{
 								id = rs.getLong("customer_key");
+								keyName = "customers";
 							}
 							else if(userType.trim().equalsIgnoreCase("supplier"))
 							{
+								String customer = ""+rs.getLong("customer_key");
+								String supplier = ""+rs.getLong("supplier_key");
+								if(!customer.equalsIgnoreCase("0"))
+								{
+									keyName = "customers";
+								}
+								if(!supplier.equalsIgnoreCase("0"))
+								{
+									keyName = "suppliers";
+								}
+								
 								id = rs.getLong("supplier_key");
+								
 							}
 							
+							childjson.put("tablename", keyName);
 							childjson.put("userid", id);
 							childjson.put("orderid", rs.getString("orderid"));
 							childjson.put("datetime", rs.getString("datetime"));
@@ -898,6 +913,7 @@ public class ProductInterfaceImpl implements ProductInterface
 						parentjson.put("Order", jsonarray);
 						parentjson = CommonMethodImpl.putSuccessJson(parentjson, 2014);
 						output = parentjson.toString();
+						System.out.println("Output : "+output);
 						return output;
 					}
 					
@@ -916,6 +932,7 @@ public class ProductInterfaceImpl implements ProductInterface
 						Long userid = (Long) object.get("userid");
 						String userType = (String) object.get("userType");
 						String orderid = (String) object.get("orderid");
+						String tablename = (String) object.get("tablename");
 						float total = 0;
 						String sql = "";
 						String usertypecolumnname = "";
@@ -931,15 +948,29 @@ public class ProductInterfaceImpl implements ProductInterface
 						}
 						else if (userType != null && userType.trim().equalsIgnoreCase("supplier"))
 						{
+							String key = "";
 							usertypecolumnname = "shopid";
+							if(tablename.equalsIgnoreCase("customers"))
+							{
+								key = "customer_key";
+							}
+							if(tablename.equalsIgnoreCase("suppliers"))
+							{
+								key = "supplier_key";
+							}
+							
+//							orderSQl = "select c.*,  s.first_name, s.last_name, s.phone, s.address1, s.address2, s.city,s.state, s.street, s.postal_code, s.country, s.profile_img, s.email, sp.shipping_address "
+//							+" from cart c, customers s, shipping_address sp where c."+usertypecolumnname+" = ? and c.orderid= ?  and c.customer_key = s.customer_key and sp.orderid = '"+orderid+"'";
 							orderSQl = "select c.*,  s.first_name, s.last_name, s.phone, s.address1, s.address2, s.city,s.state, s.street, s.postal_code, s.country, s.profile_img, s.email, sp.shipping_address "
-							+" from cart c, customers s, shipping_address sp where c."+usertypecolumnname+" = ? and c.orderid= ?  and c.customer_key = s.customer_key and sp.orderid = '"+orderid+"'";
+									+" from cart c, "+tablename+" s, shipping_address sp where c."+usertypecolumnname+" = ? and c.orderid= ?  and c."+key+" = s."+key+" and sp.orderid = '"+orderid+"'";
+						
 						}
 						//System.out.println("SQL : "+orderSQl);
 						ps = conn.prepareStatement(orderSQl);
-						
 						ps.setLong(1, userid);
 						ps.setString(2, orderid);
+						
+						System.out.println("orderSQl : "+ps);
 						
 						rs = ps.executeQuery();
 						while (rs.next())
@@ -1292,7 +1323,28 @@ public class ProductInterfaceImpl implements ProductInterface
 							result = ps.executeUpdate();
 							if(result > 0)
 							{
-								parentjson = CommonMethodImpl.putSuccessJson(parentjson, 2021);// succcess
+								ps1 = conn.prepareStatement("select productid, quantity from cart where orderid = '"+orderid+"'");
+								rs = ps1.executeQuery();
+								while(rs.next())
+								{
+									long prodid = rs.getLong("productid");
+									long quantity = rs.getLong("quantity");
+									
+									ps2 = conn.prepareStatement("select units_in_stock from products where product_key = "+prodid+"");
+									rs1 = ps2.executeQuery();
+									while(rs1.next())
+									{
+										long stock = rs1.getLong("units_in_stock");
+										long totalstock = stock + quantity;
+										ps3 = conn.prepareStatement("update products set units_in_stock = "+totalstock+" where product_key = "+prodid+"");
+										result1 = ps3.executeUpdate();
+										if(result1 > 0)
+										{
+											parentjson = CommonMethodImpl.putSuccessJson(parentjson, 2021);// succcess
+										}
+									}
+								}
+								
 							}
 							else
 							{

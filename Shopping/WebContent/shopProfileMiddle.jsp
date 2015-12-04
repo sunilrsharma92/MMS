@@ -14,21 +14,12 @@
   <div class = "row">
    <div class = "col-md-2">
     <div class = "list-group side-bar hidemenu" style="display: none;">
-<!--      <a href = "profile1.html" class = "list-group-item active"><span class = "glyphicon glyphicon-home"></span> Dash</a> -->
-<!--      <a href = "#" class = "list-group-item"><span class = "glyphicon glyphicon-pencil"></span> Edit Slider</a> -->
-<!--      <a href = "#" class = "list-group-item"><span class = "glyphicon glyphicon-pencil"></span> Edit Featured</a> -->
-<!--      <a href = "#" class = "list-group-item"><span class = "glyphicon glyphicon-pencil"></span> Edit New item</a> -->
-<!--      <hr class = "large"> -->
-<!--      <a href = "table.html" class = "list-group-item"><span class = "glyphicon glyphicon-plus"></span> Add Products</a> -->
-<!-- 	<hr class = "large"> -->
 					<div class="list-group side-bar">
 						<a href = "#" class = "list-group-item active"><span class = "glyphicon glyphicon-user"></span> Profile</a>
 						<a href="#" id="4" class="list-group-item" onclick="loadProfileMenu(this)">My orders</a>
 						<a href="#" id="0" class="list-group-item" onclick="loadProfileMenu(this)">Personal Info</a> 
 						<a href="#"	id="1" class="list-group-item" onclick="loadProfileMenu(this)">Addresses</a>
 						<a href="#"	id="2" class="list-group-item" onclick="loadProfileMenu(this)">Change Password</a> 
-						<!-- <a href="#" class="list-group-item">Update Email/Mobile</a> -->
-<!-- 						<a href="#" id="3" class="list-group-item"	onclick="loadProfileMenu(this)">Deactivate Account</a>  -->
 						<a href="#" id="" class="list-group-item">Manage Notifications</a>
 						<hr class="large">
 					</div>

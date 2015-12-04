@@ -9,35 +9,7 @@
 <link rel = "stylesheet" href = "stylesheet.css">
 
 <link rel="stylesheet" href="jqwidgets/css/jqx.base1.css" type="text/css" />
-<!--     <script type="text/javascript" src="jqwidgets/js/jquery-1.11.1.min.js"></script> -->
-<!--     <script type="text/javascript" src="jqwidgets/js/jqxcore.js"></script> -->
-    <script type="text/javascript" src="jqwidgets/js/jqxdata.js"></script>
-    <script type="text/javascript" src="jqwidgets/js/jqxbuttons.js"></script>
-    <script type="text/javascript" src="jqwidgets/js/jqxscrollbar.js"></script>
-    <script type="text/javascript" src="jqwidgets/js/jqxlistbox.js"></script>
-    <script type="text/javascript" src="jqwidgets/js/jqxdropdownlist.js"></script>
-    <script type="text/javascript" src="jqwidgets/js/jqxmenu.js"></script>
-    <script type="text/javascript" src="jqwidgets/js/jqxgrid.js"></script>
-    <script type="text/javascript" src="jqwidgets/js/jqxgrid.filter.js"></script>
-    <script type="text/javascript" src="jqwidgets/js/jqxgrid.sort.js"></script>
-    <script type="text/javascript" src="jqwidgets/js/jqxgrid.pager.js"></script>
-    <script type="text/javascript" src="jqwidgets/js/jqxgrid.selection.js"></script>
-    <script type="text/javascript" src="jqwidgets/js/jqxgrid.edit.js"></script>
-    <script type="text/javascript" src="jqwidgets/js/jqxgrid.columnsresize.js"></script>
-    <script type="text/javascript" src="jqwidgets/js/jqxpanel.js"></script>
-    <script type="text/javascript" src="jqwidgets/js/jqxcalendar.js"></script>
-    <script type="text/javascript" src="jqwidgets/js/jqxradiobutton.js"></script>
-    <script type="text/javascript" src="jqwidgets/js/jqxdatetimeinput.js"></script>
-<!--     <script type="text/javascript" src="jqwidgets/js/jqxcheckbox.js"></script> -->
-    <script type="text/javascript" src="jqwidgets/js/globalize.js"></script>
-    <script type="text/javascript" src="jqwidgets/js/demos.js"></script>
-    <script type="text/javascript" src="jqwidgets/js/generatedata.js"></script>
-    
-<!-- <script type="text/javascript" src="js/myjs/customerprofile.js"></script> -->
-
-<script type="text/javascript" src="js/myjs/customerprofile.js"></script>
-
-<style>
+    <style>
 
 .hideme
 {
@@ -60,7 +32,6 @@ span.glyphicon.glyphicon-camera {
 	<div class = "container-fluid" style = "background-color: #037DBB; margin-top:-15px; margin-bottom:15px;">
 		<div class = "row row1">
 			<div class = "col-md-3 col-sm-6 col-xs-12 prof" style="height: 230px;">
-<!-- 					<img src="Images/CPImg/350x260.png"  class = "img-responsive"   style="margin-bottom: 10px;"> -->
 
 				<form enctype="multipart/form-data" id="uploadFile" action="UploadServlet" method="post" style="height:100%">
 							
@@ -149,10 +120,7 @@ span.glyphicon.glyphicon-camera {
 						<td><span>Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: </span></td>
 						<td><label class = "labelfont" for="firstNameDisplay"></label></td>
 					</tr>
-					<!-- <tr>
-						<td><span>Last Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: </span></td>
-						<td><label class = "labelfont" for="lastNameDisplay"></label></td>
-					</tr> -->
+
 					<tr>
 						<td><span>Address &nbsp;&nbsp;: </span></td>
 						<td><label class = "labelfont" for="addressDisplay"></label></td>
@@ -170,11 +138,6 @@ span.glyphicon.glyphicon-camera {
 						<td><label class = "labelfont" for="pincodeDisplay"></label></td>
 					</tr>
 					<tr>
-						<!--searchProductTxtBox -->
-<!-- 						<input type="text" id="searchProductTxtBox" class="whiteLabel" style="text-align: center; outline: 0; color:black;" name="searchProductTxtBox" placeholder="Search the item here"> -->
-<!-- 						<button class="insearch" onclick="searchProduct();" type="submit"> -->
-<!-- 							<span class="glyphicon glyphicon-search"></span> -->
-<!-- 						</button> -->
 					</tr>
 				</table>
 				<!-- end of table -->
@@ -192,12 +155,8 @@ span.glyphicon.glyphicon-camera {
 				</p>
 
 
-<!-- 				<span>Ratings:*****</span>  -->
 				<span class = "pull-left">
 				<jsp:include page="searchwithcategory.jsp" />
-<!-- 					<button type = "button" class = "btn btn-default" style="width: 33px;"> -->
-<!-- 						<span class = "glyphicon glyphicon-thumbs-up"></span> -->
-<!-- 					</button> -->
 				</span>
 <!-- 				</button> -->
 			</div>
@@ -212,5 +171,32 @@ span.glyphicon.glyphicon-camera {
 	</div>
 	<!--end of container top -->
 	<!-- end of top -->
+	
+<!-- 	<script type="text/javascript" src="jqwidgets/js/jqxdata.js"></script> -->
+<!--     <script type="text/javascript" src="jqwidgets/js/jqxbuttons.js"></script> -->
+<!--     <script type="text/javascript" src="jqwidgets/js/jqxscrollbar.js"></script> -->
+<!--     <script type="text/javascript" src="jqwidgets/js/jqxlistbox.js"></script> -->
+<!--     <script type="text/javascript" src="jqwidgets/js/jqxdropdownlist.js"></script> -->
+<!--     <script type="text/javascript" src="jqwidgets/js/jqxmenu.js"></script> -->
+<!--     <script type="text/javascript" src="jqwidgets/js/jqxgrid.js"></script> -->
+<!--     <script type="text/javascript" src="jqwidgets/js/jqxgrid.filter.js"></script> -->
+<!--     <script type="text/javascript" src="jqwidgets/js/jqxgrid.sort.js"></script> -->
+<!--     <script type="text/javascript" src="jqwidgets/js/jqxgrid.pager.js"></script> -->
+<!--     <script type="text/javascript" src="jqwidgets/js/jqxgrid.selection.js"></script> -->
+
+<!--     <script type="text/javascript" src="jqwidgets/js/jqxgrid.edit.js"></script> -->
+<!--     <script type="text/javascript" src="jqwidgets/js/jqxgrid.columnsresize.js"></script> -->
+
+<!--     <script type="text/javascript" src="jqwidgets/js/jqxpanel.js"></script> -->
+<!--     <script type="text/javascript" src="jqwidgets/js/jqxcalendar.js"></script> -->
+
+<!--     <script type="text/javascript" src="jqwidgets/js/jqxradiobutton.js"></script> -->
+<!--     <script type="text/javascript" src="jqwidgets/js/jqxdatetimeinput.js"></script> -->
+
+<!--     <script type="text/javascript" src="jqwidgets/js/globalize.js"></script> -->
+<!--     <script type="text/javascript" src="jqwidgets/js/demos.js"></script> -->
+<!--     <script type="text/javascript" src="jqwidgets/js/generatedata.js"></script> -->
+	<script type="text/javascript" src="js/myjs/customerprofile.js"></script>
+	
 </body>
 </html>

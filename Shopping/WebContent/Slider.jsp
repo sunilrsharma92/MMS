@@ -7,12 +7,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <title>My Now Amazing Webpage</title>
-<!--   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"> -->
-<!--   <link rel="stylesheet" href="css/style1.css"> -->
-<!--   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css"> -->
-  <!-- <link rel="stylesheet" type="text/css" href="css/bootstrap.css"> -->
-  <link rel="stylesheet" type="text/css" href="style1.css">
-<link href="http://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" type="text/css" href="style1.css"> 
+  <link href="http://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
   <link rel="stylesheet" type="text/css" href="slick/slick.css"/>
   <link rel="stylesheet" type="text/css" href="slick/slick-theme.css"/>
   
@@ -31,8 +27,6 @@
   padding: 15px 15px;
   text-align: center;
 }
-
-/*#slider-thumbs { margin-top: -100px; }*/
 
 #slider-thumbs .list-inline li {
   width: 25%;
@@ -133,8 +127,6 @@ h3{
 	height: 316px;
 }
 
-	
-
   </style>
   
   </head>
@@ -209,64 +201,7 @@ h3{
 				<!--/col-md-12-->
 
 			</div>
-			<!--/col-md-3-->
-			<!-- <div class="row">
-			<div class="col-md-9">
-				Slider
-				<div id="myCarousel" class="carousel slide" data-ride="carousel">
-					Indicators
-					<ol class="carousel-indicators">
-						<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-						<li data-target="#myCarousel" data-slide-to="1"></li>
-						<li data-target="#myCarousel" data-slide-to="2"></li>
-					</ol>
-
-					Wrapper for slides
-					<div class="carousel-inner" role="listbox">
-						<div class="item active">
-							<img src="Images/slide11.jpg">
-							<h4 align="center">This is header</h4>
-							<p align="center">This is paragraph with description</p>
-						</div>
-
-						<div class="item">
-							<img src="Images/slide2.png">
-							<h4 align="center">This is header</h4>
-							<p align="center">This is paragraph with description</p>
-						</div>
-
-						<div class="item">
-							<img src="Images/33.jpg">
-							<h4 align="center">This is header</h4>
-							<p align="center">This is paragraph with description</p>
-						</div>
-
-
-					</div>
-
-					Left and right controls
-					<a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev"> 
-						<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-						<span class="sr-only">Previous</span>
-					</a> 
-					<a class="right carousel-control" href="#myCarousel" role="button" data-slide="next"> 
-						<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-						<span class="sr-only">Next</span>
-					</a>
-				</div>
-
-				End of slider 
-				
-			</div>end of col-md-9 
 			
-			<div class="col-md-3">
-				<div class="row">
-				<img src="http://placehold.it/250x150">
-				</div>
-				<div class="row">
-				<img src="http://placehold.it/250x150"></div>
-			</div>end of col-md-3 
-		</div>row end  -->
 </div>
   
     <div class="slider-container">
@@ -454,10 +389,6 @@ h3{
     </div><!--/slider-container-->
   </div><!--/col-md-12-->
 
-<!--   <script type="text/javascript" src="slick/jquery-1.11.0.min.js"></script> -->
-  <!-- // <script type="text/javascript" src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script> -->
-<!--   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script> -->
-<!--   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script> -->
   <script type="text/javascript" src="slick/slick.min.js"></script>
 
   <script type="text/javascript">

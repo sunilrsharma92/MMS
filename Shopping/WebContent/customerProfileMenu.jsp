@@ -18,7 +18,6 @@ span.glyphicon.glyphicon-camera {
 }
 .profilewrap:hover .hideme{display:block;}
 
-
 table td
 {
 	padding-left: 30px;
@@ -287,9 +286,6 @@ table td
 			<!-- end of div container -->
 		</div>
 	</div>
-	<%-- <jsp:include page="footer.jsp" /> --%>
-
-
 
 </body>
 </html>

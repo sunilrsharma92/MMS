@@ -1,15 +1,1 @@
-$(document).ready(function()
-{
-	var zoominage = $.session.get("zoominage");
-	var prodDisc = $.session.get("prodDisc");
-	document.getElementById("viewProductdiv").innerHTML = zoominage;
-	document.getElementById("productdisc").innerHTML = prodDisc;
-});
-function disablebtn(productid)
-{
-	document.getElementById("btn" + productid).disabled = true;
-}
-function enablebtn(productid)
-{
-	document.getElementById("btn" + productid).disabled = false;
-}
+$(document).ready(function(){try{var zoominage=$.session.get("zoominage");var prodDisc=$.session.get("prodDisc");document.getElementById("viewProductdiv").innerHTML=zoominage;document.getElementById("productdisc").innerHTML=prodDisc;}catch(e){console.log("ViewProduct Exception : "+e);}});function disablebtn(productid){document.getElementById("btn"+productid).disabled=true;}function enablebtn(productid){document.getElementById("btn"+productid).disabled=false;}
