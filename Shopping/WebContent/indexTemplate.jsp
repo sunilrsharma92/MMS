@@ -58,37 +58,25 @@ ul li:hover ul.dropdown-menu {
 		
 	</div><!-- #wrapper -->
 
+<!-- ******************************************************************* -->
 
-<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script> -->
-<!-- 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script> -->
-
-<script type="text/javascript" src="js/jqueryConfirm/jquery-confirm.js"></script>
-<script type="text/javascript" src="js/bootstrap.js"></script>
-
-<script type="text/javascript" src='js/jquery.elevatezoom.js'></script>
-<script type="text/javascript" src="js/autoComplete/js/jquery-ui.js"></script><!-- //autocomplete -->
-
-<script type="text/javascript" src="js/jquery.cookie.js"></script>
-<script type="text/javascript" src="js/jquery.session.js"></script>
-
-<script type="text/javascript" src="js/jqwidgets/jqxcore.js"></script>
-<script type="text/javascript" src="js/jqwidgets/jqxcheckbox.js"></script>
-<script type="text/javascript" src="js/jqwidgets/jqxswitchbutton.js"></script>
-
-<script type="text/javascript" src="js/json_parse.js"></script>
-<script type="text/javascript" src="js/json2.js"></script>
-
-<script type="text/javascript" src="slick/slick.min.js"></script>
-
-<script type="text/javascript" src="js/myjs/maintainPageStateUsingCookie/maintainPageState.js"></script>
-<script type="text/javascript" src="js/myjs/handleRequest.js"></script>
-<script type="text/javascript" src="js/myjs/handleResponse.js"></script>
-<script type="text/javascript" src="js/myjs/handleMessage.js"></script>
-<script type="text/javascript" src="js/myjs/callServlet.js"></script>
-<script type="text/javascript" src="js/myjs/ready.js"></script>
+	<script type="text/javascript" src="js/jqueryConfirm/jquery-confirm.js"></script>
+	<script type="text/javascript" src="js/bootstrap.js"></script>
+	
+	<script type="text/javascript" src='js/jquery.elevatezoom.js'></script>
+	<script type="text/javascript" src="js/autoComplete/js/jquery-ui.js"></script><!-- //autocomplete -->
+	
+	<script type="text/javascript" src="js/jquery.cookie.js"></script>
+	<script type="text/javascript" src="js/jquery.session.js"></script>
+	
+	<script type="text/javascript" src="js/json_parse.js"></script>
+	<script type="text/javascript" src="js/json2.js"></script>
+	
+	<script type="text/javascript" src="slick/slick.min.js"></script>
 
 <!-- ******************************************************************* -->
 	
+	<script type="text/javascript" src="js/jqwidgets/jqxcore.js"></script>
 	<script type="text/javascript" src="jqwidgets/js/jqxdata.js"></script>
     <script type="text/javascript" src="jqwidgets/js/jqxbuttons.js"></script>
     <script type="text/javascript" src="jqwidgets/js/jqxscrollbar.js"></script>
@@ -102,10 +90,18 @@ ul li:hover ul.dropdown-menu {
     <script type="text/javascript" src="jqwidgets/js/jqxgrid.selection.js"></script>
     <script type="text/javascript" src="jqwidgets/js/jqxgrid.columnsresize.js"></script>
     <script type="text/javascript" src="jqwidgets/js/jqxcalendar.js"></script>
+    <script type="text/javascript" src="js/jqwidgets/jqxcheckbox.js"></script>
+	<script type="text/javascript" src="js/jqwidgets/jqxswitchbutton.js"></script>
     <script type="text/javascript" src="jqwidgets/js/jqxdatetimeinput.js"></script>
 	
-	
 <!-- 	************************************************************************** -->
+	
+	<script type="text/javascript" src="js/myjs/maintainPageStateUsingCookie/maintainPageState.js"></script>
+	<script type="text/javascript" src="js/myjs/handleRequest.js"></script>
+	<script type="text/javascript" src="js/myjs/handleResponse.js"></script>
+	<script type="text/javascript" src="js/myjs/handleMessage.js"></script>
+	<script type="text/javascript" src="js/myjs/callServlet.js"></script>
+	<script type="text/javascript" src="js/myjs/ready.js"></script>
 	
 </body>
 </html>
