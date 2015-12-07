@@ -194,7 +194,7 @@
 				<button type="button" class="navbar-toggle pull-left" id="mobcat" data-toggle="collapse" data-target=".slidemenu">
 					<span class="glyphicon glyphicon-option-vertical"></span>	
 				</button>
-				<a href="#" id="indexBody1" onclick="loadPage(this);" class="navbar-brand" style="width: 86px; height: 42px;"><img src="Images/Logo12.png" class="img-rounded mylogo" alt="Cinque Terre" style=""> </a>
+				<a href="" id="indexBody1" class="navbar-brand" style="width: 86px; height: 42px;"><img src="Images/Logo12.png" class="img-rounded mylogo" alt="Cinque Terre" style=""> </a>
 
 				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
 					<span class="sr-only">Toggle button</span> 
