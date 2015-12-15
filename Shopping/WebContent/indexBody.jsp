@@ -86,7 +86,7 @@
 			<!--/col-md-3-->
 
 		</div>
-
+<div style="display: none;">
 		<div class="slider-container">
 
 
@@ -134,12 +134,14 @@
 		</div>
 		<!--/slider-container-->
 	</div>
+	</div>
 	<!--/col-md-12-->
 
 	<div class="container">
 		<h4 id="searchtitle" style="display: none;">List of shope's in your area...</h4>
 		<!--  <div id="productList" style="display: none;"> -->
 		<div id="shopList" style="display: none;"></div>
+
 		<div class="slider1-container hideslider">
 
 
@@ -185,6 +187,7 @@
 			</div>
 			<!--/responsive-->
 		</div>
+		
 		<!--/slider-container-->
 	</div>
 	<!--/col-md-12-->
